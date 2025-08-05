@@ -3,3 +3,18 @@
 @tailwind utilities;
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 10px 2px #ffd700, 0 0 20px 4px #ffcc00;
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 20px 4px #ffd700, 0 0 40px 8px #ffcc00, 0 0 60px 12px #ffaa00;
+    transform: scale(1.02);
+  }
+}
+
+.pulse-button {
+  animation: pulse-glow 2s ease-in-out infinite;
+}

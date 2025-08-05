@@ -117,7 +117,7 @@ function App() {
               
              <div className="relative mb-4">
                <button 
-                 className="w-full text-black font-bold text-xl py-4 px-8 rounded-xl font-inter transition-transform duration-200 ease-in-out hover:scale-105 border-none cursor-pointer"
+                 className="w-full text-black font-bold text-xl py-4 px-8 rounded-xl font-inter transition-transform duration-200 ease-in-out hover:scale-105 border-none cursor-pointer pulse-button"
                  style={{
                    background: 'linear-gradient(to bottom, #ffd700, #ffb700)',
                    boxShadow: '0 0 10px 2px #ffd700, 0 0 20px 4px #ffcc00'
