@@ -261,4 +261,3 @@ function App() {
 }
 
 export default App;
-               <h3 className="text-base md:text-lg font-bold text-white mb-1 font-inter tracking-wide">
