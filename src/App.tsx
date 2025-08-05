@@ -43,22 +43,21 @@ function App() {
         <div className="flex justify-center mb-6 md:mb-8">
           <div className="relative">
             {/* Video Container - 9:16 aspect ratio */}
-                   <div className="w-4 h-4 md:w-5 md:h-5 bg-white/20 rounded-full flex items-center justify-center mb-1">
-                     <Truck className="w-2 h-2 md:w-2.5 md:h-2.5 text-white" />
-                   </div>
+            <div className="w-72 h-[512px] sm:w-80 sm:h-[568px] md:w-96 md:h-[682px] bg-gray-100 border-2 md:border-4 border-fuchsia-200 rounded-xl md:rounded-2xl shadow-xl md:shadow-2xl flex items-center justify-center mx-auto">
+              <div className="text-center p-4 md:p-8">
                 <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-r from-fuchsia-500 to-pink-500 rounded-full flex items-center justify-center mb-3 md:mb-4 mx-auto">
-                   <span className="text-white/90 text-xs md:text-xs font-inter font-medium">$9.99 Ship</span>
+                  <div className="w-0 h-0 border-l-[10px] md:border-l-[12px] border-l-white border-t-[6px] md:border-t-[8px] border-t-transparent border-b-[6px] md:border-b-[8px] border-b-transparent ml-1"></div>
                 </div>
                 <p className="text-gray-600 font-medium text-sm md:text-base">
-                   <div className="w-4 h-4 md:w-5 md:h-5 bg-white/20 rounded-full flex items-center justify-center mb-1">
-                     <Lock className="w-2 h-2 md:w-2.5 md:h-2.5 text-white" />
-                   </div>
-                <p className="text-xs md:text-sm text-gray-500 mt-2">
-                   <span className="text-white/90 text-xs md:text-xs font-inter font-medium">Secure</span>
+                  Embed your VTurb video here
                 </p>
+                <p className="text-xs md:text-sm text-gray-500 mt-2">
+                  9:16 aspect ratio
                 </p>
               </div>
             </div>
+          </div>
+        </div>
 
         {/* Video Notices */}
         <div className="max-w-sm sm:max-w-md mx-auto space-y-3 md:space-y-4 px-4">
@@ -154,6 +153,7 @@ function App() {
                 </div>
               </div>
              </div>
+            </div>
             
             {/* 3 and 1 Bottle Packages */}
             <div className="grid grid-cols-2 gap-4 md:gap-6">
@@ -184,10 +184,10 @@ function App() {
                <button className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-black font-bold text-xs py-2 px-2 rounded-lg mb-2 transition-all duration-200 transform hover:scale-105 shadow-lg border-2 border-yellow-300 font-inter">BUY NOW</button>
                
                {/* Benefits */}
-               <div className="flex justify-center items-center space-x-2 md:space-x-4">
+               <div className="flex justify-center items-center space-x-4">
                  <div className="flex flex-col items-center">
-                   <div className="w-5 h-5 md:w-6 md:h-6 bg-white/20 rounded-full flex items-center justify-center mb-1">
-                     <Calendar className="w-2.5 h-2.5 md:w-3 md:h-3 text-white" />
+                   <div className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center mb-1">
+                     <Calendar className="w-3 h-3 text-white" />
                    </div>
                    <span className="text-white/90 text-xs font-inter font-medium">180-Day</span>
                  </div>
@@ -232,24 +232,24 @@ function App() {
                <button className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-black font-bold text-xs py-2 px-2 rounded-lg mb-2 transition-all duration-200 transform hover:scale-105 shadow-lg border-2 border-yellow-300 font-inter">BUY NOW</button>
                
                {/* Benefits */}
-               <div className="flex justify-center items-center space-x-1 md:space-x-2">
+               <div className="flex justify-center items-center space-x-2">
                  <div className="flex flex-col items-center">
-                   <div className="w-4 h-4 md:w-5 md:h-5 bg-white/20 rounded-full flex items-center justify-center mb-1">
-                     <Calendar className="w-2 h-2 md:w-2.5 md:h-2.5 text-white" />
+                   <div className="w-5 h-5 bg-white/20 rounded-full flex items-center justify-center mb-1">
+                     <Calendar className="w-2.5 h-2.5 text-white" />
                    </div>
-                   <span className="text-white/90 text-xs md:text-xs font-inter font-medium">180-Day</span>
+                   <span className="text-white/90 text-xs font-inter font-medium">180-Day</span>
                  </div>
                  <div className="flex flex-col items-center">
-                   <div className="w-5 h-5 md:w-6 md:h-6 bg-white/20 rounded-full flex items-center justify-center mb-1">
-                     <Truck className="w-2.5 h-2.5 md:w-3 md:h-3 text-white" />
+                   <div className="w-5 h-5 bg-white/20 rounded-full flex items-center justify-center mb-1">
+                     <Truck className="w-2.5 h-2.5 text-white" />
                    </div>
-                   <span className="text-white/90 text-xs md:text-xs font-inter font-medium">Free Ship</span>
+                   <span className="text-white/90 text-xs font-inter font-medium">$9.99 Ship</span>
                  </div>
                  <div className="flex flex-col items-center">
-                   <div className="w-5 h-5 md:w-6 md:h-6 bg-white/20 rounded-full flex items-center justify-center mb-1">
-                     <Lock className="w-2.5 h-2.5 md:w-3 md:h-3 text-white" />
+                   <div className="w-5 h-5 bg-white/20 rounded-full flex items-center justify-center mb-1">
+                     <Lock className="w-2.5 h-2.5 text-white" />
                    </div>
-                   <span className="text-white/90 text-xs md:text-xs font-inter font-medium">Secure</span>
+                   <span className="text-white/90 text-xs font-inter font-medium">Secure</span>
                  </div>
                </div>
              </div>
@@ -263,5 +263,3 @@ function App() {
  }
  
  export default App;
-  )
-}
