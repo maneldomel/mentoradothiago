@@ -7,14 +7,18 @@ function App() {
       {/* Glassmorphism Background */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Soft magenta orbs */}
-        <div className="absolute top-20 left-10 w-96 h-96 bg-gradient-to-br from-magenta-200/20 to-magenta-300/10 rounded-full blur-3xl"></div>
-        <div className="absolute top-40 right-20 w-80 h-80 bg-gradient-to-bl from-magenta-100/15 to-magenta-200/8 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-32 left-1/4 w-72 h-72 bg-gradient-to-tr from-magenta-300/12 to-magenta-100/6 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-1/3 w-64 h-64 bg-gradient-to-tl from-magenta-200/18 to-magenta-300/8 rounded-full blur-3xl"></div>
+        <div className="absolute top-20 left-10 w-96 h-96 bg-gradient-to-br from-magenta-300/30 to-magenta-400/15 rounded-full blur-3xl"></div>
+        <div className="absolute top-40 right-20 w-80 h-80 bg-gradient-to-bl from-magenta-200/25 to-magenta-300/12 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-32 left-1/4 w-72 h-72 bg-gradient-to-tr from-magenta-400/20 to-magenta-200/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-1/3 w-64 h-64 bg-gradient-to-tl from-magenta-300/25 to-magenta-400/12 rounded-full blur-3xl"></div>
         
         {/* Additional subtle lights */}
-        <div className="absolute top-1/3 left-1/2 w-48 h-48 bg-gradient-to-r from-magenta-100/10 to-magenta-200/5 rounded-full blur-2xl"></div>
-        <div className="absolute bottom-1/2 right-10 w-56 h-56 bg-gradient-to-l from-magenta-300/8 to-magenta-100/4 rounded-full blur-2xl"></div>
+        <div className="absolute top-1/3 left-1/2 w-48 h-48 bg-gradient-to-r from-magenta-200/18 to-magenta-300/8 rounded-full blur-2xl"></div>
+        <div className="absolute bottom-1/2 right-10 w-56 h-56 bg-gradient-to-l from-magenta-400/15 to-magenta-200/7 rounded-full blur-2xl"></div>
+        
+        {/* Extra ambient lights */}
+        <div className="absolute top-10 right-1/4 w-32 h-32 bg-gradient-to-br from-magenta-500/20 to-magenta-300/8 rounded-full blur-xl"></div>
+        <div className="absolute bottom-10 left-1/3 w-40 h-40 bg-gradient-to-tl from-magenta-400/18 to-magenta-200/6 rounded-full blur-xl"></div>
       </div>
       
       {/* Header Section */}
