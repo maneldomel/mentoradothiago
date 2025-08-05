@@ -90,7 +90,7 @@ function App() {
             
             {/* 6 Bottle Package - Main Offer */}
             <div className="bg-gradient-to-br from-magenta-700 to-magenta-900 rounded-2xl p-6 text-center mb-8 shadow-xl">
-              <div className="mb-4">
+              <div className="mb-4 overflow-hidden">
                 <img 
                   src="https://i.imgur.com/VScX6oJ.png" 
                   alt="6 Bottles of Proaxion" 
