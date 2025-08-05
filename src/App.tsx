@@ -59,8 +59,6 @@ function App() {
                 </p>
               </div>
             </div>
-          </div>
-        </div>
 
         {/* Video Notices */}
         <div className="max-w-sm sm:max-w-md mx-auto space-y-3 md:space-y-4 px-4">
