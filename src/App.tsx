@@ -146,7 +146,7 @@ function App() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               
               {/* 3 Bottle Package */}
-              <div className="bg-gray-100 rounded-2xl p-6 text-center shadow-lg">
+              <div className="bg-gray-300 rounded-2xl p-6 text-center shadow-lg">
                 <div className="mb-4">
                   <img 
                     src="https://i.imgur.com/SnCtQg9.png" 
@@ -176,7 +176,7 @@ function App() {
               </div>
               
               {/* 1 Bottle Package */}
-              <div className="bg-gray-100 rounded-2xl p-6 text-center shadow-lg">
+              <div className="bg-gray-300 rounded-2xl p-6 text-center shadow-lg">
                 <div className="mb-4">
                   <img 
                     src="https://i.imgur.com/RVXt1O7.png" 
