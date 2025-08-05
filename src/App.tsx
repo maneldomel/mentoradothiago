@@ -113,6 +113,10 @@ function App() {
                 only $49 per bottle, $294 total
               </p>
               
+              <button className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-black font-bold text-xl py-5 px-8 rounded-xl mb-4 transition-all duration-200 transform hover:scale-105 shadow-lg border-2 border-yellow-300 font-inter">
+                CLAIM OFFER NOW
+              </button>
+              
               {/* Benefits */}
               <div className="flex justify-center items-center space-x-8">
                 <div className="flex flex-col items-center">
