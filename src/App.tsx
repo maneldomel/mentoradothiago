@@ -98,7 +98,7 @@ function App() {
                 />
               </div>
               
-              <h3 className="text-4xl font-bold text-white mb-1 font-inter tracking-wide">
+              <h3 className="text-4xl font-bold text-white mb-1 font-inter tracking-wide -mt-2">
                 PROAXION
               </h3>
               <p className="text-xl font-medium text-white/90 mb-4 font-inter tracking-wide">
