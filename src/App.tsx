@@ -146,7 +146,7 @@ function App() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               
               {/* 3 Bottle Package */}
-              <div className="bg-gray-300 rounded-2xl p-6 text-center shadow-lg">
+              <div className="bg-gradient-to-br from-magenta-400 to-magenta-500 rounded-2xl p-6 text-center shadow-lg">
                 <div className="mb-4">
                   <img 
                     src="https://i.imgur.com/SnCtQg9.png" 
@@ -155,10 +155,10 @@ function App() {
                   />
                 </div>
                 
-                <h3 className="text-4xl font-bold text-gray-800 mb-1 font-inter tracking-wide">
+                <h3 className="text-4xl font-bold text-white mb-1 font-inter tracking-wide">
                   PROAXION
                 </h3>
-                <p className="text-xl font-medium text-gray-700 mb-4 font-inter tracking-wide">
+                <p className="text-xl font-medium text-white/90 mb-4 font-inter tracking-wide">
                   3 BOTTLE PACKAGE
                 </p>
                 
@@ -166,7 +166,7 @@ function App() {
                   YOU'RE SAVING $300
                 </p>
                 
-                <p className="text-gray-600 text-base font-inter mb-4">
+                <p className="text-white/80 text-base font-inter mb-4">
                   only $69 per bottle, $207 total
                 </p>
                 
@@ -176,7 +176,7 @@ function App() {
               </div>
               
               {/* 1 Bottle Package */}
-              <div className="bg-gray-300 rounded-2xl p-6 text-center shadow-lg">
+              <div className="bg-gradient-to-br from-magenta-300 to-magenta-400 rounded-2xl p-6 text-center shadow-lg">
                 <div className="mb-4">
                   <img 
                     src="https://i.imgur.com/RVXt1O7.png" 
@@ -185,10 +185,10 @@ function App() {
                   />
                 </div>
                 
-                <h3 className="text-4xl font-bold text-gray-800 mb-1 font-inter tracking-wide">
+                <h3 className="text-4xl font-bold text-white mb-1 font-inter tracking-wide">
                   PROAXION
                 </h3>
-                <p className="text-xl font-medium text-gray-700 mb-4 font-inter tracking-wide">
+                <p className="text-xl font-medium text-white/90 mb-4 font-inter tracking-wide">
                   1 BOTTLE PACKAGE
                 </p>
                 
@@ -196,7 +196,7 @@ function App() {
                   STARTER PACKAGE
                 </p>
                 
-                <p className="text-gray-600 text-base font-inter mb-4">
+                <p className="text-white/80 text-base font-inter mb-4">
                   only $99 per bottle, $99 total
                 </p>
                 
