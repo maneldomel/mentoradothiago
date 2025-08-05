@@ -146,61 +146,61 @@ function App() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               
               {/* 3 Bottle Package */}
-              <div className="bg-gradient-to-br from-magenta-400 to-magenta-500 rounded-2xl p-6 text-center shadow-lg">
+             <div className="bg-gradient-to-br from-magenta-400 to-magenta-500 rounded-xl p-4 text-center shadow-lg">
                 <div className="mb-4">
                   <img 
                     src="https://i.imgur.com/SnCtQg9.png" 
                     alt="3 Bottles of Proaxion" 
-                    className="w-40 h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 object-contain mx-auto"
+                   className="w-24 h-24 md:w-32 md:h-32 object-contain mx-auto"
                   />
                 </div>
                 
-                <h3 className="text-4xl font-bold text-white mb-1 font-inter tracking-wide">
+               <h3 className="text-2xl font-bold text-white mb-1 font-inter tracking-wide">
                   PROAXION
                 </h3>
-                <p className="text-xl font-medium text-white/90 mb-4 font-inter tracking-wide">
+               <p className="text-sm font-medium text-white/90 mb-3 font-inter tracking-wide">
                   3 BOTTLE PACKAGE
                 </p>
                 
-                <p className="text-2xl font-bold mb-4" style={{color: '#FFD700'}}>
+               <p className="text-lg font-bold mb-3" style={{color: '#FFD700'}}>
                   YOU'RE SAVING $300
                 </p>
                 
-                <p className="text-white/80 text-base font-inter mb-4">
+               <p className="text-white/80 text-sm font-inter mb-4">
                   only $69 per bottle, $207 total
                 </p>
                 
-                <button className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-black font-bold text-xl py-5 px-8 rounded-xl mb-4 transition-all duration-200 transform hover:scale-105 shadow-lg border-2 border-yellow-300 font-inter">
+               <button className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-black font-bold text-sm py-3 px-4 rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg border-2 border-yellow-300 font-inter">
                   CLAIM OFFER NOW
                 </button>
               </div>
               
               {/* 1 Bottle Package */}
-              <div className="bg-gradient-to-br from-magenta-300 to-magenta-400 rounded-2xl p-6 text-center shadow-lg">
+             <div className="bg-gradient-to-br from-magenta-300 to-magenta-400 rounded-xl p-4 text-center shadow-lg">
                 <div className="mb-4">
                   <img 
                     src="https://i.imgur.com/RVXt1O7.png" 
                     alt="1 Bottle of Proaxion" 
-                    className="w-40 h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 object-contain mx-auto"
+                   className="w-24 h-24 md:w-32 md:h-32 object-contain mx-auto"
                   />
                 </div>
                 
-                <h3 className="text-4xl font-bold text-white mb-1 font-inter tracking-wide">
+               <h3 className="text-2xl font-bold text-white mb-1 font-inter tracking-wide">
                   PROAXION
                 </h3>
-                <p className="text-xl font-medium text-white/90 mb-4 font-inter tracking-wide">
+               <p className="text-sm font-medium text-white/90 mb-3 font-inter tracking-wide">
                   1 BOTTLE PACKAGE
                 </p>
                 
-                <p className="text-2xl font-bold mb-4" style={{color: '#FFD700'}}>
+               <p className="text-lg font-bold mb-3" style={{color: '#FFD700'}}>
                   STARTER PACKAGE
                 </p>
                 
-                <p className="text-white/80 text-base font-inter mb-4">
+               <p className="text-white/80 text-sm font-inter mb-4">
                   only $99 per bottle, $99 total
                 </p>
                 
-                <button className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-black font-bold text-xl py-5 px-8 rounded-xl mb-4 transition-all duration-200 transform hover:scale-105 shadow-lg border-2 border-yellow-300 font-inter">
+               <button className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-black font-bold text-sm py-3 px-4 rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg border-2 border-yellow-300 font-inter">
                   CLAIM OFFER NOW
                 </button>
               </div>
