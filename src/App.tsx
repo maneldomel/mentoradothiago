@@ -49,7 +49,7 @@ function App() {
             <div className="flex items-center justify-center space-x-2">
               <Volume2 className="w-4 h-4 text-gray-500" />
               <p className="text-gray-600 text-xs sm:text-sm text-center">
-                Make sure your sound is ON for the full experience
+                Make sure your <span className="text-transparent bg-gradient-to-r from-magenta-600 to-magenta-400 bg-clip-text font-bold">sound is ON</span> for the full experience
               </p>
             </div>
           </div>
@@ -59,7 +59,7 @@ function App() {
             <div className="flex items-center justify-center space-x-2">
               <Clock className="w-4 h-4 text-gray-500" />
               <p className="text-gray-600 text-xs sm:text-sm text-center">
-                This video will disappear soon - Watch it now!
+                This video will <span className="text-transparent bg-gradient-to-r from-magenta-600 to-magenta-400 bg-clip-text font-bold">disappear soon</span> - <span className="text-transparent bg-gradient-to-r from-magenta-600 to-magenta-400 bg-clip-text font-bold">Watch it now!</span>
               </p>
             </div>
           </div>
