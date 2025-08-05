@@ -6,11 +6,11 @@
 
 @keyframes pulse-glow {
   0%, 100% {
-    box-shadow: 0 0 10px 2px #ffd700, 0 0 20px 4px #ffcc00;
+    box-shadow: 0 0 8px 1px #ffd700, 0 0 15px 2px #ffcc00;
     transform: scale(1);
   }
   50% {
-    box-shadow: 0 0 20px 4px #ffd700, 0 0 40px 8px #ffcc00, 0 0 60px 12px #ffaa00;
+    box-shadow: 0 0 12px 2px #ffd700, 0 0 25px 4px #ffcc00, 0 0 35px 6px #ffaa00;
     transform: scale(1.02);
   }
 }

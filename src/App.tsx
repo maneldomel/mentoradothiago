@@ -111,9 +111,11 @@ function App() {
                 YOU'RE SAVING $900
               </p>
               
-              <p className="text-white/80 text-base font-inter mb-4">
+              <p className="text-white/80 text-base font-inter mb-2">
                 only $49 per bottle, $294 total
               </p>
+              
+              <div className="mb-6"></div>
               
              <div className="relative mb-4">
                <button 
@@ -126,6 +128,8 @@ function App() {
                  CLAIM OFFER NOW
                </button>
              </div>
+              
+              <div className="mb-8"></div>
               
               {/* Benefits */}
               <div className="flex justify-center items-center space-x-8">
