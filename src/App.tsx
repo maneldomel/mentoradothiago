@@ -117,10 +117,10 @@ function App() {
               
              <div className="relative mb-4">
                {/* Multiple layer glassmorphism glow effect */}
-               <div className="absolute inset-0 bg-gradient-to-r from-magenta-400 to-magenta-600 rounded-xl blur-2xl scale-125 opacity-80 -z-10"></div>
-               <div className="absolute inset-0 bg-gradient-to-r from-magenta-300 to-magenta-500 rounded-xl blur-xl scale-115 opacity-60 -z-10"></div>
-               <div className="absolute inset-0 bg-gradient-to-r from-magenta-200 to-magenta-400 rounded-xl blur-lg scale-110 opacity-40 -z-10"></div>
-               <button className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-black font-bold text-xl py-5 px-8 rounded-xl transition-all duration-200 transform hover:scale-105 shadow-lg border-2 border-yellow-300 font-inter relative z-10">
+               <div className="absolute inset-0 bg-gradient-to-r from-magenta-400 to-magenta-600 rounded-xl blur-2xl scale-125 opacity-80 -z-10 animate-pulse"></div>
+               <div className="absolute inset-0 bg-gradient-to-r from-magenta-300 to-magenta-500 rounded-xl blur-xl scale-115 opacity-60 -z-10 animate-pulse"></div>
+               <div className="absolute inset-0 bg-gradient-to-r from-magenta-200 to-magenta-400 rounded-xl blur-lg scale-110 opacity-40 -z-10 animate-pulse"></div>
+               <button className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-black font-bold text-xl py-5 px-8 rounded-xl transition-all duration-200 transform hover:scale-105 shadow-lg border-2 border-yellow-300 font-inter relative z-10 animate-pulse">
                  CLAIM OFFER NOW
                </button>
              </div>
