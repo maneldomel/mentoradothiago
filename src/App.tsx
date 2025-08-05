@@ -116,13 +116,13 @@ function App() {
               </p>
               
              <div className="relative mb-4">
-               {/* Intense multi-layer light glow effect */}
-               <div className="absolute inset-0 bg-gradient-to-r from-magenta-400 to-magenta-600 rounded-xl blur-3xl scale-150 opacity-90 -z-10 animate-pulse"></div>
-               <div className="absolute inset-0 bg-gradient-to-r from-magenta-300 to-magenta-500 rounded-xl blur-2xl scale-140 opacity-80 -z-10 animate-pulse"></div>
-               <div className="absolute inset-0 bg-gradient-to-r from-magenta-200 to-magenta-400 rounded-xl blur-xl scale-130 opacity-70 -z-10 animate-pulse"></div>
-               <div className="absolute inset-0 bg-gradient-to-r from-white to-magenta-200 rounded-xl blur-lg scale-120 opacity-50 -z-10 animate-pulse"></div>
-               <div className="absolute inset-0 bg-white rounded-xl blur-md scale-115 opacity-30 -z-10 animate-pulse"></div>
-               <button className="w-full bg-gradient-to-r from-yellow-300 to-yellow-400 hover:from-yellow-400 hover:to-yellow-500 text-black font-bold text-xl py-5 px-8 rounded-xl transition-all duration-200 transform hover:scale-105 shadow-2xl border-2 border-yellow-200 font-inter relative z-10 animate-pulse drop-shadow-2xl">
+               <button 
+                 className="w-full text-black font-bold text-xl py-4 px-8 rounded-xl font-inter transition-transform duration-200 ease-in-out hover:scale-105 border-none cursor-pointer"
+                 style={{
+                   background: 'linear-gradient(to bottom, #ffd700, #ffb700)',
+                   boxShadow: '0 0 10px 2px #ffd700, 0 0 20px 4px #ffcc00'
+                 }}
+               >
                  CLAIM OFFER NOW
                </button>
              </div>
