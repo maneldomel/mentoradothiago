@@ -143,7 +143,7 @@ function App() {
             </div>
             
             {/* 3 and 1 Bottle Packages */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-2 gap-4 md:gap-6">
               
               {/* 3 Bottle Package */}
              <div className="bg-gradient-to-br from-magenta-400 to-magenta-500 rounded-xl p-4 text-center shadow-lg">
