@@ -155,18 +155,18 @@ function App() {
                   />
                 </div>
                 
-               <h3 className="text-lg md:text-xl font-bold text-white mb-1 font-inter tracking-wide">
+               <h3 className="text-base md:text-lg font-bold text-white mb-1 font-inter tracking-wide">
                   PROAXION
                 </h3>
-               <p className="text-xs md:text-sm font-medium text-white/90 mb-2 font-inter tracking-wide">
+               <p className="text-xs font-medium text-white/90 mb-1 font-inter tracking-wide">
                   3 BOTTLE PACKAGE
                 </p>
                 
-               <p className="text-base font-bold mb-2" style={{color: '#FFD700'}}>
+               <p className="text-sm font-bold mb-1" style={{color: '#FFD700'}}>
                   YOU'RE SAVING $300
                 </p>
                 
-               <p className="text-white/80 text-xs font-inter mb-3">
+               <p className="text-white/80 text-xs font-inter mb-2">
                  only $66 per bottle, $198 total
                 </p>
                 
@@ -210,41 +210,41 @@ function App() {
                <h3 className="text-lg md:text-xl font-bold text-white mb-1 font-inter tracking-wide">
                   PROAXION
                 </h3>
-               <p className="text-xs md:text-sm font-medium text-white/90 mb-2 font-inter tracking-wide">
+               <p className="text-xs font-medium text-white/90 mb-1 font-inter tracking-wide">
                   1 BOTTLE PACKAGE
                 </p>
                 
-               <p className="text-sm md:text-base font-bold mb-1" style={{color: '#FFD700'}}>
+               <p className="text-sm font-bold mb-1" style={{color: '#FFD700'}}>
                   STARTER PACKAGE
                 </p>
                 
-               <p className="text-white/80 text-xs md:text-sm font-inter mb-1">
+               <p className="text-white/80 text-xs font-inter mb-1">
                  only $79 per bottle
                </p>
-               <p className="text-white/80 text-xs md:text-sm font-inter mb-2">
+               <p className="text-white/80 text-xs font-inter mb-2">
                  + $9.99 shipping
                </p>
                 
-               <button className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-black font-bold text-xs md:text-sm py-2 px-2 md:px-3 rounded-lg mb-2 transition-all duration-200 transform hover:scale-105 shadow-lg border-2 border-yellow-300 font-inter">
+               <button className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-black font-bold text-xs py-2 px-2 rounded-lg mb-2 transition-all duration-200 transform hover:scale-105 shadow-lg border-2 border-yellow-300 font-inter">
                   CLAIM OFFER NOW
                 </button>
                
-               <div className="flex justify-center items-center space-x-2 md:space-x-4">
+               <div className="flex justify-center items-center space-x-2">
                  <div className="flex flex-col items-center">
-                   <div className="w-5 h-5 md:w-6 md:h-6 bg-white/20 rounded-full flex items-center justify-center mb-1">
-                     <Calendar className="w-2.5 h-2.5 md:w-3 md:h-3 text-white" />
+                   <div className="w-5 h-5 bg-white/20 rounded-full flex items-center justify-center mb-1">
+                     <Calendar className="w-2.5 h-2.5 text-white" />
                    </div>
                    <span className="text-white/90 text-xs font-inter font-medium">180-Day</span>
                  </div>
                  <div className="flex flex-col items-center">
-                   <div className="w-5 h-5 md:w-6 md:h-6 bg-white/20 rounded-full flex items-center justify-center mb-1">
-                     <Truck className="w-2.5 h-2.5 md:w-3 md:h-3 text-white" />
+                   <div className="w-5 h-5 bg-white/20 rounded-full flex items-center justify-center mb-1">
+                     <Truck className="w-2.5 h-2.5 text-white" />
                    </div>
                    <span className="text-white/90 text-xs font-inter font-medium">$9.99 Ship</span>
                  </div>
                  <div className="flex flex-col items-center">
-                   <div className="w-5 h-5 md:w-6 md:h-6 bg-white/20 rounded-full flex items-center justify-center mb-1">
-                     <Lock className="w-2.5 h-2.5 md:w-3 md:h-3 text-white" />
+                   <div className="w-5 h-5 bg-white/20 rounded-full flex items-center justify-center mb-1">
+                     <Lock className="w-2.5 h-2.5 text-white" />
                    </div>
                    <span className="text-white/90 text-xs font-inter font-medium">Secure</span>
                  </div>
@@ -261,3 +261,4 @@ function App() {
 }
 
 export default App;
+               <h3 className="text-base md:text-lg font-bold text-white mb-1 font-inter tracking-wide">
