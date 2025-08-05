@@ -45,14 +45,17 @@ function App() {
             {/* Video Container - 9:16 aspect ratio */}
                    <div className="w-4 h-4 md:w-5 md:h-5 bg-white/20 rounded-full flex items-center justify-center mb-1">
                      <Truck className="w-2 h-2 md:w-2.5 md:h-2.5 text-white" />
+                   </div>
                 <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-r from-fuchsia-500 to-pink-500 rounded-full flex items-center justify-center mb-3 md:mb-4 mx-auto">
                    <span className="text-white/90 text-xs md:text-xs font-inter font-medium">$9.99 Ship</span>
                 </div>
                 <p className="text-gray-600 font-medium text-sm md:text-base">
                    <div className="w-4 h-4 md:w-5 md:h-5 bg-white/20 rounded-full flex items-center justify-center mb-1">
                      <Lock className="w-2 h-2 md:w-2.5 md:h-2.5 text-white" />
+                   </div>
                 <p className="text-xs md:text-sm text-gray-500 mt-2">
                    <span className="text-white/90 text-xs md:text-xs font-inter font-medium">Secure</span>
+                </p>
                 </p>
               </div>
             </div>
@@ -153,7 +156,6 @@ function App() {
                 </div>
               </div>
              </div>
-            </div>
             
             {/* 3 and 1 Bottle Packages */}
             <div className="grid grid-cols-2 gap-4 md:gap-6">
@@ -213,7 +215,7 @@ function App() {
                     src="https://i.imgur.com/RVXt1O7.png" 
                     alt="1 Bottle of Proaxion" 
                    className="w-24 h-24 md:w-20 md:h-20 object-contain mx-auto"
-                   <span className="text-white/90 text-xs md:text-xs font-inter font-medium">180-Day</span>
+                  />
                 </div>
                 
                <h3 className="text-lg md:text-xl font-bold text-white mb-1 font-inter tracking-wide">
