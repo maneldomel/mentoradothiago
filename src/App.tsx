@@ -90,6 +90,14 @@ function App() {
             
             {/* 6 Bottle Package - Main Offer */}
             <div className="bg-gradient-to-br from-magenta-500 to-magenta-600 rounded-2xl p-8 text-center mb-8 shadow-xl">
+              <div className="mb-6">
+                <img 
+                  src="https://i.imgur.com/VScX6oJ.png" 
+                  alt="6 Bottles of Proaxion" 
+                  className="w-48 h-48 md:w-64 md:h-64 object-contain mx-auto"
+                />
+              </div>
+              
               <h3 className="text-4xl font-black text-white mb-2 font-sans">
                 PROAXION
               </h3>
@@ -114,7 +122,15 @@ function App() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               
               {/* 3 Bottle Package */}
-              <div className="bg-gray-50 rounded-xl p-6 text-center">
+              <div className="bg-gray-50 rounded-xl p-6 text-center border border-gray-200">
+                <div className="mb-4">
+                  <img 
+                    src="https://i.imgur.com/SnCtQg9.png" 
+                    alt="3 Bottles of Proaxion" 
+                    className="w-32 h-32 md:w-40 md:h-40 object-contain mx-auto"
+                  />
+                </div>
+                
                 <h3 className="text-2xl font-black text-transparent bg-gradient-to-r from-magenta-600 to-magenta-400 bg-clip-text mb-1 font-sans">
                   PROAXION
                 </h3>
@@ -126,7 +142,7 @@ function App() {
                   YOU'RE SAVING $300
                 </p>
                 
-                <button className="w-full bg-magenta-500 hover:bg-magenta-600 text-white font-black text-lg py-3 px-6 rounded-xl mb-3 transition-all duration-200">
+                <button className="w-full bg-gray-800 hover:bg-gray-900 text-white font-black text-lg py-3 px-6 rounded-xl mb-3 transition-all duration-200">
                   CLAIM OFFER NOW
                 </button>
                 
@@ -136,7 +152,15 @@ function App() {
               </div>
               
               {/* 1 Bottle Package */}
-              <div className="bg-gray-50 rounded-xl p-6 text-center">
+              <div className="bg-gray-50 rounded-xl p-6 text-center border border-gray-200">
+                <div className="mb-4">
+                  <img 
+                    src="https://i.imgur.com/RVXt1O7.png" 
+                    alt="1 Bottle of Proaxion" 
+                    className="w-32 h-32 md:w-40 md:h-40 object-contain mx-auto"
+                  />
+                </div>
+                
                 <h3 className="text-2xl font-black text-transparent bg-gradient-to-r from-magenta-600 to-magenta-400 bg-clip-text mb-1 font-sans">
                   PROAXION
                 </h3>
@@ -148,7 +172,7 @@ function App() {
                   STARTER PACKAGE
                 </p>
                 
-                <button className="w-full bg-magenta-500 hover:bg-magenta-600 text-white font-black text-lg py-3 px-6 rounded-xl mb-3 transition-all duration-200">
+                <button className="w-full bg-gray-800 hover:bg-gray-900 text-white font-black text-lg py-3 px-6 rounded-xl mb-3 transition-all duration-200">
                   CLAIM OFFER NOW
                 </button>
                 
