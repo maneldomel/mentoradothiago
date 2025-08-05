@@ -140,6 +140,7 @@ function App() {
                   <span className="text-white/90 text-sm font-inter font-medium">Secure</span>
                 </div>
               </div>
+             </div>
             </div>
             
             {/* 3 and 1 Bottle Packages */}
