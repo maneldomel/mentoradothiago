@@ -17,8 +17,8 @@ function App() {
         {/* Subline */}
         <div className="text-center mb-8 md:mb-12">
           <p className="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto px-4">
-            47,000+ men CURED their impotence with this 
-            ancient kitchen ingredient
+            <span className="text-transparent bg-gradient-to-r from-magenta-600 to-magenta-400 bg-clip-text font-bold">47,000+ men CURED</span> their impotence with this{' '}
+            <span className="text-transparent bg-gradient-to-r from-magenta-600 to-magenta-400 bg-clip-text font-bold">ancient kitchen ingredient</span>
           </p>
         </div>
 
