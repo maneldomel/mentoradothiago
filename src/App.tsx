@@ -89,8 +89,8 @@ function App() {
           <div className="max-w-4xl mx-auto">
             
             {/* 6 Bottle Package - Main Offer */}
-            <div className="bg-gradient-to-br from-magenta-700 to-magenta-900 rounded-2xl p-8 text-center mb-8 shadow-xl">
-              <div className="mb-6">
+            <div className="bg-gradient-to-br from-magenta-700 to-magenta-900 rounded-2xl p-6 text-center mb-8 shadow-xl">
+              <div className="mb-4">
                 <img 
                   src="https://i.imgur.com/VScX6oJ.png" 
                   alt="6 Bottles of Proaxion" 
@@ -98,22 +98,22 @@ function App() {
                 />
               </div>
               
-              <h3 className="text-4xl font-bold text-white mb-2 font-inter tracking-wide">
+              <h3 className="text-4xl font-bold text-white mb-1 font-inter tracking-wide">
                 PROAXION
               </h3>
-              <p className="text-xl font-medium text-white/90 mb-6 font-inter tracking-wide">
+              <p className="text-xl font-medium text-white/90 mb-4 font-inter tracking-wide">
                 6 BOTTLE PACKAGE
               </p>
               
-              <p className="text-2xl font-bold mb-8" style={{color: '#FFD700'}}>
+              <p className="text-2xl font-bold mb-6" style={{color: '#FFD700'}}>
                 YOU'RE SAVING $900
               </p>
               
-              <button className="w-full max-w-md mx-auto bg-white hover:bg-gray-50 text-black font-semibold text-lg py-4 px-8 rounded-xl mb-6 transition-all duration-200 font-inter">
+              <button className="w-full max-w-md mx-auto bg-white hover:bg-gray-50 text-black font-semibold text-lg py-4 px-8 rounded-xl mb-4 transition-all duration-200 font-inter">
                 CLAIM OFFER NOW
               </button>
               
-              <p className="text-white/80 text-base font-inter mb-6">
+              <p className="text-white/80 text-base font-inter mb-4">
                 only $49 per bottle, $294 total
               </p>
               
