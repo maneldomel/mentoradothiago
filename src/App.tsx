@@ -97,13 +97,13 @@ function App() {
                 6 BOTTLE PACKAGE
               </p>
               
-              <p className="text-2xl font-bold mb-6" style={{color: '#FFD700'}}>
-                YOU'RE SAVING $900
-              </p>
-              
-              <button className="w-full max-w-md mx-auto bg-white hover:bg-gray-50 text-black font-semibold text-lg py-4 px-8 rounded-xl mb-4 transition-all duration-200 font-inter">
+              <button className="w-full max-w-md mx-auto bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-black font-bold text-xl py-5 px-8 rounded-xl mb-2 transition-all duration-200 font-inter shadow-lg transform hover:scale-105 border-2 border-yellow-300">
                 CLAIM OFFER NOW
               </button>
+              
+              <p className="text-2xl font-bold mb-4" style={{color: '#FFD700'}}>
+                YOU'RE SAVING $900
+              </p>
               
               <p className="text-white/80 text-base font-inter mb-4">
                 only $49 per bottle, $294 total
