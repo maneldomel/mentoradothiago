@@ -94,7 +94,7 @@ function App() {
                 <img 
                   src="https://i.imgur.com/VScX6oJ.png" 
                   alt="6 Bottles of Proaxion" 
-                  className="w-80 h-80 md:w-[28rem] md:h-[28rem] lg:w-[32rem] lg:h-[32rem] object-contain mx-auto"
+                  className="w-96 h-96 md:w-[36rem] md:h-[36rem] lg:w-[40rem] lg:h-[40rem] object-contain mx-auto"
                 />
               </div>
               
