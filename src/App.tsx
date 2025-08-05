@@ -222,14 +222,13 @@ function App() {
                  only $79 per bottle
                </p>
                <p className="text-white/80 text-xs md:text-sm font-inter mb-2">
-               <p className="text-sm md:text-base font-bold mb-1" style={{color: '#FFD700'}}>
-                </p>
+                 + $9.99 shipping
+               </p>
                 
                <button className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-black font-bold text-xs md:text-sm py-2 px-2 md:px-3 rounded-lg mb-2 transition-all duration-200 transform hover:scale-105 shadow-lg border-2 border-yellow-300 font-inter">
                   CLAIM OFFER NOW
                 </button>
                
-               <p className="text-white/80 text-xs md:text-sm font-inter mb-2">
                <div className="flex justify-center items-center space-x-2 md:space-x-4">
                  <div className="flex flex-col items-center">
                    <div className="w-5 h-5 md:w-6 md:h-6 bg-white/20 rounded-full flex items-center justify-center mb-1">
