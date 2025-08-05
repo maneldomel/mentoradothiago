@@ -94,7 +94,7 @@ function App() {
                 <img 
                   src="https://i.imgur.com/VScX6oJ.png" 
                   alt="6 Bottles of Proaxion" 
-                  className="w-48 h-48 md:w-64 md:h-64 object-contain mx-auto"
+                  className="w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 object-contain mx-auto"
                 />
               </div>
               
@@ -149,7 +149,7 @@ function App() {
                   <img 
                     src="https://i.imgur.com/SnCtQg9.png" 
                     alt="3 Bottles of Proaxion" 
-                    className="w-32 h-32 md:w-40 md:h-40 object-contain mx-auto"
+                    className="w-40 h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 object-contain mx-auto"
                   />
                 </div>
                 
@@ -179,7 +179,7 @@ function App() {
                   <img 
                     src="https://i.imgur.com/RVXt1O7.png" 
                     alt="1 Bottle of Proaxion" 
-                    className="w-32 h-32 md:w-40 md:h-40 object-contain mx-auto"
+                    className="w-40 h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 object-contain mx-auto"
                   />
                 </div>
                 
