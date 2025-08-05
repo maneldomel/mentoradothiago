@@ -84,133 +84,87 @@ function App() {
       </div>
 
       {/* Purchase Section */}
-      <div className="bg-gray-50 py-12 md:py-16 relative z-10">
+      <div className="bg-white py-16 md:py-24 relative z-10">
         <div className="container mx-auto px-4 max-w-6xl">
-          {/* Section Title */}
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-black text-gray-800 mb-4 font-inter">
-              CHOOSE YOUR <span className="text-transparent bg-gradient-to-r from-magenta-600 to-magenta-400 bg-clip-text">PACKAGE</span>
-            </h2>
-            <p className="text-lg text-gray-600">
-              Select the package that works best for you
-            </p>
-          </div>
-
-          {/* Offers Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div className="max-w-4xl mx-auto">
             
-            {/* 6 Bottle Package - FEATURED */}
-            <div className="lg:col-span-3 lg:row-start-1 mb-8">
-              <div className="relative bg-white rounded-2xl shadow-2xl border-4 border-magenta-400 overflow-hidden transform hover:scale-105 transition-all duration-300">
-                {/* Popular Badge */}
-                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
-                  <div className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-black font-black px-6 py-2 rounded-full text-sm shadow-lg">
-                    MOST POPULAR
-                  </div>
-                </div>
+            {/* 6 Bottle Package - Main Offer */}
+            <div className="bg-gradient-to-br from-magenta-500 to-magenta-600 rounded-2xl p-8 text-center mb-8 shadow-xl">
+              <h3 className="text-4xl font-black text-white mb-2 font-sans">
+                PROAXION
+              </h3>
+              <p className="text-2xl font-black text-white mb-6 font-sans">
+                6 BOTTLE PACKAGE
+              </p>
+              
+              <p className="text-3xl font-black mb-8" style={{color: '#FFD700'}}>
+                YOU'RE SAVING $900
+              </p>
+              
+              <button className="w-full max-w-md mx-auto bg-white hover:bg-gray-50 text-black font-black text-xl py-4 px-8 rounded-xl mb-4 transition-all duration-200">
+                CLAIM OFFER NOW
+              </button>
+              
+              <p className="text-white/80 text-lg">
+                only $49 per bottle, $294 total
+              </p>
+            </div>
+            
+            {/* 3 and 1 Bottle Packages */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              
+              {/* 3 Bottle Package */}
+              <div className="bg-gray-50 rounded-xl p-6 text-center">
+                <h3 className="text-2xl font-black text-transparent bg-gradient-to-r from-magenta-600 to-magenta-400 bg-clip-text mb-1 font-sans">
+                  PROAXION
+                </h3>
+                <p className="text-xl font-black text-transparent bg-gradient-to-r from-magenta-600 to-magenta-400 bg-clip-text mb-4 font-sans">
+                  3 BOTTLE PACKAGE
+                </p>
                 
-                <div className="p-8 text-center">
-                  {/* Product Title */}
-                  <h3 className="text-4xl md:text-5xl font-black text-white bg-gradient-to-r from-magenta-600 to-magenta-400 bg-clip-text text-transparent mb-2 font-sans">
-                    PROAXION
-                  </h3>
-                  <p className="text-2xl md:text-3xl font-black text-white bg-gradient-to-r from-magenta-600 to-magenta-400 bg-clip-text text-transparent mb-6 font-sans">
-                    6 BOTTLE PACKAGE
-                  </p>
-                  
-                  {/* Savings */}
-                  <div className="mb-8">
-                    <p className="text-3xl md:text-4xl font-black text-yellow-400 mb-2" style={{color: '#FFD700'}}>
-                      YOU'RE SAVING $900
-                    </p>
-                  </div>
-                  
-                  {/* CTA Button */}
-                  <button className="w-full max-w-md mx-auto bg-magenta-500 hover:bg-magenta-600 text-black font-black text-xl md:text-2xl py-4 px-8 rounded-xl shadow-lg transform hover:scale-105 transition-all duration-200 border-4 border-yellow-400 mb-4" style={{backgroundColor: '#FF007F', boxShadow: '0 0 20px #FFD700'}}>
-                    CLAIM OFFER NOW
-                  </button>
-                  
-                  {/* Price Info */}
-                  <p className="text-gray-600 text-lg">
-                    only $49 per bottle, $294 total
-                  </p>
-                </div>
+                <p className="text-xl font-black mb-6" style={{color: '#FFD700'}}>
+                  YOU'RE SAVING $300
+                </p>
+                
+                <button className="w-full bg-magenta-500 hover:bg-magenta-600 text-white font-black text-lg py-3 px-6 rounded-xl mb-3 transition-all duration-200">
+                  CLAIM OFFER NOW
+                </button>
+                
+                <p className="text-gray-600 text-sm">
+                  only $69 per bottle, $207 total
+                </p>
+              </div>
+              
+              {/* 1 Bottle Package */}
+              <div className="bg-gray-50 rounded-xl p-6 text-center">
+                <h3 className="text-2xl font-black text-transparent bg-gradient-to-r from-magenta-600 to-magenta-400 bg-clip-text mb-1 font-sans">
+                  PROAXION
+                </h3>
+                <p className="text-xl font-black text-transparent bg-gradient-to-r from-magenta-600 to-magenta-400 bg-clip-text mb-4 font-sans">
+                  1 BOTTLE PACKAGE
+                </p>
+                
+                <p className="text-xl font-black text-gray-500 mb-6">
+                  STARTER PACKAGE
+                </p>
+                
+                <button className="w-full bg-magenta-500 hover:bg-magenta-600 text-white font-black text-lg py-3 px-6 rounded-xl mb-3 transition-all duration-200">
+                  CLAIM OFFER NOW
+                </button>
+                
+                <p className="text-gray-600 text-sm">
+                  only $99 per bottle, $99 total
+                </p>
               </div>
             </div>
             
-            {/* 3 Bottle Package */}
-            <div className="lg:col-span-1">
-              <div className="bg-white rounded-xl shadow-lg border-2 border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-300">
-                <div className="p-6 text-center">
-                  {/* Product Title */}
-                  <h3 className="text-2xl font-black text-transparent bg-gradient-to-r from-magenta-600 to-magenta-400 bg-clip-text mb-1 font-sans">
-                    PROAXION
-                  </h3>
-                  <p className="text-xl font-black text-transparent bg-gradient-to-r from-magenta-600 to-magenta-400 bg-clip-text mb-4 font-sans">
-                    3 BOTTLE PACKAGE
-                  </p>
-                  
-                  {/* Savings */}
-                  <div className="mb-6">
-                    <p className="text-xl font-black text-yellow-500 mb-2">
-                      YOU'RE SAVING $300
-                    </p>
-                  </div>
-                  
-                  {/* CTA Button */}
-                  <button className="w-full bg-magenta-500 hover:bg-magenta-600 text-white font-black text-lg py-3 px-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-200 mb-3">
-                    CLAIM OFFER NOW
-                  </button>
-                  
-                  {/* Price Info */}
-                  <p className="text-gray-600 text-sm">
-                    only $69 per bottle, $207 total
-                  </p>
-                </div>
+            {/* Trust Badges */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-8">
+              <div className="bg-green-100 text-green-800 px-6 py-2 rounded-full text-sm font-bold">
+                ✓ 60-Day Money Back Guarantee
               </div>
-            </div>
-            
-            {/* 1 Bottle Package */}
-            <div className="lg:col-span-1">
-              <div className="bg-white rounded-xl shadow-lg border-2 border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-300">
-                <div className="p-6 text-center">
-                  {/* Product Title */}
-                  <h3 className="text-2xl font-black text-transparent bg-gradient-to-r from-magenta-600 to-magenta-400 bg-clip-text mb-1 font-sans">
-                    PROAXION
-                  </h3>
-                  <p className="text-xl font-black text-transparent bg-gradient-to-r from-magenta-600 to-magenta-400 bg-clip-text mb-4 font-sans">
-                    1 BOTTLE PACKAGE
-                  </p>
-                  
-                  {/* Savings */}
-                  <div className="mb-6">
-                    <p className="text-xl font-black text-gray-500 mb-2">
-                      STARTER PACKAGE
-                    </p>
-                  </div>
-                  
-                  {/* CTA Button */}
-                  <button className="w-full bg-magenta-500 hover:bg-magenta-600 text-white font-black text-lg py-3 px-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-200 mb-3">
-                    CLAIM OFFER NOW
-                  </button>
-                  
-                  {/* Price Info */}
-                  <p className="text-gray-600 text-sm">
-                    only $99 per bottle, $99 total
-                  </p>
-                </div>
-              </div>
-            </div>
-            
-            {/* Trust Badge */}
-            <div className="lg:col-span-1 flex items-center justify-center">
-              <div className="text-center">
-                <div className="bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-bold mb-2">
-                  ✓ 60-Day Money Back Guarantee
-                </div>
-                <div className="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-bold">
-                  ✓ Free Worldwide Shipping
-                </div>
+              <div className="bg-blue-100 text-blue-800 px-6 py-2 rounded-full text-sm font-bold">
+                ✓ Free Worldwide Shipping
               </div>
             </div>
           </div>
