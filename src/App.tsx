@@ -8,9 +8,9 @@ function App() {
       <div className="container mx-auto px-4 py-6 md:py-12 max-w-4xl">
         {/* Headline */}
         <div className="text-center mb-4 md:mb-6">
-          <h1 className="text-2xl sm:text-3xl md:text-6xl font-black text-transparent bg-gradient-to-r from-fuchsia-600 to-pink-600 bg-clip-text leading-tight mb-4 px-4 font-sans tracking-tight">
-            <span className="block">ANCIENT GINGER SECRET</span>
-            <span className="block">ENDS IMPOTENCE FOREVER</span>
+          <h1 className="text-2xl sm:text-3xl md:text-6xl font-black leading-tight mb-4 px-4 font-inter tracking-tight">
+            <span className="block text-gray-800">ANCIENT <span className="text-transparent bg-gradient-to-r from-magenta-600 to-magenta-400 bg-clip-text">GINGER SECRET</span></span>
+            <span className="block text-gray-800">ENDS <span className="text-transparent bg-gradient-to-r from-magenta-600 to-magenta-400 bg-clip-text">IMPOTENCE</span> FOREVER</span>
           </h1>
         </div>
 
