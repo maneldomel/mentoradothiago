@@ -97,9 +97,13 @@ function App() {
                 6 BOTTLE PACKAGE
               </p>
               
-              <button className="w-full max-w-md mx-auto bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-black font-bold text-xl py-5 px-8 rounded-xl mb-2 transition-all duration-200 font-inter shadow-lg transform hover:scale-105 border-2 border-yellow-300">
-                CLAIM OFFER NOW
-              </button>
+              <div className="w-full max-w-md mx-auto mb-2">
+                <img 
+                  src="https://i.imgur.com/VScX6oJ.png" 
+                  alt="Claim Offer Now" 
+                  className="w-full h-auto cursor-pointer transition-all duration-200 transform hover:scale-105"
+                />
+              </div>
               
               <p className="text-2xl font-bold mb-4" style={{color: '#FFD700'}}>
                 YOU'RE SAVING $900
