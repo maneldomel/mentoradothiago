@@ -166,13 +166,9 @@ function App() {
                   YOU'RE SAVING $300
                 </p>
                 
-               <p className="text-white/80 text-xs font-inter mb-2">
-                 only $66 per bottle, $198 total
-                </p>
+               <p className="text-white/80 text-xs font-inter mb-2">only $66 per bottle, $198 total</p>
                 
-               <button className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-black font-bold text-xs py-2 px-3 rounded-lg mb-2 transition-all duration-200 transform hover:scale-105 shadow-lg border-2 border-yellow-300 font-inter">
-                  CLAIM OFFER NOW
-                </button>
+               <button className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-black font-bold text-xs py-2 px-2 rounded-lg mb-2 transition-all duration-200 transform hover:scale-105 shadow-lg border-2 border-yellow-300 font-inter">BUY NOW</button>
                
                {/* Benefits */}
                <div className="flex justify-center items-center space-x-4">
@@ -218,20 +214,13 @@ function App() {
                   STARTER PACKAGE
                 </p>
                 
-               <p className="text-white/80 text-xs font-inter mb-1">
-                 only $79 per bottle
-               </p>
-               <p className="text-white/80 text-xs font-inter mb-2">
-                 + $9.99 shipping
-               </p>
+               <p className="text-white/80 text-xs font-inter mb-2">only $79 per bottle + $9.99 shipping</p>
                 
                <button className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-black font-bold text-xs py-2 px-2 rounded-lg mb-2 transition-all duration-200 transform hover:scale-105 shadow-lg border-2 border-yellow-300 font-inter">
                   CLAIM OFFER NOW
                 </button>
                
-               <div className="flex justify-center items-center space-x-2">
-                 <div className="flex flex-col items-center">
-                   <div className="w-5 h-5 bg-white/20 rounded-full flex items-center justify-center mb-1">
+               <button className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-black font-bold text-xs py-2 px-2 rounded-lg mb-2 transition-all duration-200 transform hover:scale-105 shadow-lg border-2 border-yellow-300 font-inter">BUY NOW</button>
                      <Calendar className="w-2.5 h-2.5 text-white" />
                    </div>
                    <span className="text-white/90 text-xs font-inter font-medium">180-Day</span>
