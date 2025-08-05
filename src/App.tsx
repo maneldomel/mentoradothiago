@@ -97,7 +97,9 @@ function App() {
                 6 BOTTLE PACKAGE
               </p>
               
-              <div className="w-full max-w-md mx-auto mb-2">
+              <div className="w-full max-w-md mx-auto mb-2 relative">
+                {/* Glow effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/50 to-yellow-500/50 rounded-xl blur-xl scale-110 -z-10"></div>
                 <img 
                   src="https://i.imgur.com/VScX6oJ.png" 
                   alt="Claim Offer Now" 
