@@ -97,9 +97,9 @@ function App() {
                 6 BOTTLE PACKAGE
               </p>
               
-              <div className="w-full max-w-md mx-auto mb-2 relative">
-                {/* Glow effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/50 to-yellow-500/50 rounded-xl blur-xl scale-110 -z-10"></div>
+             <div className="w-full max-w-md mx-auto mb-2 relative">
+               {/* Purple/Magenta glow effect behind product image */}
+               <div className="absolute inset-0 bg-gradient-to-r from-magenta-500/60 to-magenta-600/60 rounded-xl blur-2xl scale-125 -z-10"></div>
                 <img 
                   src="https://i.imgur.com/VScX6oJ.png" 
                   alt="Claim Offer Now" 
@@ -115,9 +115,13 @@ function App() {
                 only $49 per bottle, $294 total
               </p>
               
-              <button className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-black font-bold text-xl py-5 px-8 rounded-xl mb-4 transition-all duration-200 transform hover:scale-105 shadow-lg border-2 border-yellow-300 font-inter">
-                CLAIM OFFER NOW
-              </button>
+             <div className="relative mb-4">
+               {/* Purple/Magenta glow effect behind button */}
+               <div className="absolute inset-0 bg-gradient-to-r from-magenta-500/70 to-magenta-600/70 rounded-xl blur-xl scale-110 -z-10"></div>
+               <button className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-black font-bold text-xl py-5 px-8 rounded-xl transition-all duration-200 transform hover:scale-105 shadow-lg border-2 border-yellow-300 font-inter relative z-10">
+                 CLAIM OFFER NOW
+               </button>
+             </div>
               
               {/* Benefits */}
               <div className="flex justify-center items-center space-x-8">
