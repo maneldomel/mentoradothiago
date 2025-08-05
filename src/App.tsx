@@ -90,14 +90,6 @@ function App() {
             
             {/* 6 Bottle Package - Main Offer */}
             <div className="bg-gradient-to-br from-magenta-700 to-magenta-900 rounded-2xl p-6 text-center mb-8 shadow-xl">
-              <div className="mb-4 overflow-hidden">
-                <img 
-                  src="https://i.imgur.com/VScX6oJ.png" 
-                  alt="6 Bottles of Proaxion" 
-                  className="w-96 h-96 md:w-[36rem] md:h-[36rem] lg:w-[40rem] lg:h-[40rem] object-contain mx-auto"
-                />
-              </div>
-              
               <h3 className="text-4xl font-bold text-white mb-1 font-inter tracking-wide -mt-2">
                 PROAXION
               </h3>
