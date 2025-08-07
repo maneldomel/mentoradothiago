@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { supabase, Testimonial } from '../lib/supabase';
+import { 
+  Testimonial, 
+  getTestimonials, 
+  addTestimonial, 
+  updateTestimonial, 
+  deleteTestimonial, 
+  toggleTestimonialActive 
+} from '../lib/testimonials';
 import { authService } from '../lib/auth';
 import { Plus, Edit2, Trash2, LogOut, Save, X, Eye, EyeOff, User, MapPin, Hash, Image, Youtube, MessageSquare, ToggleLeft, ToggleRight } from 'lucide-react';
 
@@ -21,19 +28,26 @@ const AdminDashboard: React.FC = () => {
 
   useEffect(() => {
     fetchTestimonials();
+    
+    // Listen for testimonials updates
+    const handleTestimonialsUpdate = () => {
+      fetchTestimonials();
+    };
+    
+    window.addEventListener('testimonials-updated', handleTestimonialsUpdate);
+    
+    return () => {
+      window.removeEventListener('testimonials-updated', handleTestimonialsUpdate);
+    };
   }, []);
 
-  const fetchTestimonials = async () => {
+  const fetchTestimonials = () => {
     try {
-      const { data, error } = await supabase
-        .from('testimonials')
-        .select('*')
-        .order('display_order', { ascending: true });
-
-      if (error) throw error;
-      setTestimonials(data || []);
+      const data = getTestimonials();
+      setTestimonials(data.sort((a, b) => a.display_order - b.display_order));
     } catch (error) {
       console.error('Error fetching testimonials:', error);
+      alert('Erro ao carregar depoimentos');
     } finally {
       setLoading(false);
     }
@@ -77,25 +91,17 @@ const AdminDashboard: React.FC = () => {
   const handleSave = async () => {
     try {
       if (editingId) {
-        const { error } = await supabase
-          .from('testimonials')
-          .update({ ...formData, updated_at: new Date().toISOString() })
-          .eq('id', editingId);
-
-        if (error) throw error;
+        updateTestimonial(editingId, formData);
       } else {
-        const { error } = await supabase
-          .from('testimonials')
-          .insert([formData]);
-
-        if (error) throw error;
+        addTestimonial(formData);
       }
 
-      await fetchTestimonials();
+      fetchTestimonials();
       resetForm();
+      alert(editingId ? 'Depoimento atualizado com sucesso!' : 'Depoimento adicionado com sucesso!');
     } catch (error) {
       console.error('Error saving testimonial:', error);
-      alert('Error saving testimonial. Please try again.');
+      alert('Erro ao salvar depoimento. Tente novamente.');
     }
   };
 
@@ -103,13 +109,9 @@ const AdminDashboard: React.FC = () => {
     if (!confirm('Tem certeza que deseja deletar este depoimento?')) return;
 
     try {
-      const { error } = await supabase
-        .from('testimonials')
-        .delete()
-        .eq('id', id);
-
-      if (error) throw error;
-      await fetchTestimonials();
+      deleteTestimonial(id);
+      fetchTestimonials();
+      alert('Depoimento deletado com sucesso!');
     } catch (error) {
       console.error('Error deleting testimonial:', error);
       alert('Erro ao deletar depoimento. Tente novamente.');
@@ -118,15 +120,11 @@ const AdminDashboard: React.FC = () => {
 
   const toggleActive = async (id: string, currentStatus: boolean) => {
     try {
-      const { error } = await supabase
-        .from('testimonials')
-        .update({ is_active: !currentStatus, updated_at: new Date().toISOString() })
-        .eq('id', id);
-
-      if (error) throw error;
-      await fetchTestimonials();
+      toggleTestimonialActive(id);
+      fetchTestimonials();
     } catch (error) {
       console.error('Error updating testimonial status:', error);
+      alert('Erro ao atualizar status do depoimento');
     }
   };
 

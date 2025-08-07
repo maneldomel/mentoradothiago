@@ -1,0 +1,157 @@
+// Local testimonials management system
+export interface Testimonial {
+  id: string;
+  name: string;
+  city: string;
+  state: string;
+  avatar_url: string;
+  youtube_url: string;
+  caption: string;
+  is_active: boolean;
+  display_order: number;
+  created_at: string;
+  updated_at: string;
+}
+
+// Default testimonials data
+const defaultTestimonials: Testimonial[] = [
+  {
+    id: '1',
+    name: 'Marcus Silva',
+    city: 'São Paulo',
+    state: 'SP',
+    avatar_url: 'https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=150&h=150',
+    youtube_url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+    caption: 'Proaxion mudou minha vida completamente. Em 3 meses já senti uma diferença incrível na minha energia e disposição.',
+    is_active: true,
+    display_order: 1,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString()
+  },
+  {
+    id: '2',
+    name: 'Roberto Santos',
+    city: 'Rio de Janeiro',
+    state: 'RJ',
+    avatar_url: 'https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=150&h=150',
+    youtube_url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+    caption: 'Resultado surpreendente! Minha esposa notou a diferença e nossa relação melhorou muito. Recomendo para todos os homens.',
+    is_active: true,
+    display_order: 2,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString()
+  },
+  {
+    id: '3',
+    name: 'Carlos Oliveira',
+    city: 'Belo Horizonte',
+    state: 'MG',
+    avatar_url: 'https://images.pexels.com/photos/1043471/pexels-photo-1043471.jpeg?auto=compress&cs=tinysrgb&w=150&h=150',
+    youtube_url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+    caption: 'Aos 45 anos pensei que era tarde demais, mas Proaxion provou que estava errado. Me sinto com 25 anos novamente!',
+    is_active: true,
+    display_order: 3,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString()
+  }
+];
+
+const STORAGE_KEY = 'proaxion_testimonials';
+
+// Generate unique ID
+const generateId = (): string => {
+  return Date.now().toString(36) + Math.random().toString(36).substr(2);
+};
+
+// Get testimonials from localStorage
+export const getTestimonials = (): Testimonial[] => {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored) {
+      return JSON.parse(stored);
+    }
+    // If no data exists, initialize with default data
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultTestimonials));
+    return defaultTestimonials;
+  } catch (error) {
+    console.error('Error loading testimonials:', error);
+    return defaultTestimonials;
+  }
+};
+
+// Save testimonials to localStorage
+const saveTestimonials = (testimonials: Testimonial[]): void => {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(testimonials));
+    // Dispatch custom event to notify components of changes
+    window.dispatchEvent(new CustomEvent('testimonials-updated'));
+  } catch (error) {
+    console.error('Error saving testimonials:', error);
+    throw new Error('Erro ao salvar depoimentos');
+  }
+};
+
+// Get active testimonials sorted by display order
+export const getActiveTestimonials = (): Testimonial[] => {
+  return getTestimonials()
+    .filter(t => t.is_active)
+    .sort((a, b) => a.display_order - b.display_order);
+};
+
+// Add new testimonial
+export const addTestimonial = (testimonialData: Omit<Testimonial, 'id' | 'created_at' | 'updated_at'>): Testimonial => {
+  const testimonials = getTestimonials();
+  const newTestimonial: Testimonial = {
+    ...testimonialData,
+    id: generateId(),
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString()
+  };
+  
+  testimonials.push(newTestimonial);
+  saveTestimonials(testimonials);
+  return newTestimonial;
+};
+
+// Update testimonial
+export const updateTestimonial = (id: string, updates: Partial<Omit<Testimonial, 'id' | 'created_at'>>): Testimonial => {
+  const testimonials = getTestimonials();
+  const index = testimonials.findIndex(t => t.id === id);
+  
+  if (index === -1) {
+    throw new Error('Depoimento não encontrado');
+  }
+  
+  testimonials[index] = {
+    ...testimonials[index],
+    ...updates,
+    updated_at: new Date().toISOString()
+  };
+  
+  saveTestimonials(testimonials);
+  return testimonials[index];
+};
+
+// Delete testimonial
+export const deleteTestimonial = (id: string): void => {
+  const testimonials = getTestimonials();
+  const filteredTestimonials = testimonials.filter(t => t.id !== id);
+  
+  if (filteredTestimonials.length === testimonials.length) {
+    throw new Error('Depoimento não encontrado');
+  }
+  
+  saveTestimonials(filteredTestimonials);
+};
+
+// Toggle testimonial active status
+export const toggleTestimonialActive = (id: string): Testimonial => {
+  const testimonials = getTestimonials();
+  const testimonial = testimonials.find(t => t.id === id);
+  
+  if (!testimonial) {
+    throw new Error('Depoimento não encontrado');
+  }
+  
+  return updateTestimonial(id, { is_active: !testimonial.is_active });
+};
