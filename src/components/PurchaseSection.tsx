@@ -72,7 +72,6 @@ const PurchaseSection: React.FC = () => {
               </div>
             </div>
            </div>
-          </div>
           
           {/* 3 and 1 Bottle Packages */}
           <div className="grid grid-cols-2 gap-4 md:gap-6">
@@ -173,9 +172,10 @@ const PurchaseSection: React.FC = () => {
              </div>
            </div>
          </div>
+        </div>
+      </div>
        </div>
      </div>
-   </div>
   );
 };
 
