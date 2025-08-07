@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Volume2, Clock, Calendar, Truck, Lock } from 'lucide-react';
 import TestimonialsCarousel from './components/TestimonialsCarousel';
+import DoctorsSection from './components/DoctorsSection';
 import AdminRoute from './components/AdminRoute';
 import DevNavigation from './components/DevNavigation';
 
@@ -267,6 +268,9 @@ const HomePage: React.FC = () => {
 
       {/* Testimonials Section */}
       <TestimonialsCarousel />
+
+      {/* Doctors Section */}
+      <DoctorsSection />
     </>
    );
  }
