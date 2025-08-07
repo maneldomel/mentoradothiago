@@ -211,31 +211,29 @@ const NewsSection: React.FC = () => {
                       
                       {/* Logo */}
                       <div className="mb-6">
-                        <div className="bg-white rounded-lg p-4 inline-block shadow-sm border border-gray-100">
-                          {article.site === 'The New York Post' ? (
-                            <img 
-                              src="https://i.imgur.com/mhIlnsd.png" 
-                              alt="New York Post"
-                              className="h-8 w-auto object-contain"
-                            />
-                          ) : article.site === 'HealthLine Weekly' ? (
-                            <img 
-                              src="https://i.imgur.com/K7v16Vy.png" 
-                              alt="HealthLine Weekly"
-                              className="h-8 w-auto object-contain"
-                            />
-                          ) : article.site === 'Men\'s Health Today' ? (
-                            <img 
-                              src="https://i.imgur.com/xtDN6Ts.png" 
-                              alt="Men's Health Today"
-                              className="h-8 w-auto object-contain"
-                            />
-                          ) : (
-                            <span className={`font-bold text-sm ${article.siteColor}`}>
-                              {article.site}
-                            </span>
-                          )}
-                        </div>
+                        {article.site === 'The New York Post' ? (
+                          <img 
+                            src="https://i.imgur.com/mhIlnsd.png" 
+                            alt="New York Post"
+                            className="h-8 w-auto object-contain mx-auto"
+                          />
+                        ) : article.site === 'HealthLine Weekly' ? (
+                          <img 
+                            src="https://i.imgur.com/K7v16Vy.png" 
+                            alt="HealthLine Weekly"
+                            className="h-8 w-auto object-contain mx-auto"
+                          />
+                        ) : article.site === 'Men\'s Health Today' ? (
+                          <img 
+                            src="https://i.imgur.com/xtDN6Ts.png" 
+                            alt="Men's Health Today"
+                            className="h-8 w-auto object-contain mx-auto"
+                          />
+                        ) : (
+                          <span className={`font-bold text-sm ${article.siteColor} block text-center`}>
+                            {article.site}
+                          </span>
+                        )}
                       </div>
 
                       {/* Excerpt */}
