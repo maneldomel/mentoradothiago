@@ -178,3 +178,5 @@ const PurchaseSection: React.FC = () => {
 };
 
 export default PurchaseSection;
+  )
+}
