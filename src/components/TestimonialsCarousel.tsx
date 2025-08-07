@@ -1,53 +1,47 @@
 import React, { useCallback } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import { ChevronLeft, ChevronRight, Play } from 'lucide-react';
+import { supabase, Testimonial } from '../lib/supabase';
 
-interface Testimonial {
-  id: number;
-  name: string;
-  city: string;
-  state: string;
-  avatar: string;
-  videoThumbnail: string;
-  caption: string;
-}
+const getYouTubeThumbnail = (url: string): string => {
+  const videoId = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/);
+  return videoId ? `https://img.youtube.com/vi/${videoId[1]}/maxresdefault.jpg` : '';
+};
 
-const testimonials: Testimonial[] = [
-  {
-    id: 1,
-    name: "Michael Rodriguez",
-    city: "Phoenix",
-    state: "AZ",
-    avatar: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop",
-    videoThumbnail: "https://images.pexels.com/photos/1040881/pexels-photo-1040881.jpeg?auto=compress&cs=tinysrgb&w=400&h=225",
-    caption: "After 3 years of struggling, Proaxion gave me my confidence back. My wife and I couldn't be happier with the results!"
-  },
-  {
-    id: 2,
-    name: "David Thompson",
-    city: "Austin",
-    state: "TX",
-    avatar: "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop",
-    videoThumbnail: "https://images.pexels.com/photos/1181690/pexels-photo-1181690.jpeg?auto=compress&cs=tinysrgb&w=400&h=225",
-    caption: "I was skeptical at first, but within 2 weeks of using Proaxion, I noticed incredible improvements. This product changed my life!"
-  },
-  {
-    id: 3,
-    name: "Robert Chen",
-    city: "Miami",
-    state: "FL",
-    avatar: "https://images.pexels.com/photos/1043471/pexels-photo-1043471.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&fit=crop",
-    videoThumbnail: "https://images.pexels.com/photos/1181316/pexels-photo-1181316.jpeg?auto=compress&cs=tinysrgb&w=400&h=225",
-    caption: "At 52, I thought my best days were behind me. Proaxion proved me wrong - I feel like I'm 30 again!"
-  }
-];
+const openYouTubeVideo = (url: string) => {
+  window.open(url, '_blank', 'noopener,noreferrer');
+};
 
 const TestimonialsCarousel: React.FC = () => {
+  const [testimonials, setTestimonials] = React.useState<Testimonial[]>([]);
+  const [loading, setLoading] = React.useState(true);
+
   const [emblaRef, emblaApi] = useEmblaCarousel({ 
     loop: true,
     align: 'center',
     containScroll: 'trimSnaps'
   });
+
+  React.useEffect(() => {
+    const fetchTestimonials = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('testimonials')
+          .select('*')
+          .eq('is_active', true)
+          .order('display_order', { ascending: true });
+
+        if (error) throw error;
+        setTestimonials(data || []);
+      } catch (error) {
+        console.error('Error fetching testimonials:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTestimonials();
+  }, []);
 
   const scrollPrev = useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev();
@@ -56,6 +50,16 @@ const TestimonialsCarousel: React.FC = () => {
   const scrollNext = useCallback(() => {
     if (emblaApi) emblaApi.scrollNext();
   }, [emblaApi]);
+
+  if (loading) {
+    return (
+      <div className="bg-gray-50 py-16 md:py-24 pb-20 md:pb-32 relative">
+        <div className="container mx-auto px-4 max-w-6xl text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-magenta-600 mx-auto"></div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-gray-50 py-16 md:py-24 pb-20 md:pb-32 relative">
@@ -80,7 +84,7 @@ const TestimonialsCarousel: React.FC = () => {
                     {/* User Info */}
                     <div className="flex items-center mb-4">
                       <img 
-                        src={testimonial.avatar} 
+                        src={testimonial.avatar_url} 
                         alt={testimonial.name}
                         className="w-12 h-12 rounded-full object-cover mr-4"
                       />
@@ -91,11 +95,15 @@ const TestimonialsCarousel: React.FC = () => {
                     </div>
 
                     {/* Video Thumbnail */}
-                    <div className="relative mb-4 group cursor-pointer">
+                    <div 
+                      className="relative mb-4 group cursor-pointer"
+                      onClick={() => openYouTubeVideo(testimonial.youtube_url)}
+                    >
                       <div className="aspect-video bg-gray-200 rounded-xl overflow-hidden">
                         <img 
-                          src={testimonial.videoThumbnail} 
+                          src={getYouTubeThumbnail(testimonial.youtube_url)} 
                           alt={`${testimonial.name} testimonial`}
+                          onError={(e) => { (e.target as HTMLImageElement).src = 'https://images.pexels.com/photos/1181690/pexels-photo-1181690.jpeg?auto=compress&cs=tinysrgb&w=400&h=225'; }}
                           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                         />
                       </div>

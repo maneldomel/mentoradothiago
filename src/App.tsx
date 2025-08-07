@@ -1,8 +1,10 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Volume2, Clock, Calendar, Truck, Lock } from 'lucide-react';
 import TestimonialsCarousel from './components/TestimonialsCarousel';
+import AdminRoute from './components/AdminRoute';
 
-function App() {
+const HomePage: React.FC = () => {
   return (
     <div className="min-h-screen bg-white relative overflow-hidden">
       {/* Glassmorphism Background */}
@@ -266,4 +268,15 @@ function App() {
    );
  }
  
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/admin" element={<AdminRoute />} />
+      </Routes>
+    </Router>
+  );
+}
+
  export default App;
