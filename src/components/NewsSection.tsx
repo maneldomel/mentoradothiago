@@ -109,10 +109,10 @@ const NewsSection: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showContent, setShowContent] = useState(false);
 
-  const [emblaRef, emblaApi] = useEmblaCarousel({ 
+  const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
-    align: 'center',
-    containScroll: 'trimSnaps'
+    align: 'start',
+    slidesToScroll: 1
   });
 
   const scrollPrev = useCallback(() => {
@@ -188,137 +188,99 @@ const NewsSection: React.FC = () => {
 
   return (
     <>
-      <div className="bg-gradient-to-br from-gray-50 to-white py-12 md:py-16 relative">
+      <div className="bg-white py-8 md:py-12 relative">
         <div className="container mx-auto px-4 max-w-6xl">
           {/* Section Header */}
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center justify-center px-4 py-2 bg-magenta-100 rounded-full mb-6">
-              <span className="text-magenta-700 font-bold text-sm uppercase tracking-wide">Featured Coverage</span>
-            </div>
-            <h2 className="text-4xl md:text-6xl font-black text-gray-900 mb-6 font-inter tracking-tight">
-              <span className="block">AS SEEN</span>
-              <span className="block text-transparent bg-gradient-to-r from-magenta-600 to-magenta-500 bg-clip-text">IN THE NEWS</span>
+          <div className="text-center mb-8">
+            <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4 font-inter tracking-tight">
+              <span className="text-transparent bg-gradient-to-r from-magenta-600 to-magenta-500 bg-clip-text">AS SEEN IN THE NEWS</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              Major health publications and medical experts are covering this revolutionary breakthrough
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Leading publications covering this breakthrough
             </p>
           </div>
 
-          {/* News Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-            {newsArticles.map((article) => (
-              <div 
-                key={article.id}
-                className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden cursor-pointer transform hover:-translate-y-2"
-                onClick={() => handleArticleClick(article)}
-              >
-                {/* Article Image */}
-                <div className="relative h-48 overflow-hidden">
-                  <img 
-                    src={article.imageUrl} 
-                    alt={article.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
-                  
-                  {/* Logo Badge */}
-                  <div className="absolute top-4 left-4">
-                    <div className="bg-white rounded-xl px-4 py-3 shadow-lg">
-                      {article.site === 'The New York Post' ? (
-                        <img 
-                          src="https://i.imgur.com/mhIlnsd.png" 
-                          alt="New York Post"
-                          className="h-5 w-auto object-contain"
-                        />
-                      ) : article.site === 'HealthLine Weekly' ? (
-                        <img 
-                          src="https://i.imgur.com/K7v16Vy.png" 
-                          alt="HealthLine Weekly"
-                          className="h-5 w-auto object-contain"
-                        />
-                      ) : article.site === 'Men\'s Health Today' ? (
-                        <img 
-                          src="https://i.imgur.com/xtDN6Ts.png" 
-                          alt="Men's Health Today"
-                          className="h-5 w-auto object-contain"
-                        />
-                      ) : (
-                        <span className={`font-bold text-sm ${article.siteColor}`}>
-                          {article.site}
-                        </span>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Read Time Badge */}
-                  <div className="absolute bottom-4 right-4">
-                    <div className="bg-black/70 backdrop-blur-sm rounded-lg px-3 py-1">
-                      <span className="text-white text-xs font-medium">{article.readTime}</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Article Content */}
-                <div className="p-6">
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-xs text-gray-500 font-medium">{article.publishDate}</span>
-                    <span className="text-xs text-magenta-600 font-bold uppercase tracking-wide">Breaking</span>
-                  </div>
-                  
-                  <h3 className="font-black text-gray-900 text-lg leading-tight mb-3 line-clamp-2 group-hover:text-magenta-700 transition-colors duration-300">
-                    {article.title}
-                  </h3>
-                  
-                  <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
-                    {article.excerpt}
-                  </p>
-                  
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-2">
-                      <div className="w-6 h-6 bg-gray-200 rounded-full flex items-center justify-center">
-                        <span className="text-xs font-bold text-gray-600">{article.author.charAt(0)}</span>
+          {/* News Carousel */}
+          <div className="relative max-w-4xl mx-auto">
+            <div className="overflow-hidden" ref={emblaRef}>
+              <div className="flex">
+                {newsArticles.map((article) => (
+                  <div key={article.id} className="flex-[0_0_100%] md:flex-[0_0_50%] lg:flex-[0_0_33.333%] px-4">
+                    <div className="bg-white border border-gray-200 rounded-xl p-6 text-center hover:shadow-lg transition-all duration-300 cursor-pointer group"
+                         onClick={() => handleArticleClick(article)}>
+                      
+                      {/* Logo */}
+                      <div className="mb-6">
+                        <div className="bg-white rounded-lg p-4 inline-block shadow-sm border border-gray-100">
+                          {article.site === 'The New York Post' ? (
+                            <img 
+                              src="https://i.imgur.com/mhIlnsd.png" 
+                              alt="New York Post"
+                              className="h-8 w-auto object-contain"
+                            />
+                          ) : article.site === 'HealthLine Weekly' ? (
+                            <img 
+                              src="https://i.imgur.com/K7v16Vy.png" 
+                              alt="HealthLine Weekly"
+                              className="h-8 w-auto object-contain"
+                            />
+                          ) : article.site === 'Men\'s Health Today' ? (
+                            <img 
+                              src="https://i.imgur.com/xtDN6Ts.png" 
+                              alt="Men's Health Today"
+                              className="h-8 w-auto object-contain"
+                            />
+                          ) : (
+                            <span className={`font-bold text-sm ${article.siteColor}`}>
+                              {article.site}
+                            </span>
+                          )}
+                        </div>
                       </div>
-                      <span className="text-xs text-gray-500 font-medium">By {article.author}</span>
-                    </div>
-                    <div className="flex items-center text-magenta-600 group-hover:text-magenta-700 font-bold text-sm transition-colors">
-                      Read More
-                      <svg className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
+
+                      {/* Excerpt */}
+                      <p className="text-gray-700 text-sm leading-relaxed mb-6 line-clamp-4">
+                        {article.excerpt}
+                      </p>
+                      
+                      {/* Read More Button */}
+                      <button className="inline-flex items-center px-6 py-2 bg-magenta-600 hover:bg-magenta-700 text-white font-medium rounded-lg transition-colors duration-200 group-hover:scale-105 transform">
+                        Read More
+                        <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </button>
                     </div>
                   </div>
-                </div>
+                ))}
               </div>
-            ))}
+            </div>
+
+            {/* Navigation Buttons */}
+            <button
+              className="absolute left-0 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center transition-all duration-200 hover:scale-110 hover:shadow-xl z-10 border border-gray-200"
+              onClick={scrollPrev}
+            >
+              <ChevronLeft className="w-5 h-5 text-gray-600" />
+            </button>
+            
+            <button
+              className="absolute right-0 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center transition-all duration-200 hover:scale-110 hover:shadow-xl z-10 border border-gray-200"
+              onClick={scrollNext}
+            >
+              <ChevronRight className="w-5 h-5 text-gray-600" />
+            </button>
           </div>
 
-          {/* Trust Indicators */}
-          <div className="text-center">
-            <div className="inline-flex items-center justify-center space-x-8 bg-white rounded-2xl shadow-lg px-8 py-6">
-              <div className="flex items-center space-x-2">
-                <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                <span className="text-gray-700 font-medium text-sm">Live Coverage</span>
-              </div>
-              <div className="w-px h-6 bg-gray-200"></div>
-              <div className="flex items-center space-x-2">
-                <svg className="w-4 h-4 text-magenta-600" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-                <span className="text-gray-700 font-medium text-sm">Verified Sources</span>
-              </div>
-              <div className="w-px h-6 bg-gray-200"></div>
-              <div className="flex items-center space-x-2">
-                <svg className="w-4 h-4 text-magenta-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-                <span className="text-gray-700 font-medium text-sm">Breaking News</span>
-              </div>
+          {/* Trust Badge */}
+          <div className="text-center mt-8">
+            <div className="inline-flex items-center space-x-2 bg-gray-50 rounded-full px-4 py-2">
+              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+              <span className="text-gray-600 font-medium text-sm">Trusted by leading publications</span>
             </div>
           </div>
         </div>
       </div>
-
-
       {/* Full-Screen Webview Modal */}
       {selectedArticle && (
         <div className="fixed inset-0 bg-white z-50 overflow-hidden">
