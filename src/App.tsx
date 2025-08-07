@@ -9,7 +9,7 @@ import DevNavigation from './components/DevNavigation';
 const HomePage: React.FC = () => {
   return (
     <>
-    <div className="min-h-screen bg-white relative overflow-hidden" style={{ paddingTop: import.meta.env.PROD ? '0' : '60px' }}>
+    <div className="min-h-screen bg-gray-50 relative overflow-hidden" style={{ paddingTop: import.meta.env.PROD ? '0' : '60px' }}>
       {/* Glassmorphism Background */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Soft magenta orbs */}
@@ -90,7 +90,7 @@ const HomePage: React.FC = () => {
       </div>
 
       {/* Purchase Section */}
-      <div className="bg-white py-8 md:py-12 relative z-10">
+      <div className="bg-gray-50 py-8 md:py-12 relative z-10">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="max-w-4xl mx-auto">
             
