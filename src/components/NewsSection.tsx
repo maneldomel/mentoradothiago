@@ -371,6 +371,9 @@ const NewsSection: React.FC = () => {
                    >
                      <X className="w-4 h-4 text-white" />
                    </button>
+                 </div>
+                 
+                 <img 
                    src="https://i.imgur.com/nIdQU15.png" 
                    alt="Men's Health Today Header"
                    className="w-full h-auto object-cover"
@@ -433,9 +436,7 @@ const NewsSection: React.FC = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
                   </button>
-                 </div>
-                 
-                 <img 
+                  
                   <p className="text-sm text-gray-600 mt-3">
                     ✓ 180-Day Money Back Guarantee
                   </p>
