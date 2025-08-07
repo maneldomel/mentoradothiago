@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
-import { ChevronLeft, ChevronRight, Play } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Play, X } from 'lucide-react';
 import { Testimonial, getActiveTestimonials } from '../lib/testimonials';
 
 const getYouTubeThumbnail = (url: string): string => {
@@ -8,13 +8,15 @@ const getYouTubeThumbnail = (url: string): string => {
   return videoId ? `https://img.youtube.com/vi/${videoId[1]}/maxresdefault.jpg` : '';
 };
 
-const openYouTubeVideo = (url: string) => {
-  window.open(url, '_blank', 'noopener,noreferrer');
+const getYouTubeEmbedUrl = (url: string): string => {
+  const videoId = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/);
+  return videoId ? `https://www.youtube.com/embed/${videoId[1]}?autoplay=1&rel=0` : '';
 };
 
 const TestimonialsCarousel: React.FC = () => {
   const [testimonials, setTestimonials] = React.useState<Testimonial[]>([]);
   const [loading, setLoading] = React.useState(true);
+  const [playingVideo, setPlayingVideo] = React.useState<string | null>(null);
 
   const [emblaRef, emblaApi] = useEmblaCarousel({ 
     loop: true,
@@ -56,6 +58,14 @@ const TestimonialsCarousel: React.FC = () => {
   const scrollNext = useCallback(() => {
     if (emblaApi) emblaApi.scrollNext();
   }, [emblaApi]);
+
+  const handleVideoPlay = (testimonialId: string) => {
+    setPlayingVideo(testimonialId);
+  };
+
+  const handleVideoClose = () => {
+    setPlayingVideo(null);
+  };
 
   if (loading) {
     return (
@@ -103,22 +113,43 @@ const TestimonialsCarousel: React.FC = () => {
                     {/* Video Thumbnail */}
                     <div 
                       className="relative mb-4 group cursor-pointer"
-                      onClick={() => openYouTubeVideo(testimonial.youtube_url)}
+                      onClick={() => handleVideoPlay(testimonial.id)}
                     >
-                      <div className="aspect-video bg-gray-200 rounded-xl overflow-hidden">
-                        <img 
-                          src={getYouTubeThumbnail(testimonial.youtube_url)} 
-                          alt={`${testimonial.name} testimonial`}
-                          onError={(e) => { (e.target as HTMLImageElement).src = 'https://images.pexels.com/photos/1181690/pexels-photo-1181690.jpeg?auto=compress&cs=tinysrgb&w=400&h=225'; }}
-                          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                        />
-                      </div>
-                      {/* Play Button Overlay */}
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-16 h-16 bg-magenta-600 bg-opacity-90 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 group-hover:scale-110 group-hover:bg-magenta-700">
-                          <Play className="w-6 h-6 text-white ml-1" fill="white" />
+                      {playingVideo === testimonial.id ? (
+                        <div className="aspect-video bg-black rounded-xl overflow-hidden relative">
+                          <iframe
+                            src={getYouTubeEmbedUrl(testimonial.youtube_url)}
+                            className="w-full h-full"
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                          />
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleVideoClose();
+                            }}
+                            className="absolute top-2 right-2 w-8 h-8 bg-black bg-opacity-70 hover:bg-opacity-90 rounded-full flex items-center justify-center transition-all duration-200"
+                          >
+                            <X className="w-4 h-4 text-white" />
+                          </button>
                         </div>
-                      </div>
+                      ) : (
+                        <div className="aspect-video bg-gray-200 rounded-xl overflow-hidden">
+                          <img 
+                            src={getYouTubeThumbnail(testimonial.youtube_url)} 
+                            alt={`${testimonial.name} testimonial`}
+                            onError={(e) => { (e.target as HTMLImageElement).src = 'https://images.pexels.com/photos/1181690/pexels-photo-1181690.jpeg?auto=compress&cs=tinysrgb&w=400&h=225'; }}
+                            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          />
+                          {/* Play Button Overlay */}
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <div className="w-16 h-16 bg-magenta-600 bg-opacity-90 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 group-hover:scale-110 group-hover:bg-magenta-700">
+                              <Play className="w-6 h-6 text-white ml-1" fill="white" />
+                            </div>
+                          </div>
+                        </div>
+                      )}
                     </div>
 
                     {/* Caption */}
