@@ -87,9 +87,6 @@ const HomePage: React.FC = () => {
         </div>
       </div>
 
-      {/* Testimonials Section */}
-      <TestimonialsCarousel />
-
       {/* Purchase Section */}
       <div className="bg-white py-16 md:py-24 relative z-10">
         <div className="container mx-auto px-4 max-w-6xl">
@@ -266,6 +263,9 @@ const HomePage: React.FC = () => {
          </div>
        </div>
      </div>
+
+      {/* Testimonials Section */}
+      <TestimonialsCarousel />
    );
  }
  
