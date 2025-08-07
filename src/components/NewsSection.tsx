@@ -71,34 +71,36 @@ The supplement's liquid format appears to be a significant advantage, allowing f
   },
   {
     id: '3',
-    site: 'Science & BioEdge',
-    siteColor: 'text-purple-600',
+    site: 'Men\'s Health Today',
+    siteColor: 'text-blue-600',
     siteLogo: 'https://images.pexels.com/photos/3825581/pexels-photo-3825581.jpeg?auto=compress&cs=tinysrgb&w=60&h=40',
-    title: 'How PROAXION Activates the Body\'s Hidden Erectile Pathways',
-    excerpt: 'In a recently published review, researchers explored how PROAXION — a proprietary botanical formula in liquid form — triggers the body\'s own erectile mechanisms, offering a long-term solution to ED.',
-    fullContent: `In a recently published review, researchers explored how PROAXION — a proprietary botanical formula in liquid form — triggers the body's own erectile mechanisms, offering a long-term solution to ED.
+    title: 'How PROAXION Is Helping Men Reclaim Their Confidence Without Prescription Drugs',
+    excerpt: 'Men struggling with performance anxiety or declining stamina are turning to a new natural formula — and it\'s not coming from the pharmacy aisle.',
+    fullContent: `Men struggling with performance anxiety or declining stamina are turning to a new natural formula — and it's not coming from the pharmacy aisle.
 
-The formula combines adaptogens, bioflavonoids, and circulation-enhancing compounds to stimulate the endothelial response, reduce inflammation, and optimize oxygen delivery to penile tissue.
+PROAXION is a fast-acting liquid supplement that works by naturally enhancing circulation, boosting nitric oxide levels, and supporting testosterone.
 
-According to Dr. Natalie Grant, author of "Endocrine Recovery in Male Sexual Health," "This is not a temporary crutch — PROAXION actually retrains the body to perform as it did in youth."
+According to Dr. Daniel Brooks, a contributor to Men's Health, "We're seeing men in their 40s, 50s, even 60s experience firmer, more reliable erections — without the need for daily pills or side effects."
 
-Scientists believe this could signal a new era of natural, self-regulating treatments for erectile dysfunction.
+The supplement is now being recommended in lifestyle circles for those seeking a holistic, long-term solution to ED.
 
-The research reveals that PROAXION works through multiple pathways simultaneously. The liquid formulation contains bioactive compounds that cross the blood-brain barrier, influencing neural pathways responsible for sexual arousal and response.
+Unlike traditional pharmaceutical approaches that often come with unwanted side effects, PROAXION takes a different route. The liquid formulation allows for rapid absorption and begins working within minutes of consumption.
 
-"What we're seeing is a restoration of natural function rather than artificial stimulation," explains Dr. Grant. "The body begins to produce adequate nitric oxide on its own, blood vessels regain their elasticity, and hormonal balance is restored."
+"What sets PROAXION apart is its ability to work with your body's natural processes," explains Dr. Brooks. "Rather than forcing a response, it enhances what should already be happening naturally."
 
-The study followed 200 men over a 12-week period, with 89% reporting significant improvements in erectile function, stamina, and overall sexual satisfaction. Notably, benefits appeared to compound over time, with the most dramatic improvements occurring after 6-8 weeks of consistent use.
+The formula contains a proprietary blend of natural ingredients that have been used for centuries in traditional medicine. These compounds work synergistically to improve blood flow, reduce performance anxiety, and boost overall sexual confidence.
 
-Researchers attribute this delayed peak effect to the supplement's ability to repair cellular damage and restore optimal blood flow patterns. Unlike pharmaceutical interventions that provide immediate but temporary results, PROAXION appears to address root causes of erectile dysfunction.
+Men who have tried PROAXION report not just improved physical performance, but also increased confidence in intimate situations. Many describe feeling "like themselves again" after years of struggling with performance issues.
 
-"We're witnessing a paradigm shift," notes Dr. Grant. "Instead of managing symptoms, we're actually reversing the underlying physiological changes that lead to erectile dysfunction in the first place."
+The supplement has gained particular popularity among men who want to avoid the scheduling and planning required with prescription medications. With PROAXION, users report feeling ready whenever the moment is right.
 
-The implications extend beyond sexual health, with participants reporting improved energy levels, better sleep quality, and enhanced overall vitality — suggesting that PROAXION's benefits may be more comprehensive than initially understood.`,
+Dr. Brooks notes that the psychological benefits are just as important as the physical ones. "When men regain their confidence in the bedroom, it often translates to improved confidence in other areas of their lives as well."
+
+The growing popularity of natural alternatives like PROAXION reflects a broader shift in men's health, with more men seeking solutions that work with their bodies rather than against them.`,
     readTime: '5 min read',
     imageUrl: 'https://images.pexels.com/photos/3825581/pexels-photo-3825581.jpeg?auto=compress&cs=tinysrgb&w=800&h=400',
     publishDate: 'January 10, 2025',
-    author: 'Dr. James Thompson'
+    author: 'Dr. Daniel Brooks'
   }
 ];
 
@@ -167,12 +169,12 @@ const NewsSection: React.FC = () => {
           accent: 'text-blue-700',
           border: 'border-blue-200'
         };
-      case 'Science & BioEdge':
+      case 'Men\'s Health Today':
         return {
-          bg: 'bg-purple-50',
-          header: 'bg-purple-700',
-          accent: 'text-purple-700',
-          border: 'border-purple-200'
+          bg: 'bg-blue-50',
+          header: 'bg-blue-700',
+          accent: 'text-blue-700',
+          border: 'border-blue-200'
         };
       default:
         return {
