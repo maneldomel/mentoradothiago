@@ -58,7 +58,7 @@ const TestimonialsCarousel: React.FC = () => {
   }, [emblaApi]);
 
   return (
-    <div className="bg-gray-50 py-16 md:py-24 relative">
+    <div className="bg-gray-50 relative">
       <div className="container mx-auto px-4 max-w-6xl">
         {/* Section Header */}
         <div className="text-center mb-12">
