@@ -430,13 +430,13 @@ const NewsSection: React.FC = () => {
                     </p>
                   </div>
                   <button
-                    onClick={scrollToTop}
-                    className="inline-flex items-center px-6 py-3 bg-magenta-600 hover:bg-magenta-700 text-white font-medium rounded-lg transition-colors duration-200 text-base"
+                  {/* Integrated back button in header */}
+                  <button
+                    onClick={handleClose}
+                    className="absolute top-1/2 left-4 transform -translate-y-1/2 flex items-center space-x-2 text-white hover:text-gray-300 transition-colors z-50"
                   >
-                    Get PROAXION Now - $79
-                    <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
+                    <ArrowLeft className="w-5 h-5" />
+                    <span className="text-sm font-medium hidden sm:inline">Back</span>
                   </button>
                   
                   <p className="text-sm text-gray-600 mt-3">
