@@ -54,10 +54,6 @@ const AdminRoute: React.FC = () => {
       clearInterval(interval);
     };
   }, [isAuthenticated]);
-    });
-
-    return () => subscription.unsubscribe();
-  }, []);
 
   if (loading) {
     return (
