@@ -82,12 +82,9 @@ const DoctorsSection: React.FC = () => {
       <div className="container mx-auto px-4 max-w-6xl">
         {/* Section Header */}
         <div className="text-center mb-8">
-          <h2 className="text-3xl md:text-5xl font-black text-gray-800 mb-4 font-inter tracking-tight">
-            <span className="block md:inline">TRUSTED BY</span><span className="hidden md:inline"> </span><span className="block md:inline text-transparent bg-gradient-to-r from-magenta-600 to-magenta-400 bg-clip-text">MEDICAL EXPERTS</span>
+          <h2 className="text-2xl md:text-3xl font-black text-gray-800 mb-2 font-inter tracking-tight">
+            <span className="text-transparent bg-gradient-to-r from-magenta-600 to-magenta-400 bg-clip-text">MEDICAL EXPERTS</span>
           </h2>
-          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-4">
-            Leading doctors and researchers from top medical institutions endorse this breakthrough formula
-          </p>
         </div>
 
         {/* Carousel Container */}
@@ -152,9 +149,9 @@ const DoctorsSection: React.FC = () => {
                       )}
                     </div>
 
-                    {/* Quote */}
+                  {/* Doctor Info Above Video */}
                     <p className="text-gray-700 text-sm leading-relaxed italic mb-4">
-                      "{doctor.quote}"
+                  <p className="text-gray-700 text-xs leading-relaxed italic mb-4">
                     </p>
 
                     {/* Medical Badge */}
