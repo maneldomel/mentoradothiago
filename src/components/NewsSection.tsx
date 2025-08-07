@@ -304,30 +304,92 @@ const NewsSection: React.FC = () => {
           ) : showContent ? (
             <div className={`h-full overflow-y-auto ${getWebsiteStyle(selectedArticle.site).bg}`}>
               {/* Simulated Website Header */}
-              <div className={`${getWebsiteStyle(selectedArticle.site).header} text-white p-4 shadow-lg`}>
-                <div className="max-w-6xl mx-auto flex items-center justify-between">
-                  <div className="flex items-center space-x-4">
+              {selectedArticle.site === 'The New York Post' ? (
+                // New York Post Header Design
+                <>
+                  <div className="bg-red-600 text-white shadow-lg">
+                    <div className="max-w-7xl mx-auto px-4">
+                      <div className="flex items-center justify-between py-3">
+                        <div className="flex items-center space-x-4">
+                          <button
+                            onClick={handleClose}
+                            className="w-8 h-8 bg-white/20 hover:bg-white/30 rounded flex items-center justify-center transition-colors"
+                          >
+                            <ArrowLeft className="w-4 h-4 text-white" />
+                          </button>
+                          <div className="border border-white px-3 py-1 text-sm font-bold">
+                            SECTIONS
+                          </div>
+                        </div>
+                        
+                        <div className="flex-1 flex justify-center">
+                          <h1 className="text-3xl font-black italic tracking-wider" style={{ fontFamily: 'serif' }}>
+                            NEW YORK POST
+                          </h1>
+                        </div>
+                        
+                        <div className="flex items-center space-x-4">
+                          <div className="hidden md:flex items-center space-x-2 bg-black px-3 py-1 text-sm">
+                            <span>READ THE</span>
+                            <span className="font-bold">PageSix</span>
+                          </div>
+                          <button
+                            onClick={handleClose}
+                            className="w-8 h-8 bg-white/20 hover:bg-white/30 rounded flex items-center justify-center transition-colors"
+                          >
+                            <X className="w-4 h-4 text-white" />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Navigation Bar */}
+                  <div className="bg-black text-white">
+                    <div className="max-w-7xl mx-auto px-4">
+                      <div className="flex items-center justify-center space-x-8 py-2 text-sm font-bold">
+                        <span className="hover:text-red-400 cursor-pointer">PAGE SIX</span>
+                        <span className="text-gray-400">|</span>
+                        <span className="hover:text-red-400 cursor-pointer">SPORTS</span>
+                        <span className="text-gray-400">|</span>
+                        <span className="hover:text-red-400 cursor-pointer">METRO</span>
+                        <span className="text-gray-400">|</span>
+                        <span className="hover:text-red-400 cursor-pointer">OPINION</span>
+                        <span className="text-gray-400">|</span>
+                        <span className="hover:text-red-400 cursor-pointer">PODCASTS</span>
+                        <span className="text-gray-400">|</span>
+                        <span className="hover:text-red-400 cursor-pointer">BUSINESS</span>
+                      </div>
+                    </div>
+                  </div>
+                </>
+              ) : (
+                // Default Header for other sites
+                <div className={`${getWebsiteStyle(selectedArticle.site).header} text-white p-4 shadow-lg`}>
+                  <div className="max-w-6xl mx-auto flex items-center justify-between">
+                    <div className="flex items-center space-x-4">
+                      <button
+                        onClick={handleClose}
+                        className="w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors"
+                      >
+                        <ArrowLeft className="w-4 h-4 text-white" />
+                      </button>
+                      <img 
+                        src={selectedArticle.siteLogo} 
+                        alt={selectedArticle.site}
+                        className="w-8 h-6 object-cover rounded"
+                      />
+                      <h1 className="text-xl font-bold">{selectedArticle.site}</h1>
+                    </div>
                     <button
                       onClick={handleClose}
                       className="w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors"
                     >
-                      <ArrowLeft className="w-4 h-4 text-white" />
+                      <X className="w-4 h-4 text-white" />
                     </button>
-                    <img 
-                      src={selectedArticle.siteLogo} 
-                      alt={selectedArticle.site}
-                      className="w-8 h-6 object-cover rounded"
-                    />
-                    <h1 className="text-xl font-bold">{selectedArticle.site}</h1>
                   </div>
-                  <button
-                    onClick={handleClose}
-                    className="w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors"
-                  >
-                    <X className="w-4 h-4 text-white" />
-                  </button>
                 </div>
-              </div>
+              )}
 
               {/* Simulated Website Content */}
               <div className="max-w-4xl mx-auto p-6">
