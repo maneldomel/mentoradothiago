@@ -90,7 +90,7 @@ const HomePage: React.FC = () => {
       </div>
 
       {/* Purchase Section */}
-      <div className="bg-white py-16 md:py-24 relative z-10">
+      <div className="bg-white py-8 md:py-12 relative z-10">
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="max-w-4xl mx-auto">
             

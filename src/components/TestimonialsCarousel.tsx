@@ -78,10 +78,10 @@ const TestimonialsCarousel: React.FC = () => {
   }
 
   return (
-    <div className="bg-gray-50 py-16 md:py-24 pb-20 md:pb-32 relative">
+    <div className="bg-gray-50 py-8 md:py-12 pb-8 md:pb-12 relative">
       <div className="container mx-auto px-4 max-w-6xl">
         {/* Section Header */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-8">
           <h2 className="text-3xl md:text-5xl font-black text-gray-800 mb-4 font-inter tracking-tight">
             <span className="block md:inline">REAL MEN</span><span className="hidden md:inline">, </span><span className="block md:inline text-transparent bg-gradient-to-r from-magenta-600 to-magenta-400 bg-clip-text">REAL RESULTS</span>
           </h2>
@@ -188,8 +188,6 @@ const TestimonialsCarousel: React.FC = () => {
           </button>
         </div>
 
-        {/* Extra bottom spacing */}
-        <div className="h-8 md:h-12"></div>
 
       </div>
     </div>

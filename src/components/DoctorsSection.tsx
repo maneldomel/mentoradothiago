@@ -78,10 +78,10 @@ const DoctorsSection: React.FC = () => {
   }
 
   return (
-    <div className="bg-white py-16 md:py-24 relative">
+    <div className="bg-white py-8 md:py-12 relative">
       <div className="container mx-auto px-4 max-w-6xl">
         {/* Section Header */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-8">
           <h2 className="text-3xl md:text-5xl font-black text-gray-800 mb-4 font-inter tracking-tight">
             <span className="block md:inline">TRUSTED BY</span><span className="hidden md:inline"> </span><span className="block md:inline text-transparent bg-gradient-to-r from-magenta-600 to-magenta-400 bg-clip-text">MEDICAL EXPERTS</span>
           </h2>
@@ -198,8 +198,6 @@ const DoctorsSection: React.FC = () => {
           </button>
         </div>
 
-        {/* Extra bottom spacing */}
-        <div className="h-8 md:h-12"></div>
       </div>
     </div>
   );
