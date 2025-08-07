@@ -76,7 +76,7 @@ const TestimonialsCarousel: React.FC = () => {
             <div className="flex">
               {testimonials.map((testimonial) => (
                 <div key={testimonial.id} className="flex-[0_0_100%] md:flex-[0_0_50%] lg:flex-[0_0_33.333%] px-4">
-                  <div className="bg-white rounded-2xl shadow-xl p-6 mx-2 transform transition-all duration-300 hover:scale-105">
+                  <div className="bg-white rounded-2xl shadow-xl p-6 mx-4 my-8 transform transition-all duration-300 hover:scale-105">
                     {/* User Info */}
                     <div className="flex items-center mb-4">
                       <img 
