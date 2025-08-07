@@ -58,7 +58,7 @@ const TestimonialsCarousel: React.FC = () => {
   }, [emblaApi]);
 
   return (
-    <div className="bg-gray-50 py-16 md:py-24 relative">
+    <div className="bg-gray-50 py-16 md:py-24 pb-20 md:pb-32 relative">
       <div className="container mx-auto px-4 max-w-6xl">
         {/* Section Header */}
         <div className="text-center mb-12">
@@ -142,6 +142,9 @@ const TestimonialsCarousel: React.FC = () => {
             <ChevronRight className="w-6 h-6 text-gray-600" />
           </button>
         </div>
+
+        {/* Extra bottom spacing */}
+        <div className="h-8 md:h-12"></div>
 
       </div>
     </div>
