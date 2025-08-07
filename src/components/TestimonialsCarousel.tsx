@@ -59,7 +59,7 @@ const TestimonialsCarousel: React.FC = () => {
 
   return (
     <div className="bg-gray-50 py-16 md:py-24 pb-20 md:pb-32 relative">
-      <div className="container mx-auto px-4 max-w-6xl">
+      <div className="container mx-auto px-4 max-w-6xl overflow-visible">
         {/* Section Header */}
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-5xl font-black text-gray-800 mb-4 font-inter tracking-tight">
@@ -72,11 +72,11 @@ const TestimonialsCarousel: React.FC = () => {
 
         {/* Carousel Container */}
         <div className="relative">
-          <div className="overflow-hidden" ref={emblaRef}>
+          <div className="overflow-hidden px-4" ref={emblaRef}>
             <div className="flex">
               {testimonials.map((testimonial) => (
-                <div key={testimonial.id} className="flex-[0_0_100%] md:flex-[0_0_50%] lg:flex-[0_0_33.333%] px-4">
-                  <div className="bg-white rounded-2xl shadow-xl p-6 mx-2 transform transition-all duration-300 hover:scale-105">
+                <div key={testimonial.id} className="flex-[0_0_100%] md:flex-[0_0_50%] lg:flex-[0_0_33.333%] px-2">
+                  <div className="bg-white rounded-2xl shadow-xl p-6 mx-4 transform transition-all duration-300 hover:scale-105">
                     {/* User Info */}
                     <div className="flex items-center mb-4">
                       <img 
