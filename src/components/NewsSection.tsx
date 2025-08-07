@@ -430,13 +430,10 @@ const NewsSection: React.FC = () => {
                     </p>
                   </div>
                   <button
-                  {/* Integrated back button in header */}
-                  <button
-                    onClick={handleClose}
-                    className="absolute top-1/2 left-4 transform -translate-y-1/2 flex items-center space-x-2 text-white hover:text-gray-300 transition-colors z-50"
+                    onClick={scrollToTop}
+                    className="bg-magenta-600 hover:bg-magenta-700 text-white font-bold py-4 px-8 rounded-xl text-lg transition-colors duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
                   >
-                    <ArrowLeft className="w-5 h-5" />
-                    <span className="text-sm font-medium hidden sm:inline">Back</span>
+                    Get PROAXION Now
                   </button>
                   
                   <p className="text-sm text-gray-600 mt-3">
