@@ -330,14 +330,6 @@ const NewsSection: React.FC = () => {
               ) : selectedArticle.site === 'HealthLine Weekly' ? (
                 // HealthLine Weekly Header Image
                 <div className="relative">
-                  <div className="absolute top-2 right-2 z-50">
-                    <button
-                      onClick={handleClose}
-                      className="w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors"
-                    >
-                      <X className="w-4 h-4 text-white" />
-                    </button>
-                  </div>
                   
                   <div className="relative">
                     <img 
@@ -345,51 +337,11 @@ const NewsSection: React.FC = () => {
                       alt="HealthLine Weekly Header"
                       className="w-full h-auto object-cover"
                     />
-                    {/* Integrated back button in header */}
-                    <button
-                      onClick={handleClose}
-                      className="absolute top-1/2 left-4 transform -translate-y-1/2 flex items-center space-x-2 text-white hover:text-gray-300 transition-colors z-10"
-                    >
-                      <ArrowLeft className="w-5 h-5" />
-                      <span className="text-sm font-medium hidden sm:inline">Back</span>
-                    </button>
                   </div>
                 </div>
               ) : (
                 // Generic Header for other sites
                <div className="relative">
-                 <div className="absolute top-2 left-2 z-50">
-                   <button
-                     onClick={handleClose}
-                     className="w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors"
-                   >
-                     <ArrowLeft className="w-4 h-4 text-white" />
-                   </button>
-                 </div>
-                 <div className="absolute top-2 right-2 z-50">
-                   <button
-                     onClick={handleClose}
-                     className="w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors"
-                   >
-                     <X className="w-4 h-4 text-white" />
-                   </button>
-                 </div>
-                 
-                 <img 
-                   src="https://i.imgur.com/nIdQU15.png" 
-                   alt="Men's Health Today Header"
-                   className="w-full h-auto object-cover"
-                 />
-               </div>
-              )}
-              {/* Simulated Website Content */}
-              <div className="max-w-4xl mx-auto p-6">
-                {/* Article Header */}
-                <div className="mb-8">
-                  <div className="flex items-center space-x-4 mb-4 text-sm text-gray-600">
-                    <span>{selectedArticle.publishDate}</span>
-                    <span>•</span>
-                    <span>By {selectedArticle.author}</span>
                     <span>•</span>
                     <span>{selectedArticle.readTime}</span>
                   </div>
