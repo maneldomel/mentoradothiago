@@ -3,10 +3,11 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Volume2, Clock, Calendar, Truck, Lock } from 'lucide-react';
 import TestimonialsCarousel from './components/TestimonialsCarousel';
 import AdminRoute from './components/AdminRoute';
+import DevNavigation from './components/DevNavigation';
 
 const HomePage: React.FC = () => {
   return (
-    <div className="min-h-screen bg-white relative overflow-hidden">
+    <div className="min-h-screen bg-white relative overflow-hidden" style={{ paddingTop: import.meta.env.PROD ? '0' : '60px' }}>
       {/* Glassmorphism Background */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Soft magenta orbs */}
@@ -271,6 +272,7 @@ const HomePage: React.FC = () => {
 function App() {
   return (
     <Router>
+      <DevNavigation />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/admin" element={<AdminRoute />} />
