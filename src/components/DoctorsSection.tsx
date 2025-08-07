@@ -151,7 +151,6 @@ const DoctorsSection: React.FC = () => {
 
                   {/* Doctor Info Above Video */}
                     <p className="text-gray-700 text-sm leading-relaxed italic mb-4">
-                  <p className="text-gray-700 text-xs leading-relaxed italic mb-4">
                     </p>
 
                     {/* Medical Badge */}
