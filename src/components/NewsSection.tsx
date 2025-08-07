@@ -414,41 +414,31 @@ const NewsSection: React.FC = () => {
                 
                 {/* CTA at bottom of article */}
                 <div className={`mt-12 p-8 ${getWebsiteStyle(selectedArticle.site).bg} ${getWebsiteStyle(selectedArticle.site).border} border-2 rounded-xl text-center`}>
-                  <p className="text-gray-700 mb-6 text-lg">
-                    Ready to experience the benefits mentioned in this article?
-                  </p>
+                  <div className="mb-6">
+                    <img 
+                      src="https://i.imgur.com/RVXt1O7.png" 
+                      alt="Proaxion - 1 Bottle" 
+                      className="w-32 h-32 object-contain mx-auto mb-4"
+                    />
+                    <h3 className="text-2xl font-bold text-gray-800 mb-2">
+                      Try <span className="text-magenta-600">PROAXION</span> Today
+                    </h3>
+                    <p className="text-gray-700 text-lg">
+                      Experience the same results mentioned in this article
+                    </p>
+                  </div>
                   <button
                     onClick={scrollToTop}
-                    className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-magenta-600 to-magenta-700 hover:from-magenta-700 hover:to-magenta-800 text-white font-bold rounded-lg shadow-lg transition-all duration-200 transform hover:scale-105 text-lg"
+                    className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-magenta-600 to-magenta-700 hover:from-magenta-700 hover:to-magenta-800 text-white font-bold rounded-lg shadow-lg transition-all duration-200 transform hover:scale-105 text-lg pulse-button"
                   >
-                    Try <span className="text-blue-200 font-black mx-2 text-xl">PROAXION</span> Now
+                    Get PROAXION Now - $79
+                    <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
                   </button>
-                </div>
-
-                {/* Simulated Related Articles */}
-                <div className="mt-12 pt-8 border-t border-gray-200">
-                  <h3 className={`text-xl font-bold mb-6 ${getWebsiteStyle(selectedArticle.site).accent}`}>
-                    Related Articles
-                  </h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {newsArticles.filter(a => a.id !== selectedArticle.id).slice(0, 2).map((article) => (
-                      <div key={article.id} className="bg-white rounded-lg shadow-md overflow-hidden">
-                        <img 
-                          src={article.imageUrl} 
-                          alt={article.title}
-                          className="w-full h-32 object-cover"
-                        />
-                        <div className="p-4">
-                          <h4 className="font-bold text-gray-800 text-sm mb-2 line-clamp-2">
-                            {article.title}
-                          </h4>
-                          <p className="text-gray-600 text-xs line-clamp-2">
-                            {article.excerpt}
-                          </p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+                  <p className="text-sm text-gray-600 mt-3">
+                    ✓ 180-Day Money Back Guarantee
+                  </p>
                 </div>
               </div>
             </div>
