@@ -433,6 +433,9 @@ const NewsSection: React.FC = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
                   </button>
+                 </div>
+                 
+                 <img 
                   <p className="text-sm text-gray-600 mt-3">
                     ✓ 180-Day Money Back Guarantee
                   </p>
