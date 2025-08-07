@@ -305,8 +305,8 @@ const NewsSection: React.FC = () => {
             <div className={`h-full overflow-y-auto ${getWebsiteStyle(selectedArticle.site).bg}`}>
               {/* Authentic Website Headers */}
               {selectedArticle.site === 'The New York Post' ? (
-                // Authentic NY Post Header
-                <header className="site-header bg-black text-white relative">
+                // NY Post Header Image
+                <div className="relative">
                   <div className="absolute top-2 left-2 z-50">
                     <button
                       onClick={handleClose}
@@ -324,68 +324,12 @@ const NewsSection: React.FC = () => {
                     </button>
                   </div>
                   
-                  <div className="site-header__wrapper">
-                    <div className="site-header__container px-4 py-2">
-                      <div className="site-header__left">
-                        <button className="menu-toggle text-white mr-4">
-                          <span className="menu-toggle__icon-wrapper">
-                            <span className="menu-toggle__icon block w-5 h-0.5 bg-white mb-1"></span>
-                            <span className="menu-toggle__icon block w-5 h-0.5 bg-white mb-1"></span>
-                            <span className="menu-toggle__icon block w-5 h-0.5 bg-white"></span>
-                          </span>
-                        </button>
-                        
-                        <nav className="site-header__nav hidden md:block">
-                          <ul className="header-nav flex space-x-6 text-sm">
-                            <li><a href="#" className="text-white hover:text-gray-300">US News</a></li>
-                            <li><a href="#" className="text-white hover:text-gray-300">World News</a></li>
-                            <li><a href="#" className="text-white hover:text-gray-300">Page Six</a></li>
-                            <li><a href="#" className="text-white hover:text-gray-300">Sports</a></li>
-                            <li><a href="#" className="text-white hover:text-gray-300">Business</a></li>
-                            <li><a href="#" className="text-white hover:text-gray-300">Opinion</a></li>
-                            <li><a href="#" className="text-white hover:text-gray-300">Entertainment</a></li>
-                            <li><a href="#" className="text-white hover:text-gray-300">Health</a></li>
-                          </ul>
-                        </nav>
-                      </div>
-
-                      <div className="site-header__logo flex-1 flex justify-center">
-                        <svg width="200" height="30" viewBox="0 0 450 67" className="fill-white">
-                          <g fill="currentColor">
-                            <path d="M187.917 12.81l-8.744 32.081c-3.5 14.2 28.09 14.523 32.353 0l8.744-32.081c3.498-14.09-28.09-14.415-32.353 0zm19.233 3.251l-7 25.578c-1.53 5.527-9.509 5.527-7.979 0l7-25.578c1.534-5.527 9.513-5.527 7.979 0z"></path>
-                            <path d="M285.851 3.922l-15.3 17.775 4.916-17.775h-11.914l-13.444 49.205h11.914l6.012-22h.109l4.372 22h12.9l-5.246-27.2h-.219l18.909-22z"></path>
-                            <path d="M247.705 28.85c6.449-1.517 7.214-6.394 8.744-12.247 1.967-7.045 4.263-12.789-7-12.789h-22.948l-13.335 49.313h11.914l5.465-19.942h4.044c2.732 0 4.153.325 3.06 4.227l-4.263 15.607v.108h12.788l3.279-12.03c1.859-7.261 3.713-11.055-1.748-12.247zm-4.591-8.562c-1.093 3.793-2.623 4.227-5.356 4.227h-4.919l3.17-11.705h4.919c2.623 0 4.044.325 3.17 3.9.219-.866-.983 3.578-.983 3.578z"></path>
-                            <path d="M123.211 28.199l1.2-24.061v-.216h-9.4l-.109.217-11.916 24.06 1.862-24.277H66.921L53.586 53.127h25.9l2.4-8.887H67.904l3.17-11.705h13.991l2.4-8.887H73.479L76.43 12.81h15.739l-3.06 40.318h12.132l12.023-25.361-1.858 25.36h12.132l22.954-49.205h-11.914z"></path>
-                            <path d="M52.277 3.922l-7 25.686-2.621-25.686H29.321L15.877 53.127h10.6l7.651-28.071 2.949 28.071h12.355L62.877 3.922z"></path>
-                          </g>
-                        </svg>
-                      </div>
-
-                      <div className="site-header__right">
-                        <button className="text-white mr-4">
-                          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-                          </svg>
-                        </button>
-                        <button className="bg-blue-600 text-white px-4 py-1 rounded text-sm">Log In</button>
-                      </div>
-                    </div>
-                    
-                    {/* Sub Navigation */}
-                    <div className="site-header__subnav bg-gray-900 border-t border-gray-700">
-                      <div className="px-4 py-2">
-                        <ul className="flex space-x-6 text-sm">
-                          <li><a href="#" className="text-gray-300 hover:text-white">Page Six</a></li>
-                          <li><a href="#" className="text-gray-300 hover:text-white">Sports</a></li>
-                          <li><a href="#" className="text-gray-300 hover:text-white">Metro</a></li>
-                          <li><a href="#" className="text-gray-300 hover:text-white">Opinion</a></li>
-                          <li><a href="#" className="text-gray-300 hover:text-white">Podcasts</a></li>
-                          <li><a href="#" className="text-gray-300 hover:text-white">Business</a></li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </header>
+                  <img 
+                    src="https://i.imgur.com/KjAEcL3.jpeg" 
+                    alt="New York Post Header"
+                    className="w-full h-auto object-cover"
+                  />
+                </div>
               ) : (
                 // Generic Header for other sites
                 <div className={`${getWebsiteStyle(selectedArticle.site).header} text-white p-4 shadow-lg`}>
