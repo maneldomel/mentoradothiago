@@ -39,7 +39,7 @@ const DevNavigation: React.FC = () => {
       {/* Hamburger Button */}
       <button
         onClick={toggleMenu}
-        className="fixed top-4 left-4 z-50 w-10 h-10 bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg shadow-lg flex items-center justify-center transition-all duration-200 hover:scale-105"
+        className="fixed top-4 left-4 z-50 w-10 h-10 bg-gradient-to-r from-magenta-600 to-magenta-700 rounded-lg shadow-lg flex items-center justify-center transition-all duration-200 hover:scale-105"
       >
         {isOpen ? (
           <X className="w-5 h-5 text-white" />
@@ -57,7 +57,7 @@ const DevNavigation: React.FC = () => {
       )}
 
       {/* Slide-out Menu */}
-      <div className={`fixed top-0 left-0 h-full w-64 bg-gradient-to-b from-blue-600 to-blue-700 shadow-xl z-40 transform transition-transform duration-300 ease-in-out ${
+      <div className={`fixed top-0 left-0 h-full w-64 bg-gradient-to-b from-magenta-600 to-magenta-700 shadow-xl z-40 transform transition-transform duration-300 ease-in-out ${
         isOpen ? 'translate-x-0' : '-translate-x-full'
       }`}>
         <div className="p-6">
@@ -81,14 +81,14 @@ const DevNavigation: React.FC = () => {
                   className={`flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${
                     isActive
                       ? 'bg-white/20 text-white shadow-sm'
-                      : 'text-blue-100 hover:bg-white/10 hover:text-white'
+                      : 'text-magenta-100 hover:bg-white/10 hover:text-white'
                   }`}
                   title={item.description}
                 >
                   <Icon className="w-5 h-5" />
                   <div>
                     <div className="font-medium">{item.label}</div>
-                    <div className="text-xs text-blue-200">{item.description}</div>
+                    <div className="text-xs text-magenta-200">{item.description}</div>
                   </div>
                 </Link>
               );
@@ -98,8 +98,8 @@ const DevNavigation: React.FC = () => {
           {/* Environment Info */}
           <div className="absolute bottom-6 left-6 right-6">
             <div className="bg-white/10 rounded-lg p-3 text-center">
-              <div className="text-blue-200 text-xs font-medium">Development Mode</div>
-              <div className="text-blue-300 text-xs mt-1">Bolt Environment</div>
+              <div className="text-magenta-200 text-xs font-medium">Development Mode</div>
+              <div className="text-magenta-300 text-xs mt-1">Bolt Environment</div>
             </div>
           </div>
         </div>
