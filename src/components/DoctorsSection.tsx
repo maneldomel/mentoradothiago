@@ -96,25 +96,18 @@ const DoctorsSection: React.FC = () => {
             <div className="flex">
               {doctors.map((doctor) => (
                 <div key={doctor.id} className="flex-[0_0_100%] md:flex-[0_0_50%] lg:flex-[0_0_33.333%] px-4">
-                  <div className="bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-xl p-6 mx-4 my-8 transform transition-all duration-300 hover:scale-105 border border-gray-100">
+                  <div className="bg-white rounded-2xl shadow-lg p-6 mx-4 my-8 transform transition-all duration-300 hover:scale-105">
                     {/* Doctor Info Header */}
                     <div className="flex items-center mb-4">
                       <img 
                         src={doctor.avatar_url} 
                         alt={doctor.name}
-                        className="w-16 h-16 rounded-full object-cover mr-4 border-2 border-magenta-200"
+                        className="w-12 h-12 rounded-full object-cover mr-4"
                       />
                       <div className="flex-1">
-                        <h3 className="font-bold text-gray-800 font-inter text-lg">{doctor.name}</h3>
-                        <p className="text-magenta-600 text-sm font-medium">{doctor.title}</p>
-                        <p className="text-gray-500 text-xs">{doctor.specialty}</p>
+                        <h3 className="font-bold text-gray-800 font-inter">{doctor.name}</h3>
+                        <p className="text-gray-500 text-sm">{doctor.title}</p>
                       </div>
-                    </div>
-
-                    {/* Location */}
-                    <div className="flex items-center mb-4 text-gray-600">
-                      <MapPin className="w-4 h-4 mr-2" />
-                      <span className="text-sm">{doctor.location}</span>
                     </div>
 
                     {/* Video Thumbnail */}
@@ -164,17 +157,11 @@ const DoctorsSection: React.FC = () => {
                       "{doctor.quote}"
                     </p>
 
-                    {/* Credentials */}
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center">
-                        <Award className="w-4 h-4 text-magenta-600 mr-2" />
-                        <span className="text-xs text-gray-600 font-medium">{doctor.credentials}</span>
-                      </div>
-                      
-                      {/* Medical Badge */}
-                      <div className="bg-magenta-100 text-magenta-700 px-3 py-1 rounded-full text-xs font-bold">
+                    {/* Medical Badge */}
+                    <div className="text-center">
+                      <span className="bg-magenta-100 text-magenta-700 px-4 py-2 rounded-full text-xs font-bold">
                         MEDICAL EXPERT
-                      </div>
+                      </span>
                     </div>
                   </div>
                 </div>
