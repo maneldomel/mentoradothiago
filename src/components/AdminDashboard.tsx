@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { supabase, Testimonial } from '../lib/supabase';
+import { authService } from '../lib/auth';
 import { Plus, Edit2, Trash2, LogOut, Save, X, Eye, EyeOff } from 'lucide-react';
 
 const AdminDashboard: React.FC = () => {
@@ -39,7 +40,9 @@ const AdminDashboard: React.FC = () => {
   };
 
   const handleLogout = async () => {
-    await supabase.auth.signOut();
+    authService.logout();
+    // Trigger a re-render by dispatching a custom event
+    window.dispatchEvent(new CustomEvent('auth-change'));
   };
 
   const resetForm = () => {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { supabase } from '../lib/supabase';
+import { authService } from '../lib/auth';
 import AdminLogin from './AdminLogin';
 import AdminDashboard from './AdminDashboard';
 
@@ -9,17 +9,51 @@ const AdminRoute: React.FC = () => {
 
   useEffect(() => {
     // Check current auth status
-    const checkAuth = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      setIsAuthenticated(!!session);
+    const checkAuth = () => {
+      setIsAuthenticated(authService.isAuthenticated());
       setLoading(false);
     };
 
     checkAuth();
 
     // Listen for auth changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
-      setIsAuthenticated(!!session);
+    const handleAuthChange = () => {
+      setIsAuthenticated(authService.isAuthenticated());
+    };
+
+    window.addEventListener('auth-change', handleAuthChange);
+
+    return () => {
+      window.removeEventListener('auth-change', handleAuthChange);
+    };
+  }, []);
+
+  // Also check auth status when component mounts or when localStorage changes
+  useEffect(() => {
+    const handleStorageChange = () => {
+      setIsAuthenticated(authService.isAuthenticated());
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
+  }, []);
+
+  // Check auth status periodically
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const currentAuth = authService.isAuthenticated();
+      if (currentAuth !== isAuthenticated) {
+        setIsAuthenticated(currentAuth);
+      }
+    }, 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [isAuthenticated]);
     });
 
     return () => subscription.unsubscribe();

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { supabase } from '../lib/supabase';
+import { authService } from '../lib/auth';
 import { Lock, AlertCircle } from 'lucide-react';
 
 const AdminLogin: React.FC = () => {
@@ -14,13 +14,13 @@ const AdminLogin: React.FC = () => {
     setError('');
 
     try {
-      const { error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
+      const result = await authService.login(email, password);
 
-      if (error) {
-        setError(error.message);
+      if (!result.success) {
+        setError(result.error || 'Login failed');
+      } else {
+        // Trigger a re-render by dispatching a custom event
+        window.dispatchEvent(new CustomEvent('auth-change'));
       }
     } catch (err) {
       setError('An unexpected error occurred');
