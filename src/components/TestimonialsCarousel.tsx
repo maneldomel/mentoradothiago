@@ -154,19 +154,18 @@ const TestimonialsCarousel: React.FC = () => {
 
                     {/* Caption */}
                     <p className="text-gray-700 text-sm leading-relaxed italic">
-                  alt="Michael Johnson testimonial"
+                      "{testimonial.caption}"
                     </p>
 
                     {/* Verified Badge */}
                     <div className="mt-4 flex items-center">
-                "Proaxion completely changed my life. In just 3 months I felt an incredible difference in my energy and stamina."
-                  src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=150&h=150"
-                  alt="Michael Johnson"
+                      <div className="w-4 h-4 mr-2">
+                        <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 text-green-600">
+                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                         </svg>
                       </div>
                       <span className="text-green-600 text-xs font-medium">Verified Customer</span>
-                  <h3 className="font-bold text-gray-800 font-inter">Michael Johnson</h3>
-                  <p className="text-gray-500 text-sm">Dallas, TX</p>
+                    </div>
                 </div>
               ))}
             </div>
