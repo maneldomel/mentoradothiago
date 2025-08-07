@@ -330,14 +330,6 @@ const NewsSection: React.FC = () => {
               ) : selectedArticle.site === 'HealthLine Weekly' ? (
                 // HealthLine Weekly Header Image
                 <div className="relative">
-                  <div className="absolute top-2 left-2 z-50">
-                    <button
-                      onClick={handleClose}
-                      className="w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors"
-                    >
-                      <ArrowLeft className="w-4 h-4 text-white" />
-                    </button>
-                  </div>
                   <div className="absolute top-2 right-2 z-50">
                     <button
                       onClick={handleClose}
@@ -347,11 +339,21 @@ const NewsSection: React.FC = () => {
                     </button>
                   </div>
                   
-                  <img 
-                    src="https://i.imgur.com/l16fTbC.png" 
-                    alt="HealthLine Weekly Header"
-                    className="w-full h-auto object-cover"
-                  />
+                  <div className="relative">
+                    <img 
+                      src="https://i.imgur.com/l16fTbC.png" 
+                      alt="HealthLine Weekly Header"
+                      className="w-full h-auto object-cover"
+                    />
+                    {/* Integrated back button in header */}
+                    <button
+                      onClick={handleClose}
+                      className="absolute top-1/2 left-4 transform -translate-y-1/2 flex items-center space-x-2 text-white hover:text-gray-300 transition-colors z-10"
+                    >
+                      <ArrowLeft className="w-5 h-5" />
+                      <span className="text-sm font-medium hidden sm:inline">Back</span>
+                    </button>
+                  </div>
                 </div>
               ) : (
                 // Generic Header for other sites
