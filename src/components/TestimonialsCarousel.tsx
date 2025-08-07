@@ -63,10 +63,10 @@ const TestimonialsCarousel: React.FC = () => {
         {/* Section Header */}
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-5xl font-black text-gray-800 mb-4 font-inter tracking-tight">
-            REAL MEN, <span className="text-transparent bg-gradient-to-r from-magenta-600 to-magenta-400 bg-clip-text">REAL RESULTS</span>
+            <span className="block md:inline">REAL MEN</span><span className="hidden md:inline">, </span><span className="block md:inline text-transparent bg-gradient-to-r from-magenta-600 to-magenta-400 bg-clip-text">REAL RESULTS</span>
           </h2>
-          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
-            See how Proaxion has transformed the lives of thousands of men across America
+          <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-4">
+            Real transformations from real customers
           </p>
         </div>
 
