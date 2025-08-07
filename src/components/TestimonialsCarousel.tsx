@@ -66,7 +66,7 @@ const TestimonialsCarousel: React.FC = () => {
             <span className="block md:inline">REAL MEN</span><span className="hidden md:inline">, </span><span className="block md:inline text-transparent bg-gradient-to-r from-magenta-600 to-magenta-400 bg-clip-text">REAL RESULTS</span>
           </h2>
           <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-4">
-            Real transformations from real customers
+            See how Proaxion has transformed the lives of thousands of men across America
           </p>
         </div>
 
