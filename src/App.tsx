@@ -7,6 +7,7 @@ import DevNavigation from './components/DevNavigation';
 
 const HomePage: React.FC = () => {
   return (
+    <>
     <div className="min-h-screen bg-white relative overflow-hidden" style={{ paddingTop: import.meta.env.PROD ? '0' : '60px' }}>
       {/* Glassmorphism Background */}
       <div className="absolute inset-0 pointer-events-none">
@@ -266,6 +267,7 @@ const HomePage: React.FC = () => {
 
       {/* Testimonials Section */}
       <TestimonialsCarousel />
+    </>
    );
  }
  
