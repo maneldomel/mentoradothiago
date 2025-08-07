@@ -123,14 +123,8 @@ const NewsSection: React.FC = () => {
 
   const handleArticleClick = (article: NewsArticle) => {
     setSelectedArticle(article);
-    setIsLoading(true);
-    setShowContent(false);
-    
-    // Simulate loading
-    setTimeout(() => {
-      setIsLoading(false);
-      setShowContent(true);
-    }, 2500);
+    setIsLoading(false);
+    setShowContent(true);
   };
 
   const handleClose = () => {
