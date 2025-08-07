@@ -3,6 +3,49 @@ import useEmblaCarousel from 'embla-carousel-react';
 import { ChevronLeft, ChevronRight, Play } from 'lucide-react';
 import { supabase, Testimonial } from '../lib/supabase';
 
+// Fallback testimonials data
+const fallbackTestimonials: Testimonial[] = [
+  {
+    id: '1',
+    name: 'Marcus Silva',
+    city: 'São Paulo',
+    state: 'SP',
+    avatar_url: 'https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=150&h=150',
+    youtube_url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+    caption: 'Proaxion mudou minha vida completamente. Em 3 meses já senti uma diferença incrível na minha energia e disposição.',
+    is_active: true,
+    display_order: 1,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString()
+  },
+  {
+    id: '2',
+    name: 'Roberto Santos',
+    city: 'Rio de Janeiro',
+    state: 'RJ',
+    avatar_url: 'https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=150&h=150',
+    youtube_url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+    caption: 'Resultado surpreendente! Minha esposa notou a diferença e nossa relação melhorou muito. Recomendo para todos os homens.',
+    is_active: true,
+    display_order: 2,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString()
+  },
+  {
+    id: '3',
+    name: 'Carlos Oliveira',
+    city: 'Belo Horizonte',
+    state: 'MG',
+    avatar_url: 'https://images.pexels.com/photos/1043471/pexels-photo-1043471.jpeg?auto=compress&cs=tinysrgb&w=150&h=150',
+    youtube_url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+    caption: 'Aos 45 anos pensei que era tarde demais, mas Proaxion provou que estava errado. Me sinto com 25 anos novamente!',
+    is_active: true,
+    display_order: 3,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString()
+  }
+];
+
 const getYouTubeThumbnail = (url: string): string => {
   const videoId = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/);
   return videoId ? `https://img.youtube.com/vi/${videoId[1]}/maxresdefault.jpg` : '';
@@ -35,6 +78,8 @@ const TestimonialsCarousel: React.FC = () => {
         setTestimonials(data || []);
       } catch (error) {
         console.error('Error fetching testimonials:', error);
+        // Use fallback data when Supabase fails
+        setTestimonials(fallbackTestimonials);
       } finally {
         setLoading(false);
       }
