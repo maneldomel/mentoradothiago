@@ -330,6 +330,22 @@ const NewsSection: React.FC = () => {
               ) : selectedArticle.site === 'HealthLine Weekly' ? (
                 // HealthLine Weekly Header Image
                 <div className="relative">
+                  <div className="absolute top-2 left-2 z-50">
+                    <button
+                      onClick={handleClose}
+                      className="w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors"
+                    >
+                      <ArrowLeft className="w-4 h-4 text-white" />
+                    </button>
+                  </div>
+                  <div className="absolute top-2 right-2 z-50">
+                    <button
+                      onClick={handleClose}
+                      className="w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors"
+                    >
+                      <X className="w-4 h-4 text-white" />
+                    </button>
+                  </div>
                   
                   <div className="relative">
                     <img 
@@ -341,21 +357,48 @@ const NewsSection: React.FC = () => {
                 </div>
               ) : (
                 // Generic Header for other sites
-               <div className="relative">
-                    <span>•</span>
-                    <span>{selectedArticle.readTime}</span>
+                <div className="relative">
+                  <div className="absolute top-2 left-2 z-50">
+                    <button
+                      onClick={handleClose}
+                      className="w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors"
+                    >
+                      <ArrowLeft className="w-4 h-4 text-white" />
+                    </button>
                   </div>
-                  
-                  <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6 leading-tight">
-                    {selectedArticle.title}
-                  </h1>
-                  
-                  <img 
-                    src={selectedArticle.imageUrl} 
-                    alt={selectedArticle.title}
-                    className="w-full h-64 md:h-96 object-cover rounded-xl mb-6"
-                  />
+                  <div className="absolute top-2 right-2 z-50">
+                    <button
+                      onClick={handleClose}
+                      className="w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors"
+                    >
+                      <X className="w-4 h-4 text-white" />
+                    </button>
+                  </div>
                 </div>
+              )}
+
+              {/* Article Content Container */}
+              <div className="max-w-4xl mx-auto px-6 py-8">
+                {/* Article Meta */}
+                <div className="flex items-center text-sm text-gray-600 mb-4">
+                  <span className={selectedArticle.siteColor}>{selectedArticle.site}</span>
+                  <span className="mx-2">•</span>
+                  <span>{selectedArticle.publishDate}</span>
+                  <span className="mx-2">•</span>
+                  <span>{selectedArticle.author}</span>
+                  <span className="mx-2">•</span>
+                  <span>{selectedArticle.readTime}</span>
+                </div>
+                
+                <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6 leading-tight">
+                  {selectedArticle.title}
+                </h1>
+                
+                <img 
+                  src={selectedArticle.imageUrl} 
+                  alt={selectedArticle.title}
+                  className="w-full h-64 md:h-96 object-cover rounded-xl mb-6"
+                />
 
                 {/* Article Content */}
                 <div className="prose prose-lg max-w-none">
