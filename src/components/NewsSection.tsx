@@ -324,6 +324,32 @@ const NewsSection: React.FC = () => {
                     className="w-full h-auto object-cover"
                   />
                 </div>
+              ) : selectedArticle.site === 'HealthLine Weekly' ? (
+                // HealthLine Weekly Header Image
+                <div className="relative">
+                  <div className="absolute top-2 left-2 z-50">
+                    <button
+                      onClick={handleClose}
+                      className="w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors"
+                    >
+                      <ArrowLeft className="w-4 h-4 text-white" />
+                    </button>
+                  </div>
+                  <div className="absolute top-2 right-2 z-50">
+                    <button
+                      onClick={handleClose}
+                      className="w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors"
+                    >
+                      <X className="w-4 h-4 text-white" />
+                    </button>
+                  </div>
+                  
+                  <img 
+                    src="https://i.imgur.com/l16fTbC.png" 
+                    alt="HealthLine Weekly Header"
+                    className="w-full h-auto object-cover"
+                  />
+                </div>
               ) : (
                 // Generic Header for other sites
                 <div className={`${getWebsiteStyle(selectedArticle.site).header} text-white p-4 shadow-lg`}>
