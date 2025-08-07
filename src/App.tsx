@@ -4,6 +4,7 @@ import HeroSection from './components/HeroSection';
 import PurchaseSection from './components/PurchaseSection';
 import TestimonialsCarousel from './components/TestimonialsCarousel';
 import DoctorsSection from './components/DoctorsSection';
+import NewsSection from './components/NewsSection';
 import AdminRoute from './components/AdminRoute';
 import DevNavigation from './components/DevNavigation';
 
@@ -19,6 +20,9 @@ const HomePage: React.FC = () => {
 
       {/* Doctors Section */}
       <DoctorsSection />
+
+      {/* News Section */}
+      <NewsSection />
     </>
    );
  }
