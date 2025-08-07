@@ -166,6 +166,7 @@ const TestimonialsCarousel: React.FC = () => {
                       </div>
                       <span className="text-green-600 text-xs font-medium">Verified Customer</span>
                     </div>
+                  </div>
                 </div>
               ))}
             </div>
