@@ -375,10 +375,9 @@ const AdminDashboard: React.FC = () => {
                 </div>
               </div>
             </>
-            <h1 className="text-xl sm:text-2xl font-black text-gray-900 bg-gradient-to-r from-magenta-600 to-magenta-400 bg-clip-text text-transparent">
+          )}
         </div>
 
-            <p className="text-gray-600 text-xs sm:text-sm mt-1">Gerenciar depoimentos e médicos</p>
         <div className="mb-4">
           <button
             onClick={() => {
