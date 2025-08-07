@@ -78,10 +78,10 @@ const TestimonialsCarousel: React.FC = () => {
   }
 
   return (
-    <div className="bg-gray-50 py-4 md:py-6 relative">
+    <div className="bg-gray-50 py-2 md:py-3 relative">
       <div className="container mx-auto px-4 max-w-6xl">
         {/* Section Header */}
-        <div className="text-center mb-6">
+        <div className="text-center mb-4">
           <h2 className="text-3xl md:text-5xl font-black text-gray-800 mb-4 font-inter tracking-tight">
             <span className="block md:inline">REAL MEN</span><span className="hidden md:inline">, </span><span className="block md:inline text-transparent bg-gradient-to-r from-magenta-600 to-magenta-400 bg-clip-text">REAL RESULTS</span>
           </h2>
