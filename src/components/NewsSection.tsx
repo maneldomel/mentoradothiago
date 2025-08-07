@@ -218,15 +218,30 @@ const NewsSection: React.FC = () => {
                           className="w-full h-full object-cover"
                         />
                         <div className="absolute top-4 left-4">
-                          <div className="flex items-center space-x-2 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1">
-                            <img 
-                              src={article.siteLogo} 
-                              alt={article.site}
-                              className="w-6 h-4 object-cover rounded"
-                            />
-                            <span className={`font-bold text-sm ${article.siteColor}`}>
-                              {article.site}
-                            </span>
+                          <div className="bg-white rounded-lg px-3 py-2 shadow-md">
+                            {article.site === 'The New York Post' ? (
+                              <img 
+                                src="https://i.imgur.com/mhIlnsd.png" 
+                                alt="New York Post"
+                                className="h-6 w-auto object-contain"
+                              />
+                            ) : article.site === 'HealthLine Weekly' ? (
+                              <img 
+                                src="https://i.imgur.com/K7v16Vy.png" 
+                                alt="HealthLine Weekly"
+                                className="h-6 w-auto object-contain"
+                              />
+                            ) : article.site === 'Men\'s Health Today' ? (
+                              <img 
+                                src="https://i.imgur.com/xtDN6Ts.png" 
+                                alt="Men's Health Today"
+                                className="h-6 w-auto object-contain"
+                              />
+                            ) : (
+                              <span className={`font-bold text-sm ${article.siteColor}`}>
+                                {article.site}
+                              </span>
+                            )}
                           </div>
                         </div>
                       </div>
