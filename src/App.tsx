@@ -1,5 +1,6 @@
 import React from 'react';
 import { Volume2, Clock, Calendar, Truck, Lock } from 'lucide-react';
+import TestimonialsCarousel from './components/TestimonialsCarousel';
 
 function App() {
   return (
@@ -82,6 +83,9 @@ function App() {
           </div>
         </div>
       </div>
+
+      {/* Testimonials Section */}
+      <TestimonialsCarousel />
 
       {/* Purchase Section */}
       <div className="bg-white py-16 md:py-24 relative z-10">
