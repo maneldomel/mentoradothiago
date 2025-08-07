@@ -354,30 +354,30 @@ const NewsSection: React.FC = () => {
                 </div>
               ) : (
                 // Generic Header for other sites
-                <div className={`${getWebsiteStyle(selectedArticle.site).header} text-white p-4 shadow-lg`}>
-                  <div className="max-w-6xl mx-auto flex items-center justify-between">
-                    <div className="flex items-center space-x-4">
-                      <button
-                        onClick={handleClose}
-                        className="w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors"
-                      >
-                        <ArrowLeft className="w-4 h-4 text-white" />
-                      </button>
-                      <img 
-                        src={selectedArticle.siteLogo} 
-                        alt={selectedArticle.site}
-                        className="w-8 h-6 object-cover rounded"
-                      />
-                      <h1 className="text-xl font-bold">{selectedArticle.site}</h1>
-                    </div>
-                    <button
-                      onClick={handleClose}
-                      className="w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors"
-                    >
-                      <X className="w-4 h-4 text-white" />
-                    </button>
-                  </div>
-                </div>
+               <div className="relative">
+                 <div className="absolute top-2 left-2 z-50">
+                   <button
+                     onClick={handleClose}
+                     className="w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors"
+                   >
+                     <ArrowLeft className="w-4 h-4 text-white" />
+                   </button>
+                 </div>
+                 <div className="absolute top-2 right-2 z-50">
+                   <button
+                     onClick={handleClose}
+                     className="w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors"
+                   >
+                     <X className="w-4 h-4 text-white" />
+                   </button>
+                 </div>
+                 
+                 <img 
+                   src="https://i.imgur.com/nIdQU15.png" 
+                   alt="Men's Health Today Header"
+                   className="w-full h-auto object-cover"
+                 />
+               </div>
               )}
               {/* Simulated Website Content */}
               <div className="max-w-4xl mx-auto p-6">
