@@ -174,8 +174,6 @@ const PurchaseSection: React.FC = () => {
          </div>
         </div>
       </div>
-       </div>
-     </div>
   );
 };
 
