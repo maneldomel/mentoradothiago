@@ -36,7 +36,7 @@ const HomePage: React.FC = () => {
               <img 
                 src="https://i.imgur.com/nHQSpza.png" 
                 alt="180 Days Money Back Guarantee" 
-                className="w-48 h-48 md:w-64 md:h-64 mx-auto relative z-10"
+                className="w-48 md:w-64 mx-auto relative z-10"
               />
             </div>
           </div>
