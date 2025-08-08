@@ -764,24 +764,6 @@ const NewsSection: React.FC = () => {
           <div className="bg-white rounded-xl shadow-2xl max-w-md w-full p-6 text-center">
             {/* Site Logo */}
             <div className="mb-6">
-              {maintenanceSite === 'The New York Post' ? (
-                <img 
-                  src="https://i.imgur.com/MamGnNK.png" 
-                  alt="New York Post"
-                  className="h-8 w-auto object-contain mx-auto"
-                />
-              ) : maintenanceSite === 'HealthLine Weekly' ? (
-                <img 
-                  src="https://i.imgur.com/K7v16Vy.png" 
-                  alt="HealthLine Weekly"
-                  className="h-8 w-auto object-contain mx-auto"
-                />
-              ) : maintenanceSite === 'Men\'s Health Today' ? (
-                <img 
-                  src="https://i.imgur.com/KQohbBo.png" 
-                  alt="Men's Health Today"
-                  className="h-8 w-auto object-contain mx-auto"
-                />
               ) : (
                 <div className="w-12 h-12 bg-gray-200 rounded-lg mx-auto flex items-center justify-center">
                   <span className="text-gray-500 font-bold text-lg">!</span>
