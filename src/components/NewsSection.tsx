@@ -463,7 +463,7 @@ const NewsSection: React.FC = () => {
                         <img 
                           src="https://i.imgur.com/wd4FRQG.png" 
                           alt="HealthLine Weekly"
-                          className="h-6 sm:h-8 w-auto object-contain"
+                          className="h-4 sm:h-5 w-auto object-contain"
                         />
                       </div>
                       
