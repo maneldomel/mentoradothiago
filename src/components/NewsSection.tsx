@@ -304,6 +304,18 @@ const NewsSection: React.FC = () => {
               {selectedArticle.site === 'The New York Post' ? (
                 // NY Post Header Image
                 <div className="relative">
+                  {/* Navigation Header Above */}
+                  <div className="bg-gray-100 border-b border-gray-200 px-4 py-3">
+                    <div className="flex items-center">
+                      <button
+                        onClick={handleClose}
+                        className="flex items-center text-gray-600 hover:text-gray-800 transition-colors"
+                      >
+                        <ArrowLeft className="w-5 h-5 mr-2" />
+                        <span className="text-sm font-medium">Back</span>
+                      </button>
+                    </div>
+                  </div>
                   <div className="absolute top-2 left-2 z-50">
                     <button
                       onClick={handleClose}
@@ -357,6 +369,18 @@ const NewsSection: React.FC = () => {
               ) : selectedArticle.site === 'HealthLine Weekly' ? (
                 // HealthLine Weekly Header Image
                 <div className="relative">
+                  {/* Navigation Header Above */}
+                  <div className="bg-gray-100 border-b border-gray-200 px-4 py-3">
+                    <div className="flex items-center">
+                      <button
+                        onClick={handleClose}
+                        className="flex items-center text-gray-600 hover:text-gray-800 transition-colors"
+                      >
+                        <ArrowLeft className="w-5 h-5 mr-2" />
+                        <span className="text-sm font-medium">Back</span>
+                      </button>
+                    </div>
+                  </div>
                   {/* HealthLine Header Image */}
                   <img 
                     src="https://i.imgur.com/l16fTbC.png" 
@@ -367,6 +391,18 @@ const NewsSection: React.FC = () => {
               ) : (
                 // Men's Health Today Header Image
                 <div className="relative">
+                  {/* Navigation Header Above */}
+                  <div className="bg-gray-100 border-b border-gray-200 px-4 py-3">
+                    <div className="flex items-center">
+                      <button
+                        onClick={handleClose}
+                        className="flex items-center text-gray-600 hover:text-gray-800 transition-colors"
+                      >
+                        <ArrowLeft className="w-5 h-5 mr-2" />
+                        <span className="text-sm font-medium">Back</span>
+                      </button>
+                    </div>
+                  </div>
                   <img 
                     src="https://i.imgur.com/xtDN6Ts.png" 
                     alt="Men's Health Today Header"
