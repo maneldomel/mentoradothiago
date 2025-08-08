@@ -357,85 +357,21 @@ const NewsSection: React.FC = () => {
               ) : selectedArticle.site === 'HealthLine Weekly' ? (
                 // HealthLine Weekly Header Image
                 <div className="relative">
-                  <div className="absolute top-2 left-2 z-50">
-                    <button
-                      onClick={handleClose}
-                      className="w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors"
-                    >
-                      <ArrowLeft className="w-4 h-4 text-white" />
-                    </button>
-                  </div>
-                  <div className="absolute top-2 right-2 z-50">
-                    <button
-                      onClick={handleClose}
-                      className="w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors"
-                    >
-                      <X className="w-4 h-4 text-white" />
-                    </button>
-                  </div>
-                  {/* HealthLine Realistic Header */}
-                  <div className="bg-black text-white">
-                    <div className="max-w-6xl mx-auto px-4 py-4">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-6">
-                          <button className="text-white">☰</button>
-                          <div className="text-xl font-serif">healthline</div>
-                          <nav className="hidden md:flex space-x-6 text-sm">
-                            <a href="#" className="text-white hover:text-gray-300">Health</a>
-                            <a href="#" className="text-white hover:text-gray-300">Wellness</a>
-                            <a href="#" className="text-white hover:text-gray-300">Nutrition</a>
-                            <a href="#" className="text-white hover:text-gray-300">Fitness</a>
-                          </nav>
-                        </div>
-                        <div className="flex items-center space-x-4">
-                          <button className="text-white">🔍</button>
-                          <button className="border border-white text-white px-4 py-2 rounded-full text-sm hover:bg-white hover:text-black transition-colors">Subscribe</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  {/* HealthLine Header Image */}
+                  <img 
+                    src="https://i.imgur.com/l16fTbC.png" 
+                    alt="HealthLine Weekly Header"
+                    className="w-full h-auto"
+                  />
                 </div>
               ) : (
-                // Men's Health Today Realistic Header
-                <div className="bg-white border-b border-gray-200">
-                  <div className="bg-red-600 text-white py-2">
-                    <div className="max-w-6xl mx-auto px-4 text-center text-sm">
-                      Get the latest health news and expert advice
-                    </div>
-                  </div>
-                  <div className="max-w-6xl mx-auto px-4 py-4">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-6">
-                        <div className="text-2xl font-bold text-red-600">MEN'S HEALTH TODAY</div>
-                        <nav className="hidden md:flex space-x-6 text-sm">
-                          <a href="#" className="text-gray-700 hover:text-red-600">Fitness</a>
-                          <a href="#" className="text-gray-700 hover:text-red-600">Nutrition</a>
-                          <a href="#" className="text-gray-700 hover:text-red-600">Health</a>
-                          <a href="#" className="text-gray-700 hover:text-red-600">Lifestyle</a>
-                        </nav>
-                      </div>
-                      <div className="flex items-center space-x-4">
-                        <button className="text-gray-600">🔍</button>
-                        <button className="bg-red-600 text-white px-4 py-2 rounded text-sm">Subscribe</button>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="absolute top-2 left-2 z-50">
-                    <button
-                      onClick={handleClose}
-                      className="w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors"
-                    >
-                      <ArrowLeft className="w-4 h-4 text-white" />
-                    </button>
-                  </div>
-                  <div className="absolute top-2 right-2 z-50">
-                    <button
-                      onClick={handleClose}
-                      className="w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors"
-                    >
-                      <X className="w-4 h-4 text-white" />
-                    </button>
-                  </div>
+                // Men's Health Today Header Image
+                <div className="relative">
+                  <img 
+                    src="https://i.imgur.com/xtDN6Ts.png" 
+                    alt="Men's Health Today Header"
+                    className="w-full h-auto"
+                  />
                 </div>
               )}
 
@@ -474,7 +410,12 @@ const NewsSection: React.FC = () => {
                 </div>
                 
                 <img 
-                  src={selectedArticle.imageUrl} 
+                  src={selectedArticle.id === '1' 
+                    ? 'https://images.pexels.com/photos/6975474/pexels-photo-6975474.jpeg?auto=compress&cs=tinysrgb&w=800&h=400'
+                    : selectedArticle.id === '2'
+                    ? 'https://images.pexels.com/photos/8844895/pexels-photo-8844895.jpeg?auto=compress&cs=tinysrgb&w=800&h=400'
+                    : 'https://images.pexels.com/photos/6975474/pexels-photo-6975474.jpeg?auto=compress&cs=tinysrgb&w=800&h=400'
+                  }
                   alt={selectedArticle.title}
                   className="w-full h-64 md:h-96 object-cover rounded-xl mb-6"
                 />
@@ -581,28 +522,80 @@ const NewsSection: React.FC = () => {
 
                 {/* Comments Section */}
                 <div className="mt-12 pt-8 border-t border-gray-200">
-                  <h3 className="text-xl font-bold text-gray-800 mb-6">Reader Comments (23)</h3>
+                  <h3 className="text-xl font-bold text-gray-800 mb-6">
+                    Reader Comments ({selectedArticle.id === '1' ? '47' : selectedArticle.id === '2' ? '89' : '34'})
+                  </h3>
                   <div className="mb-6">
-                    <div className="bg-gray-50 p-4 rounded-lg mb-4">
-                      <div className="flex items-start space-x-3">
-                        <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white text-sm font-bold">M</div>
-                        <div>
-                          <div className="font-semibold text-gray-800 text-sm">Mike Johnson</div>
-                          <div className="text-gray-600 text-xs mb-2">2 hours ago</div>
-                          <p className="text-gray-700 text-sm">Great article! I've been looking for natural alternatives and this sounds promising.</p>
+                    {selectedArticle.id === '1' ? (
+                      <>
+                        <div className="bg-gray-50 p-4 rounded-lg mb-4">
+                          <div className="flex items-start space-x-3">
+                            <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white text-sm font-bold">R</div>
+                            <div>
+                              <div className="font-semibold text-gray-800 text-sm">Robert Martinez</div>
+                              <div className="text-gray-600 text-xs mb-2">3 hours ago</div>
+                              <p className="text-gray-700 text-sm">I'm 58 and was skeptical about supplements, but this article changed my mind. The science seems solid.</p>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    </div>
-                    <div className="bg-gray-50 p-4 rounded-lg">
-                      <div className="flex items-start space-x-3">
-                        <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white text-sm font-bold">D</div>
-                        <div>
-                          <div className="font-semibold text-gray-800 text-sm">Dr. Smith</div>
-                          <div className="text-gray-600 text-xs mb-2">4 hours ago</div>
-                          <p className="text-gray-700 text-sm">As a physician, I appreciate the scientific approach discussed here. Natural solutions are often overlooked.</p>
+                        <div className="bg-gray-50 p-4 rounded-lg">
+                          <div className="flex items-start space-x-3">
+                            <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white text-sm font-bold">D</div>
+                            <div>
+                              <div className="font-semibold text-gray-800 text-sm">Dr. Patricia Williams</div>
+                              <div className="text-gray-600 text-xs mb-2">5 hours ago</div>
+                              <p className="text-gray-700 text-sm">As a healthcare professional, I appreciate seeing natural approaches getting proper research attention.</p>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    </div>
+                      </>
+                    ) : selectedArticle.id === '2' ? (
+                      <>
+                        <div className="bg-gray-50 p-4 rounded-lg mb-4">
+                          <div className="flex items-start space-x-3">
+                            <div className="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center text-white text-sm font-bold">T</div>
+                            <div>
+                              <div className="font-semibold text-gray-800 text-sm">Tom Richardson</div>
+                              <div className="text-gray-600 text-xs mb-2">1 hour ago</div>
+                              <p className="text-gray-700 text-sm">Finally, something that doesn't require a prescription! Been dealing with this for years.</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="bg-gray-50 p-4 rounded-lg">
+                          <div className="flex items-start space-x-3">
+                            <div className="w-8 h-8 bg-orange-500 rounded-full flex items-center justify-center text-white text-sm font-bold">J</div>
+                            <div>
+                              <div className="font-semibold text-gray-800 text-sm">James Cooper</div>
+                              <div className="text-gray-600 text-xs mb-2">4 hours ago</div>
+                              <p className="text-gray-700 text-sm">My doctor mentioned natural alternatives. This gives me hope there are options beyond pills.</p>
+                            </div>
+                          </div>
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <div className="bg-gray-50 p-4 rounded-lg mb-4">
+                          <div className="flex items-start space-x-3">
+                            <div className="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center text-white text-sm font-bold">M</div>
+                            <div>
+                              <div className="font-semibold text-gray-800 text-sm">Mark Stevens</div>
+                              <div className="text-gray-600 text-xs mb-2">2 hours ago</div>
+                              <p className="text-gray-700 text-sm">At 52, I thought my best days were behind me. Articles like this give me confidence to try new approaches.</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="bg-gray-50 p-4 rounded-lg">
+                          <div className="flex items-start space-x-3">
+                            <div className="w-8 h-8 bg-teal-500 rounded-full flex items-center justify-center text-white text-sm font-bold">A</div>
+                            <div>
+                              <div className="font-semibold text-gray-800 text-sm">Anthony Davis</div>
+                              <div className="text-gray-600 text-xs mb-2">6 hours ago</div>
+                              <p className="text-gray-700 text-sm">Great to see men's health getting more attention. We need more natural solutions like this.</p>
+                            </div>
+                          </div>
+                        </div>
+                      </>
+                    )}
                   </div>
                   <button className="text-blue-600 text-sm font-semibold">View all comments →</button>
                 </div>
