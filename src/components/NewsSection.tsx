@@ -19,37 +19,6 @@ interface NewsArticle {
 const newsArticles: NewsArticle[] = [
   {
     id: '1',
-    site: 'HealthLine Weekly',
-    siteColor: 'text-green-600',
-    siteLogo: 'https://i.imgur.com/otdftnd.png',
-    title: 'New Supplement PROAXION Stuns Doctors: Erectile Dysfunction Reversed in 21 Days',
-    excerpt: 'A revolutionary liquid formula is gaining national attention after users reported dramatic improvements in erectile performance — without relying on prescription pills.',
-    fullContent: `A revolutionary liquid formula is gaining national attention after users reported dramatic improvements in erectile performance — without relying on prescription pills.
-
-PROAXION, a natural drop-based supplement, is being hailed as "the next frontier in men's health" by experts. Backed by clinical observations, the formula works by boosting nitric oxide production and enhancing blood flow — naturally restoring erectile function in men over 40.
-
-"We're seeing patients regain confidence and intimacy without side effects," says Dr. Evan Morris, a men's health specialist in Miami. "It's rare to see results this fast without pharmaceutical intervention."
-
-The supplement's liquid format allows for rapid absorption, with many users reporting noticeable improvements within the first week of use. Unlike traditional pills that can take hours to work, PROAXION's liquid drops begin working within minutes.
-
-Clinical observations show that the natural compounds in PROAXION work synergistically to address the root causes of erectile dysfunction. The formula contains a proprietary blend of herbs and nutrients that have been used for centuries in traditional medicine.
-
-"What sets PROAXION apart is its ability to work with the body's natural processes," explains Dr. Morris. "Rather than forcing a response like pharmaceutical drugs, it enhances what should already be happening naturally."
-
-The supplement has gained particular attention among men who want to avoid the side effects commonly associated with prescription medications. Users report feeling more energetic and confident overall, not just in intimate situations.
-
-Research indicates that the ingredients in PROAXION may also support cardiovascular health, which is closely linked to erectile function. This dual benefit makes it an attractive option for men looking to improve their overall health and vitality.
-
-The growing popularity of natural alternatives like PROAXION reflects a broader shift in men's health, with more men seeking solutions that work with their bodies rather than against them.
-
-Dr. Morris notes that the psychological benefits are just as important as the physical ones. "When men regain their confidence in the bedroom, it often translates to improved confidence in other areas of their lives as well."`,
-    readTime: '3 min read',
-    imageUrl: 'https://images.pexels.com/photos/4386467/pexels-photo-4386467.jpeg?auto=compress&cs=tinysrgb&w=800&h=400',
-    publishDate: 'January 14, 2025',
-    author: 'Dr. Sarah Mitchell'
-  },
-  {
-    id: '2',
     site: 'The New York Post',
     siteColor: 'text-blue-600',
     siteLogo: 'https://images.pexels.com/photos/518543/pexels-photo-518543.jpeg?auto=compress&cs=tinysrgb&w=60&h=40',
@@ -78,7 +47,7 @@ The supplement's liquid format appears to be a significant advantage, allowing f
     author: 'Michael Rodriguez'
   },
   {
-    id: '3',
+    id: '2',
     site: 'Men\'s Health Today',
     siteColor: 'text-blue-600',
     siteLogo: 'https://images.pexels.com/photos/3825581/pexels-photo-3825581.jpeg?auto=compress&cs=tinysrgb&w=60&h=40',
