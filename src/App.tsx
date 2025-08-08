@@ -29,118 +29,15 @@ const HomePage: React.FC = () => {
         <div className="container mx-auto px-4 max-w-3xl text-center">
           {/* Guarantee Badge */}
           <div className="mb-6 md:mb-8">
-            {/* 180 DAYS – MONEY BACK GUARANTEE badge */}
-            <div className="inline-block">
-              <svg viewBox="0 0 512 512" className="w-48 h-48 md:w-64 md:h-64 mx-auto" xmlns="http://www.w3.org/2000/svg" aria-label="Money Back Guarantee Badge">
-                {/* ====== DATA TO EDIT ====== */}
-                <defs>
-                  {/* Cores do dourado */}
-                  <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stopColor="#fde08d"/>
-                    <stop offset="40%" stopColor="#f6c65b"/>
-                    <stop offset="70%" stopColor="#d39a33"/>
-                    <stop offset="100%" stopColor="#a87527"/>
-                  </linearGradient>
-                  <linearGradient id="gold2" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#e7b650"/>
-                    <stop offset="100%" stopColor="#b47b27"/>
-                  </linearGradient>
-                  <filter id="softShadow" x="-50%" y="-50%" width="200%" height="200%">
-                    <feDropShadow dx="0" dy="6" stdDeviation="8" floodColor="#000" floodOpacity="0.35"/>
-                  </filter>
-                  {/* Curva inferior para o texto GUARANTEE */}
-                  <path id="bottomArc" d="M128,340 A 160 160 0 0 0 384 340"/>
-                </defs>
-
-                {/* Borda serrilhada (efeito selo) */}
-                <g filter="url(#softShadow)">
-                  <g id="ruffle" transform="translate(256 256)">
-                    {/* 48 pontas */}
-                    <g fill="url(#gold)">
-                      {/* gera as "serrilhas" rotacionando um losango 48 vezes */}
-                      {/* tamanho/ângulo ajustados para parecer selo */}
-                      <polygon id="tooth" points="0,-238 18,-210 0,-182 -18,-210"/>
-                      <use href="#tooth" transform="rotate(7.5)"/>
-                      <use href="#tooth" transform="rotate(15)"/>
-                      <use href="#tooth" transform="rotate(22.5)"/>
-                      <use href="#tooth" transform="rotate(30)"/>
-                      <use href="#tooth" transform="rotate(37.5)"/>
-                      <use href="#tooth" transform="rotate(45)"/>
-                      <use href="#tooth" transform="rotate(52.5)"/>
-                      <use href="#tooth" transform="rotate(60)"/>
-                      <use href="#tooth" transform="rotate(67.5)"/>
-                      <use href="#tooth" transform="rotate(75)"/>
-                      <use href="#tooth" transform="rotate(82.5)"/>
-                      <use href="#tooth" transform="rotate(90)"/>
-                      <use href="#tooth" transform="rotate(97.5)"/>
-                      <use href="#tooth" transform="rotate(105)"/>
-                      <use href="#tooth" transform="rotate(112.5)"/>
-                      <use href="#tooth" transform="rotate(120)"/>
-                      <use href="#tooth" transform="rotate(127.5)"/>
-                      <use href="#tooth" transform="rotate(135)"/>
-                      <use href="#tooth" transform="rotate(142.5)"/>
-                      <use href="#tooth" transform="rotate(150)"/>
-                      <use href="#tooth" transform="rotate(157.5)"/>
-                      <use href="#tooth" transform="rotate(165)"/>
-                      <use href="#tooth" transform="rotate(172.5)"/>
-                      <use href="#tooth" transform="rotate(180)"/>
-                      <use href="#tooth" transform="rotate(187.5)"/>
-                      <use href="#tooth" transform="rotate(195)"/>
-                      <use href="#tooth" transform="rotate(202.5)"/>
-                      <use href="#tooth" transform="rotate(210)"/>
-                      <use href="#tooth" transform="rotate(217.5)"/>
-                      <use href="#tooth" transform="rotate(225)"/>
-                      <use href="#tooth" transform="rotate(232.5)"/>
-                      <use href="#tooth" transform="rotate(240)"/>
-                      <use href="#tooth" transform="rotate(247.5)"/>
-                      <use href="#tooth" transform="rotate(255)"/>
-                      <use href="#tooth" transform="rotate(262.5)"/>
-                      <use href="#tooth" transform="rotate(270)"/>
-                      <use href="#tooth" transform="rotate(277.5)"/>
-                      <use href="#tooth" transform="rotate(285)"/>
-                      <use href="#tooth" transform="rotate(292.5)"/>
-                      <use href="#tooth" transform="rotate(300)"/>
-                      <use href="#tooth" transform="rotate(307.5)"/>
-                      <use href="#tooth" transform="rotate(315)"/>
-                      <use href="#tooth" transform="rotate(322.5)"/>
-                      <use href="#tooth" transform="rotate(330)"/>
-                      <use href="#tooth" transform="rotate(337.5)"/>
-                      <use href="#tooth" transform="rotate(345)"/>
-                      <use href="#tooth" transform="rotate(352.5)"/>
-                    </g>
-                  </g>
-
-                  {/* Anel dourado */}
-                  <circle cx="256" cy="256" r="200" fill="url(#gold)"/>
-                  {/* Anel escuro interno para profundidade */}
-                  <circle cx="256" cy="256" r="184" fill="#0d0d0d"/>
-                  {/* Anel fino dourado */}
-                  <circle cx="256" cy="256" r="170" fill="none" stroke="url(#gold2)" strokeWidth="14"/>
-
-                  {/* Faixa (ribbon) central */}
-                  <rect x="56" y="224" width="400" height="72" rx="10" fill="url(#gold)" stroke="#572d00" strokeOpacity=".25"/>
-                  <text x="256" y="272" fontFamily="Impact, Arial Black, Helvetica, sans-serif"
-                        fontSize="52" textAnchor="middle" fill="#000" letterSpacing="2">MONEY BACK</text>
-
-                  {/* Centro preto para "180 DAYS" */}
-                  <circle cx="256" cy="188" r="110" fill="#000"/>
-
-                  {/* 180 */}
-                  <text x="256" y="178" textAnchor="middle"
-                        fontFamily="Impact, Arial Black, Helvetica, sans-serif"
-                        fontSize="72" fill="white" letterSpacing="2">180</text>
-                  {/* DAYS */}
-                  <text x="256" y="218" textAnchor="middle"
-                        fontFamily="Impact, Arial Black, Helvetica, sans-serif"
-                        fontSize="46" fill="white" letterSpacing="3">DAYS</text>
-
-                  {/* GUARANTEE curvo */}
-                  <text fontFamily="Impact, Arial Black, Helvetica, sans-serif" fontSize="28"
-                        fill="white" letterSpacing="4">
-                    <textPath href="#bottomArc" startOffset="50%" textAnchor="middle">GUARANTEE</textPath>
-                  </text>
-                </g>
-              </svg>
+            {/* 180 Days Money Back Guarantee Seal */}
+            <div className="relative inline-block">
+              {/* Glow effect behind the seal */}
+              <div className="absolute inset-0 bg-yellow-400 rounded-full blur-2xl opacity-30 scale-110"></div>
+              <img 
+                src="https://i.imgur.com/nHQSpza.png" 
+                alt="180 Days Money Back Guarantee" 
+                className="w-48 h-48 md:w-64 md:h-64 mx-auto relative z-10"
+              />
             </div>
           </div>
 
