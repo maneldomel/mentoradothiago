@@ -343,18 +343,15 @@ const NewsSection: React.FC = () => {
                       {/* Left side - Menu and Email icons */}
                       <div className="flex items-center space-x-4">
                         {/* Hamburger Menu */}
-                        <div className="flex flex-col space-y-1">
-                          <div className="w-5 h-0.5 bg-white"></div>
-                          <div className="w-5 h-0.5 bg-white"></div>
-                          <div className="w-5 h-0.5 bg-white"></div>
+                        <div className="flex flex-col space-y-1 cursor-pointer">
+                          <div className="w-4 h-0.5 bg-white rounded"></div>
+                          <div className="w-4 h-0.5 bg-white rounded"></div>
+                          <div className="w-4 h-0.5 bg-white rounded"></div>
                         </div>
                         {/* Email Icon */}
-                        <div className="relative">
-                          <div className="w-6 h-4 border-2 border-white rounded-sm bg-white">
-                            <div className="absolute inset-0 flex items-center justify-center">
-                              <div className="w-0 h-0 border-l-2 border-r-2 border-t-2 border-red-600 border-l-transparent border-r-transparent"></div>
-                            </div>
-                          </div>
+                        <div className="relative cursor-pointer">
+                          <div className="w-5 h-4 border border-white rounded-sm"></div>
+                          <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-2 border-r-2 border-t-2 border-white border-l-transparent border-r-transparent"></div>
                         </div>
                       </div>
                       
@@ -363,7 +360,7 @@ const NewsSection: React.FC = () => {
                         <img 
                           src="https://i.imgur.com/MamGnNK.png" 
                           alt="New York Post"
-                          className="h-8 w-auto object-contain"
+                          className="h-6 w-auto object-contain"
                         />
                       </div>
                       
