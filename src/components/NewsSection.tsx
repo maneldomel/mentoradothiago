@@ -379,38 +379,38 @@ const NewsSection: React.FC = () => {
                 // Men's Health Today Header Image
                 <div className="relative">
                   {/* Men's Health Header - White Background */}
-                  <div className="bg-white py-6 border-b border-gray-200">
-                    <div className="max-w-6xl mx-auto px-8 flex items-center justify-between">
+                  <div className="bg-white py-3 sm:py-6 border-b border-gray-200">
+                    <div className="max-w-6xl mx-auto px-4 sm:px-8 flex items-center justify-between">
                       {/* Left side - Hamburger Menu and Logo */}
-                      <div className="flex items-center space-x-6">
+                      <div className="flex items-center space-x-3 sm:space-x-6">
                         {/* Hamburger Menu */}
-                        <div className="flex flex-col space-y-1.5 cursor-pointer">
-                          <div className="w-6 h-0.5 bg-black rounded"></div>
-                          <div className="w-6 h-0.5 bg-black rounded"></div>
-                          <div className="w-6 h-0.5 bg-black rounded"></div>
+                        <div className="flex flex-col space-y-1 sm:space-y-1.5 cursor-pointer">
+                          <div className="w-4 sm:w-6 h-0.5 bg-black rounded"></div>
+                          <div className="w-4 sm:w-6 h-0.5 bg-black rounded"></div>
+                          <div className="w-4 sm:w-6 h-0.5 bg-black rounded"></div>
                         </div>
                         
                         {/* Logo */}
                         <img 
                           src="https://i.imgur.com/KQohbBo.png" 
                           alt="Men's Health"
-                          className="h-10 w-auto object-contain"
+                          className="h-6 sm:h-10 w-auto object-contain"
                         />
                       </div>
                       
                       {/* Right side - Subscribe, Sign In, and X */}
-                      <div className="flex items-center space-x-6">
+                      <div className="flex items-center space-x-2 sm:space-x-6">
                         {/* Subscribe Button */}
-                        <button className="border border-red-500 px-6 py-2.5 rounded hover:bg-red-50 transition-colors">
-                          <span className="text-red-500 font-bold text-sm uppercase tracking-wide">SUBSCRIBE</span>
+                        <button className="border border-red-500 px-2 py-1 sm:px-6 sm:py-2.5 rounded hover:bg-red-50 transition-colors">
+                          <span className="text-red-500 font-bold text-xs sm:text-sm uppercase tracking-wide">SUBSCRIBE</span>
                         </button>
                         
                         {/* Sign In Link */}
-                        <span className="text-black font-bold text-sm uppercase cursor-pointer hover:text-gray-600 tracking-wide">SIGN IN</span>
+                        <span className="hidden sm:inline text-black font-bold text-sm uppercase cursor-pointer hover:text-gray-600 tracking-wide">SIGN IN</span>
                         
                         {/* X Icon */}
-                        <div className="w-6 h-6 cursor-pointer hover:bg-gray-100 rounded-full flex items-center justify-center transition-colors">
-                          <svg viewBox="0 0 24 24" className="w-4 h-4 text-red-500">
+                        <div className="w-5 h-5 sm:w-6 sm:h-6 cursor-pointer hover:bg-gray-100 rounded-full flex items-center justify-center transition-colors">
+                          <svg viewBox="0 0 24 24" className="w-3 h-3 sm:w-4 sm:h-4 text-red-500">
                             <path fill="currentColor" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
                           </svg>
                         </div>
