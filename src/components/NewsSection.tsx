@@ -299,7 +299,20 @@ const NewsSection: React.FC = () => {
               </div>
             </div>
           ) : showContent ? (
-            <div className="h-full overflow-y-auto bg-white">
+            <div className="h-full overflow-y-auto bg-white relative">
+              {/* Sticky Navigation Header */}
+              <div className="sticky top-0 bg-gray-100 border-b border-gray-200 px-4 py-3 z-50">
+                <div className="flex items-center">
+                  <button
+                    onClick={handleClose}
+                    className="flex items-center text-gray-600 hover:text-gray-800 transition-colors"
+                  >
+                    <ArrowLeft className="w-5 h-5 mr-2" />
+                    <span className="text-sm font-medium">Back</span>
+                  </button>
+                </div>
+              </div>
+
               {/* Authentic Website Headers */}
               {selectedArticle.site === 'The New York Post' ? (
                 // NY Post Header Image
@@ -320,18 +333,6 @@ const NewsSection: React.FC = () => {
                     <button
                       onClick={handleClose}
                       className="w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors"
-                    >
-                      <ArrowLeft className="w-4 h-4 text-white" />
-                    </button>
-                  </div>
-                  <div className="absolute top-2 right-2 z-50">
-                    <button
-                      onClick={handleClose}
-                      className="w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors"
-                    >
-                      <X className="w-4 h-4 text-white" />
-                    </button>
-                  </div>
                   {/* NY Post Realistic Header */}
                   <div className="bg-white border-b border-gray-200">
                     <div className="bg-blue-900 text-white py-2">
@@ -369,18 +370,6 @@ const NewsSection: React.FC = () => {
               ) : selectedArticle.site === 'HealthLine Weekly' ? (
                 // HealthLine Weekly Header Image
                 <div className="relative">
-                  {/* Navigation Header Above */}
-                  <div className="bg-gray-100 border-b border-gray-200 px-4 py-3">
-                    <div className="flex items-center">
-                      <button
-                        onClick={handleClose}
-                        className="flex items-center text-gray-600 hover:text-gray-800 transition-colors"
-                      >
-                        <ArrowLeft className="w-5 h-5 mr-2" />
-                        <span className="text-sm font-medium">Back</span>
-                      </button>
-                    </div>
-                  </div>
                   {/* HealthLine Header Image */}
                   <img 
                     src="https://i.imgur.com/l16fTbC.png" 
@@ -391,18 +380,6 @@ const NewsSection: React.FC = () => {
               ) : (
                 // Men's Health Today Header Image
                 <div className="relative">
-                  {/* Navigation Header Above */}
-                  <div className="bg-gray-100 border-b border-gray-200 px-4 py-3">
-                    <div className="flex items-center">
-                      <button
-                        onClick={handleClose}
-                        className="flex items-center text-gray-600 hover:text-gray-800 transition-colors"
-                      >
-                        <ArrowLeft className="w-5 h-5 mr-2" />
-                        <span className="text-sm font-medium">Back</span>
-                      </button>
-                    </div>
-                  </div>
                   <img 
                     src="https://i.imgur.com/xtDN6Ts.png" 
                     alt="Men's Health Today Header"
