@@ -108,6 +108,8 @@ const NewsSection: React.FC = () => {
   const [selectedArticle, setSelectedArticle] = useState<NewsArticle | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [showContent, setShowContent] = useState(false);
+  const [showMaintenanceModal, setShowMaintenanceModal] = useState(false);
+  const [maintenanceSite, setMaintenanceSite] = useState<string>('');
 
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
@@ -140,9 +142,27 @@ const NewsSection: React.FC = () => {
     handleClose();
   };
 
+  const showMaintenanceMessage = (siteName: string) => {
+    setMaintenanceSite(siteName);
+    setShowMaintenanceModal(true);
+  };
+
+  const closeMaintenanceModal = () => {
+    setShowMaintenanceModal(false);
+    setMaintenanceSite('');
+  };
+
+  const handleInteraction = (e: React.MouseEvent, siteName: string, isArticleClick: boolean = false) => {
+    if (!isArticleClick) {
+      e.preventDefault();
+      e.stopPropagation();
+      showMaintenanceMessage(siteName);
+    }
+  };
+
   // Prevent body scroll when modal is open
   useEffect(() => {
-    if (selectedArticle) {
+    if (selectedArticle || showMaintenanceModal) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'unset';
@@ -151,7 +171,7 @@ const NewsSection: React.FC = () => {
     return () => {
       document.body.style.overflow = 'unset';
     };
-  }, [selectedArticle]);
+  }, [selectedArticle, showMaintenanceModal]);
 
   const getWebsiteStyle = (site: string) => {
     switch (site) {
@@ -323,7 +343,10 @@ const NewsSection: React.FC = () => {
                       {/* Left side - Menu and Email icons */}
                       <div className="flex items-center">
                         {/* Hamburger Menu */}
-                        <div className="flex flex-col space-y-1 cursor-pointer">
+                        <div 
+                          className="flex flex-col space-y-1 cursor-pointer"
+                          onClick={(e) => handleInteraction(e, 'The New York Post')}
+                        >
                           <div className="w-4 h-0.5 bg-white rounded"></div>
                           <div className="w-4 h-0.5 bg-white rounded"></div>
                           <div className="w-4 h-0.5 bg-white rounded"></div>
@@ -341,7 +364,12 @@ const NewsSection: React.FC = () => {
                       
                       {/* Right side - LOG IN */}
                       <div>
-                        <span className="text-white font-medium text-sm">LOG IN</span>
+                        <span 
+                          className="text-white font-medium text-sm cursor-pointer hover:text-gray-200"
+                          onClick={(e) => handleInteraction(e, 'The New York Post')}
+                        >
+                          LOG IN
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -350,17 +378,53 @@ const NewsSection: React.FC = () => {
                   <div className="bg-white border-b border-gray-200 py-3">
                     <div className="max-w-6xl mx-auto px-4">
                       <nav className="flex items-center justify-center space-x-1 text-sm">
-                        <a href="#" className="text-black font-medium hover:text-red-600">PAGE SIX</a>
+                        <a 
+                          href="#" 
+                          className="text-black font-medium hover:text-red-600"
+                          onClick={(e) => handleInteraction(e, 'The New York Post')}
+                        >
+                          PAGE SIX
+                        </a>
                         <span className="text-black mx-2">|</span>
-                        <a href="#" className="text-black font-medium hover:text-red-600">SPORTS</a>
+                        <a 
+                          href="#" 
+                          className="text-black font-medium hover:text-red-600"
+                          onClick={(e) => handleInteraction(e, 'The New York Post')}
+                        >
+                          SPORTS
+                        </a>
                         <span className="text-black mx-2">|</span>
-                        <a href="#" className="text-black font-medium hover:text-red-600">METRO</a>
+                        <a 
+                          href="#" 
+                          className="text-black font-medium hover:text-red-600"
+                          onClick={(e) => handleInteraction(e, 'The New York Post')}
+                        >
+                          METRO
+                        </a>
                         <span className="text-black mx-2">|</span>
-                        <a href="#" className="text-black font-medium hover:text-red-600">OPINION</a>
+                        <a 
+                          href="#" 
+                          className="text-black font-medium hover:text-red-600"
+                          onClick={(e) => handleInteraction(e, 'The New York Post')}
+                        >
+                          OPINION
+                        </a>
                         <span className="text-black mx-2">|</span>
-                        <a href="#" className="text-black font-medium hover:text-red-600">PODCASTS</a>
+                        <a 
+                          href="#" 
+                          className="text-black font-medium hover:text-red-600"
+                          onClick={(e) => handleInteraction(e, 'The New York Post')}
+                        >
+                          PODCASTS
+                        </a>
                         <span className="text-black mx-2">|</span>
-                        <a href="#" className="text-black font-medium hover:text-red-600">BUSINESS</a>
+                        <a 
+                          href="#" 
+                          className="text-black font-medium hover:text-red-600"
+                          onClick={(e) => handleInteraction(e, 'The New York Post')}
+                        >
+                          BUSINESS
+                        </a>
                       </nav>
                     </div>
                   </div>
@@ -384,7 +448,10 @@ const NewsSection: React.FC = () => {
                       {/* Left side - Hamburger Menu and Logo */}
                       <div className="flex items-center space-x-3 sm:space-x-6">
                         {/* Hamburger Menu */}
-                        <div className="flex flex-col space-y-1 sm:space-y-1.5 cursor-pointer">
+                        <div 
+                          className="flex flex-col space-y-1 sm:space-y-1.5 cursor-pointer"
+                          onClick={(e) => handleInteraction(e, 'Men\'s Health Today')}
+                        >
                           <div className="w-4 sm:w-6 h-0.5 bg-black rounded"></div>
                           <div className="w-4 sm:w-6 h-0.5 bg-black rounded"></div>
                           <div className="w-4 sm:w-6 h-0.5 bg-black rounded"></div>
@@ -401,15 +468,26 @@ const NewsSection: React.FC = () => {
                       {/* Right side - Subscribe, Sign In, and X */}
                       <div className="flex items-center space-x-2 sm:space-x-6">
                         {/* Subscribe Button */}
-                        <button className="border border-red-500 px-2 py-1 sm:px-6 sm:py-2.5 rounded hover:bg-red-50 transition-colors">
+                        <button 
+                          className="border border-red-500 px-2 py-1 sm:px-6 sm:py-2.5 rounded hover:bg-red-50 transition-colors"
+                          onClick={(e) => handleInteraction(e, 'Men\'s Health Today')}
+                        >
                           <span className="text-red-500 font-bold text-xs sm:text-sm uppercase tracking-wide">SUBSCRIBE</span>
                         </button>
                         
                         {/* Sign In Link */}
-                        <span className="hidden sm:inline text-black font-bold text-sm uppercase cursor-pointer hover:text-gray-600 tracking-wide">SIGN IN</span>
+                        <span 
+                          className="hidden sm:inline text-black font-bold text-sm uppercase cursor-pointer hover:text-gray-600 tracking-wide"
+                          onClick={(e) => handleInteraction(e, 'Men\'s Health Today')}
+                        >
+                          SIGN IN
+                        </span>
                         
                         {/* X Icon */}
-                        <div className="w-5 h-5 sm:w-6 sm:h-6 cursor-pointer hover:bg-gray-100 rounded-full flex items-center justify-center transition-colors">
+                        <div 
+                          className="w-5 h-5 sm:w-6 sm:h-6 cursor-pointer hover:bg-gray-100 rounded-full flex items-center justify-center transition-colors"
+                          onClick={(e) => handleInteraction(e, 'Men\'s Health Today')}
+                        >
                           <svg viewBox="0 0 24 24" className="w-3 h-3 sm:w-4 sm:h-4 text-red-500">
                             <path fill="currentColor" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
                           </svg>
@@ -424,8 +502,18 @@ const NewsSection: React.FC = () => {
               <div className="max-w-4xl mx-auto px-6 py-8 bg-white">
                 {/* Breadcrumb Navigation */}
                 <div className="text-sm text-gray-500 mb-4">
-                  <span>Home</span> <span className="mx-2">›</span> 
-                  <span>Health</span> <span className="mx-2">›</span> 
+                  <span 
+                    className="cursor-pointer hover:text-gray-700"
+                    onClick={(e) => handleInteraction(e, selectedArticle.site)}
+                  >
+                    Home
+                  </span> <span className="mx-2">›</span> 
+                  <span 
+                    className="cursor-pointer hover:text-gray-700"
+                    onClick={(e) => handleInteraction(e, selectedArticle.site)}
+                  >
+                    Health
+                  </span> <span className="mx-2">›</span> 
                   <span className="text-gray-700">Men's Health</span>
                 </div>
 
@@ -448,10 +536,30 @@ const NewsSection: React.FC = () => {
                 {/* Social Share Buttons */}
                 <div className="flex items-center space-x-4 mb-6 pb-6 border-b border-gray-200">
                   <span className="text-sm text-gray-600">Share:</span>
-                  <button className="bg-blue-600 text-white px-3 py-1 rounded text-xs">Facebook</button>
-                  <button className="bg-blue-400 text-white px-3 py-1 rounded text-xs">Twitter</button>
-                  <button className="bg-blue-700 text-white px-3 py-1 rounded text-xs">LinkedIn</button>
-                  <button className="bg-green-600 text-white px-3 py-1 rounded text-xs">WhatsApp</button>
+                  <button 
+                    className="bg-blue-600 text-white px-3 py-1 rounded text-xs hover:bg-blue-700"
+                    onClick={(e) => handleInteraction(e, selectedArticle.site)}
+                  >
+                    Facebook
+                  </button>
+                  <button 
+                    className="bg-blue-400 text-white px-3 py-1 rounded text-xs hover:bg-blue-500"
+                    onClick={(e) => handleInteraction(e, selectedArticle.site)}
+                  >
+                    Twitter
+                  </button>
+                  <button 
+                    className="bg-blue-700 text-white px-3 py-1 rounded text-xs hover:bg-blue-800"
+                    onClick={(e) => handleInteraction(e, selectedArticle.site)}
+                  >
+                    LinkedIn
+                  </button>
+                  <button 
+                    className="bg-green-600 text-white px-3 py-1 rounded text-xs hover:bg-green-700"
+                    onClick={(e) => handleInteraction(e, selectedArticle.site)}
+                  >
+                    WhatsApp
+                  </button>
                 </div>
                 
                 <img 
@@ -512,24 +620,44 @@ const NewsSection: React.FC = () => {
                   <h3 className="text-xl font-bold text-gray-800 mb-6">Related Articles</h3>
                   <div className="grid md:grid-cols-2 gap-6">
                     <div className="flex space-x-4">
-                      <img 
-                        src="https://images.pexels.com/photos/4386467/pexels-photo-4386467.jpeg?auto=compress&cs=tinysrgb&w=120&h=80" 
-                        alt="Related article"
-                        className="w-20 h-16 object-cover rounded"
-                      />
+                      <div 
+                        className="cursor-pointer"
+                        onClick={(e) => handleInteraction(e, selectedArticle.site)}
+                      >
+                        <img 
+                          src="https://images.pexels.com/photos/4386467/pexels-photo-4386467.jpeg?auto=compress&cs=tinysrgb&w=120&h=80" 
+                          alt="Related article"
+                          className="w-20 h-16 object-cover rounded hover:opacity-80"
+                        />
+                      </div>
                       <div>
-                        <h4 className="font-semibold text-gray-800 text-sm mb-1">5 Natural Ways to Boost Energy</h4>
+                        <h4 
+                          className="font-semibold text-gray-800 text-sm mb-1 cursor-pointer hover:text-blue-600"
+                          onClick={(e) => handleInteraction(e, selectedArticle.site)}
+                        >
+                          5 Natural Ways to Boost Energy
+                        </h4>
                         <p className="text-gray-600 text-xs">Discover science-backed methods...</p>
                       </div>
                     </div>
                     <div className="flex space-x-4">
-                      <img 
-                        src="https://images.pexels.com/photos/518543/pexels-photo-518543.jpeg?auto=compress&cs=tinysrgb&w=120&h=80" 
-                        alt="Related article"
-                        className="w-20 h-16 object-cover rounded"
-                      />
+                      <div 
+                        className="cursor-pointer"
+                        onClick={(e) => handleInteraction(e, selectedArticle.site)}
+                      >
+                        <img 
+                          src="https://images.pexels.com/photos/518543/pexels-photo-518543.jpeg?auto=compress&cs=tinysrgb&w=120&h=80" 
+                          alt="Related article"
+                          className="w-20 h-16 object-cover rounded hover:opacity-80"
+                        />
+                      </div>
                       <div>
-                        <h4 className="font-semibold text-gray-800 text-sm mb-1">The Science of Male Vitality</h4>
+                        <h4 
+                          className="font-semibold text-gray-800 text-sm mb-1 cursor-pointer hover:text-blue-600"
+                          onClick={(e) => handleInteraction(e, selectedArticle.site)}
+                        >
+                          The Science of Male Vitality
+                        </h4>
                         <p className="text-gray-600 text-xs">Understanding hormonal health...</p>
                       </div>
                     </div>
@@ -642,20 +770,89 @@ const NewsSection: React.FC = () => {
                       </>
                     )}
                   </div>
-                  <button className="text-blue-600 text-sm font-semibold">View all comments →</button>
+                  <button 
+                    className="text-blue-600 text-sm font-semibold hover:text-blue-800"
+                    onClick={(e) => handleInteraction(e, selectedArticle.site)}
+                  >
+                    View all comments →
+                  </button>
                 </div>
 
                 {/* Footer */}
                 <div className="mt-16 pt-8 border-t border-gray-200 text-center">
                   <div className="text-gray-500 text-sm">
                     © 2025 {selectedArticle.site}. All rights reserved. | 
-                    <a href="#" className="text-blue-600 hover:underline ml-1">Privacy Policy</a> | 
-                    <a href="#" className="text-blue-600 hover:underline ml-1">Terms of Service</a>
+                    <a 
+                      href="#" 
+                      className="text-blue-600 hover:underline ml-1"
+                      onClick={(e) => handleInteraction(e, selectedArticle.site)}
+                    >
+                      Privacy Policy
+                    </a> | 
+                    <a 
+                      href="#" 
+                      className="text-blue-600 hover:underline ml-1"
+                      onClick={(e) => handleInteraction(e, selectedArticle.site)}
+                    >
+                      Terms of Service
+                    </a>
                   </div>
                 </div>
               </div>
             </div>
           ) : null}
+        </div>
+      )}
+
+      {/* Maintenance Modal */}
+      {showMaintenanceModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-xl shadow-2xl max-w-md w-full p-6 text-center">
+            {/* Site Logo */}
+            <div className="mb-6">
+              {maintenanceSite === 'The New York Post' ? (
+                <img 
+                  src="https://i.imgur.com/MamGnNK.png" 
+                  alt="New York Post"
+                  className="h-8 w-auto object-contain mx-auto"
+                />
+              ) : maintenanceSite === 'HealthLine Weekly' ? (
+                <img 
+                  src="https://i.imgur.com/K7v16Vy.png" 
+                  alt="HealthLine Weekly"
+                  className="h-8 w-auto object-contain mx-auto"
+                />
+              ) : maintenanceSite === 'Men\'s Health Today' ? (
+                <img 
+                  src="https://i.imgur.com/KQohbBo.png" 
+                  alt="Men's Health Today"
+                  className="h-8 w-auto object-contain mx-auto"
+                />
+              ) : (
+                <div className="w-12 h-12 bg-gray-200 rounded-lg mx-auto flex items-center justify-center">
+                  <span className="text-gray-500 font-bold text-lg">!</span>
+                </div>
+              )}
+            </div>
+
+            {/* Maintenance Message */}
+            <div className="mb-6">
+              <h3 className="text-xl font-bold text-gray-800 mb-3">
+                Under Maintenance
+              </h3>
+              <p className="text-gray-600 leading-relaxed">
+                We're currently performing maintenance on our website. Some features may not be working properly at the moment.
+              </p>
+            </div>
+
+            {/* Got It Button */}
+            <button
+              onClick={closeMaintenanceModal}
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200"
+            >
+              Got it
+            </button>
+          </div>
         </div>
       )}
     </>
