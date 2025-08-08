@@ -317,41 +317,16 @@ const NewsSection: React.FC = () => {
               {selectedArticle.site === 'The New York Post' ? (
                 // NY Post Header Image
                 <div className="relative">
-                  {/* Navigation Header Above */}
-                  <div className="bg-gray-100 border-b border-gray-200 px-4 py-3">
-                    <div className="flex items-center">
-                      <button
-                        onClick={handleClose}
-                        className="flex items-center text-gray-600 hover:text-gray-800 transition-colors"
-                      >
-                        <ArrowLeft className="w-5 h-5 mr-2" />
-                        <span className="text-sm font-medium">Back</span>
-                      </button>
-                    </div>
-                  </div>
-                  <div className="absolute top-2 left-2 z-50">
-                    <button
-                      onClick={handleClose}
-                      className="w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors"
-                    >
-                      <X className="w-4 h-4 text-white" />
-                    </button>
-                  </div>
                   {/* NY Post Header - Red Bar */}
                   <div className="bg-red-600 text-white py-3">
                     <div className="max-w-6xl mx-auto px-4 flex items-center justify-between">
                       {/* Left side - Menu and Email icons */}
-                      <div className="flex items-center space-x-4">
+                      <div className="flex items-center">
                         {/* Hamburger Menu */}
                         <div className="flex flex-col space-y-1 cursor-pointer">
                           <div className="w-4 h-0.5 bg-white rounded"></div>
                           <div className="w-4 h-0.5 bg-white rounded"></div>
                           <div className="w-4 h-0.5 bg-white rounded"></div>
-                        </div>
-                        {/* Email Icon */}
-                        <div className="relative cursor-pointer">
-                          <div className="w-5 h-4 border border-white rounded-sm"></div>
-                          <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-2 border-r-2 border-t-2 border-white border-l-transparent border-r-transparent"></div>
                         </div>
                       </div>
                       
