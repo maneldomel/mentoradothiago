@@ -220,7 +220,7 @@ const NewsSection: React.FC = () => {
 
   return (
     <>
-      <div className="bg-white py-8 md:py-12 relative">
+      <div className="bg-gray-50 py-8 md:py-12 relative">
         <div className="container mx-auto px-4 max-w-6xl">
           {/* Section Header */}
           <div className="text-center mb-8">

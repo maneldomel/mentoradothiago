@@ -3,7 +3,7 @@ import { Calendar, Truck, Lock } from 'lucide-react';
 
 const PurchaseSection: React.FC = () => {
   return (
-    <div className="bg-gray-50 py-8 md:py-12 relative z-10">
+    <div className="bg-gray-50 py-8 md:py-12 relative">
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="max-w-4xl mx-auto">
           
