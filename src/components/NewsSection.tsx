@@ -337,37 +337,59 @@ const NewsSection: React.FC = () => {
                       <X className="w-4 h-4 text-white" />
                     </button>
                   </div>
-                  {/* NY Post Realistic Header */}
-                  <div className="bg-white border-b border-gray-200">
-                    <div className="bg-blue-900 text-white py-2">
-                      <div className="max-w-6xl mx-auto px-4 flex items-center justify-between">
-                        <div className="flex items-center space-x-4">
-                          <div className="text-xs">Tuesday, January 15, 2025</div>
-                          <div className="text-xs">New York, NY</div>
+                  {/* NY Post Header - Red Bar */}
+                  <div className="bg-red-600 text-white py-3">
+                    <div className="max-w-6xl mx-auto px-4 flex items-center justify-between">
+                      {/* Left side - Menu and Email icons */}
+                      <div className="flex items-center space-x-4">
+                        {/* Hamburger Menu */}
+                        <div className="flex flex-col space-y-1">
+                          <div className="w-5 h-0.5 bg-white"></div>
+                          <div className="w-5 h-0.5 bg-white"></div>
+                          <div className="w-5 h-0.5 bg-white"></div>
                         </div>
-                        <div className="flex items-center space-x-4 text-xs">
-                          <span>Subscribe</span>
-                          <span>Sign In</span>
+                        {/* Email Icon */}
+                        <div className="relative">
+                          <div className="w-6 h-4 border-2 border-white rounded-sm bg-white">
+                            <div className="absolute inset-0 flex items-center justify-center">
+                              <div className="w-0 h-0 border-l-2 border-r-2 border-t-2 border-red-600 border-l-transparent border-r-transparent"></div>
+                            </div>
+                          </div>
                         </div>
+                      </div>
+                      
+                      {/* Center - Logo */}
+                      <div className="flex-1 flex justify-center">
+                        <img 
+                          src="https://i.imgur.com/MamGnNK.png" 
+                          alt="New York Post"
+                          className="h-8 w-auto object-contain"
+                        />
+                      </div>
+                      
+                      {/* Right side - LOG IN */}
+                      <div>
+                        <span className="text-white font-medium text-sm">LOG IN</span>
                       </div>
                     </div>
-                    <div className="max-w-6xl mx-auto px-4 py-4">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-6">
-                          <div className="text-2xl font-bold text-blue-900">NEW YORK POST</div>
-                          <nav className="hidden md:flex space-x-6 text-sm">
-                            <a href="#" className="text-gray-700 hover:text-blue-900">News</a>
-                            <a href="#" className="text-gray-700 hover:text-blue-900">Sports</a>
-                            <a href="#" className="text-gray-700 hover:text-blue-900">Business</a>
-                            <a href="#" className="text-gray-700 hover:text-blue-900">Opinion</a>
-                            <a href="#" className="text-gray-700 hover:text-blue-900">Lifestyle</a>
-                          </nav>
-                        </div>
-                        <div className="flex items-center space-x-4">
-                          <button className="text-gray-600">🔍</button>
-                          <button className="bg-blue-900 text-white px-4 py-2 rounded text-sm">Subscribe</button>
-                        </div>
-                      </div>
+                  </div>
+                  
+                  {/* NY Post Navigation Bar - White */}
+                  <div className="bg-white border-b border-gray-200 py-3">
+                    <div className="max-w-6xl mx-auto px-4">
+                      <nav className="flex items-center justify-center space-x-1 text-sm">
+                        <a href="#" className="text-black font-medium hover:text-red-600">PAGE SIX</a>
+                        <span className="text-black mx-2">|</span>
+                        <a href="#" className="text-black font-medium hover:text-red-600">SPORTS</a>
+                        <span className="text-black mx-2">|</span>
+                        <a href="#" className="text-black font-medium hover:text-red-600">METRO</a>
+                        <span className="text-black mx-2">|</span>
+                        <a href="#" className="text-black font-medium hover:text-red-600">OPINION</a>
+                        <span className="text-black mx-2">|</span>
+                        <a href="#" className="text-black font-medium hover:text-red-600">PODCASTS</a>
+                        <span className="text-black mx-2">|</span>
+                        <a href="#" className="text-black font-medium hover:text-red-600">BUSINESS</a>
+                      </nav>
                     </div>
                   </div>
                 </div>
