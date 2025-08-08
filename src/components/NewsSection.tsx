@@ -430,54 +430,8 @@ const NewsSection: React.FC = () => {
                   </div>
                 </div>
               ) : selectedArticle.site === 'HealthLine Weekly' ? (
-                // HealthLine Weekly Header Image
-                <div className="relative">
-                  {/* HealthLine Header Image */}
-                  <img 
-                    src="https://i.imgur.com/l16fTbC.png" 
-                    alt="HealthLine Weekly Header"
-                    className="w-full h-auto"
-                  />
-                </div>
-              ) : (
-                // Men's Health Today Header Image
-                <div className="relative">
-                  {/* Men's Health Header - White Background */}
-                  <div className="bg-white py-3 sm:py-6 border-b border-gray-200">
-                    <div className="max-w-6xl mx-auto px-4 sm:px-8 flex items-center justify-between">
-                      {/* Left side - Hamburger Menu and Logo */}
-                      <div className="flex items-center space-x-3 sm:space-x-6">
-                        {/* Hamburger Menu */}
-                        <div 
-                          className="flex flex-col space-y-1 sm:space-y-1.5 cursor-pointer"
-                          onClick={(e) => handleInteraction(e, 'Men\'s Health Today')}
-                        >
-                          <div className="w-4 sm:w-6 h-0.5 bg-black rounded"></div>
-                          <div className="w-4 sm:w-6 h-0.5 bg-black rounded"></div>
-                          <div className="w-4 sm:w-6 h-0.5 bg-black rounded"></div>
-                        </div>
-                        
-                        {/* Logo */}
-                        <img 
-                          src="https://i.imgur.com/KQohbBo.png" 
-                          alt="Men's Health"
-                          className="h-6 sm:h-10 w-auto object-contain"
-                        />
-                      </div>
-                      
-                      {/* Right side - Subscribe, Sign In, and X */}
-                      <div className="flex items-center space-x-2 sm:space-x-6">
-                        {/* Subscribe Button */}
-                        <button 
-                          className="border border-red-500 px-2 py-1 sm:px-6 sm:py-2.5 rounded hover:bg-red-50 transition-colors"
-                          onClick={(e) => handleInteraction(e, 'Men\'s Health Today')}
-                        >
-                          <span className="text-red-500 font-bold text-xs sm:text-sm uppercase tracking-wide">SUBSCRIBE</span>
-                        </button>
-                        
-                        {/* Sign In Link */}
-                        <span 
-                          className="hidden sm:inline text-black font-bold text-sm uppercase cursor-pointer hover:text-gray-600 tracking-wide"
+                // HealthLine Weekly - No Header
+                <div></div>
                           onClick={(e) => handleInteraction(e, 'Men\'s Health Today')}
                         >
                           SIGN IN
