@@ -333,6 +333,10 @@ const NewsSection: React.FC = () => {
                     <button
                       onClick={handleClose}
                       className="w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors"
+                    >
+                      <X className="w-4 h-4 text-white" />
+                    </button>
+                  </div>
                   {/* NY Post Realistic Header */}
                   <div className="bg-white border-b border-gray-200">
                     <div className="bg-blue-900 text-white py-2">
