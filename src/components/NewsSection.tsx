@@ -281,7 +281,7 @@ const NewsSection: React.FC = () => {
       </div>
       {/* Full-Screen Webview Modal */}
       {selectedArticle && (
-        <div className="fixed inset-0 bg-white z-50 overflow-hidden">
+        <div className="fixed inset-0 bg-gray-100 z-50 overflow-hidden">
           {isLoading ? (
             <div className="flex flex-col items-center justify-center h-full bg-gray-100">
               <div className="text-center mb-8">
@@ -299,7 +299,7 @@ const NewsSection: React.FC = () => {
               </div>
             </div>
           ) : showContent ? (
-            <div className={`h-full overflow-y-auto ${getWebsiteStyle(selectedArticle.site).bg}`}>
+            <div className="h-full overflow-y-auto bg-white">
               {/* Authentic Website Headers */}
               {selectedArticle.site === 'The New York Post' ? (
                 // NY Post Header Image
@@ -319,13 +319,38 @@ const NewsSection: React.FC = () => {
                     >
                       <X className="w-4 h-4 text-white" />
                     </button>
+                // NY Post Realistic Header
+                <div className="bg-white border-b border-gray-200">
+                  <div className="bg-blue-900 text-white py-2">
+                    <div className="max-w-6xl mx-auto px-4 flex items-center justify-between">
+                      <div className="flex items-center space-x-4">
+                        <div className="text-xs">Tuesday, January 15, 2025</div>
+                        <div className="text-xs">New York, NY</div>
+                      </div>
+                      <div className="flex items-center space-x-4 text-xs">
+                        <span>Subscribe</span>
+                        <span>Sign In</span>
+                      </div>
+                    </div>
                   </div>
-                  
-                  <img 
-                    src="https://i.imgur.com/KjAEcL3.jpeg" 
-                    alt="New York Post Header"
-                    className="w-full h-auto object-cover"
-                  />
+                  <div className="max-w-6xl mx-auto px-4 py-4">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-6">
+                        <div className="text-2xl font-bold text-blue-900">NEW YORK POST</div>
+                        <nav className="hidden md:flex space-x-6 text-sm">
+                          <a href="#" className="text-gray-700 hover:text-blue-900">News</a>
+                          <a href="#" className="text-gray-700 hover:text-blue-900">Sports</a>
+                          <a href="#" className="text-gray-700 hover:text-blue-900">Business</a>
+                          <a href="#" className="text-gray-700 hover:text-blue-900">Opinion</a>
+                          <a href="#" className="text-gray-700 hover:text-blue-900">Lifestyle</a>
+                        </nav>
+                      </div>
+                      <div className="flex items-center space-x-4">
+                        <button className="text-gray-600">🔍</button>
+                        <button className="bg-blue-900 text-white px-4 py-2 rounded text-sm">Subscribe</button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               ) : selectedArticle.site === 'HealthLine Weekly' ? (
                 // HealthLine Weekly Header Image
@@ -345,19 +370,52 @@ const NewsSection: React.FC = () => {
                     >
                       <X className="w-4 h-4 text-white" />
                     </button>
-                  </div>
-                  
-                  <div className="relative">
-                    <img 
-                      src="https://i.imgur.com/l16fTbC.png" 
-                      alt="HealthLine Weekly Header"
-                      className="w-full h-auto object-cover"
-                    />
+                // HealthLine Realistic Header
+                <div className="bg-black text-white">
+                  <div className="max-w-6xl mx-auto px-4 py-4">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-6">
+                        <button className="text-white">☰</button>
+                        <div className="text-xl font-serif">healthline</div>
+                        <nav className="hidden md:flex space-x-6 text-sm">
+                          <a href="#" className="text-white hover:text-gray-300">Health</a>
+                          <a href="#" className="text-white hover:text-gray-300">Wellness</a>
+                          <a href="#" className="text-white hover:text-gray-300">Nutrition</a>
+                          <a href="#" className="text-white hover:text-gray-300">Fitness</a>
+                        </nav>
+                      </div>
+                      <div className="flex items-center space-x-4">
+                        <button className="text-white">🔍</button>
+                        <button className="border border-white text-white px-4 py-2 rounded-full text-sm hover:bg-white hover:text-black transition-colors">Subscribe</button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               ) : (
-                // Generic Header for other sites
-                <div className="relative">
+                // Men's Health Today Realistic Header
+                <div className="bg-white border-b border-gray-200">
+                  <div className="bg-red-600 text-white py-2">
+                    <div className="max-w-6xl mx-auto px-4 text-center text-sm">
+                      Get the latest health news and expert advice
+                    </div>
+                  </div>
+                  <div className="max-w-6xl mx-auto px-4 py-4">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-6">
+                        <div className="text-2xl font-bold text-red-600">MEN'S HEALTH TODAY</div>
+                        <nav className="hidden md:flex space-x-6 text-sm">
+                          <a href="#" className="text-gray-700 hover:text-red-600">Fitness</a>
+                          <a href="#" className="text-gray-700 hover:text-red-600">Nutrition</a>
+                          <a href="#" className="text-gray-700 hover:text-red-600">Health</a>
+                          <a href="#" className="text-gray-700 hover:text-red-600">Lifestyle</a>
+                        </nav>
+                      </div>
+                      <div className="flex items-center space-x-4">
+                        <button className="text-gray-600">🔍</button>
+                        <button className="bg-red-600 text-white px-4 py-2 rounded text-sm">Subscribe</button>
+                      </div>
+                    </div>
+                  </div>
                   <div className="absolute top-2 left-2 z-50">
                     <button
                       onClick={handleClose}
@@ -378,21 +436,38 @@ const NewsSection: React.FC = () => {
               )}
 
               {/* Article Content Container */}
-              <div className="max-w-4xl mx-auto px-6 py-8">
+              <div className="max-w-4xl mx-auto px-6 py-8 bg-white">
+                {/* Breadcrumb Navigation */}
+                <div className="text-sm text-gray-500 mb-4">
+                  <span>Home</span> <span className="mx-2">›</span> 
+                  <span>Health</span> <span className="mx-2">›</span> 
+                  <span className="text-gray-700">Men's Health</span>
+                </div>
+
                 {/* Article Meta */}
-                <div className="flex items-center text-sm text-gray-600 mb-4">
-                  <span className={selectedArticle.siteColor}>{selectedArticle.site}</span>
-                  <span className="mx-2">•</span>
-                  <span>{selectedArticle.publishDate}</span>
-                  <span className="mx-2">•</span>
-                  <span>{selectedArticle.author}</span>
-                  <span className="mx-2">•</span>
-                  <span>{selectedArticle.readTime}</span>
+                <div className="border-l-4 border-magenta-500 pl-4 mb-6">
+                  <div className="text-xs text-gray-500 uppercase tracking-wide mb-1">Health News</div>
+                  <div className="flex items-center text-sm text-gray-600">
+                    <span>By {selectedArticle.author}</span>
+                    <span className="mx-2">•</span>
+                    <span>{selectedArticle.publishDate}</span>
+                    <span className="mx-2">•</span>
+                    <span>{selectedArticle.readTime}</span>
+                  </div>
                 </div>
                 
                 <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6 leading-tight">
                   {selectedArticle.title}
                 </h1>
+
+                {/* Social Share Buttons */}
+                <div className="flex items-center space-x-4 mb-6 pb-6 border-b border-gray-200">
+                  <span className="text-sm text-gray-600">Share:</span>
+                  <button className="bg-blue-600 text-white px-3 py-1 rounded text-xs">Facebook</button>
+                  <button className="bg-blue-400 text-white px-3 py-1 rounded text-xs">Twitter</button>
+                  <button className="bg-blue-700 text-white px-3 py-1 rounded text-xs">LinkedIn</button>
+                  <button className="bg-green-600 text-white px-3 py-1 rounded text-xs">WhatsApp</button>
+                </div>
                 
                 <img 
                   src={selectedArticle.imageUrl} 
@@ -400,40 +475,141 @@ const NewsSection: React.FC = () => {
                   className="w-full h-64 md:h-96 object-cover rounded-xl mb-6"
                 />
 
+                {/* Image Caption */}
+                <div className="text-sm text-gray-500 italic mb-8 -mt-4">
+                  Medical professionals are taking notice of this breakthrough supplement. Photo: Getty Images
+                </div>
+
                 {/* Article Content */}
                 <div className="prose prose-lg max-w-none">
                   {selectedArticle.fullContent.split('\n\n').map((paragraph, index) => (
-                    <p key={index} className="text-gray-700 leading-relaxed mb-6 text-lg">
+                    <p key={index} className="text-gray-800 leading-relaxed mb-6 text-lg font-serif">
                       {paragraph}
                     </p>
                   ))}
                 </div>
+
+                {/* Article Tags */}
+                <div className="mt-8 pt-6 border-t border-gray-200">
+                  <div className="text-sm text-gray-600 mb-3">Tags:</div>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs">Men's Health</span>
+                    <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs">Supplements</span>
+                    <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs">Natural Health</span>
+                    <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs">PROAXION</span>
+                  </div>
+                </div>
+
+                {/* Author Bio */}
+                <div className="mt-8 p-6 bg-gray-50 rounded-xl">
+                  <div className="flex items-start space-x-4">
+                    <img 
+                      src="https://images.pexels.com/photos/5327656/pexels-photo-5327656.jpeg?auto=compress&cs=tinysrgb&w=80&h=80" 
+                      alt={selectedArticle.author}
+                      className="w-16 h-16 rounded-full object-cover"
+                    />
+                    <div>
+                      <h4 className="font-bold text-gray-800 mb-2">About {selectedArticle.author}</h4>
+                      <p className="text-gray-600 text-sm leading-relaxed">
+                        {selectedArticle.author} is a health journalist with over 10 years of experience covering breakthrough medical research and wellness trends. She specializes in men's health and natural supplements.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Related Articles */}
+                <div className="mt-12 pt-8 border-t border-gray-200">
+                  <h3 className="text-xl font-bold text-gray-800 mb-6">Related Articles</h3>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div className="flex space-x-4">
+                      <img 
+                        src="https://images.pexels.com/photos/4386467/pexels-photo-4386467.jpeg?auto=compress&cs=tinysrgb&w=120&h=80" 
+                        alt="Related article"
+                        className="w-20 h-16 object-cover rounded"
+                      />
+                      <div>
+                        <h4 className="font-semibold text-gray-800 text-sm mb-1">5 Natural Ways to Boost Energy</h4>
+                        <p className="text-gray-600 text-xs">Discover science-backed methods...</p>
+                      </div>
+                    </div>
+                    <div className="flex space-x-4">
+                      <img 
+                        src="https://images.pexels.com/photos/518543/pexels-photo-518543.jpeg?auto=compress&cs=tinysrgb&w=120&h=80" 
+                        alt="Related article"
+                        className="w-20 h-16 object-cover rounded"
+                      />
+                      <div>
+                        <h4 className="font-semibold text-gray-800 text-sm mb-1">The Science of Male Vitality</h4>
+                        <p className="text-gray-600 text-xs">Understanding hormonal health...</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 
                 {/* CTA at bottom of article */}
                 <div className="mt-12 text-center">
-                  <div className="mb-6">
+                  <div className="bg-gradient-to-r from-magenta-50 to-magenta-100 rounded-2xl p-8 mb-6">
+                    <div className="text-sm text-magenta-600 font-semibold mb-2">SPONSORED CONTENT</div>
+                    <h3 className="text-2xl font-bold text-gray-800 mb-4">
+                      Try the Supplement Featured in This Article
+                    </h3>
+                    <p className="text-gray-700 text-lg mb-6">
+                      Experience the same breakthrough results mentioned by medical experts
+                    </p>
                     <img 
                       src="https://i.imgur.com/RVXt1O7.png" 
                       alt="Proaxion - 1 Bottle" 
-                      className="w-32 h-32 object-contain mx-auto mb-4"
+                      className="w-32 h-32 object-contain mx-auto mb-6"
                     />
-                    <h3 className="text-2xl font-bold text-gray-800 mb-2">
-                      Try <span className="text-magenta-600">PROAXION</span> Today
-                    </h3>
-                    <p className="text-gray-700 text-lg">
-                      Experience the same results mentioned in this article
-                    </p>
+                    <button
+                      onClick={scrollToTop}
+                      className="bg-magenta-600 hover:bg-magenta-700 text-white font-bold py-4 px-8 rounded-xl text-lg transition-colors duration-200 shadow-lg hover:shadow-xl transform hover:scale-105 mb-4"
+                    >
+                      Get PROAXION Now - Special Offer
+                    </button>
+                    <div className="flex items-center justify-center space-x-6 text-sm text-gray-600">
+                      <span>✓ 180-Day Money Back Guarantee</span>
+                      <span>✓ Free Shipping</span>
+                      <span>✓ Secure Checkout</span>
+                    </div>
                   </div>
-                  <button
-                    onClick={scrollToTop}
-                    className="bg-magenta-600 hover:bg-magenta-700 text-white font-bold py-4 px-8 rounded-xl text-lg transition-colors duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
-                  >
-                    Get PROAXION Now
-                  </button>
-                  
-                  <p className="text-sm text-gray-600 mt-3">
-                    ✓ 180-Day Money Back Guarantee
-                  </p>
+                </div>
+
+                {/* Comments Section */}
+                <div className="mt-12 pt-8 border-t border-gray-200">
+                  <h3 className="text-xl font-bold text-gray-800 mb-6">Reader Comments (23)</h3>
+                  <div className="mb-6">
+                    <div className="bg-gray-50 p-4 rounded-lg mb-4">
+                      <div className="flex items-start space-x-3">
+                        <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white text-sm font-bold">M</div>
+                        <div>
+                          <div className="font-semibold text-gray-800 text-sm">Mike Johnson</div>
+                          <div className="text-gray-600 text-xs mb-2">2 hours ago</div>
+                          <p className="text-gray-700 text-sm">Great article! I've been looking for natural alternatives and this sounds promising.</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="bg-gray-50 p-4 rounded-lg">
+                      <div className="flex items-start space-x-3">
+                        <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white text-sm font-bold">D</div>
+                        <div>
+                          <div className="font-semibold text-gray-800 text-sm">Dr. Smith</div>
+                          <div className="text-gray-600 text-xs mb-2">4 hours ago</div>
+                          <p className="text-gray-700 text-sm">As a physician, I appreciate the scientific approach discussed here. Natural solutions are often overlooked.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <button className="text-blue-600 text-sm font-semibold">View all comments →</button>
+                </div>
+
+                {/* Footer */}
+                <div className="mt-16 pt-8 border-t border-gray-200 text-center">
+                  <div className="text-gray-500 text-sm">
+                    © 2025 {selectedArticle.site}. All rights reserved. | 
+                    <a href="#" className="text-blue-600 hover:underline ml-1">Privacy Policy</a> | 
+                    <a href="#" className="text-blue-600 hover:underline ml-1">Terms of Service</a>
+                  </div>
                 </div>
               </div>
             </div>
