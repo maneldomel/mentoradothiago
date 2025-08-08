@@ -47,6 +47,41 @@ The supplement's liquid format appears to be a significant advantage, allowing f
     author: 'Michael Rodriguez'
   },
   {
+    id: '3',
+    site: 'HealthLine Weekly',
+    siteColor: 'text-green-600',
+    siteLogo: 'https://images.pexels.com/photos/3825581/pexels-photo-3825581.jpeg?auto=compress&cs=tinysrgb&w=60&h=40',
+    title: 'New Supplement PROAXION Stuns Doctors: Erectile Dysfunction Reversed in 21 Days',
+    excerpt: 'A revolutionary liquid formula is gaining national attention after users reported dramatic improvements in erectile performance — without relying on prescription pills.',
+    fullContent: `A revolutionary liquid formula is gaining national attention after users reported dramatic improvements in erectile performance — without relying on prescription pills.
+
+PROAXION, a natural drop-based supplement, is being hailed as "the next frontier in men's health" by experts. Backed by clinical observations, the formula works by boosting nitric oxide production and enhancing blood flow — naturally restoring erectile function in men over 40.
+
+"We're seeing patients regain confidence and intimacy without side effects," says Dr. Evan Morris, a men's health specialist in Miami. "It's rare to see results this fast without pharmaceutical intervention."
+
+The breakthrough supplement has caught the attention of medical professionals nationwide after preliminary studies showed remarkable results. In a recent clinical observation, 87% of participants reported significant improvement in erectile function within the first three weeks of use.
+
+Unlike traditional ED medications that require precise timing and often come with uncomfortable side effects, PROAXION works by addressing the root causes of erectile dysfunction. The liquid formula is absorbed rapidly into the bloodstream, where it begins supporting natural nitric oxide production immediately.
+
+"What we're seeing is unprecedented," explains Dr. Morris. "Men who haven't experienced normal erectile function in years are reporting dramatic improvements. Some describe it as 'getting their youth back.'"
+
+The supplement's success appears to stem from its unique delivery method. Rather than relying on pills that must be digested, the liquid drops are absorbed sublingually, allowing for faster and more efficient uptake of the active compounds.
+
+Clinical observations have shown that men typically begin noticing improvements within the first week, with optimal results achieved by day 21. The formula appears to work by enhancing the body's natural ability to produce and maintain erections, rather than forcing temporary responses.
+
+"The psychological impact has been just as significant as the physical improvements," notes Dr. Morris. "When men regain their sexual confidence, it positively affects every aspect of their relationships and overall well-being."
+
+The supplement has gained particular attention for its safety profile. Unlike prescription medications that can interact with heart medications or cause dangerous drops in blood pressure, PROAXION's natural formulation has shown no significant adverse effects in clinical observations.
+
+As word spreads about PROAXION's effectiveness, demand has surged nationwide. The supplement represents a new category of men's health products that prioritize natural enhancement over pharmaceutical intervention.
+
+"This could fundamentally change how we approach erectile dysfunction treatment," concludes Dr. Morris. "We're moving toward solutions that work with the body's natural processes rather than against them."`,
+    readTime: '6 min read',
+    imageUrl: 'https://i.imgur.com/otdftnd.png',
+    publishDate: 'January 8, 2025',
+    author: 'Dr. Sarah Mitchell'
+  }
+  {
     id: '2',
     site: 'Men\'s Health Today',
     siteColor: 'text-blue-600',
@@ -409,12 +444,51 @@ const NewsSection: React.FC = () => {
               ) : selectedArticle.site === 'HealthLine Weekly' ? (
                 // HealthLine Weekly Header Image
                 <div className="relative">
-                  {/* HealthLine Header Image */}
-                  <img 
-                    src="https://i.imgur.com/l16fTbC.png" 
-                    alt="HealthLine Weekly Header"
-                    className="w-full h-auto"
-                  />
+                  {/* HealthLine Header - Black Background */}
+                  <div className="bg-black py-4 sm:py-6 border-b border-gray-800">
+                    <div className="max-w-6xl mx-auto px-4 sm:px-8 flex items-center justify-between">
+                      {/* Left side - Hamburger Menu and Logo */}
+                      <div className="flex items-center space-x-4 sm:space-x-6">
+                        {/* Hamburger Menu */}
+                        <div 
+                          className="flex flex-col space-y-1 sm:space-y-1.5 cursor-pointer"
+                          onClick={(e) => handleInteraction(e, 'HealthLine Weekly')}
+                        >
+                          <div className="w-5 sm:w-6 h-0.5 bg-white rounded"></div>
+                          <div className="w-5 sm:w-6 h-0.5 bg-white rounded"></div>
+                          <div className="w-5 sm:w-6 h-0.5 bg-white rounded"></div>
+                        </div>
+                        
+                        {/* Logo */}
+                        <img 
+                          src="https://i.imgur.com/otdftnd.png" 
+                          alt="HealthLine Weekly"
+                          className="h-8 sm:h-10 w-auto object-contain"
+                        />
+                      </div>
+                      
+                      {/* Right side - Search and Subscribe */}
+                      <div className="flex items-center space-x-3 sm:space-x-4">
+                        {/* Search Icon */}
+                        <div 
+                          className="w-6 h-6 cursor-pointer hover:bg-white hover:bg-opacity-10 rounded-full flex items-center justify-center transition-colors p-1"
+                          onClick={(e) => handleInteraction(e, 'HealthLine Weekly')}
+                        >
+                          <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                          </svg>
+                        </div>
+                        
+                        {/* Subscribe Button */}
+                        <button 
+                          className="border border-white px-4 py-2 rounded-full hover:bg-white hover:bg-opacity-10 transition-colors"
+                          onClick={(e) => handleInteraction(e, 'HealthLine Weekly')}
+                        >
+                          <span className="text-white font-medium text-sm">Subscribe</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               ) : (
                 // Men's Health Today Header Image
