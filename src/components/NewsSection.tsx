@@ -80,7 +80,7 @@ As word spreads about PROAXION's effectiveness, demand has surged nationwide. Th
     imageUrl: 'https://i.imgur.com/otdftnd.png',
     publishDate: 'January 8, 2025',
     author: 'Dr. Sarah Mitchell'
-  }
+  },
   {
     id: '2',
     site: 'Men\'s Health Today',
