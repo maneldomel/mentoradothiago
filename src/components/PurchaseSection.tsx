@@ -1,10 +1,24 @@
 import React from 'react';
-import { Calendar, Truck, Lock, X, AlertTriangle } from 'lucide-react';
+import { Calendar, Truck, Lock, X, AlertTriangle, Clock, Lightbulb } from 'lucide-react';
 
 const PurchaseSection: React.FC = () => {
   const [showUpsellModal, setShowUpsellModal] = React.useState(false);
   const [selectedPackage, setSelectedPackage] = React.useState<'3-bottle' | '1-bottle' | null>(null);
+  const [countdown, setCountdown] = React.useState(10);
 
+  // Countdown timer effect
+  React.useEffect(() => {
+    let timer: NodeJS.Timeout;
+    if (showUpsellModal && countdown > 0) {
+      timer = setTimeout(() => {
+        setCountdown(countdown - 1);
+      }, 1000);
+    } else if (showUpsellModal && countdown === 0) {
+      // Auto redirect to original selection
+      handleContinueWithOriginal();
+    }
+    return () => clearTimeout(timer);
+  }, [showUpsellModal, countdown]);
   const handlePackageClick = (packageType: '6-bottle' | '3-bottle' | '1-bottle') => {
     if (packageType === '6-bottle') {
       // Direct purchase for 6-bottle package
@@ -14,6 +28,7 @@ const PurchaseSection: React.FC = () => {
       // Show upsell modal for other packages
       setSelectedPackage(packageType);
       setShowUpsellModal(true);
+      setCountdown(10); // Reset countdown
     }
   };
 
@@ -34,6 +49,7 @@ const PurchaseSection: React.FC = () => {
   const closeModal = () => {
     setShowUpsellModal(false);
     setSelectedPackage(null);
+    setCountdown(10);
   };
 
   // Prevent body scroll when modal is open
@@ -237,104 +253,83 @@ const PurchaseSection: React.FC = () => {
 
       {/* Upsell Modal */}
       {showUpsellModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl shadow-2xl max-w-lg w-full p-6 relative animate-pulse">
-            {/* Close Button */}
-            <button
-              onClick={closeModal}
-              className="absolute top-4 right-4 w-8 h-8 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center transition-colors"
-            >
-              <X className="w-4 h-4 text-gray-600" />
-            </button>
-
-            {/* Warning Icon */}
-            <div className="text-center mb-6">
-              <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <AlertTriangle className="w-8 h-8 text-yellow-600" />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-800 mb-2">
-                Wait! Don't Miss Out!
-              </h3>
-              <p className="text-gray-600">
-                You're about to leave money on the table
-              </p>
-            </div>
-
-            {/* Savings Comparison */}
-            <div className="bg-gradient-to-r from-red-50 to-red-100 rounded-xl p-4 mb-6 border-l-4 border-red-500">
-              <div className="text-center">
-                <p className="text-red-800 font-bold text-lg mb-2">
-                  {selectedPackage === '3-bottle' 
-                    ? "You're missing out on $600 in savings!" 
-                    : "You're missing out on $821 in savings!"
-                  }
-                </p>
-                <div className="grid grid-cols-2 gap-4 text-sm">
-                  <div>
-                    <p className="text-gray-600">Your Choice:</p>
-                    <p className="font-bold text-red-600">
-                      {selectedPackage === '3-bottle' ? '$198 (3 bottles)' : '$88.99 (1 bottle)'}
-                    </p>
+        <div className="fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center p-4">
+          <div className="bg-gradient-to-b from-blue-900 to-blue-800 rounded-2xl shadow-2xl max-w-md w-full relative overflow-hidden">
+            {/* Purple Header with Countdown */}
+            <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-6 py-4 relative">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-3">
+                  <div className="w-8 h-8 bg-pink-500 rounded-full flex items-center justify-center">
+                    <Clock className="w-4 h-4 text-white" />
                   </div>
                   <div>
-                    <p className="text-gray-600">Best Deal:</p>
-                    <p className="font-bold text-green-600">$294 (6 bottles)</p>
+                    <div className="text-white font-bold text-sm">
+                      This offer expires in <span className="text-pink-300">{countdown} seconds</span>
+                    </div>
+                    <div className="text-purple-200 text-xs">
+                      If no action is taken, you'll be redirected to your original selection
+                    </div>
                   </div>
                 </div>
+                
+                {/* Close Button */}
+                <button
+                  onClick={closeModal}
+                  className="w-6 h-6 bg-white bg-opacity-20 hover:bg-opacity-30 rounded-full flex items-center justify-center transition-colors"
+                >
+                  <X className="w-4 h-4 text-white" />
+                </button>
               </div>
             </div>
+            {/* Main Content */}
+            <div className="px-6 py-8">
+              {/* Warning Icon */}
+              <div className="text-center mb-6">
+                <div className="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <AlertTriangle className="w-8 h-8 text-white" />
+                </div>
+                
+                {/* Main Headline */}
+                <h3 className="text-2xl font-bold text-white mb-4">
+                  Wait! You're Leaving ${selectedPackage === '3-bottle' ? '102' : '205'} Behind…
+                </h3>
+                
+                {/* Highlight Box */}
+                <div className="bg-blue-700 border border-yellow-400 rounded-lg p-4 mb-4">
+                  <p className="text-yellow-400 font-bold text-lg">
+                    Choose the 6 Bottle Pack now and save an extra ${selectedPackage === '3-bottle' ? '$102' : '$205'}!
+                  </p>
+                </div>
+                
+                {/* Supporting Text */}
+                <p className="text-white text-sm leading-relaxed mb-6">
+                  It's the most popular choice for long-term results — and it includes free shipping + a 180-day guarantee.
+                </p>
+              </div>
 
-            {/* Benefits of 6-bottle package */}
-            <div className="mb-6">
-              <h4 className="font-bold text-gray-800 mb-3">Why the 6-bottle package is the smart choice:</h4>
-              <ul className="space-y-2 text-sm text-gray-700">
-                <li className="flex items-center">
-                  <div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
-                  <span><strong>Maximum savings:</strong> Save $900 compared to retail</span>
-                </li>
-                <li className="flex items-center">
-                  <div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
-                  <span><strong>Best results:</strong> 6 months for complete transformation</span>
-                </li>
-                <li className="flex items-center">
-                  <div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
-                  <span><strong>Free shipping:</strong> No extra costs</span>
-                </li>
-                <li className="flex items-center">
-                  <div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
-                  <span><strong>Stock guarantee:</strong> Never run out during your journey</span>
-                </li>
-              </ul>
-            </div>
+              {/* Action Buttons */}
+              <div className="space-y-3 mb-6">
+                <button
+                  onClick={handleAcceptDiscount}
+                  className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-black font-bold py-4 px-6 rounded-xl transition-all duration-200 transform hover:scale-105 shadow-lg text-lg"
+                >
+                  GET ${selectedPackage === '3-bottle' ? '$102' : '$205'} EXTRA DISCOUNT
+                </button>
+                
+                <button
+                  onClick={handleContinueWithOriginal}
+                  className="w-full bg-blue-600 border border-blue-400 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-xl transition-colors duration-200"
+                >
+                  Refuse Offer
+                </button>
+              </div>
 
-            {/* Action Buttons */}
-            <div className="space-y-3">
-              <button
-                onClick={handleAcceptDiscount}
-                className="w-full bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-bold py-4 px-6 rounded-xl transition-all duration-200 transform hover:scale-105 shadow-lg"
-              >
-                YES! Give Me The Best Deal - Save $900
-              </button>
-              
-              <button
-                onClick={handleContinueWithOriginal}
-                className="w-full bg-gray-200 hover:bg-gray-300 text-gray-700 font-medium py-3 px-6 rounded-xl transition-colors duration-200"
-              >
-                No thanks, I'll stick with the {selectedPackage === '3-bottle' ? '3-bottle' : '1-bottle'} package
-              </button>
-            </div>
-
-            {/* Trust Elements */}
-            <div className="mt-4 text-center">
-              <div className="flex items-center justify-center space-x-4 text-xs text-gray-500">
-                <span className="flex items-center">
-                  <Lock className="w-3 h-3 mr-1" />
-                  Secure Checkout
-                </span>
-                <span className="flex items-center">
-                  <Calendar className="w-3 h-3 mr-1" />
-                  180-Day Guarantee
-                </span>
+              {/* Footer */}
+              <div className="text-center">
+                <div className="flex items-center justify-center space-x-2 text-gray-300 text-sm">
+                  <Lightbulb className="w-4 h-4 text-yellow-400" />
+                  <span>No action needed - we'll redirect you automatically</span>
+                </div>
               </div>
             </div>
           </div>
