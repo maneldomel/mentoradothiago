@@ -319,35 +319,37 @@ const NewsSection: React.FC = () => {
                     >
                       <X className="w-4 h-4 text-white" />
                     </button>
-                // NY Post Realistic Header
-                <div className="bg-white border-b border-gray-200">
-                  <div className="bg-blue-900 text-white py-2">
-                    <div className="max-w-6xl mx-auto px-4 flex items-center justify-between">
-                      <div className="flex items-center space-x-4">
-                        <div className="text-xs">Tuesday, January 15, 2025</div>
-                        <div className="text-xs">New York, NY</div>
-                      </div>
-                      <div className="flex items-center space-x-4 text-xs">
-                        <span>Subscribe</span>
-                        <span>Sign In</span>
+                  </div>
+                  {/* NY Post Realistic Header */}
+                  <div className="bg-white border-b border-gray-200">
+                    <div className="bg-blue-900 text-white py-2">
+                      <div className="max-w-6xl mx-auto px-4 flex items-center justify-between">
+                        <div className="flex items-center space-x-4">
+                          <div className="text-xs">Tuesday, January 15, 2025</div>
+                          <div className="text-xs">New York, NY</div>
+                        </div>
+                        <div className="flex items-center space-x-4 text-xs">
+                          <span>Subscribe</span>
+                          <span>Sign In</span>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="max-w-6xl mx-auto px-4 py-4">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-6">
-                        <div className="text-2xl font-bold text-blue-900">NEW YORK POST</div>
-                        <nav className="hidden md:flex space-x-6 text-sm">
-                          <a href="#" className="text-gray-700 hover:text-blue-900">News</a>
-                          <a href="#" className="text-gray-700 hover:text-blue-900">Sports</a>
-                          <a href="#" className="text-gray-700 hover:text-blue-900">Business</a>
-                          <a href="#" className="text-gray-700 hover:text-blue-900">Opinion</a>
-                          <a href="#" className="text-gray-700 hover:text-blue-900">Lifestyle</a>
-                        </nav>
-                      </div>
-                      <div className="flex items-center space-x-4">
-                        <button className="text-gray-600">🔍</button>
-                        <button className="bg-blue-900 text-white px-4 py-2 rounded text-sm">Subscribe</button>
+                    <div className="max-w-6xl mx-auto px-4 py-4">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-6">
+                          <div className="text-2xl font-bold text-blue-900">NEW YORK POST</div>
+                          <nav className="hidden md:flex space-x-6 text-sm">
+                            <a href="#" className="text-gray-700 hover:text-blue-900">News</a>
+                            <a href="#" className="text-gray-700 hover:text-blue-900">Sports</a>
+                            <a href="#" className="text-gray-700 hover:text-blue-900">Business</a>
+                            <a href="#" className="text-gray-700 hover:text-blue-900">Opinion</a>
+                            <a href="#" className="text-gray-700 hover:text-blue-900">Lifestyle</a>
+                          </nav>
+                        </div>
+                        <div className="flex items-center space-x-4">
+                          <button className="text-gray-600">🔍</button>
+                          <button className="bg-blue-900 text-white px-4 py-2 rounded text-sm">Subscribe</button>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -370,23 +372,25 @@ const NewsSection: React.FC = () => {
                     >
                       <X className="w-4 h-4 text-white" />
                     </button>
-                // HealthLine Realistic Header
-                <div className="bg-black text-white">
-                  <div className="max-w-6xl mx-auto px-4 py-4">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-6">
-                        <button className="text-white">☰</button>
-                        <div className="text-xl font-serif">healthline</div>
-                        <nav className="hidden md:flex space-x-6 text-sm">
-                          <a href="#" className="text-white hover:text-gray-300">Health</a>
-                          <a href="#" className="text-white hover:text-gray-300">Wellness</a>
-                          <a href="#" className="text-white hover:text-gray-300">Nutrition</a>
-                          <a href="#" className="text-white hover:text-gray-300">Fitness</a>
-                        </nav>
-                      </div>
-                      <div className="flex items-center space-x-4">
-                        <button className="text-white">🔍</button>
-                        <button className="border border-white text-white px-4 py-2 rounded-full text-sm hover:bg-white hover:text-black transition-colors">Subscribe</button>
+                  </div>
+                  {/* HealthLine Realistic Header */}
+                  <div className="bg-black text-white">
+                    <div className="max-w-6xl mx-auto px-4 py-4">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-6">
+                          <button className="text-white">☰</button>
+                          <div className="text-xl font-serif">healthline</div>
+                          <nav className="hidden md:flex space-x-6 text-sm">
+                            <a href="#" className="text-white hover:text-gray-300">Health</a>
+                            <a href="#" className="text-white hover:text-gray-300">Wellness</a>
+                            <a href="#" className="text-white hover:text-gray-300">Nutrition</a>
+                            <a href="#" className="text-white hover:text-gray-300">Fitness</a>
+                          </nav>
+                        </div>
+                        <div className="flex items-center space-x-4">
+                          <button className="text-white">🔍</button>
+                          <button className="border border-white text-white px-4 py-2 rounded-full text-sm hover:bg-white hover:text-black transition-colors">Subscribe</button>
+                        </div>
                       </div>
                     </div>
                   </div>
