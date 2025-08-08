@@ -432,6 +432,65 @@ const NewsSection: React.FC = () => {
               ) : selectedArticle.site === 'HealthLine Weekly' ? (
                 // HealthLine Weekly - No Header
                 <div></div>
+              ) : selectedArticle.site === 'Men\'s Health Today' ? (
+                // Men's Health Today Header
+                <div className="relative">
+                  {/* Men's Health Today Header - White background */}
+                  <div className="bg-white border-b border-gray-200 py-3 sm:py-6 px-4 sm:px-8">
+                    <div className="max-w-6xl mx-auto flex items-center justify-between">
+                      {/* Left side - Hamburger and Logo */}
+                      <div className="flex items-center space-x-3 sm:space-x-6">
+                        {/* Hamburger Menu */}
+                        <div 
+                          className="flex flex-col space-y-1 sm:space-y-1.5 cursor-pointer"
+                          onClick={(e) => handleInteraction(e, 'Men\'s Health Today')}
+                        >
+                          <div className="w-4 sm:w-6 h-0.5 bg-black rounded"></div>
+                          <div className="w-4 sm:w-6 h-0.5 bg-black rounded"></div>
+                          <div className="w-4 sm:w-6 h-0.5 bg-black rounded"></div>
+                        </div>
+                        
+                        {/* Logo */}
+                        <img 
+                          src="https://i.imgur.com/xtDN6Ts.png" 
+                          alt="Men's Health Today"
+                          className="h-6 sm:h-10 w-auto object-contain"
+                        />
+                      </div>
+                      
+                      {/* Right side - Subscribe button and X */}
+                      <div className="flex items-center space-x-3 sm:space-x-6">
+                        {/* Subscribe Button */}
+                        <button 
+                          className="bg-red-600 hover:bg-red-50 text-white hover:text-red-600 border border-red-600 font-semibold px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm tracking-wide transition-colors"
+                          onClick={(e) => handleInteraction(e, 'Men\'s Health Today')}
+                        >
+                          SUBSCRIBE
+                        </button>
+                        
+                        {/* Sign In - Hidden on mobile */}
+                        <span 
+                          className="text-black font-medium text-sm cursor-pointer hover:text-red-600 hidden sm:inline"
+                          onClick={(e) => handleInteraction(e, 'Men\'s Health Today')}
+                        >
+                          SIGN IN
+                        </span>
+                        
+                        {/* X Icon */}
+                        <div 
+                          className="w-5 h-5 sm:w-6 sm:h-6 cursor-pointer hover:bg-gray-100 rounded-full flex items-center justify-center transition-colors"
+                          onClick={(e) => handleInteraction(e, 'Men\'s Health Today')}
+                        >
+                          <svg viewBox="0 0 24 24" className="w-3 h-3 sm:w-4 sm:h-4 text-red-500">
+                            <path fill="currentColor" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <div></div>
                           onClick={(e) => handleInteraction(e, 'Men\'s Health Today')}
                         >
                           SIGN IN
