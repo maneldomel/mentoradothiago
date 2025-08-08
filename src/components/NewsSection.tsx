@@ -491,24 +491,6 @@ const NewsSection: React.FC = () => {
                 </div>
               ) : (
                 <div></div>
-                          onClick={(e) => handleInteraction(e, 'Men\'s Health Today')}
-                        >
-                          SIGN IN
-                        </span>
-                        
-                        {/* X Icon */}
-                        <div 
-                          className="w-5 h-5 sm:w-6 sm:h-6 cursor-pointer hover:bg-gray-100 rounded-full flex items-center justify-center transition-colors"
-                          onClick={(e) => handleInteraction(e, 'Men\'s Health Today')}
-                        >
-                          <svg viewBox="0 0 24 24" className="w-3 h-3 sm:w-4 sm:h-4 text-red-500">
-                            <path fill="currentColor" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
-                          </svg>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               )}
 
               {/* Article Content Container */}
