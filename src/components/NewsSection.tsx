@@ -430,15 +430,22 @@ const NewsSection: React.FC = () => {
                   </div>
                 </div>
               ) : selectedArticle.site === 'HealthLine Weekly' ? (
-                // HealthLine Weekly - No Header
-                <div></div>
-              ) : selectedArticle.site === 'Men\'s Health Today' ? (
-                // Men's Health Today Header
+                // HealthLine Weekly Header Image
                 <div className="relative">
-                  {/* Men's Health Today Header - White background */}
-                  <div className="bg-white border-b border-gray-200 py-3 sm:py-6 px-4 sm:px-8">
-                    <div className="max-w-6xl mx-auto flex items-center justify-between">
-                      {/* Left side - Hamburger and Logo */}
+                  {/* HealthLine Header Image */}
+                  <img 
+                    src="https://i.imgur.com/l16fTbC.png" 
+                    alt="HealthLine Weekly Header"
+                    className="w-full h-auto"
+                  />
+                </div>
+              ) : (
+                // Men's Health Today Header Image
+                <div className="relative">
+                  {/* Men's Health Header - White Background */}
+                  <div className="bg-white py-3 sm:py-6 border-b border-gray-200">
+                    <div className="max-w-6xl mx-auto px-4 sm:px-8 flex items-center justify-between">
+                      {/* Left side - Hamburger Menu and Logo */}
                       <div className="flex items-center space-x-3 sm:space-x-6">
                         {/* Hamburger Menu */}
                         <div 
@@ -452,25 +459,25 @@ const NewsSection: React.FC = () => {
                         
                         {/* Logo */}
                         <img 
-                          src="https://i.imgur.com/xtDN6Ts.png" 
-                          alt="Men's Health Today"
+                          src="https://i.imgur.com/KQohbBo.png" 
+                          alt="Men's Health"
                           className="h-6 sm:h-10 w-auto object-contain"
                         />
                       </div>
                       
-                      {/* Right side - Subscribe button and X */}
-                      <div className="flex items-center space-x-3 sm:space-x-6">
+                      {/* Right side - Subscribe, Sign In, and X */}
+                      <div className="flex items-center space-x-2 sm:space-x-6">
                         {/* Subscribe Button */}
                         <button 
-                          className="bg-red-600 hover:bg-red-50 text-white hover:text-red-600 border border-red-600 font-semibold px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm tracking-wide transition-colors"
+                          className="border border-red-500 px-2 py-1 sm:px-6 sm:py-2.5 rounded hover:bg-red-50 transition-colors"
                           onClick={(e) => handleInteraction(e, 'Men\'s Health Today')}
                         >
-                          SUBSCRIBE
+                          <span className="text-red-500 font-bold text-xs sm:text-sm uppercase tracking-wide">SUBSCRIBE</span>
                         </button>
                         
-                        {/* Sign In - Hidden on mobile */}
+                        {/* Sign In Link */}
                         <span 
-                          className="text-black font-medium text-sm cursor-pointer hover:text-red-600 hidden sm:inline"
+                          className="hidden sm:inline text-black font-bold text-sm uppercase cursor-pointer hover:text-gray-600 tracking-wide"
                           onClick={(e) => handleInteraction(e, 'Men\'s Health Today')}
                         >
                           SIGN IN
@@ -489,8 +496,6 @@ const NewsSection: React.FC = () => {
                     </div>
                   </div>
                 </div>
-              ) : (
-                <div></div>
               )}
 
               {/* Article Content Container */}
@@ -805,6 +810,24 @@ const NewsSection: React.FC = () => {
           <div className="bg-white rounded-xl shadow-2xl max-w-md w-full p-6 text-center">
             {/* Site Logo */}
             <div className="mb-6">
+              {maintenanceSite === 'The New York Post' ? (
+                <img 
+                  src="https://i.imgur.com/MamGnNK.png" 
+                  alt="New York Post"
+                  className="h-8 w-auto object-contain mx-auto"
+                />
+              ) : maintenanceSite === 'HealthLine Weekly' ? (
+                <img 
+                  src="https://i.imgur.com/K7v16Vy.png" 
+                  alt="HealthLine Weekly"
+                  className="h-8 w-auto object-contain mx-auto"
+                />
+              ) : maintenanceSite === 'Men\'s Health Today' ? (
+                <img 
+                  src="https://i.imgur.com/KQohbBo.png" 
+                  alt="Men's Health Today"
+                  className="h-8 w-auto object-contain mx-auto"
+                />
               ) : (
                 <div className="w-12 h-12 bg-gray-200 rounded-lg mx-auto flex items-center justify-center">
                   <span className="text-gray-500 font-bold text-lg">!</span>
