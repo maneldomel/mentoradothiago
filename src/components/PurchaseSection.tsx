@@ -81,8 +81,8 @@ const PurchaseSection: React.FC = () => {
                 />
               </div>
               
-              {/* Button Overlapping Image */}
-              <div className="-mt-4 flex justify-center">
+              {/* Button Overlapping Image - Higher Position */}
+              <div className="-mt-12 flex justify-center">
                 <img 
                   src="https://i.imgur.com/BvHFk1Y.png" 
                   alt="Order Now Button" 
