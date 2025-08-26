@@ -79,13 +79,13 @@ const PurchaseSection: React.FC = () => {
                   alt="Claim Offer Now" 
                   className="w-full max-w-6xl mx-auto h-auto"
                 />
-                {/* Overlay Button */}
-                <div className="absolute inset-0 flex items-center justify-center">
+                {/* Overlay Button - Positioned lower and partially overlapping */}
+                <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2">
                   <img 
                     src="https://i.imgur.com/BvHFk1Y.png" 
                     alt="Order Now Button" 
                     onClick={() => handlePackageClick('6-bottle')}
-                    className="cursor-pointer transition-all duration-200 transform hover:scale-105 hover:shadow-xl max-w-xs sm:max-w-sm md:max-w-md"
+                    className="cursor-pointer max-w-xs sm:max-w-sm md:max-w-md"
                   />
                 </div>
               </div>
