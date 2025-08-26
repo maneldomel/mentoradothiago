@@ -82,7 +82,7 @@ const PurchaseSection: React.FC = () => {
               </div>
               
               {/* Button Overlapping Image - Higher Position */}
-              <div className="-mt-12 flex justify-center relative">
+              <div className="-mt-8 flex justify-center relative">
                 {/* Glow Effect */}
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-20 sm:w-72 sm:h-24 md:w-80 md:h-28 bg-yellow-400 rounded-full blur-xl opacity-25 animate-pulse"></div>
                 
