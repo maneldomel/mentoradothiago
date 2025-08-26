@@ -95,8 +95,28 @@ const PurchaseSection: React.FC = () => {
               </div>
             </div>
             
-            {/* 3 and 1 Bottle Packages */}
-            <div className="grid grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto">
+            {/* 3 Bottle Package */}
+            <div className="text-center mb-6">
+              <img 
+                src="https://i.imgur.com/RjlemNX.png" 
+                alt="3 Bottles of Proaxion" 
+                onClick={() => handlePackageClick('3-bottle')}
+                className="w-full h-auto cursor-pointer transition-all duration-200 transform hover:scale-105 max-w-md mx-auto"
+              />
+            </div>
+            
+            {/* 1 Bottle Package */}
+            <div className="text-center">
+              <img 
+                src="https://i.imgur.com/nW4bkrD.png" 
+                alt="1 Bottle of Proaxion" 
+                onClick={() => handlePackageClick('1-bottle')}
+                className="w-full h-auto cursor-pointer transition-all duration-200 transform hover:scale-105 max-w-xs mx-auto"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
               
               {/* 3 Bottle Package */}
               <div className="text-center">
