@@ -80,7 +80,7 @@ const PurchaseSection: React.FC = () => {
                   className="w-full max-w-6xl mx-auto h-auto"
                 />
                 {/* Overlay Button */}
-                <div className="absolute inset-0 flex items-center justify-center">
+                <div className="absolute inset-0 flex items-end justify-center pb-8">
                   <img 
                     src="https://i.imgur.com/BvHFk1Y.png" 
                     alt="Order Now Button" 
