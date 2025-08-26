@@ -75,7 +75,7 @@ const PurchaseSection: React.FC = () => {
             <div className="text-center mb-8">
               <div className="inline-block">
                 <img 
-                  src="https://i.imgur.com/kREGfwe.png" 
+                  src="https://i.imgur.com/C3jX169.png" 
                   alt="Claim Offer Now" 
                   className="w-full max-w-6xl mx-auto h-auto"
                 />
