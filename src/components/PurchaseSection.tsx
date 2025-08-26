@@ -74,7 +74,7 @@ const PurchaseSection: React.FC = () => {
             {/* Main Offer Image */}
             <div className="text-center mb-8">
               <img 
-                src="https://i.imgur.com/2mPBnox.png" 
+                src="https://i.imgur.com/Mfrp6QT.png" 
                 alt="Claim Offer Now" 
                 onClick={() => handlePackageClick('6-bottle')}
                 className="w-full max-w-6xl mx-auto h-auto cursor-pointer transition-all duration-200 transform hover:scale-105"
