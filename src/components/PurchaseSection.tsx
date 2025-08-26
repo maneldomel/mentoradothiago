@@ -71,68 +71,15 @@ const PurchaseSection: React.FC = () => {
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="max-w-4xl mx-auto">
             
-            {/* 6 Bottle Package - Main Offer */}
-            <div className="bg-gradient-to-br from-magenta-700 to-magenta-900 rounded-2xl p-6 text-center mb-8 shadow-xl">
-              <h3 className="text-4xl font-bold text-white mb-1 font-inter tracking-wide -mt-2">
-                PROAXION
-              </h3>
-              <p className="text-xl font-medium text-white/90 mb-4 font-inter tracking-wide">
-                6 BOTTLE PACKAGE
-              </p>
-              
-             <div className="w-full max-w-md mx-auto mb-2 relative">
-               {/* Purple/Magenta glow effect behind product image */}
-               <div className="absolute inset-0 bg-gradient-to-r from-magenta-500/60 to-magenta-600/60 rounded-xl blur-2xl scale-125 -z-10"></div>
-                <img 
-                  src="https://i.imgur.com/VScX6oJ.png" 
-                  alt="Claim Offer Now" 
-                  className="w-full h-auto cursor-pointer transition-all duration-200 transform hover:scale-105"
-                />
-              </div>
-              
-              <p className="text-2xl font-bold mb-4" style={{color: '#FFD700'}}>
-                YOU'RE SAVING $900
-              </p>
-              
-              <p className="text-white/80 text-base font-inter mb-2">
-                only $49 per bottle, $294 total
-              </p>
-              
-              <div className="mb-6"></div>
-              
-             <div className="w-full max-w-md mx-auto mb-4 relative">
-               <img 
-                 src="https://i.imgur.com/SkYh6cG.png" 
-                 alt="Claim Offer Now" 
-                 onClick={() => handlePackageClick('6-bottle')}
-                 className="w-full h-auto cursor-pointer transition-all duration-200 transform hover:scale-105"
-               />
-             </div>
-              
-              <div className="mb-8"></div>
-              
-              {/* Benefits */}
-              <div className="flex justify-center items-center space-x-8">
-                <div className="flex flex-col items-center">
-                  <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center mb-2">
-                    <Calendar className="w-5 h-5 text-white" />
-                  </div>
-                  <span className="text-white/90 text-sm font-inter font-medium">180-Day</span>
-                </div>
-                <div className="flex flex-col items-center">
-                  <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center mb-2">
-                    <Truck className="w-5 h-5 text-white" />
-                  </div>
-                  <span className="text-white/90 text-sm font-inter font-medium">Free Ship</span>
-                </div>
-                <div className="flex flex-col items-center">
-                  <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center mb-2">
-                    <Lock className="w-5 h-5 text-white" />
-                  </div>
-                  <span className="text-white/90 text-sm font-inter font-medium">Secure</span>
-                </div>
-              </div>
-             </div>
+            {/* Main Offer Image */}
+            <div className="text-center mb-8">
+              <img 
+                src="https://i.imgur.com/SkYh6cG.png" 
+                alt="Claim Offer Now" 
+                onClick={() => handlePackageClick('6-bottle')}
+                className="w-full max-w-2xl mx-auto h-auto cursor-pointer transition-all duration-200 transform hover:scale-105"
+              />
+            </div>
             
             {/* 3 and 1 Bottle Packages */}
             <div className="grid grid-cols-2 gap-4 md:gap-6">
