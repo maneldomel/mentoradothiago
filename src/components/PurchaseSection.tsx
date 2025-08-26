@@ -100,17 +100,13 @@ const PurchaseSection: React.FC = () => {
               
               <div className="mb-6"></div>
               
-             <div className="relative mb-4">
-               <button 
+             <div className="w-full max-w-md mx-auto mb-4 relative">
+               <img 
+                 src="https://i.imgur.com/SkYh6cG.png" 
+                 alt="Claim Offer Now" 
                  onClick={() => handlePackageClick('6-bottle')}
-                 className="w-full text-black font-bold text-xl py-4 px-8 rounded-xl font-inter transition-transform duration-200 ease-in-out hover:scale-105 border-none cursor-pointer pulse-button"
-                 style={{
-                   background: 'linear-gradient(to bottom, #ffd700, #ffb700)',
-                   boxShadow: '0 0 10px 2px #ffd700, 0 0 20px 4px #ffcc00'
-                 }}
-               >
-                 CLAIM OFFER NOW
-               </button>
+                 className="w-full h-auto cursor-pointer transition-all duration-200 transform hover:scale-105"
+               />
              </div>
               
               <div className="mb-8"></div>
