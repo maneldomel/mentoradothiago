@@ -83,11 +83,14 @@ const PurchaseSection: React.FC = () => {
               
               {/* Button Overlapping Image - Higher Position */}
               <div className="-mt-12 flex justify-center relative">
+                {/* Glow Effect */}
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-16 sm:w-72 sm:h-18 md:w-80 md:h-20 bg-yellow-400 rounded-full blur-2xl opacity-30 animate-pulse"></div>
+                
                 <img 
                   src="https://i.imgur.com/BvHFk1Y.png" 
                   alt="Order Now Button" 
                   onClick={() => handlePackageClick('6-bottle')}
-                  className="cursor-pointer transition-all duration-200 transform hover:scale-105 max-w-xs sm:max-w-sm md:max-w-md"
+                  className="cursor-pointer transition-all duration-200 transform hover:scale-105 max-w-xs sm:max-w-sm md:max-w-md relative z-10"
                 />
               </div>
             </div>
