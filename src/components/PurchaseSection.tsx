@@ -72,71 +72,114 @@ const PurchaseSection: React.FC = () => {
           <div className="max-w-4xl mx-auto">
             
             {/* 6 Bottle Package - Main Offer */}
-            <div className="bg-gradient-to-br from-magenta-700 to-magenta-900 rounded-2xl p-6 text-center mb-8 shadow-xl">
-              <h3 className="text-4xl font-bold text-white mb-1 font-inter tracking-wide -mt-2">
-                PROAXION
-              </h3>
-              <p className="text-xl font-medium text-white/90 mb-4 font-inter tracking-wide">
-                6 BOTTLE PACKAGE
-              </p>
-              
-             <div className="w-full max-w-md mx-auto mb-2 relative">
-               {/* Purple/Magenta glow effect behind product image */}
-               <div className="absolute inset-0 bg-gradient-to-r from-magenta-500/60 to-magenta-600/60 rounded-xl blur-2xl scale-125 -z-10"></div>
-                <img 
-                  src="https://i.imgur.com/VScX6oJ.png" 
-                  alt="Claim Offer Now" 
-                  className="w-full h-auto cursor-pointer transition-all duration-200 transform hover:scale-105"
-                />
+            {/* CTA BUNDLE / BOTÃO ESTILO DO EXEMPLO */}
+            <div className="cta-bundle mb-8" style={{'--brand':'#a300ff', '--brand-2':'#ff00c3', '--cta':'#ffd400', '--cta-2':'#ffb800', '--ink':'#2a0140'} as React.CSSProperties}>
+              {/* FRETE GRÁTIS */}
+              <div className="badge shipping" aria-label="Frete grátis">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M3 7h11v7h-1.2a2.8 2.8 0 0 0-5.6 0H6.8a2.8 2.8 0 0 0-5.6 0H0V9a2 2 0 0 1 2-2zm12 0h3l3 3v4h-2.2a2.8 2.8 0 0 0-5.6 0H15V7zM5.2 17.2a1.8 1.8 0 1 0 0-3.6 1.8 1.8 0 0 0 0 3.6zm10 0a1.8 1.8 0 1 0 0-3.6 1.8 1.8 0 0 0 0 3.6z"/>
+                </svg>
+                <span>FREE SHIPPING</span>
               </div>
-              
-              <p className="text-2xl font-bold mb-4" style={{color: '#FFD700'}}>
-                YOU'RE SAVING $900
-              </p>
-              
-              <p className="text-white/80 text-base font-inter mb-2">
-                only $49 per bottle, $294 total
-              </p>
-              
-              <div className="mb-6"></div>
-              
-             <div className="relative mb-4">
-               <button 
-                 onClick={() => handlePackageClick('6-bottle')}
-                 className="w-full text-black font-bold text-xl py-4 px-8 rounded-xl font-inter transition-transform duration-200 ease-in-out hover:scale-105 border-none cursor-pointer pulse-button"
-                 style={{
-                   background: 'linear-gradient(to bottom, #ffd700, #ffb700)',
-                   boxShadow: '0 0 10px 2px #ffd700, 0 0 20px 4px #ffcc00'
-                 }}
-               >
-                 CLAIM OFFER NOW
-               </button>
-             </div>
-              
-              <div className="mb-8"></div>
-              
-              {/* Benefits */}
-              <div className="flex justify-center items-center space-x-8">
-                <div className="flex flex-col items-center">
-                  <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center mb-2">
-                    <Calendar className="w-5 h-5 text-white" />
-                  </div>
-                  <span className="text-white/90 text-sm font-inter font-medium">180-Day</span>
-                </div>
-                <div className="flex flex-col items-center">
-                  <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center mb-2">
-                    <Truck className="w-5 h-5 text-white" />
-                  </div>
-                  <span className="text-white/90 text-sm font-inter font-medium">Free Ship</span>
-                </div>
-                <div className="flex flex-col items-center">
-                  <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center mb-2">
-                    <Lock className="w-5 h-5 text-white" />
-                  </div>
-                  <span className="text-white/90 text-sm font-inter font-medium">Secure</span>
+
+              {/* ECONOMIA */}
+              <div className="badge save">YOU SAVE <b>$900!</b></div>
+
+              {/* FUNDO ROXO */}
+              <div className="panel"></div>
+
+              {/* FILEIRA DE PRODUTOS */}
+              <div className="products" aria-hidden="true">
+                <img src="https://i.imgur.com/RVXt1O7.png" alt="Produto" loading="lazy" />
+                <img src="https://i.imgur.com/RVXt1O7.png" alt="" />
+                <img src="https://i.imgur.com/RVXt1O7.png" alt="" />
+                <img src="https://i.imgur.com/RVXt1O7.png" alt="" />
+                <img src="https://i.imgur.com/RVXt1O7.png" alt="" />
+                <img src="https://i.imgur.com/RVXt1O7.png" alt="" />
+              </div>
+
+              {/* BOTÃO PRINCIPAL */}
+              <button 
+                className="cta"
+                onClick={() => handlePackageClick('6-bottle')}
+              >
+                <span className="cta-line1">CLICK HERE TO CLAIM <strong>THIS OFFER</strong></span>
+                <span className="cta-line2">YOU HAVE 180-DAY MONEY GUARANTEE – NO QUESTIONS ASKED</span>
+              </button>
+
+              {/* MÉTODOS DE PAGAMENTO */}
+              <div className="payments" aria-label="Métodos de pagamento aceitos">
+                <div className="pp">PayPal</div>
+                <div className="cards">
+                  <span>VISA</span><span>Mastercard</span><span>DISCOVER</span><span>AMERICAN&nbsp;EXPRESS</span>
                 </div>
               </div>
-             </div>
+            </div>
+
+            <style jsx>{`
+              .cta-bundle{
+                --radius:28px;
+                --shadow:0 14px 30px rgba(0,0,0,.18), 0 8px 16px rgba(0,0,0,.12);
+                position:relative; isolation:isolate; max-width:980px; margin:24px auto; padding:28px 18px 90px;
+                font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; color:#170320;
+              }
+              .cta-bundle .panel{
+                position:absolute; inset:auto 0 120px 0; height:280px; margin:auto;
+                background:linear-gradient(180deg, var(--brand) 0%, var(--brand-2) 100%);
+                border-radius:36px; filter:drop-shadow(0 12px 24px rgba(0,0,0,.18));
+                z-index:-1;
+              }
+              .products{display:flex; justify-content:center; gap:18px; margin-top:40px; flex-wrap:wrap}
+              .products img{height:260px; width:auto; object-fit:contain; filter:drop-shadow(0 10px 18px rgba(0,0,0,.25))}
+              .badge{
+                position:absolute; display:flex; align-items:center; gap:10px; top:18px; padding:10px 14px 10px 12px;
+                border-radius:999px; font-weight:800; letter-spacing:.3px; color:#6a007f; background:#ffd84d; box-shadow:var(--shadow);
+              }
+              .badge.shipping{left:18px; color:#6a007f}
+              .badge.shipping svg{display:block}
+              .badge.save{right:18px; background:#ffd84d; color:#6a007f}
+              .badge.save b{color:#6a007f}
+              .cta{
+                display:block; text-align:center; text-decoration:none; margin:26px auto 0; max-width:780px;
+                background:linear-gradient(180deg, var(--cta) 0%, var(--cta-2) 100%);
+                border-radius:36px; padding:26px 18px 18px; box-shadow:0 18px 34px rgba(255,184,0,.45);
+                color:#5a0080; transition:transform .08s ease, box-shadow .2s ease; outline-offset:3px;
+                border: none; cursor: pointer; width: 100%;
+              }
+              .cta:hover{transform:translateY(-1px); box-shadow:0 22px 40px rgba(255,184,0,.55)}
+              .cta:active{transform:translateY(0)}
+              .cta-line1{
+                display:block; font-weight:900; font-size:clamp(20px, 3.3vw, 40px); line-height:1; letter-spacing:.8px;
+                text-transform:uppercase;
+              }
+              .cta-line1 strong{font-weight:900}
+              .cta-line2{
+                display:block; margin-top:10px; font-size:clamp(12px, 1.6vw, 16px); letter-spacing:.4px;
+                color:#7a008f; text-transform:uppercase
+              }
+              .payments{display:flex; align-items:center; justify-content:center; gap:18px; margin:18px auto 0; flex-wrap:wrap}
+              .payments .pp{
+                display:inline-flex; align-items:center; justify-content:center; padding:14px 18px; border-radius:16px;
+                background:#fff; color:#0a0a0a; font-weight:800; box-shadow:var(--shadow); min-width:170px;
+              }
+              .cards{display:inline-flex; gap:10px; flex-wrap:wrap}
+              .cards span{
+                display:inline-flex; align-items:center; justify-content:center; min-width:120px; padding:12px 14px;
+                border-radius:12px; background:#fff; box-shadow:var(--shadow); font-weight:800; color:#222; font-size:14px;
+              }
+              @media (max-width:760px){
+                .cta-bundle{padding-bottom:96px}
+                .cta-bundle .panel{height:240px; bottom:140px}
+                .products img{height:210px}
+                .badge{transform:scale(.92)}
+              }
+              @media (max-width:520px){
+                .products{gap:10px}
+                .products img{height:170px}
+                .badge{font-size:12px; padding:8px 12px}
+                .badge.shipping{left:10px} .badge.save{right:10px}
+              }
+            `}</style>
             
             {/* 3 and 1 Bottle Packages */}
             <div className="grid grid-cols-2 gap-4 md:gap-6">
