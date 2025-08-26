@@ -73,6 +73,25 @@ const PurchaseSection: React.FC = () => {
             
             {/* Main Offer Image */}
             <div className="text-center mb-8">
+              {/* Claim Offer Button */}
+              <div className="mb-6">
+                <button 
+                  onClick={() => handlePackageClick('6-bottle')}
+                  className="bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-black font-black text-lg md:text-xl py-4 px-8 rounded-xl shadow-2xl transition-all duration-300 transform hover:scale-105 pulse-button mb-3"
+                  style={{
+                    boxShadow: '0 0 20px rgba(255, 215, 0, 0.6), 0 0 40px rgba(255, 215, 0, 0.4), 0 0 60px rgba(255, 215, 0, 0.2)',
+                    textShadow: '1px 1px 2px rgba(0, 0, 0, 0.3)'
+                  }}
+                >
+                  CLICK HERE TO CLAIM THIS OFFER NOW
+                </button>
+                <div className="text-center">
+                  <p className="text-sm md:text-base text-gray-600 font-semibold">
+                    YOU HAVE 180-DAY MONEY BACK GUARANTEE - NO QUESTIONS ASKED
+                  </p>
+                </div>
+              </div>
+              
               <img 
                 src="https://i.imgur.com/onmlM47.png" 
                 alt="Claim Offer Now" 
