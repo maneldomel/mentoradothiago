@@ -75,20 +75,40 @@ const PurchaseSection: React.FC = () => {
             <div className="text-center mb-8">
               {/* Claim Offer Button */}
               <div className="mb-6">
-                <button 
-                  onClick={() => handlePackageClick('6-bottle')}
-                  className="bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-black font-black text-lg md:text-xl py-4 px-8 rounded-xl shadow-2xl transition-all duration-300 transform hover:scale-105 pulse-button mb-3"
-                  style={{
-                    boxShadow: '0 0 20px rgba(255, 215, 0, 0.6), 0 0 40px rgba(255, 215, 0, 0.4), 0 0 60px rgba(255, 215, 0, 0.2)',
-                    textShadow: '1px 1px 2px rgba(0, 0, 0, 0.3)'
-                  }}
-                >
-                  CLICK HERE TO CLAIM THIS OFFER NOW
-                </button>
                 <div className="text-center">
-                  <p className="text-sm md:text-base text-gray-600 font-semibold">
-                    YOU HAVE 180-DAY MONEY BACK GUARANTEE - NO QUESTIONS ASKED
-                  </p>
+                  <a 
+                    href="https://SEU-LINK-DE-CHECKOUT.com" 
+                    target="_blank" 
+                    rel="noopener"
+                    style={{
+                      display: 'inline-block',
+                      background: 'linear-gradient(180deg, #FFD400 0%, #FFB800 100%)',
+                      padding: '22px 40px',
+                      borderRadius: '18px',
+                      boxShadow: '0 0 25px rgba(255, 212, 0, 0.8)',
+                      textAlign: 'center',
+                      textDecoration: 'none',
+                      fontFamily: 'Arial, Helvetica, sans-serif',
+                      fontWeight: '900',
+                      fontSize: '32px',
+                      color: '#9A00C8',
+                      letterSpacing: '1px',
+                      textTransform: 'uppercase'
+                    }}
+                  >
+                    CLICK HERE TO CLAIM <span style={{ color: '#3D003D' }}>THIS</span> OFFER
+                    <br />
+                    <span style={{
+                      display: 'block',
+                      fontSize: '16px',
+                      fontWeight: '700',
+                      marginTop: '6px',
+                      color: '#B300D0',
+                      textTransform: 'uppercase'
+                    }}>
+                      YOU HAVE 180-DAY MONEY GUARANTEE – NO QUESTIONS ASKED
+                    </span>
+                  </a>
                 </div>
               </div>
               
