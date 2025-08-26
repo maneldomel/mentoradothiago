@@ -84,7 +84,7 @@ const PurchaseSection: React.FC = () => {
               {/* Button Overlapping Image - Higher Position */}
               <div className="-mt-12 flex justify-center relative">
                 {/* Glow Effect */}
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-24 sm:w-96 sm:h-28 md:w-112 md:h-32 bg-yellow-400 rounded-full blur-3xl opacity-40 animate-pulse"></div>
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-32 sm:w-112 sm:h-36 md:w-128 md:h-40 bg-yellow-400 rounded-full blur-3xl opacity-60 animate-pulse"></div>
                 
                 <img 
                   src="https://i.imgur.com/BvHFk1Y.png" 
