@@ -101,7 +101,7 @@ const PurchaseSection: React.FC = () => {
               {/* 3 Bottle Package */}
               <div className="text-center">
                 <img 
-                  src="https://i.imgur.com/szoTmzV.png" 
+                  src="https://i.imgur.com/RjlemNX.png" 
                   alt="3 Bottles of Proaxion" 
                   onClick={() => handlePackageClick('3-bottle')}
                   className="w-full h-auto cursor-pointer transition-all duration-200 transform hover:scale-105 max-w-md mx-auto"
