@@ -73,12 +73,22 @@ const PurchaseSection: React.FC = () => {
             
             {/* Main Offer Image */}
             <div className="text-center mb-8">
-              <img 
-                src="https://i.imgur.com/onmlM47.png" 
-                alt="Claim Offer Now" 
-                onClick={() => handlePackageClick('6-bottle')}
-                className="w-full max-w-6xl mx-auto h-auto cursor-pointer transition-all duration-200 transform hover:scale-105"
-              />
+              <div className="relative inline-block">
+                <img 
+                  src="https://i.imgur.com/onmlM47.png" 
+                  alt="Claim Offer Now" 
+                  className="w-full max-w-6xl mx-auto h-auto"
+                />
+                {/* Overlay Button */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <img 
+                    src="https://i.imgur.com/BvHFk1Y.png" 
+                    alt="Order Now Button" 
+                    onClick={() => handlePackageClick('6-bottle')}
+                    className="cursor-pointer transition-all duration-200 transform hover:scale-105 hover:shadow-xl max-w-xs sm:max-w-sm md:max-w-md"
+                  />
+                </div>
+              </div>
             </div>
             
             {/* 3 and 1 Bottle Packages */}
