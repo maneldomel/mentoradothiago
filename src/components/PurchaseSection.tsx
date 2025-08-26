@@ -90,7 +90,7 @@ const PurchaseSection: React.FC = () => {
                   className="cursor-pointer transition-all duration-200 transform hover:scale-105 max-w-xs sm:max-w-sm md:max-w-md relative z-10 pulse-button"
                 />
                 {/* Glow effect positioned exactly behind the PNG */}
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-yellow-400 rounded-full blur-2xl opacity-30 scale-110 animate-pulse w-full h-full max-w-xs sm:max-w-sm md:max-w-md aspect-square"></div>
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-yellow-400 blur-2xl opacity-30 animate-pulse w-48 h-12 sm:w-56 sm:h-14 md:w-64 md:h-16 rounded-full"></div>
               </div>
             </div>
             
