@@ -114,7 +114,7 @@ const PurchaseSection: React.FC = () => {
                   src="https://i.imgur.com/nW4bkrD.png" 
                   alt="1 Bottle of Proaxion" 
                   onClick={() => handlePackageClick('1-bottle')}
-                  className="w-full h-auto cursor-pointer transition-all duration-200 transform hover:scale-105 max-w-sm mx-auto"
+                  className="w-full h-auto cursor-pointer transition-all duration-200 transform hover:scale-105 max-w-xs mx-auto"
                 />
               </div>
             </div>
