@@ -87,7 +87,7 @@ const PurchaseSection: React.FC = () => {
                   src="https://i.imgur.com/BvHFk1Y.png" 
                   alt="Order Now Button" 
                   onClick={() => handlePackageClick('6-bottle')}
-                  className="cursor-pointer transition-all duration-200 transform hover:scale-105 hover:shadow-xl max-w-xs sm:max-w-sm md:max-w-md"
+                  className="cursor-pointer transition-all duration-200 transform hover:scale-105 max-w-xs sm:max-w-sm md:max-w-md"
                 />
               </div>
             </div>
