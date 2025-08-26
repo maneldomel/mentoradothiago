@@ -95,8 +95,8 @@ const PurchaseSection: React.FC = () => {
               </div>
             </div>
             
-            {/* 3 and 1 Bottle Packages - Vertical Layout */}
-            <div className="flex flex-col items-center space-y-6 md:space-y-8 max-w-4xl mx-auto">
+            {/* 3 and 1 Bottle Packages */}
+            <div className="grid grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto">
               
               {/* 3 Bottle Package */}
               <div className="text-center">
