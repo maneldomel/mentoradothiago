@@ -1,5 +1,6 @@
 import React from 'react';
 import { Volume2, Clock } from 'lucide-react';
+import TestimonialsCarousel from './TestimonialsCarousel';
 
 const HeroSection: React.FC = () => {
   return (
@@ -83,7 +84,7 @@ const HeroSection: React.FC = () => {
               </div>
               
               <p className="text-xl font-bold text-magenta-600 text-center">
-                But <span className="text-transparent bg-gradient-to-r from-magenta-600 to-magenta-400 bg-clip-text">PROAXION</span> changes everything.
+                But <span className="text-transparent bg-gradient-to-r from-magenta-600 to-magenta-400 bg-clip-text">PEAXION</span> changes everything.
               </p>
             </div>
           </div>
@@ -103,7 +104,7 @@ const HeroSection: React.FC = () => {
               </div>
               
               <p className="text-center">
-                This exact formula has now been concentrated into <span className="text-xl font-bold text-transparent bg-gradient-to-r from-magenta-600 to-magenta-400 bg-clip-text">PROAXION</span> — a discreet, liquid drop supplement you take daily.
+                This exact formula has now been concentrated into <span className="text-xl font-bold text-transparent bg-gradient-to-r from-magenta-600 to-magenta-400 bg-clip-text">PEAXION</span> — a discreet, liquid drop supplement you take daily.
               </p>
             </div>
           </div>
@@ -138,11 +139,19 @@ const HeroSection: React.FC = () => {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+      
+      {/* Testimonials Section */}
+      <TestimonialsCarousel />
+      
+      <div className="container mx-auto px-4 py-8 md:py-16 max-w-6xl relative z-10">
+        <div className="max-w-4xl mx-auto space-y-8 md:space-y-12">
 
           {/* Benefits (Paint the Dream) */}
           <div className="bg-gradient-to-br from-magenta-50 to-magenta-100 rounded-2xl shadow-xl p-6 md:p-8 border border-magenta-200">
             <h2 className="text-2xl md:text-3xl font-black text-magenta-700 mb-6 text-center">
-              With <span className="text-transparent bg-gradient-to-r from-magenta-600 to-magenta-400 bg-clip-text">PROAXION</span>, you will:
+              With <span className="text-transparent bg-gradient-to-r from-magenta-600 to-magenta-400 bg-clip-text">PEAXION</span>, you will:
             </h2>
             
             <div className="grid md:grid-cols-2 gap-4">
@@ -183,7 +192,7 @@ const HeroSection: React.FC = () => {
             </h2>
             
             <div className="space-y-4 text-lg text-gray-700 leading-relaxed text-center">
-              <p>Right now, for a limited time, you can secure <span className="font-bold text-yellow-600">PROAXION at an exclusive launch discount</span>.</p>
+              <p>Right now, for a limited time, you can secure <span className="font-bold text-yellow-600">PEAXION at an exclusive launch discount</span>.</p>
               
               <div className="bg-red-100 border border-red-400 rounded-lg p-4">
                 <p className="font-bold text-red-700">
@@ -200,33 +209,11 @@ const HeroSection: React.FC = () => {
             </h2>
             
             <div className="text-center space-y-4 text-lg text-gray-700 leading-relaxed">
-              <p className="font-bold text-green-600">Try PROAXION completely risk-free.</p>
+              <p className="font-bold text-green-600">Try PEAXION completely risk-free.</p>
               <p>If you don't experience <span className="font-bold text-green-600">harder, longer-lasting erections within 30 days</span>, we'll refund every single penny — <span className="font-bold text-green-600">no questions asked</span>.</p>
             </div>
           </div>
 
-          {/* Call to Action (Hard Close) */}
-          <div className="bg-gradient-to-br from-red-100 to-red-200 rounded-2xl shadow-xl p-6 md:p-8 border-2 border-red-400 text-center">
-            <div className="mb-6">
-              <p className="text-xl md:text-2xl font-bold text-red-700 mb-4">
-                ⚠️ Don't let impotence steal another day of your life.
-              </p>
-              <p className="text-lg text-gray-700 leading-relaxed">
-                Click the button below, claim your bottles of PROAXION right now, and join the <span className="font-bold text-red-600">47,000+ men who already cured their impotence forever</span>.
-              </p>
-            </div>
-            
-            <div className="inline-block">
-              <div className="relative">
-                {/* Glow Effect */}
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-20 bg-yellow-400 rounded-full blur-xl opacity-30 animate-pulse"></div>
-                
-                <button className="relative z-10 bg-gradient-to-r from-magenta-600 to-magenta-700 hover:from-magenta-700 hover:to-magenta-800 text-white font-black text-xl md:text-2xl py-4 px-8 md:px-12 rounded-xl shadow-2xl transition-all duration-200 transform hover:scale-105 pulse-button">
-                  👉 CLAIM YOUR PROAXION NOW
-                </button>
-              </div>
-            </div>
-          </div>
         </div>
 
         {/* Hidden Video Section - Keep for later use */}
