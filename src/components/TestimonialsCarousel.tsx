@@ -1,27 +1,22 @@
 import React, { useCallback } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Play, X } from 'lucide-react';
 import { Testimonial, getActiveTestimonials } from '../lib/testimonials';
 
-// VTurb video configurations
-const vTurbVideos = [
-  {
-    id: 'vid-68af4b59040f0b0ec4ae0210',
-    scriptSrc: 'https://scripts.converteai.net/f84805a4-2184-4076-90a5-aec239b74ab8/players/68af4b59040f0b0ec4ae0210/v4/player.js'
-  },
-  {
-    id: 'vid-68af4b53040f0b0ec4ae0203',
-    scriptSrc: 'https://scripts.converteai.net/f84805a4-2184-4076-90a5-aec239b74ab8/players/68af4b53040f0b0ec4ae0203/v4/player.js'
-  },
-  {
-    id: 'vid-68af4b4dc3d8b7bced8cfe19',
-    scriptSrc: 'https://scripts.converteai.net/f84805a4-2184-4076-90a5-aec239b74ab8/players/68af4b4dc3d8b7bced8cfe19/v4/player.js'
-  }
-];
+const getYouTubeThumbnail = (url: string): string => {
+  const videoId = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/);
+  return videoId ? `https://img.youtube.com/vi/${videoId[1]}/maxresdefault.jpg` : '';
+};
+
+const getYouTubeEmbedUrl = (url: string): string => {
+  const videoId = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/);
+  return videoId ? `https://www.youtube.com/embed/${videoId[1]}?autoplay=1&rel=0` : '';
+};
 
 const TestimonialsCarousel: React.FC = () => {
   const [testimonials, setTestimonials] = React.useState<Testimonial[]>([]);
   const [loading, setLoading] = React.useState(true);
+  const [playingVideo, setPlayingVideo] = React.useState<string | null>(null);
 
   const [emblaRef, emblaApi] = useEmblaCarousel({ 
     loop: true,
@@ -64,18 +59,13 @@ const TestimonialsCarousel: React.FC = () => {
     if (emblaApi) emblaApi.scrollNext();
   }, [emblaApi]);
 
-  // Load VTurb scripts dynamically
-  React.useEffect(() => {
-    vTurbVideos.forEach((video) => {
-      // Check if script is already loaded
-      if (!document.querySelector(`script[src="${video.scriptSrc}"]`)) {
-        const script = document.createElement('script');
-        script.src = video.scriptSrc;
-        script.async = true;
-        document.head.appendChild(script);
-      }
-    });
-  }, []);
+  const handleVideoPlay = (testimonialId: string) => {
+    setPlayingVideo(testimonialId);
+  };
+
+  const handleVideoClose = () => {
+    setPlayingVideo(null);
+  };
 
   if (loading) {
     return (
@@ -120,13 +110,46 @@ const TestimonialsCarousel: React.FC = () => {
                       </div>
                     </div>
 
-                    {/* VTurb Video Player */}
-                    <div className="mb-4">
-                      <div 
-                        dangerouslySetInnerHTML={{
-                          __html: `<vturb-smartplayer id="${vTurbVideos[index % vTurbVideos.length].id}" style="display: block; margin: 0 auto; width: 100%; border-radius: 12px; overflow: hidden;"></vturb-smartplayer>`
-                        }}
-                      />
+                    {/* Video Thumbnail */}
+                    <div 
+                      className="relative mb-4 group cursor-pointer"
+                      onClick={() => handleVideoPlay(testimonial.id)}
+                    >
+                      {playingVideo === testimonial.id ? (
+                        <div className="aspect-video bg-black rounded-xl overflow-hidden relative">
+                          <iframe
+                            src={getYouTubeEmbedUrl(testimonial.youtube_url)}
+                            className="w-full h-full"
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                          />
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleVideoClose();
+                            }}
+                            className="absolute top-2 right-2 w-8 h-8 bg-black bg-opacity-70 hover:bg-opacity-90 rounded-full flex items-center justify-center transition-all duration-200"
+                          >
+                            <X className="w-4 h-4 text-white" />
+                          </button>
+                        </div>
+                      ) : (
+                        <div className="aspect-video bg-gray-200 rounded-xl overflow-hidden">
+                          <img 
+                            src={getYouTubeThumbnail(testimonial.youtube_url)} 
+                            alt={`${testimonial.name} testimonial`}
+                            onError={(e) => { (e.target as HTMLImageElement).src = 'https://images.pexels.com/photos/1181690/pexels-photo-1181690.jpeg?auto=compress&cs=tinysrgb&w=400&h=225'; }}
+                            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          />
+                          {/* Play Button Overlay */}
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <div className="w-16 h-16 bg-magenta-600 bg-opacity-90 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 group-hover:scale-110 group-hover:bg-magenta-700">
+                              <Play className="w-6 h-6 text-white ml-1" fill="white" />
+                            </div>
+                          </div>
+                        </div>
+                      )}
                     </div>
 
                     {/* Caption */}
