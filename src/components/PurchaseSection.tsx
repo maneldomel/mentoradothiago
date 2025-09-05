@@ -47,7 +47,7 @@ const PurchaseSection: React.FC = () => {
               {/* Product Name */}
               <div className="text-center mb-4 sm:mb-5">
                 <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white leading-none px-2">
-                  BLUEDROPS
+                  PEAXION
                 </h3>
                 <p className="text-white/80 text-base sm:text-lg md:text-xl font-bold tracking-wide -mt-1">
                   6 BOTTLE PACKAGE
