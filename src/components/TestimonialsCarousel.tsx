@@ -3,19 +3,19 @@ import useEmblaCarousel from 'embla-carousel-react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Testimonial, getActiveTestimonials } from '../lib/testimonials';
 
-// VTurb video configurations - ready for JavaScript integration
+// VTurb video configurations with real video IDs
 const vTurbVideos = [
   {
-    id: 'vid-placeholder-1',
-    scriptSrc: 'https://scripts.converteai.net/placeholder/players/placeholder-1/v4/player.js'
+    id: 'vid-68af4b59040f0b0ec4ae0210',
+    scriptSrc: 'https://scripts.converteai.net/f84805a4-2184-4076-90a5-aec239b74ab8/players/68af4b59040f0b0ec4ae0210/v4/player.js'
   },
   {
-    id: 'vid-placeholder-2', 
-    scriptSrc: 'https://scripts.converteai.net/placeholder/players/placeholder-2/v4/player.js'
+    id: 'vid-68af4b53040f0b0ec4ae0203', 
+    scriptSrc: 'https://scripts.converteai.net/f84805a4-2184-4076-90a5-aec239b74ab8/players/68af4b53040f0b0ec4ae0203/v4/player.js'
   },
   {
-    id: 'vid-placeholder-3',
-    scriptSrc: 'https://scripts.converteai.net/placeholder/players/placeholder-3/v4/player.js'
+    id: 'vid-68af4b4dc3d8b7bced8cfe19',
+    scriptSrc: 'https://scripts.converteai.net/f84805a4-2184-4076-90a5-aec239b74ab8/players/68af4b4dc3d8b7bced8cfe19/v4/player.js'
   }
 ];
 
@@ -142,27 +142,15 @@ const TestimonialsCarousel: React.FC = () => {
                       {(() => {
                         const videoConfig = getVideoConfig(index);
                         return (
-                          <div 
-                            id={`vturb-container-${index}`}
-                            className="w-full h-full flex items-center justify-center"
-                            data-video-id={videoConfig.id}
-                            data-script-src={videoConfig.scriptSrc}
-                          >
-                            {/* VTurb Smart Player will be inserted here */}
-                            <div className="text-center p-4">
-                              <div className="w-16 h-16 bg-magenta-600 rounded-full flex items-center justify-center mx-auto mb-3">
-                                <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
-                                </svg>
-                              </div>
-                              <p className="text-gray-600 text-sm font-medium">
-                                VTurb Player Ready
-                              </p>
-                              <p className="text-gray-500 text-xs mt-1">
-                                Video ID: {videoConfig.id}
-                              </p>
-                            </div>
-                          </div>
+                          <vturb-smartplayer 
+                            id={videoConfig.id}
+                            style={{
+                              display: 'block',
+                              margin: '0 auto',
+                              width: '100%',
+                              height: '100%'
+                            }}
+                          />
                         );
                       })()}
                     </div>
