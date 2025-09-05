@@ -228,13 +228,6 @@ const TestimonialsCarousel: React.FC = () => {
                           </div>
                         </div>
 
-                        {/* Live Badge */}
-                        <div className="absolute top-4 left-4">
-                          <div className="bg-red-600 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
-                            <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
-                            LIVE STORY
-                          </div>
-                        </div>
                       </div>
 
                       {/* Content Section */}
