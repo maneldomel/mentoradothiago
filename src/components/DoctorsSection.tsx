@@ -1,22 +1,30 @@
 import React, { useCallback } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
-import { ChevronLeft, ChevronRight, Play, X, Award, MapPin, Stethoscope, GraduationCap } from 'lucide-react';
+import { ChevronLeft, ChevronRight, MapPin, Stethoscope, GraduationCap } from 'lucide-react';
 import { Doctor, getActiveDoctors } from '../lib/doctors';
 
-const getYouTubeThumbnail = (url: string): string => {
-  const videoId = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/);
-  return videoId ? `https://img.youtube.com/vi/${videoId[1]}/maxresdefault.jpg` : '';
-};
+// VTurb video configurations for doctors
+const doctorVTurbVideos = [
+  {
+    id: 'vid-doctor-1',
+    scriptSrc: 'https://scripts.converteai.net/f84805a4-2184-4076-90a5-aec239b74ab8/players/doctor-1/v4/player.js'
+  },
+  {
+    id: 'vid-doctor-2', 
+    scriptSrc: 'https://scripts.converteai.net/f84805a4-2184-4076-90a5-aec239b74ab8/players/doctor-2/v4/player.js'
+  },
+  {
+    id: 'vid-doctor-3',
+    scriptSrc: 'https://scripts.converteai.net/f84805a4-2184-4076-90a5-aec239b74ab8/players/doctor-3/v4/player.js'
+  }
+];
 
-const getYouTubeEmbedUrl = (url: string): string => {
-  const videoId = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/);
-  return videoId ? `https://www.youtube.com/embed/${videoId[1]}?autoplay=1&rel=0` : '';
-};
 
 const DoctorsSection: React.FC = () => {
   const [doctors, setDoctors] = React.useState<Doctor[]>([]);
   const [loading, setLoading] = React.useState(true);
-  const [playingVideo, setPlayingVideo] = React.useState<string | null>(null);
+  const [visibleSlides, setVisibleSlides] = React.useState<Set<number>>(new Set([0]));
+  const [loadedScripts, setLoadedScripts] = React.useState<Set<string>>(new Set());
 
   const [emblaRef, emblaApi] = useEmblaCarousel({ 
     loop: true,
@@ -52,6 +60,84 @@ const DoctorsSection: React.FC = () => {
     };
   }, []);
 
+  // Load VTurb script for specific video
+  const loadVTurbScript = React.useCallback((scriptSrc: string, videoId: string) => {
+    if (loadedScripts.has(videoId)) {
+      return;
+    }
+
+    const script = document.createElement('script');
+    script.src = scriptSrc;
+    script.async = true;
+    script.onload = () => {
+      setLoadedScripts(prev => new Set(prev).add(videoId));
+    };
+    document.head.appendChild(script);
+  }, [loadedScripts]);
+
+  // Remove VTurb script for specific video
+  const removeVTurbScript = React.useCallback((scriptSrc: string, videoId: string) => {
+    const existingScript = document.querySelector(`script[src="${scriptSrc}"]`);
+    if (existingScript) {
+      existingScript.remove();
+    }
+    
+    // Remove the video element if it exists
+    const videoElement = document.getElementById(videoId);
+    if (videoElement) {
+      videoElement.innerHTML = '';
+    }
+    
+    setLoadedScripts(prev => {
+      const newSet = new Set(prev);
+      newSet.delete(videoId);
+      return newSet;
+    });
+  }, []);
+
+  // Track visible slides and load/unload scripts accordingly
+  React.useEffect(() => {
+    if (!emblaApi || doctors.length === 0) return;
+
+    const updateVisibleSlides = () => {
+      const slidesInView = emblaApi.slidesInView();
+      const newVisibleSlides = new Set(slidesInView);
+      
+      // Load scripts for visible slides
+      slidesInView.forEach(index => {
+        const videoConfig = doctorVTurbVideos[index % doctorVTurbVideos.length];
+        if (videoConfig) {
+          loadVTurbScript(videoConfig.scriptSrc, videoConfig.id);
+        }
+      });
+      
+      // Unload scripts for slides that are no longer visible
+      visibleSlides.forEach(index => {
+        if (!newVisibleSlides.has(index)) {
+          const videoConfig = doctorVTurbVideos[index % doctorVTurbVideos.length];
+          if (videoConfig) {
+            removeVTurbScript(videoConfig.scriptSrc, videoConfig.id);
+          }
+        }
+      });
+      
+      setVisibleSlides(newVisibleSlides);
+    };
+
+    // Initial load
+    updateVisibleSlides();
+    
+    // Listen for slide changes
+    emblaApi.on('slidesInView', updateVisibleSlides);
+    emblaApi.on('select', updateVisibleSlides);
+    
+    return () => {
+      emblaApi.off('slidesInView', updateVisibleSlides);
+      emblaApi.off('select', updateVisibleSlides);
+    };
+  }, [emblaApi, doctors, loadVTurbScript, removeVTurbScript, visibleSlides]);
+
+  const getVideoConfig = (index: number) => doctorVTurbVideos[index % doctorVTurbVideos.length];
   const scrollPrev = useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev();
   }, [emblaApi]);
@@ -60,13 +146,6 @@ const DoctorsSection: React.FC = () => {
     if (emblaApi) emblaApi.scrollNext();
   }, [emblaApi]);
 
-  const handleVideoPlay = (doctorId: string) => {
-    setPlayingVideo(doctorId);
-  };
-
-  const handleVideoClose = () => {
-    setPlayingVideo(null);
-  };
 
   if (loading) {
     return (
@@ -143,50 +222,30 @@ const DoctorsSection: React.FC = () => {
 
                       {/* Video Section */}
                       <div className="relative bg-gray-900 aspect-video">
-                        {playingVideo === doctor.id ? (
-                          <div className="relative w-full h-full">
-                            <iframe
-                              src={getYouTubeEmbedUrl(doctor.youtube_url)}
-                              className="w-full h-full"
-                              frameBorder="0"
-                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                              allowFullScreen
-                            />
-                            <button
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                handleVideoClose();
+                        {/* VTurb Video Container - Only render if visible */}
+                        {visibleSlides.has(index) && (() => {
+                          const videoConfig = getVideoConfig(index);
+                          return (
+                            <vturb-smartplayer 
+                              id={videoConfig.id}
+                              style={{
+                                display: 'block',
+                                margin: '0 auto',
+                                width: '100%',
+                                height: '100%'
                               }}
-                              className="absolute top-4 right-4 w-10 h-10 bg-black bg-opacity-70 hover:bg-opacity-90 rounded-full flex items-center justify-center transition-all duration-200 z-10"
-                            >
-                              <X className="w-5 h-5 text-white" />
-                            </button>
-                          </div>
-                        ) : (
-                          <div 
-                            className="relative w-full h-full cursor-pointer group/video"
-                            onClick={() => handleVideoPlay(doctor.id)}
-                          >
-                            <img 
-                              src={getYouTubeThumbnail(doctor.youtube_url)} 
-                              alt={`${doctor.name} medical opinion`}
-                              onError={(e) => { (e.target as HTMLImageElement).src = 'https://images.pexels.com/photos/4173251/pexels-photo-4173251.jpeg?auto=compress&cs=tinysrgb&w=400&h=225'; }}
-                              className="w-full h-full object-cover transition-transform duration-300 group-hover/video:scale-105"
                             />
-                            
-                            {/* Play Button Overlay */}
-                            <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
-                              <div className="w-20 h-20 bg-blue-600 bg-opacity-90 rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 group-hover/video:scale-110 group-hover/video:bg-blue-700">
-                                <Play className="w-8 h-8 text-white ml-1" fill="white" />
+                          );
+                        })()}
+                        
+                        {/* Loading placeholder for non-visible slides */}
+                        {!visibleSlides.has(index) && (
+                          <div className="w-full h-full bg-gray-800 flex items-center justify-center">
+                            <div className="text-center">
+                              <div className="w-16 h-16 bg-blue-600 bg-opacity-90 rounded-full flex items-center justify-center shadow-lg mb-2">
+                                <GraduationCap className="w-6 h-6 text-white" />
                               </div>
-                            </div>
-
-                            {/* Medical Opinion Badge */}
-                            <div className="absolute top-4 left-4">
-                              <div className="bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
-                                <GraduationCap className="w-3 h-3" />
-                                MEDICAL OPINION
-                              </div>
+                              <p className="text-white text-sm">Loading medical opinion...</p>
                             </div>
                           </div>
                         )}
@@ -203,16 +262,6 @@ const DoctorsSection: React.FC = () => {
                           <div className="absolute -bottom-2 -right-2 text-4xl text-blue-200 font-serif leading-none rotate-180">"</div>
                         </div>
 
-                        {/* Credentials */}
-                        <div className="bg-blue-50 rounded-xl p-4 border border-blue-100">
-                          <div className="flex items-center gap-2 mb-2">
-                            <Award className="w-4 h-4 text-blue-600" />
-                            <span className="text-blue-800 font-semibold text-sm">Credentials</span>
-                          </div>
-                          <p className="text-blue-700 text-xs leading-relaxed">
-                            {doctor.credentials}
-                          </p>
-                        </div>
                       </div>
                     </div>
 
