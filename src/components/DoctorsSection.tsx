@@ -104,14 +104,14 @@ const DoctorsSection: React.FC = () => {
         </div>
 
         {/* Carousel Container */}
-        <div className="relative">
-          <div className="overflow-hidden" ref={emblaRef}>
+        <div className="relative overflow-visible">
+          <div className="overflow-visible" ref={emblaRef}>
             <div className="flex">
               {doctors.map((doctor) => (
-                <div key={doctor.id} className="flex-[0_0_100%] md:flex-[0_0_50%] lg:flex-[0_0_33.333%] px-3">
+                <div key={doctor.id} className="flex-[0_0_100%] md:flex-[0_0_50%] lg:flex-[0_0_33.333%] px-6 py-4">
                   <div className="group relative">
                     {/* Main Card */}
-                    <div className="bg-white rounded-3xl shadow-2xl border border-blue-100 overflow-hidden transform transition-all duration-500 hover:scale-105 hover:shadow-3xl">
+                    <div className="bg-white rounded-3xl shadow-2xl border border-blue-100 overflow-hidden transform transition-all duration-500 hover:scale-105 hover:shadow-[0_35px_60px_-15px_rgba(59,130,246,0.3)]">
                       
                       {/* Doctor Header */}
                       <div className="relative bg-gradient-to-br from-blue-600 to-blue-700 p-6 text-white">
@@ -223,8 +223,8 @@ const DoctorsSection: React.FC = () => {
                     </div>
 
                     {/* Floating Medical Icons */}
-                    <div className="absolute -top-2 -right-2 w-6 h-6 bg-blue-500 rounded-full opacity-20 group-hover:opacity-40 transition-opacity duration-300"></div>
-                    <div className="absolute -bottom-2 -left-2 w-4 h-4 bg-blue-300 rounded-full opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div>
+                    <div className="absolute -top-4 -right-4 w-10 h-10 bg-blue-500 rounded-full opacity-20 group-hover:opacity-40 transition-opacity duration-300 blur-sm"></div>
+                    <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-blue-300 rounded-full opacity-30 group-hover:opacity-50 transition-opacity duration-300 blur-sm"></div>
                   </div>
                 </div>
               ))}
@@ -233,14 +233,14 @@ const DoctorsSection: React.FC = () => {
 
           {/* Navigation Buttons */}
           <button
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 w-14 h-14 bg-white rounded-full shadow-xl flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-2xl z-10 border border-blue-100"
+            className="absolute left-2 top-1/2 transform -translate-y-1/2 w-14 h-14 bg-white rounded-full shadow-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-[0_25px_50px_-12px_rgba(59,130,246,0.4)] z-20 border border-blue-100"
             onClick={scrollPrev}
           >
             <ChevronLeft className="w-6 h-6 text-blue-700" />
           </button>
           
           <button
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 w-14 h-14 bg-white rounded-full shadow-xl flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-2xl z-10 border border-blue-100"
+            className="absolute right-2 top-1/2 transform -translate-y-1/2 w-14 h-14 bg-white rounded-full shadow-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-[0_25px_50px_-12px_rgba(59,130,246,0.4)] z-20 border border-blue-100"
             onClick={scrollNext}
           >
             <ChevronRight className="w-6 h-6 text-blue-700" />

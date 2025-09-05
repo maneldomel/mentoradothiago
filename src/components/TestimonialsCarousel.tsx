@@ -131,14 +131,14 @@ const TestimonialsCarousel: React.FC = () => {
         </div>
 
         {/* Carousel Container */}
-        <div className="relative">
-          <div className="overflow-hidden" ref={emblaRef}>
+        <div className="relative overflow-visible">
+          <div className="overflow-visible" ref={emblaRef}>
             <div className="flex">
               {testimonials.map((testimonial, index) => (
-                <div key={testimonial.id} className="flex-[0_0_100%] md:flex-[0_0_50%] lg:flex-[0_0_33.333%] px-3">
+                <div key={testimonial.id} className="flex-[0_0_100%] md:flex-[0_0_50%] lg:flex-[0_0_33.333%] px-6 py-4">
                   <div className="group relative">
                     {/* Main Card */}
-                    <div className="bg-gradient-to-br from-white to-gray-50 rounded-3xl shadow-xl border border-gray-100 overflow-hidden transform transition-all duration-500 hover:scale-105 hover:shadow-2xl">
+                    <div className="bg-gradient-to-br from-white to-gray-50 rounded-3xl shadow-2xl border border-gray-100 overflow-hidden transform transition-all duration-500 hover:scale-105 hover:shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)]">
                       
                       {/* Video Section */}
                       <div className="relative bg-gray-900 aspect-video">
@@ -220,8 +220,8 @@ const TestimonialsCarousel: React.FC = () => {
                     </div>
 
                     {/* Floating Elements */}
-                    <div className="absolute -top-3 -right-3 w-8 h-8 bg-magenta-500 rounded-full opacity-20 group-hover:opacity-40 transition-opacity duration-300"></div>
-                    <div className="absolute -bottom-3 -left-3 w-6 h-6 bg-magenta-300 rounded-full opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div>
+                    <div className="absolute -top-4 -right-4 w-12 h-12 bg-magenta-500 rounded-full opacity-20 group-hover:opacity-40 transition-opacity duration-300 blur-sm"></div>
+                    <div className="absolute -bottom-4 -left-4 w-8 h-8 bg-magenta-300 rounded-full opacity-30 group-hover:opacity-50 transition-opacity duration-300 blur-sm"></div>
                   </div>
                 </div>
               ))}
@@ -230,14 +230,14 @@ const TestimonialsCarousel: React.FC = () => {
 
           {/* Navigation Buttons */}
           <button
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 w-14 h-14 bg-white rounded-full shadow-xl flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-2xl z-10 border border-gray-100"
+            className="absolute left-2 top-1/2 transform -translate-y-1/2 w-14 h-14 bg-white rounded-full shadow-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.4)] z-20 border border-gray-100"
             onClick={scrollPrev}
           >
             <ChevronLeft className="w-6 h-6 text-gray-700" />
           </button>
           
           <button
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 w-14 h-14 bg-white rounded-full shadow-xl flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-2xl z-10 border border-gray-100"
+            className="absolute right-2 top-1/2 transform -translate-y-1/2 w-14 h-14 bg-white rounded-full shadow-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.4)] z-20 border border-gray-100"
             onClick={scrollNext}
           >
             <ChevronRight className="w-6 h-6 text-gray-700" />
