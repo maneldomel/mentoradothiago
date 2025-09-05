@@ -1,22 +1,28 @@
 import React, { useCallback } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
-import { ChevronLeft, ChevronRight, Play, X } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Testimonial, getActiveTestimonials } from '../lib/testimonials';
 
-const getYouTubeThumbnail = (url: string): string => {
-  const videoId = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/);
-  return videoId ? `https://img.youtube.com/vi/${videoId[1]}/maxresdefault.jpg` : '';
-};
-
-const getYouTubeEmbedUrl = (url: string): string => {
-  const videoId = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/);
-  return videoId ? `https://www.youtube.com/embed/${videoId[1]}?autoplay=1&rel=0` : '';
-};
+// VTurb video configurations - ready for JavaScript integration
+const vTurbVideos = [
+  {
+    id: 'vid-placeholder-1',
+    scriptSrc: 'https://scripts.converteai.net/placeholder/players/placeholder-1/v4/player.js'
+  },
+  {
+    id: 'vid-placeholder-2', 
+    scriptSrc: 'https://scripts.converteai.net/placeholder/players/placeholder-2/v4/player.js'
+  },
+  {
+    id: 'vid-placeholder-3',
+    scriptSrc: 'https://scripts.converteai.net/placeholder/players/placeholder-3/v4/player.js'
+  }
+];
 
 const TestimonialsCarousel: React.FC = () => {
   const [testimonials, setTestimonials] = React.useState<Testimonial[]>([]);
   const [loading, setLoading] = React.useState(true);
-  const [playingVideo, setPlayingVideo] = React.useState<string | null>(null);
+  const [scriptsLoaded, setScriptsLoaded] = React.useState<Set<string>>(new Set());
 
   const [emblaRef, emblaApi] = useEmblaCarousel({ 
     loop: true,
@@ -51,6 +57,35 @@ const TestimonialsCarousel: React.FC = () => {
     };
   }, []);
 
+  // Load VTurb scripts dynamically
+  const loadVTurbScript = useCallback((scriptSrc: string, videoId: string) => {
+    if (scriptsLoaded.has(videoId)) {
+      return;
+    }
+
+    const script = document.createElement('script');
+    script.src = scriptSrc;
+    script.async = true;
+    script.onload = () => {
+      setScriptsLoaded(prev => new Set(prev).add(videoId));
+    };
+    document.head.appendChild(script);
+  }, [scriptsLoaded]);
+
+  // Load scripts when testimonials are available
+  React.useEffect(() => {
+    if (testimonials.length > 0) {
+      testimonials.forEach((_, index) => {
+        const videoConfig = vTurbVideos[index % vTurbVideos.length];
+        if (videoConfig) {
+          loadVTurbScript(videoConfig.scriptSrc, videoConfig.id);
+        }
+      });
+    }
+  }, [testimonials, loadVTurbScript]);
+
+  const getVideoConfig = (index: number) => vTurbVideos[index % vTurbVideos.length];
+
   const scrollPrev = useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev();
   }, [emblaApi]);
@@ -58,14 +93,6 @@ const TestimonialsCarousel: React.FC = () => {
   const scrollNext = useCallback(() => {
     if (emblaApi) emblaApi.scrollNext();
   }, [emblaApi]);
-
-  const handleVideoPlay = (testimonialId: string) => {
-    setPlayingVideo(testimonialId);
-  };
-
-  const handleVideoClose = () => {
-    setPlayingVideo(null);
-  };
 
   if (loading) {
     return (
@@ -94,7 +121,7 @@ const TestimonialsCarousel: React.FC = () => {
         <div className="relative">
           <div className="overflow-hidden" ref={emblaRef}>
             <div className="flex">
-              {testimonials.map((testimonial) => (
+              {testimonials.map((testimonial, index) => (
                 <div key={testimonial.id} className="flex-[0_0_100%] md:flex-[0_0_50%] lg:flex-[0_0_33.333%] px-4">
                   <div className="bg-white rounded-2xl shadow-xl p-6 mx-4 my-8 transform transition-all duration-300 hover:scale-105">
                     {/* User Info */}
@@ -110,46 +137,34 @@ const TestimonialsCarousel: React.FC = () => {
                       </div>
                     </div>
 
-                    {/* Video Thumbnail */}
-                    <div 
-                      className="relative mb-4 group cursor-pointer"
-                      onClick={() => handleVideoPlay(testimonial.id)}
-                    >
-                      {playingVideo === testimonial.id ? (
-                        <div className="aspect-video bg-black rounded-xl overflow-hidden relative">
-                          <iframe
-                            src={getYouTubeEmbedUrl(testimonial.youtube_url)}
-                            className="w-full h-full"
-                            frameBorder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen
-                          />
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              handleVideoClose();
-                            }}
-                            className="absolute top-2 right-2 w-8 h-8 bg-black bg-opacity-70 hover:bg-opacity-90 rounded-full flex items-center justify-center transition-all duration-200"
+                    {/* VTurb Video Container */}
+                    <div className="relative mb-4 aspect-video bg-gray-100 rounded-xl overflow-hidden">
+                      {(() => {
+                        const videoConfig = getVideoConfig(index);
+                        return (
+                          <div 
+                            id={`vturb-container-${index}`}
+                            className="w-full h-full flex items-center justify-center"
+                            data-video-id={videoConfig.id}
+                            data-script-src={videoConfig.scriptSrc}
                           >
-                            <X className="w-4 h-4 text-white" />
-                          </button>
-                        </div>
-                      ) : (
-                        <div className="aspect-video bg-gray-200 rounded-xl overflow-hidden">
-                          <img 
-                            src={getYouTubeThumbnail(testimonial.youtube_url)} 
-                            alt={`${testimonial.name} testimonial`}
-                            onError={(e) => { (e.target as HTMLImageElement).src = 'https://images.pexels.com/photos/1181690/pexels-photo-1181690.jpeg?auto=compress&cs=tinysrgb&w=400&h=225'; }}
-                            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                          />
-                          {/* Play Button Overlay */}
-                          <div className="absolute inset-0 flex items-center justify-center">
-                            <div className="w-16 h-16 bg-magenta-600 bg-opacity-90 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 group-hover:scale-110 group-hover:bg-magenta-700">
-                              <Play className="w-6 h-6 text-white ml-1" fill="white" />
+                            {/* VTurb Smart Player will be inserted here */}
+                            <div className="text-center p-4">
+                              <div className="w-16 h-16 bg-magenta-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
+                                </svg>
+                              </div>
+                              <p className="text-gray-600 text-sm font-medium">
+                                VTurb Player Ready
+                              </p>
+                              <p className="text-gray-500 text-xs mt-1">
+                                Video ID: {videoConfig.id}
+                              </p>
                             </div>
                           </div>
-                        </div>
-                      )}
+                        );
+                      })()}
                     </div>
 
                     {/* Caption */}
