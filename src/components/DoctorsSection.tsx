@@ -246,22 +246,6 @@ const DoctorsSection: React.FC = () => {
             <ChevronRight className="w-6 h-6 text-blue-700" />
           </button>
         </div>
-
-        {/* Bottom Medical Stats */}
-        <div className="mt-16 grid grid-cols-3 gap-8 max-w-2xl mx-auto">
-          <div className="text-center">
-            <div className="text-3xl font-black text-blue-600 mb-2">25+</div>
-            <div className="text-sm text-gray-600 font-medium">Medical Experts</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl font-black text-blue-600 mb-2">89%</div>
-            <div className="text-sm text-gray-600 font-medium">Clinical Success</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl font-black text-blue-600 mb-2">FDA</div>
-            <div className="text-sm text-gray-600 font-medium">Compliant</div>
-          </div>
-        </div>
       </div>
     </div>
   );

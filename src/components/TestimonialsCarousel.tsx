@@ -243,22 +243,6 @@ const TestimonialsCarousel: React.FC = () => {
             <ChevronRight className="w-6 h-6 text-gray-700" />
           </button>
         </div>
-
-        {/* Bottom Stats */}
-        <div className="mt-16 grid grid-cols-3 gap-8 max-w-2xl mx-auto">
-          <div className="text-center">
-            <div className="text-3xl font-black text-magenta-600 mb-2">98%</div>
-            <div className="text-sm text-gray-600 font-medium">Success Rate</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl font-black text-magenta-600 mb-2">50K+</div>
-            <div className="text-sm text-gray-600 font-medium">Happy Customers</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl font-black text-magenta-600 mb-2">4.9★</div>
-            <div className="text-sm text-gray-600 font-medium">Average Rating</div>
-          </div>
-        </div>
       </div>
     </div>
   );
