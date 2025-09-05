@@ -22,7 +22,8 @@ const vTurbVideos = [
 const TestimonialsCarousel: React.FC = () => {
   const [testimonials, setTestimonials] = React.useState<Testimonial[]>([]);
   const [loading, setLoading] = React.useState(true);
-  const [scriptsLoaded, setScriptsLoaded] = React.useState<Set<string>>(new Set());
+  const [visibleSlides, setVisibleSlides] = React.useState<Set<number>>(new Set([0]));
+  const [loadedScripts, setLoadedScripts] = React.useState<Set<string>>(new Set());
 
   const [emblaRef, emblaApi] = useEmblaCarousel({ 
     loop: true,
@@ -58,9 +59,9 @@ const TestimonialsCarousel: React.FC = () => {
     };
   }, []);
 
-  // Load VTurb scripts dynamically
+  // Load VTurb script for specific video
   const loadVTurbScript = useCallback((scriptSrc: string, videoId: string) => {
-    if (scriptsLoaded.has(videoId)) {
+    if (loadedScripts.has(videoId)) {
       return;
     }
 
@@ -68,22 +69,72 @@ const TestimonialsCarousel: React.FC = () => {
     script.src = scriptSrc;
     script.async = true;
     script.onload = () => {
-      setScriptsLoaded(prev => new Set(prev).add(videoId));
+      setLoadedScripts(prev => new Set(prev).add(videoId));
     };
     document.head.appendChild(script);
-  }, [scriptsLoaded]);
+  }, [loadedScripts]);
 
-  // Load scripts when testimonials are available
+  // Remove VTurb script for specific video
+  const removeVTurbScript = useCallback((scriptSrc: string, videoId: string) => {
+    const existingScript = document.querySelector(`script[src="${scriptSrc}"]`);
+    if (existingScript) {
+      existingScript.remove();
+    }
+    
+    // Remove the video element if it exists
+    const videoElement = document.getElementById(videoId);
+    if (videoElement) {
+      videoElement.innerHTML = '';
+    }
+    
+    setLoadedScripts(prev => {
+      const newSet = new Set(prev);
+      newSet.delete(videoId);
+      return newSet;
+    });
+  }, []);
+
+  // Track visible slides and load/unload scripts accordingly
   React.useEffect(() => {
-    if (testimonials.length > 0) {
-      testimonials.forEach((_, index) => {
+    if (!emblaApi || testimonials.length === 0) return;
+
+    const updateVisibleSlides = () => {
+      const slidesInView = emblaApi.slidesInView();
+      const newVisibleSlides = new Set(slidesInView);
+      
+      // Load scripts for visible slides
+      slidesInView.forEach(index => {
         const videoConfig = vTurbVideos[index % vTurbVideos.length];
         if (videoConfig) {
           loadVTurbScript(videoConfig.scriptSrc, videoConfig.id);
         }
       });
-    }
-  }, [testimonials, loadVTurbScript]);
+      
+      // Unload scripts for slides that are no longer visible
+      visibleSlides.forEach(index => {
+        if (!newVisibleSlides.has(index)) {
+          const videoConfig = vTurbVideos[index % vTurbVideos.length];
+          if (videoConfig) {
+            removeVTurbScript(videoConfig.scriptSrc, videoConfig.id);
+          }
+        }
+      });
+      
+      setVisibleSlides(newVisibleSlides);
+    };
+
+    // Initial load
+    updateVisibleSlides();
+    
+    // Listen for slide changes
+    emblaApi.on('slidesInView', updateVisibleSlides);
+    emblaApi.on('select', updateVisibleSlides);
+    
+    return () => {
+      emblaApi.off('slidesInView', updateVisibleSlides);
+      emblaApi.off('select', updateVisibleSlides);
+    };
+  }, [emblaApi, testimonials, loadVTurbScript, removeVTurbScript, visibleSlides]);
 
   const getVideoConfig = (index: number) => vTurbVideos[index % vTurbVideos.length];
 
@@ -142,8 +193,8 @@ const TestimonialsCarousel: React.FC = () => {
                       
                       {/* Video Section */}
                       <div className="relative bg-gray-900 aspect-video">
-                        {/* VTurb Video Container */}
-                        {(() => {
+                        {/* VTurb Video Container - Only render if visible */}
+                        {visibleSlides.has(index) && (() => {
                           const videoConfig = getVideoConfig(index);
                           return (
                             <vturb-smartplayer 
@@ -157,6 +208,18 @@ const TestimonialsCarousel: React.FC = () => {
                             />
                           );
                         })()}
+                        
+                        {/* Loading placeholder for non-visible slides */}
+                        {!visibleSlides.has(index) && (
+                          <div className="w-full h-full bg-gray-800 flex items-center justify-center">
+                            <div className="text-center">
+                              <div className="w-16 h-16 bg-magenta-600 bg-opacity-90 rounded-full flex items-center justify-center shadow-lg mb-2">
+                                <Play className="w-6 h-6 text-white ml-1" fill="white" />
+                              </div>
+                              <p className="text-white text-sm">Loading video...</p>
+                            </div>
+                          </div>
+                        )}
                         
                         {/* Play Overlay */}
                         <div className="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
