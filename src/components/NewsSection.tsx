@@ -237,12 +237,12 @@ const NewsSection: React.FC = () => {
         <div className="container mx-auto px-4 max-w-6xl">
           {/* Section Header */}
           <div className="text-center mb-8">
-            <h2 className="text-4xl md:text-6xl font-black text-gray-900 mb-6 font-inter tracking-tight">
-              <span className="block">AS SEEN IN</span>
-              <span className="text-transparent bg-gradient-to-r from-magenta-600 to-magenta-400 bg-clip-text">THE NEWS</span>
+            <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4 font-inter tracking-tight">
+              <span className="text-transparent bg-gradient-to-r from-magenta-600 to-magenta-500 bg-clip-text">AS SEEN IN THE NEWS</span>
             </h2>
-            <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Major media outlets are reporting on the breakthrough discovery that's helping men reclaim their vitality
+            <h4 className="text-lg font-bold text-gray-800 mb-3">PEAXION Sales Surge 300% Following Viral Social Media Campaign</h4>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Market analysts report unprecedented demand for PEAXION following a viral social media campaign featuring real customer testimonials. The company has struggled to keep up with orders as demand continues to soar...
             </p>
           </div>
 
