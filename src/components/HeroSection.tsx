@@ -57,6 +57,20 @@ const HeroSection: React.FC = () => {
           </div>
         </div>
 
+        {/* Purchase Button */}
+        <div className="flex justify-center mb-6 md:mb-8">
+          <div className="w-full max-w-md px-4">
+            <button 
+              onClick={() => window.open('https://checkout.example.com', '_blank')}
+              className="relative w-full bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-black font-bold py-4 sm:py-5 px-4 sm:px-6 rounded-xl transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-lg text-lg sm:text-xl border-2 border-white/40 backdrop-blur-sm overflow-hidden purchase-button-main checkout-button"
+            >
+              <div className="absolute inset-0 rounded-xl border border-white/30 pointer-events-none"></div>
+              <span className="relative z-10">CLAIM OFFER NOW</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+            </button>
+          </div>
+        </div>
+
         {/* Video Notices */}
         <div className="max-w-sm sm:max-w-md mx-auto space-y-3 md:space-y-4 px-4">
           {/* Sound Notice */}
