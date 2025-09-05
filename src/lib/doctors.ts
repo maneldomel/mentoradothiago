@@ -76,7 +76,8 @@ export const getDoctors = (): Doctor[] => {
   try {
     const stored = localStorage.getItem(STORAGE_KEY);
     if (stored) {
-      return JSON.parse(stored);
+      // Force refresh with new data
+      localStorage.removeItem(STORAGE_KEY);
     }
     // If no data exists, initialize with default data
     localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultDoctors));
