@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
-import { ChevronLeft, ChevronRight, Play, MapPin, Star, CheckCircle, Volume2 } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Play, MapPin, Star, CheckCircle } from 'lucide-react';
 import { Testimonial, getActiveTestimonials } from '../lib/testimonials';
 
 // VTurb video configurations with real video IDs
@@ -22,7 +22,7 @@ const vTurbVideos = [
 const TestimonialsCarousel: React.FC = () => {
   const [testimonials, setTestimonials] = React.useState<Testimonial[]>([]);
   const [loading, setLoading] = React.useState(true);
-  const [clickedVideos, setClickedVideos] = React.useState<Set<number>>(new Set());
+  const [visibleSlides, setVisibleSlides] = React.useState<Set<number>>(new Set([0]));
   const [loadedScripts, setLoadedScripts] = React.useState<Set<string>>(new Set());
 
   const [emblaRef, emblaApi] = useEmblaCarousel({ 
@@ -74,15 +74,6 @@ const TestimonialsCarousel: React.FC = () => {
     document.head.appendChild(script);
   }, [loadedScripts]);
 
-  // Handle video click to load
-  const handleVideoClick = useCallback((index: number) => {
-    const videoConfig = vTurbVideos[index % vTurbVideos.length];
-    if (videoConfig && !clickedVideos.has(index)) {
-      setClickedVideos(prev => new Set(prev).add(index));
-      loadVTurbScript(videoConfig.scriptSrc, videoConfig.id);
-    }
-  }, [clickedVideos, loadVTurbScript]);
-
   // Remove VTurb script for specific video
   const removeVTurbScript = useCallback((scriptSrc: string, videoId: string) => {
     const existingScript = document.querySelector(`script[src="${scriptSrc}"]`);
@@ -102,6 +93,48 @@ const TestimonialsCarousel: React.FC = () => {
       return newSet;
     });
   }, []);
+
+  // Track visible slides and load/unload scripts accordingly
+  React.useEffect(() => {
+    if (!emblaApi || testimonials.length === 0) return;
+
+    const updateVisibleSlides = () => {
+      const slidesInView = emblaApi.slidesInView();
+      const newVisibleSlides = new Set(slidesInView);
+      
+      // Load scripts for visible slides
+      slidesInView.forEach(index => {
+        const videoConfig = vTurbVideos[index % vTurbVideos.length];
+        if (videoConfig) {
+          loadVTurbScript(videoConfig.scriptSrc, videoConfig.id);
+        }
+      });
+      
+      // Unload scripts for slides that are no longer visible
+      visibleSlides.forEach(index => {
+        if (!newVisibleSlides.has(index)) {
+          const videoConfig = vTurbVideos[index % vTurbVideos.length];
+          if (videoConfig) {
+            removeVTurbScript(videoConfig.scriptSrc, videoConfig.id);
+          }
+        }
+      });
+      
+      setVisibleSlides(newVisibleSlides);
+    };
+
+    // Initial load
+    updateVisibleSlides();
+    
+    // Listen for slide changes
+    emblaApi.on('slidesInView', updateVisibleSlides);
+    emblaApi.on('select', updateVisibleSlides);
+    
+    return () => {
+      emblaApi.off('slidesInView', updateVisibleSlides);
+      emblaApi.off('select', updateVisibleSlides);
+    };
+  }, [emblaApi, testimonials, loadVTurbScript, removeVTurbScript, visibleSlides]);
 
   const getVideoConfig = (index: number) => vTurbVideos[index % vTurbVideos.length];
 
@@ -160,8 +193,8 @@ const TestimonialsCarousel: React.FC = () => {
                       
                       {/* Video Section */}
                       <div className="relative bg-gray-900 aspect-video">
-                        {/* VTurb Video Container - Only render if clicked */}
-                        {clickedVideos.has(index) ? (() => {
+                        {/* VTurb Video Container - Only render if visible */}
+                        {visibleSlides.has(index) && (() => {
                           const videoConfig = getVideoConfig(index);
                           return (
                             <vturb-smartplayer 
@@ -174,39 +207,20 @@ const TestimonialsCarousel: React.FC = () => {
                               }}
                             />
                           );
-                        })() : (
-                          /* Preview Image with Play Button */
-                          <div 
-                            className="relative w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 cursor-pointer group"
-                            onClick={() => handleVideoClick(index)}
-                          >
-                            {/* Customer Avatar as Preview */}
-                            <div className="absolute inset-0 flex items-center justify-center">
-                              <img
-                                src={testimonial.avatar_url}
-                                alt={testimonial.name}
-                                className="w-24 h-24 rounded-full object-cover border-4 border-white/20 opacity-60 group-hover:opacity-80 transition-opacity duration-300"
-                              />
-                            </div>
+                        })()}
                         
-                            {/* Play Button Overlay */}
-                            <div className="absolute inset-0 flex items-center justify-center">
-                              <div className="w-20 h-20 bg-magenta-600 bg-opacity-90 rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform duration-300 border-4 border-white/30">
-                                <Play className="w-8 h-8 text-white ml-1" fill="white" />
+                        {/* Loading placeholder for non-visible slides */}
+                        {!visibleSlides.has(index) && (
+                          <div className="w-full h-full bg-gray-800 flex items-center justify-center">
+                            <div className="text-center">
+                              <div className="w-16 h-16 bg-magenta-600 bg-opacity-90 rounded-full flex items-center justify-center shadow-lg mb-2">
+                                <Play className="w-6 h-6 text-white ml-1" fill="white" />
                               </div>
-                            </div>
-
-                            {/* Click to Play Text */}
-                            <div className="absolute bottom-4 left-4 right-4">
-                              <div className="bg-black/60 backdrop-blur-sm rounded-lg px-3 py-2 text-center">
-                                <div className="flex items-center justify-center gap-2 text-white text-sm font-medium">
-                                  <Volume2 className="w-4 h-4" />
-                                  <span>Clique para assistir o depoimento</span>
-                                </div>
-                              </div>
+                              <p className="text-white text-sm">Loading video...</p>
                             </div>
                           </div>
                         )}
+                        
                       </div>
 
                       {/* Content Section */}
