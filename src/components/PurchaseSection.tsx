@@ -39,7 +39,7 @@ const PurchaseSection: React.FC = () => {
               <div className="flex justify-center mb-3 px-2">
                 <img 
                   src="https://i.imgur.com/SjS0wl1.png" 
-                  alt="BlueDrops 6 Bottle Pack"
+                  alt="PEAXION 6 Bottle Pack"
                   className="w-full h-auto object-contain drop-shadow-2xl max-h-48 sm:max-h-56 md:max-h-64 lg:max-h-72"
                 />
               </div>
