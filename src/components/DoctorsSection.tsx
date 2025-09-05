@@ -139,12 +139,6 @@ const DoctorsSection: React.FC = () => {
                           {doctor.location}
                         </div>
 
-                        {/* Medical Badge */}
-                        <div className="absolute top-4 right-4">
-                          <div className="bg-white bg-opacity-20 backdrop-blur-sm rounded-full px-3 py-1 text-xs font-bold">
-                            MEDICAL EXPERT
-                          </div>
-                        </div>
                       </div>
 
                       {/* Video Section */}
