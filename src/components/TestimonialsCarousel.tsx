@@ -178,24 +178,14 @@ const TestimonialsCarousel: React.FC = () => {
                       <div className="p-6">
                         {/* User Info */}
                         <div className="flex items-center gap-4 mb-4">
-                          <div className="relative">
-                            <img
-                              src={testimonial.avatar_url}
-                              alt={testimonial.name}
-                              className="w-14 h-14 rounded-full object-cover border-3 border-white shadow-lg"
-                            />
-                            <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 rounded-full border-2 border-white flex items-center justify-center">
-                              <CheckCircle className="w-3 h-3 text-white" />
-                            </div>
-                          </div>
-                          <div className="flex-1">
+                          <div className="flex-1 text-center">
                             <h3 className="text-lg font-bold text-gray-900">{testimonial.name}</h3>
                             <div className="flex items-center gap-1 text-gray-500 text-sm">
                               <MapPin className="w-4 h-4" />
                               {testimonial.city}, {testimonial.state}
                             </div>
                           </div>
-                          <div className="flex items-center gap-1">
+                          <div className="flex items-center justify-center gap-1 mt-2">
                             {[...Array(5)].map((_, i) => (
                               <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
                             ))}
