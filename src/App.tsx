@@ -6,7 +6,6 @@ import TestimonialsCarousel from './components/TestimonialsCarousel';
 import DoctorsSection from './components/DoctorsSection';
 import NewsSection from './components/NewsSection';
 import AdminRoute from './components/AdminRoute';
-import DevNavigation from './components/DevNavigation';
 
 const HomePage: React.FC = () => {
   return (
@@ -95,7 +94,6 @@ const HomePage: React.FC = () => {
 function App() {
   return (
     <Router>
-      <DevNavigation />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/admin" element={<AdminRoute />} />
