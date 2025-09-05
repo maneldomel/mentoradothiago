@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Play, MapPin, Star, CheckCircle } from 'lucide-react';
 import { Testimonial, getActiveTestimonials } from '../lib/testimonials';
 
 // VTurb video configurations with real video IDs
@@ -27,7 +27,8 @@ const TestimonialsCarousel: React.FC = () => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ 
     loop: true,
     align: 'center',
-    containScroll: 'trimSnaps'
+    containScroll: 'trimSnaps',
+    slidesToScroll: 1
   });
 
   React.useEffect(() => {
@@ -96,7 +97,7 @@ const TestimonialsCarousel: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="bg-gray-50 py-16 md:py-24 pb-20 md:pb-32 relative">
+      <div className="bg-white py-16 md:py-24 relative">
         <div className="container mx-auto px-4 max-w-6xl text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-magenta-600 mx-auto"></div>
         </div>
@@ -105,15 +106,27 @@ const TestimonialsCarousel: React.FC = () => {
   }
 
   return (
-    <div className="bg-gray-50 py-16 md:py-24 relative">
-      <div className="container mx-auto px-4 max-w-6xl">
+    <div className="bg-white py-16 md:py-24 relative overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-magenta-100 via-transparent to-magenta-50"></div>
+        <div className="absolute top-20 left-10 w-32 h-32 bg-magenta-200 rounded-full blur-3xl opacity-30"></div>
+        <div className="absolute bottom-20 right-10 w-40 h-40 bg-magenta-300 rounded-full blur-3xl opacity-20"></div>
+      </div>
+
+      <div className="container mx-auto px-4 max-w-7xl relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-4">
-          <h2 className="text-3xl md:text-5xl font-black text-gray-800 mb-4 font-inter tracking-tight">
-            <span className="block md:inline">REAL MEN</span><span className="hidden md:inline">, </span><span className="block md:inline text-transparent bg-gradient-to-r from-magenta-600 to-magenta-400 bg-clip-text">REAL RESULTS</span>
+        <div className="text-center mb-12 md:mb-16">
+          <div className="inline-flex items-center gap-2 bg-magenta-100 text-magenta-700 px-4 py-2 rounded-full text-sm font-bold mb-4">
+            <Star className="w-4 h-4 fill-current" />
+            CUSTOMER SUCCESS STORIES
+          </div>
+          <h2 className="text-4xl md:text-6xl font-black text-gray-900 mb-6 font-inter tracking-tight">
+            <span className="block">REAL MEN,</span>
+            <span className="text-transparent bg-gradient-to-r from-magenta-600 to-magenta-400 bg-clip-text">REAL RESULTS</span>
           </h2>
-          <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-4">
-            See how Proaxion has transformed the lives of thousands of men across America
+          <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            Watch how PEAXION transformed the lives of thousands of men across America
           </p>
         </div>
 
@@ -122,53 +135,100 @@ const TestimonialsCarousel: React.FC = () => {
           <div className="overflow-hidden" ref={emblaRef}>
             <div className="flex">
               {testimonials.map((testimonial, index) => (
-                <div key={testimonial.id} className="flex-[0_0_100%] md:flex-[0_0_50%] lg:flex-[0_0_33.333%] px-4">
-                  <div className="bg-white rounded-2xl shadow-xl p-6 mx-4 my-8 transform transition-all duration-300 hover:scale-105">
-                    {/* User Info */}
-                    <div className="flex items-center mb-4">
-                      <img 
-                        src={testimonial.avatar_url} 
-                        alt={testimonial.name}
-                        className="w-12 h-12 rounded-full object-cover mr-4"
-                      />
-                      <div>
-                        <h3 className="font-bold text-gray-800 font-inter">{testimonial.name}</h3>
-                        <p className="text-gray-500 text-sm">{testimonial.city}, {testimonial.state}</p>
+                <div key={testimonial.id} className="flex-[0_0_100%] md:flex-[0_0_50%] lg:flex-[0_0_33.333%] px-3">
+                  <div className="group relative">
+                    {/* Main Card */}
+                    <div className="bg-gradient-to-br from-white to-gray-50 rounded-3xl shadow-xl border border-gray-100 overflow-hidden transform transition-all duration-500 hover:scale-105 hover:shadow-2xl">
+                      
+                      {/* Video Section */}
+                      <div className="relative bg-gray-900 aspect-video">
+                        {/* VTurb Video Container */}
+                        {(() => {
+                          const videoConfig = getVideoConfig(index);
+                          return (
+                            <vturb-smartplayer 
+                              id={videoConfig.id}
+                              style={{
+                                display: 'block',
+                                margin: '0 auto',
+                                width: '100%',
+                                height: '100%'
+                              }}
+                            />
+                          );
+                        })()}
+                        
+                        {/* Play Overlay */}
+                        <div className="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <div className="w-16 h-16 bg-magenta-600 bg-opacity-90 rounded-full flex items-center justify-center shadow-lg">
+                            <Play className="w-6 h-6 text-white ml-1" fill="white" />
+                          </div>
+                        </div>
+
+                        {/* Live Badge */}
+                        <div className="absolute top-4 left-4">
+                          <div className="bg-red-600 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
+                            <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                            LIVE STORY
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Content Section */}
+                      <div className="p-6">
+                        {/* User Info */}
+                        <div className="flex items-center gap-4 mb-4">
+                          <div className="relative">
+                            <img
+                              src={testimonial.avatar_url}
+                              alt={testimonial.name}
+                              className="w-14 h-14 rounded-full object-cover border-3 border-white shadow-lg"
+                            />
+                            <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 rounded-full border-2 border-white flex items-center justify-center">
+                              <CheckCircle className="w-3 h-3 text-white" />
+                            </div>
+                          </div>
+                          <div className="flex-1">
+                            <h3 className="text-lg font-bold text-gray-900">{testimonial.name}</h3>
+                            <div className="flex items-center gap-1 text-gray-500 text-sm">
+                              <MapPin className="w-4 h-4" />
+                              {testimonial.city}, {testimonial.state}
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            {[...Array(5)].map((_, i) => (
+                              <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Quote */}
+                        <div className="relative">
+                          <div className="absolute -top-2 -left-2 text-6xl text-magenta-200 font-serif leading-none">"</div>
+                          <p className="text-gray-700 leading-relaxed italic pl-6 pr-2">
+                            {testimonial.caption}
+                          </p>
+                          <div className="absolute -bottom-4 -right-2 text-6xl text-magenta-200 font-serif leading-none rotate-180">"</div>
+                        </div>
+
+                        {/* Verified Badge */}
+                        <div className="mt-6 pt-4 border-t border-gray-100">
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-2">
+                              <CheckCircle className="w-5 h-5 text-green-500" />
+                              <span className="text-green-700 font-semibold text-sm">Verified Customer</span>
+                            </div>
+                            <div className="text-xs text-gray-400">
+                              Real Results • 2024
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
 
-                    {/* VTurb Video Container */}
-                    <div className="relative mb-4 aspect-video bg-gray-100 rounded-xl overflow-hidden">
-                      {(() => {
-                        const videoConfig = getVideoConfig(index);
-                        return (
-                          <vturb-smartplayer 
-                            id={videoConfig.id}
-                            style={{
-                              display: 'block',
-                              margin: '0 auto',
-                              width: '100%',
-                              height: '100%'
-                            }}
-                          />
-                        );
-                      })()}
-                    </div>
-
-                    {/* Caption */}
-                    <p className="text-gray-700 text-sm leading-relaxed italic">
-                      "{testimonial.caption}"
-                    </p>
-
-                    {/* Verified Badge */}
-                    <div className="mt-4 flex items-center">
-                      <div className="w-4 h-4 mr-2">
-                        <svg viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 text-green-600">
-                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                        </svg>
-                      </div>
-                      <span className="text-green-600 text-xs font-medium">Verified Customer</span>
-                    </div>
+                    {/* Floating Elements */}
+                    <div className="absolute -top-3 -right-3 w-8 h-8 bg-magenta-500 rounded-full opacity-20 group-hover:opacity-40 transition-opacity duration-300"></div>
+                    <div className="absolute -bottom-3 -left-3 w-6 h-6 bg-magenta-300 rounded-full opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div>
                   </div>
                 </div>
               ))}
@@ -177,21 +237,35 @@ const TestimonialsCarousel: React.FC = () => {
 
           {/* Navigation Buttons */}
           <button
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center transition-all duration-200 hover:scale-110 hover:shadow-xl z-10"
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 w-14 h-14 bg-white rounded-full shadow-xl flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-2xl z-10 border border-gray-100"
             onClick={scrollPrev}
           >
-            <ChevronLeft className="w-6 h-6 text-gray-600" />
+            <ChevronLeft className="w-6 h-6 text-gray-700" />
           </button>
           
           <button
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center transition-all duration-200 hover:scale-110 hover:shadow-xl z-10"
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 w-14 h-14 bg-white rounded-full shadow-xl flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-2xl z-10 border border-gray-100"
             onClick={scrollNext}
           >
-            <ChevronRight className="w-6 h-6 text-gray-600" />
+            <ChevronRight className="w-6 h-6 text-gray-700" />
           </button>
         </div>
 
-
+        {/* Bottom Stats */}
+        <div className="mt-16 grid grid-cols-3 gap-8 max-w-2xl mx-auto">
+          <div className="text-center">
+            <div className="text-3xl font-black text-magenta-600 mb-2">98%</div>
+            <div className="text-sm text-gray-600 font-medium">Success Rate</div>
+          </div>
+          <div className="text-center">
+            <div className="text-3xl font-black text-magenta-600 mb-2">50K+</div>
+            <div className="text-sm text-gray-600 font-medium">Happy Customers</div>
+          </div>
+          <div className="text-center">
+            <div className="text-3xl font-black text-magenta-600 mb-2">4.9★</div>
+            <div className="text-sm text-gray-600 font-medium">Average Rating</div>
+          </div>
+        </div>
       </div>
     </div>
   );
