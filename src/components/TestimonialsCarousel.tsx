@@ -59,15 +59,6 @@ const TestimonialsCarousel: React.FC = () => {
     };
   }, []);
 
-  // Handle video click to load
-  const handleVideoClick = useCallback((index: number) => {
-    const videoConfig = vTurbVideos[index % vTurbVideos.length];
-    if (videoConfig && !clickedVideos.has(index)) {
-      setClickedVideos(prev => new Set(prev).add(index));
-      loadVTurbScript(videoConfig.scriptSrc, videoConfig.id);
-    }
-  }, [clickedVideos, loadVTurbScript]);
-
   // Load VTurb script for specific video
   const loadVTurbScript = useCallback((scriptSrc: string, videoId: string) => {
     if (loadedScripts.has(videoId)) {
@@ -82,6 +73,15 @@ const TestimonialsCarousel: React.FC = () => {
     };
     document.head.appendChild(script);
   }, [loadedScripts]);
+
+  // Handle video click to load
+  const handleVideoClick = useCallback((index: number) => {
+    const videoConfig = vTurbVideos[index % vTurbVideos.length];
+    if (videoConfig && !clickedVideos.has(index)) {
+      setClickedVideos(prev => new Set(prev).add(index));
+      loadVTurbScript(videoConfig.scriptSrc, videoConfig.id);
+    }
+  }, [clickedVideos, loadVTurbScript]);
 
   // Remove VTurb script for specific video
   const removeVTurbScript = useCallback((scriptSrc: string, videoId: string) => {
