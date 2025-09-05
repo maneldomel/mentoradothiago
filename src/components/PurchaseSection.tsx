@@ -9,6 +9,13 @@ const PurchaseSection: React.FC = () => {
     window.open('https://checkout.example.com', '_blank');
   };
 
+  const handleSecondaryClick = (packageType: string) => {
+    // Placeholder for secondary purchase logic
+    console.log(`Secondary purchase clicked: ${packageType}`);
+    // You can add your checkout URL here
+    window.open('https://checkout.example.com', '_blank');
+  };
+
   return (
     <div className="bg-gray-50 py-8 md:py-12 relative">
       <div className="container mx-auto px-4 max-w-6xl">
@@ -111,6 +118,153 @@ const PurchaseSection: React.FC = () => {
                     alt="Product Benefits"
                     className="w-full h-auto object-contain max-h-12 sm:max-h-14"
                   />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* PRODUTOS 2 e 3: LADO A LADO - MAGENTA MENOS CHAMATIVO */}
+        <div className="w-full grid grid-cols-2 gap-3 sm:gap-4 mb-6 sm:mb-8 animate-fadeInUp animation-delay-1000">
+          
+          {/* PRODUTO 2: 3 BOTTLE PACKAGE */}
+          <div className="relative">
+            <div className="relative bg-gradient-to-br from-magenta-400/80 to-magenta-600/80 backdrop-blur-xl rounded-2xl p-3 sm:p-4 border border-white/20 shadow-xl">
+              
+              {/* Product Image */}
+              <div className="flex justify-center mb-2 px-1">
+                <img 
+                  src="https://i.imgur.com/eXYnjhm.png" 
+                  alt="PEAXION 3 Bottle Pack"
+                  className="w-full h-auto object-contain drop-shadow-xl max-h-16 sm:max-h-20"
+                />
+              </div>
+
+              {/* Product Name */}
+              <div className="text-center mb-2">
+                <h3 className="text-sm sm:text-base font-black text-white leading-tight">
+                  PEAXION
+                </h3>
+                <p className="text-white/80 text-xs font-bold tracking-wide">
+                  3 BOTTLE PACKAGE
+                </p>
+              </div>
+
+              {/* Savings */}
+              <div className="text-center mb-2">
+                <p className="text-yellow-400 font-bold text-xs sm:text-sm">
+                  SAVE $398
+                </p>
+              </div>
+
+              {/* CTA Button */}
+              <div className="relative mb-2">
+                <button 
+                  onClick={() => handleSecondaryClick('3-bottle')}
+                  className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-black font-bold py-2 sm:py-2.5 px-2 rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-lg text-xs sm:text-sm border border-white/30 checkout-button"
+                >
+                  <span>BUY NOW</span>
+                </button>
+              </div>
+
+              {/* Price info */}
+              <div className="text-center mb-2">
+                <p className="text-white/70 text-xs font-medium">
+                  $66 per bottle, $198 total
+                </p>
+              </div>
+
+              {/* Benefits - Compactos */}
+              <div className="flex justify-center items-center gap-0.5 mb-1">
+                <div className="bg-gradient-to-r from-magenta-300/30 to-magenta-500/30 backdrop-blur-sm rounded-md px-1 sm:px-1.5 py-1 sm:py-1.5 border border-magenta-200/40 flex-1">
+                  <div className="flex items-center justify-center gap-0.5 text-xs text-white">
+                    <Shield className="w-3 sm:w-4 h-3 sm:h-4 text-yellow-400 flex-shrink-0" />
+                    <span className="text-center font-semibold text-xs">180d</span>
+                  </div>
+                </div>
+                <div className="bg-gradient-to-r from-magenta-300/30 to-magenta-500/30 backdrop-blur-sm rounded-md px-1 sm:px-1.5 py-1 sm:py-1.5 border border-magenta-200/40 flex-1">
+                  <div className="flex items-center justify-center gap-0.5 text-xs text-white">
+                    <Truck className="w-3 sm:w-4 h-3 sm:h-4 text-yellow-400 flex-shrink-0" />
+                    <span className="text-center font-semibold text-xs">Free Ship</span>
+                  </div>
+                </div>
+                <div className="bg-gradient-to-r from-magenta-300/30 to-magenta-500/30 backdrop-blur-sm rounded-md px-1 sm:px-1.5 py-1 sm:py-1.5 border border-magenta-200/40 flex-1">
+                  <div className="flex items-center justify-center gap-0.5 text-xs text-white">
+                    <CreditCard className="w-3 sm:w-4 h-3 sm:h-4 text-yellow-400 flex-shrink-0" />
+                    <span className="text-center font-semibold text-xs">Secure</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* PRODUTO 3: 1 BOTTLE PACKAGE */}
+          <div className="relative">
+            <div className="relative bg-gradient-to-br from-magenta-300/80 to-magenta-500/80 backdrop-blur-xl rounded-2xl p-3 sm:p-4 border border-white/20 shadow-xl">
+              
+              {/* Product Image */}
+              <div className="flex justify-center mb-2 px-1">
+                <img 
+                  src="https://i.imgur.com/iWs7wy7.png" 
+                  alt="PEAXION 1 Bottle Pack"
+                  className="w-full h-auto object-contain drop-shadow-xl max-h-16 sm:max-h-20"
+                />
+              </div>
+
+              {/* Product Name */}
+              <div className="text-center mb-2">
+                <h3 className="text-sm sm:text-base font-black text-white leading-tight">
+                  PEAXION
+                </h3>
+                <p className="text-white/80 text-xs font-bold tracking-wide">
+                  1 BOTTLE PACKAGE
+                </p>
+              </div>
+
+              {/* Savings */}
+              <div className="text-center mb-2">
+                <p className="text-yellow-400 font-bold text-xs sm:text-sm">
+                  SAVE $309
+                </p>
+              </div>
+
+              {/* CTA Button */}
+              <div className="relative mb-2">
+                <button 
+                  onClick={() => handleSecondaryClick('1-bottle')}
+                  className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-black font-bold py-2 sm:py-2.5 px-2 rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-lg text-xs sm:text-sm border border-white/30 checkout-button"
+                  data-fttrack="checkout"
+                >
+                  <span>BUY NOW</span>
+                </button>
+              </div>
+
+              {/* Price info */}
+              <div className="text-center mb-2">
+                <p className="text-white/70 text-xs font-medium">
+                  $89, $79 + $9.99 ship
+                </p>
+              </div>
+
+              {/* Benefits - Compactos com shipping diferente */}
+              <div className="flex justify-center items-center gap-0.5 mb-1">
+                <div className="bg-gradient-to-r from-magenta-200/30 to-magenta-400/30 backdrop-blur-sm rounded px-1 py-0.5 border border-magenta-100/40 flex-1">
+                  <div className="flex items-center justify-center gap-0.5 text-xs text-white">
+                    <Shield className="w-3 sm:w-4 h-3 sm:h-4 text-yellow-400 flex-shrink-0" />
+                    <span className="text-center font-semibold text-xs">180d</span>
+                  </div>
+                </div>
+                <div className="bg-gradient-to-r from-magenta-200/30 to-magenta-400/30 backdrop-blur-sm rounded px-1 py-0.5 border border-magenta-100/40 flex-1">
+                  <div className="flex items-center justify-center gap-0.5 text-xs text-white">
+                    <Truck className="w-3 sm:w-4 h-3 sm:h-4 text-red-400 flex-shrink-0" />
+                    <span className="text-center font-semibold text-xs">$9.99</span>
+                  </div>
+                </div>
+                <div className="bg-gradient-to-r from-magenta-200/30 to-magenta-400/30 backdrop-blur-sm rounded px-1 py-0.5 border border-magenta-100/40 flex-1">
+                  <div className="flex items-center justify-center gap-0.5 text-xs text-white">
+                    <CreditCard className="w-3 sm:w-4 h-3 sm:h-4 text-yellow-400 flex-shrink-0" />
+                    <span className="text-center font-semibold text-xs">Safe</span>
+                  </div>
                 </div>
               </div>
             </div>
