@@ -49,7 +49,7 @@ const HomePage: React.FC = () => {
             
             <div className="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-xl border border-magenta-100">
               <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-4">
-                We truly believe in PROAXION's power. That's why we offer a <span className="font-bold text-yellow-600">full 180-day money-back guarantee</span>.
+                We truly believe in PEAXION's power. That's why we offer a <span className="font-bold text-yellow-600">full 180-day money-back guarantee</span>.
               </p>
               
               <div className="bg-gradient-to-r from-yellow-50 to-yellow-100 rounded-lg p-4 border-l-4 border-yellow-500">
