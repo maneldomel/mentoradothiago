@@ -26,15 +26,14 @@ const HeroSection: React.FC = () => {
         {/* Headline */}
         <div className="text-center mb-4 md:mb-6">
           <h1 className="text-2xl sm:text-3xl md:text-6xl font-black leading-tight mb-4 px-4 font-inter tracking-tight">
-            <span className="block text-gray-800"><span className="text-transparent bg-gradient-to-r from-magenta-600 to-magenta-400 bg-clip-text">COFFEE AND SALT</span> TRICK</span>
+            <span className="block text-gray-800">THE SECRET WAS HIDING IN <span className="text-transparent bg-gradient-to-r from-magenta-600 to-magenta-400 bg-clip-text">YOUR KITCHEN!</span></span>
           </h1>
         </div>
 
         {/* Subline */}
         <div className="text-center mb-8 md:mb-12">
           <p className="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto px-4">
-            <span className="text-transparent bg-gradient-to-r from-magenta-600 to-magenta-400 bg-clip-text font-bold">47,000+ men CURED</span> their impotence with this{' '}
-            <span className="text-transparent bg-gradient-to-r from-magenta-600 to-magenta-400 bg-clip-text font-bold">ancient kitchen ingredient</span>
+            A bizarre <span className="text-transparent bg-gradient-to-r from-magenta-600 to-magenta-400 bg-clip-text font-bold">coffee-and-salt ritual</span> is giving men rock-hard erections at any age — and leaving <span className="text-transparent bg-gradient-to-r from-magenta-600 to-magenta-400 bg-clip-text font-bold">women in shock</span>.
           </p>
         </div>
 
