@@ -81,15 +81,10 @@ const HomePage: React.FC = () => {
       <PurchaseSection />
 
       {/* Footer */}
-      <footer className="bg-gradient-to-br from-magenta-600 to-magenta-800 py-8">
+      <footer className="bg-gradient-to-br from-magenta-600 to-magenta-800 py-4">
         <div className="container mx-auto px-4 text-center">
-          <div className="mb-4">
-            <h3 className="text-2xl font-black text-white tracking-wide">
-              PEAXION
-            </h3>
-          </div>
           <div className="text-magenta-100 text-sm">
-            © 2025 PEAXION. All rights reserved.
+            © 2025 <span className="text-white font-semibold">PEAXION</span>. All rights reserved.
           </div>
         </div>
       </footer>
