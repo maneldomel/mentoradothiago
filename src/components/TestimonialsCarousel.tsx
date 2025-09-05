@@ -203,16 +203,9 @@ const TestimonialsCarousel: React.FC = () => {
                         </div>
 
                         {/* Quote */}
-                        <div className="relative">
-                          <div className="absolute -top-2 -left-2 text-6xl text-magenta-200 font-serif leading-none">"</div>
-                          <p className="text-gray-700 leading-relaxed italic pl-6 pr-2">
-                            {testimonial.caption}
-                          </p>
-                          <div className="absolute -bottom-4 -right-2 text-6xl text-magenta-200 font-serif leading-none rotate-180">"</div>
-                        </div>
 
                         {/* Verified Badge */}
-                        <div className="mt-6 pt-4 border-t border-gray-100">
+                        <div className="mt-4 pt-4 border-t border-gray-100">
                           <div className="flex items-center justify-between">
                             <div className="flex items-center gap-2">
                               <CheckCircle className="w-5 h-5 text-green-500" />
