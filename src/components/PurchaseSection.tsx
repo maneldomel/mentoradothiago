@@ -185,7 +185,7 @@ const PurchaseSection: React.FC = () => {
                 <div className="bg-gradient-to-r from-magenta-300/30 to-magenta-500/30 backdrop-blur-sm rounded-md px-1 sm:px-1.5 py-1 sm:py-1.5 border border-magenta-200/40 flex-1">
                   <div className="flex items-center justify-center gap-0.5 text-xs text-white">
                     <Truck className="w-3 sm:w-4 h-3 sm:h-4 text-yellow-400 flex-shrink-0" />
-                    <span className="text-center font-semibold text-xs">Free Ship</span>
+                    <span className="text-center font-semibold text-xs">Free</span>
                   </div>
                 </div>
                 <div className="bg-gradient-to-r from-magenta-300/30 to-magenta-500/30 backdrop-blur-sm rounded-md px-1 sm:px-1.5 py-1 sm:py-1.5 border border-magenta-200/40 flex-1">
