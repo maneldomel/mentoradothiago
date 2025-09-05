@@ -121,7 +121,6 @@ The supplement has gained particular popularity among men who want to avoid the 
 
 Dr. Brooks notes that the psychological benefits are just as important as the physical ones. "When men regain their confidence in the bedroom, it often translates to improved confidence in other areas of their lives as well."
 
-The growing popularity of natural alternatives like PROAXION reflects a broader shift in men's health, with more men seeking solutions that work with their bodies rather than against them.`,
 The growing popularity of natural alternatives like PEAXION reflects a broader shift in men's health, with more men seeking solutions that work with their bodies rather than against them.`,
     readTime: '5 min read',
     imageUrl: 'https://images.pexels.com/photos/3825581/pexels-photo-3825581.jpeg?auto=compress&cs=tinysrgb&w=800&h=400',
