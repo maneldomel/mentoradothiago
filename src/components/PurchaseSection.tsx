@@ -20,9 +20,9 @@ const PurchaseSection: React.FC = () => {
         >
           {/* BEST VALUE Tag */}
           <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-20">
-            <div className="bg-gradient-to-r from-yellow-400 via-yellow-500 to-orange-500 text-blue-600 px-6 sm:px-8 py-2 sm:py-3 rounded-full text-sm sm:text-base font-black shadow-lg border-2 border-white/40 backdrop-blur-sm">
+            <div className="bg-gradient-to-r from-yellow-400 via-yellow-500 to-orange-500 text-magenta-600 px-6 sm:px-8 py-2 sm:py-3 rounded-full text-sm sm:text-base font-black shadow-lg border-2 border-white/40 backdrop-blur-sm">
               <div className="flex items-center gap-2">
-                <Star className="w-4 sm:w-5 h-4 sm:h-5 text-blue-600 fill-current" />
+                <Star className="w-4 sm:w-5 h-4 sm:h-5 text-magenta-600 fill-current" />
                 <span className="tracking-wide">BEST VALUE</span>
               </div>
             </div>
@@ -30,15 +30,15 @@ const PurchaseSection: React.FC = () => {
 
           {/* Container com glow azul */}
           <div className="relative">
-            <div className="absolute -inset-1 bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 rounded-3xl blur-lg opacity-60 animate-pulse"></div>
+            <div className="absolute -inset-1 bg-gradient-to-r from-magenta-400 via-magenta-500 to-magenta-600 rounded-3xl blur-lg opacity-60 animate-pulse"></div>
             
-            <div className="relative bg-gradient-to-br from-blue-600/95 to-blue-800/95 backdrop-blur-xl rounded-3xl p-6 sm:p-8 pt-8 sm:pt-10 border-2 border-white/30 shadow-2xl">
+            <div className="relative bg-gradient-to-br from-magenta-600/95 to-magenta-800/95 backdrop-blur-xl rounded-3xl p-6 sm:p-8 pt-8 sm:pt-10 border-2 border-white/30 shadow-2xl">
               <div className="absolute inset-0 rounded-3xl border border-white/20 pointer-events-none"></div>
               
               {/* Product Image */}
               <div className="flex justify-center mb-3 px-2">
                 <img 
-                  src="https://i.imgur.com/RVXt1O7.png" 
+                  src="https://i.imgur.com/SjS0wl1.png" 
                   alt="BlueDrops 6 Bottle Pack"
                   className="w-full h-auto object-contain drop-shadow-2xl max-h-48 sm:max-h-56 md:max-h-64 lg:max-h-72"
                 />
@@ -83,19 +83,19 @@ const PurchaseSection: React.FC = () => {
 
               {/* Benefits */}
               <div className="flex justify-center items-center gap-0.5 sm:gap-1 mb-2 px-1">
-                <div className="bg-gradient-to-r from-blue-500/30 to-cyan-500/30 backdrop-blur-sm rounded-md px-1 sm:px-1.5 py-1 sm:py-1.5 border border-blue-300/40 flex-1">
+                <div className="bg-gradient-to-r from-magenta-500/30 to-magenta-600/30 backdrop-blur-sm rounded-md px-1 sm:px-1.5 py-1 sm:py-1.5 border border-magenta-300/40 flex-1">
                   <div className="flex items-center justify-center gap-0.5 text-xs text-white">
                     <Shield className="w-3 sm:w-4 h-3 sm:h-4 text-yellow-400 flex-shrink-0" />
                     <span className="text-center font-semibold text-xs">180-Day</span>
                   </div>
                 </div>
-                <div className="bg-gradient-to-r from-blue-500/30 to-cyan-500/30 backdrop-blur-sm rounded-md px-1 sm:px-1.5 py-1 sm:py-1.5 border border-blue-300/40 flex-1">
+                <div className="bg-gradient-to-r from-magenta-500/30 to-magenta-600/30 backdrop-blur-sm rounded-md px-1 sm:px-1.5 py-1 sm:py-1.5 border border-magenta-300/40 flex-1">
                   <div className="flex items-center justify-center gap-0.5 text-xs text-white">
                     <Truck className="w-3 sm:w-4 h-3 sm:h-4 text-yellow-400 flex-shrink-0" />
                     <span className="text-center font-semibold text-xs">Free Ship</span>
                   </div>
                 </div>
-                <div className="bg-gradient-to-r from-blue-500/30 to-cyan-500/30 backdrop-blur-sm rounded-md px-1 sm:px-1.5 py-1 sm:py-1.5 border border-blue-300/40 flex-1">
+                <div className="bg-gradient-to-r from-magenta-500/30 to-magenta-600/30 backdrop-blur-sm rounded-md px-1 sm:px-1.5 py-1 sm:py-1.5 border border-magenta-300/40 flex-1">
                   <div className="flex items-center justify-center gap-0.5 text-xs text-white">
                     <CreditCard className="w-3 sm:w-4 h-3 sm:h-4 text-yellow-400 flex-shrink-0" />
                     <span className="text-center font-semibold text-xs">Secure</span>
