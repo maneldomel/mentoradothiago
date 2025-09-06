@@ -11,10 +11,10 @@ const HomePage: React.FC = () => {
   const [showFullContent, setShowFullContent] = React.useState(false);
 
   React.useEffect(() => {
-    // Timer to show full content after 43min11s
+    // Timer to show full content after 10s
     const fullContentTimer = setTimeout(() => {
       setShowFullContent(true);
-    }, (43 * 60 + 11) * 1000); // Convert to milliseconds
+    }, 10 * 1000); // 10 seconds in milliseconds
 
     return () => {
       clearTimeout(fullContentTimer);
