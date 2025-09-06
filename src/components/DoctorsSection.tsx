@@ -3,6 +3,14 @@ import useEmblaCarousel from 'embla-carousel-react';
 import { ChevronLeft, ChevronRight, MapPin, Stethoscope, GraduationCap } from 'lucide-react';
 import { Doctor, getActiveDoctors } from '../lib/doctors';
 
+// Global video control system (extend existing if already defined)
+declare global {
+  interface Window {
+    vTurbPlayers: { [key: string]: any };
+    pauseAllVTurbVideos: (exceptId?: string) => void;
+  }
+}
+
 // VTurb video configurations for doctors
 const doctorVTurbVideos = [
   {
@@ -25,6 +33,29 @@ const DoctorsSection: React.FC = () => {
   const [loading, setLoading] = React.useState(true);
   const [visibleSlides, setVisibleSlides] = React.useState<Set<number>>(new Set([0]));
   const [loadedScripts, setLoadedScripts] = React.useState<Set<string>>(new Set());
+
+  // Initialize global video control system (if not already done)
+  React.useEffect(() => {
+    if (!window.vTurbPlayers) {
+      window.vTurbPlayers = {};
+    }
+    
+    if (!window.pauseAllVTurbVideos) {
+      window.pauseAllVTurbVideos = (exceptId?: string) => {
+        Object.keys(window.vTurbPlayers).forEach(playerId => {
+          if (playerId !== exceptId && window.vTurbPlayers[playerId]) {
+            try {
+              if (typeof window.vTurbPlayers[playerId].pause === 'function') {
+                window.vTurbPlayers[playerId].pause();
+              }
+            } catch (error) {
+              console.warn('Error pausing video:', playerId, error);
+            }
+          }
+        });
+      };
+    }
+  }, []);
 
   const [emblaRef, emblaApi] = useEmblaCarousel({ 
     loop: true,
@@ -71,6 +102,22 @@ const DoctorsSection: React.FC = () => {
     script.async = true;
     script.onload = () => {
       setLoadedScripts(prev => new Set(prev).add(videoId));
+      
+      // Wait a bit for the player to initialize, then set up event listeners
+      setTimeout(() => {
+        const playerElement = document.getElementById(videoId);
+        if (playerElement && (playerElement as any).player) {
+          const player = (playerElement as any).player;
+          window.vTurbPlayers[videoId] = player;
+          
+          // Add play event listener to pause other videos
+          if (typeof player.on === 'function') {
+            player.on('play', () => {
+              window.pauseAllVTurbVideos(videoId);
+            });
+          }
+        }
+      }, 1000);
     };
     document.head.appendChild(script);
   }, [loadedScripts]);
@@ -86,6 +133,11 @@ const DoctorsSection: React.FC = () => {
     const videoElement = document.getElementById(videoId);
     if (videoElement) {
       videoElement.innerHTML = '';
+    }
+    
+    // Remove from global players registry
+    if (window.vTurbPlayers && window.vTurbPlayers[videoId]) {
+      delete window.vTurbPlayers[videoId];
     }
     
     setLoadedScripts(prev => {
@@ -229,6 +281,7 @@ const DoctorsSection: React.FC = () => {
                             <vturb-smartplayer 
                               id={videoConfig.id}
                              autoplay="false"
+                              muted="false"
                               style={{
                                 display: 'block',
                                 margin: '0 auto',
