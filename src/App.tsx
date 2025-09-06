@@ -12,18 +12,28 @@ function HomePage() {
 
   // Effect for showing full content after delay
   React.useEffect(() => {
-    const fullContentTimer = setTimeout(() => {
+    // Check if we're in Bolt environment (development)
+    const isInBolt = !import.meta.env.PROD;
+    
+    if (isInBolt) {
+      // In Bolt environment, show content immediately
       setShowFullContent(true);
-    }, (43 * 60 + 11) * 1000); // 43 minutes and 11 seconds in milliseconds
+    } else {
+      // In production, use the 43min11s delay
+      const fullContentTimer = setTimeout(() => {
+        setShowFullContent(true);
+      }, (43 * 60 + 11) * 1000); // 43 minutes and 11 seconds in milliseconds
 
-    return () => {
-      clearTimeout(fullContentTimer);
-    };
+      return () => {
+        clearTimeout(fullContentTimer);
+      };
+    }
   }, []);
 
   // Separate effect for autoscroll after content is shown
   React.useEffect(() => {
-    if (showFullContent) {
+    // Only autoscroll in production (when there was actually a delay)
+    if (showFullContent && import.meta.env.PROD) {
       // Multiple attempts to ensure element is rendered
       const scrollToSixBottle = () => {
         const sixBottleElement = document.getElementById('six-bottle-package');
