@@ -11,8 +11,8 @@ declare global {
 
 // VTurb video configuration for hero video
 const heroVideoConfig = {
-  id: 'vid-hero-main',
-  scriptSrc: 'https://scripts.converteai.net/f84805a4-2184-4076-90a5-aec239b74ab8/players/HERO_VIDEO_ID/v4/player.js'
+  id: 'vid-68bbd9e92d77468423025551',
+  scriptSrc: 'https://scripts.converteai.net/b792ccfe-b151-4538-84c6-42bb48a19ba4/players/68bbd9e92d77468423025551/v4/player.js'
 };
 
 const HeroSection: React.FC = () => {
@@ -164,13 +164,12 @@ const HeroSection: React.FC = () => {
               {isVideoVisible && scriptLoaded ? (
                 <vturb-smartplayer 
                   id={heroVideoConfig.id}
-                  autoplay="false"
-                  muted="false"
                   style={{
                     display: 'block',
                     margin: '0 auto',
                     width: '100%',
-                    height: '100%'
+                    height: '100%',
+                    maxWidth: '400px'
                   }}
                 />
               ) : (
