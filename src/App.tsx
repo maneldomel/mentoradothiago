@@ -2,6 +2,18 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HeroSection from './components/HeroSection';
 import PurchaseSection from './components/PurchaseSection';
+import TestimonialsCarousel from './components/TestimonialsCarousel';
+import DoctorsSection from './components/DoctorsSection';
+import NewsSection from './components/NewsSection';
+import AdminRoute from './components/AdminRoute';
+
+function HomePage() {
+  const [showFullContent, setShowFullContent] = React.useState(false);
+
+  // Effect for showing full content after delay
+  React.useEffect(() => {
+    const fullContentTimer = setTimeout(() => {
+      setShowFullContent(true);
     }, 10 * 1000); // 10 seconds in milliseconds
 
     return () => {
