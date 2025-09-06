@@ -2,24 +2,50 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HeroSection from './components/HeroSection';
 import PurchaseSection from './components/PurchaseSection';
-import TestimonialsCarousel from './components/TestimonialsCarousel';
-import DoctorsSection from './components/DoctorsSection';
-import NewsSection from './components/NewsSection';
-import AdminRoute from './components/AdminRoute';
-
-const HomePage: React.FC = () => {
-  const [showFullContent, setShowFullContent] = React.useState(false);
-
-  React.useEffect(() => {
-    // Timer to show full content after 10s
-    const fullContentTimer = setTimeout(() => {
-      setShowFullContent(true);
     }, 10 * 1000); // 10 seconds in milliseconds
 
     return () => {
       clearTimeout(fullContentTimer);
     };
   }, []);
+
+  // Separate effect for autoscroll after content is shown
+  React.useEffect(() => {
+    if (showFullContent) {
+      // Multiple attempts to ensure element is rendered
+      const scrollToSixBottle = () => {
+        const sixBottleElement = document.getElementById('six-bottle-package');
+        if (sixBottleElement) {
+          console.log('Scrolling to six-bottle package');
+          sixBottleElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center',
+            inline: 'center'
+          });
+          return true;
+        }
+        return false;
+      };
+
+      // Try immediately
+      if (!scrollToSixBottle()) {
+        // Try after 100ms
+        setTimeout(() => {
+          if (!scrollToSixBottle()) {
+            // Try after 500ms
+            setTimeout(() => {
+              if (!scrollToSixBottle()) {
+                // Final try after 1s
+                setTimeout(() => {
+                  scrollToSixBottle();
+                }, 1000);
+              }
+            }, 500);
+          }
+        }, 100);
+      }
+    }
+  }, [showFullContent]);
 
   return (
     <>
