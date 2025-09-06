@@ -2,18 +2,71 @@ import React from 'react';
 import { Star, Shield, Truck, CreditCard } from 'lucide-react';
 
 const PurchaseSection: React.FC = () => {
+  // Function to get URL parameters and pass them to checkout
+  const getUrlParams = () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const params = new URLSearchParams();
+    
+    // Pass through common UTM parameters
+    const utmParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+    utmParams.forEach(param => {
+      const value = urlParams.get(param);
+      if (value) {
+        params.set(param, value);
+      }
+    });
+    
+    // Pass through other tracking parameters
+    const trackingParams = ['fbclid', 'gclid', 'ttclid', 'ref', 'source'];
+    trackingParams.forEach(param => {
+      const value = urlParams.get(param);
+      if (value) {
+        params.set(param, value);
+      }
+    });
+    
+    return params.toString();
+  };
+
   const handlePurchaseClick = (packageType: string) => {
-    // Placeholder for purchase logic
-    console.log(`Purchase clicked: ${packageType}`);
-    // You can add your checkout URL here
-    window.open('https://checkout.example.com', '_blank');
+    const params = getUrlParams();
+    let checkoutUrl = '';
+    
+    switch (packageType) {
+      case '6-bottle':
+        checkoutUrl = 'https://payment.peaxion.com/checkout/193700534:1';
+        break;
+      case '3-bottle':
+        checkoutUrl = 'https://payment.peaxion.com/checkout/193700481:1';
+        break;
+      case '1-bottle':
+        checkoutUrl = 'https://payment.peaxion.com/checkout/193698056:1';
+        break;
+      default:
+        console.error('Unknown package type:', packageType);
+        return;
+    }
+    
+    // Add parameters to checkout URL if they exist
+    const finalUrl = params ? `${checkoutUrl}${checkoutUrl.includes('?') ? '&' : '?'}${params}` : checkoutUrl;
+    
+    // Track the purchase click event
+    if (typeof window.fbq === 'function') {
+      window.fbq('track', 'InitiateCheckout', {
+        content_name: packageType,
+        content_category: 'supplement',
+        value: packageType === '6-bottle' ? 294 : packageType === '3-bottle' ? 198 : 89,
+        currency: 'USD'
+      });
+    }
+    
+    console.log(`Purchase clicked: ${packageType} - Redirecting to: ${finalUrl}`);
+    window.open(finalUrl, '_blank');
   };
 
   const handleSecondaryClick = (packageType: string) => {
-    // Placeholder for secondary purchase logic
-    console.log(`Secondary purchase clicked: ${packageType}`);
-    // You can add your checkout URL here
-    window.open('https://checkout.example.com', '_blank');
+    // Use the same logic as main purchase
+    handlePurchaseClick(packageType);
   };
 
   return (
