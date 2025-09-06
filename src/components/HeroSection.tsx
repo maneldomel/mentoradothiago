@@ -160,20 +160,75 @@ const HeroSection: React.FC = () => {
               ref={videoContainerRef}
               className="w-72 h-[512px] sm:w-80 sm:h-[568px] md:w-96 md:h-[682px] bg-gray-900 border-2 md:border-4 border-magenta-200 rounded-xl md:rounded-2xl shadow-xl md:shadow-2xl overflow-hidden mx-auto"
             >
-              {/* VTurb Video Container - Only render if visible */}
-              {isVideoVisible && scriptLoaded ? (
+              {/* VTurb Video Container - Always render container, conditionally load script */}
+              <div className="w-full h-full relative">
                 <vturb-smartplayer 
                   id={heroVideoConfig.id}
+                  autoplay="false"
+                  muted="false"
                   style={{
                     display: 'block',
                     margin: '0 auto',
                     width: '100%',
                     height: '100%',
-                    maxWidth: '400px'
+                    maxWidth: '400px',
+                    position: 'absolute',
+                    top: '0',
+                    left: '0',
+                    right: '0',
+                    bottom: '0'
                   }}
                 />
-              ) : (
-                <div className="w-full h-full bg-gray-800 flex items-center justify-center">
+                
+                {/* Loading overlay - only show when not loaded */}
+                {(!isVideoVisible || !scriptLoaded) && (
+                  <div className="absolute inset-0 bg-gray-800 flex items-center justify-center z-10">
+                    <div className="text-center p-4 md:p-8">
+                      <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-r from-magenta-500 to-magenta-600 rounded-full flex items-center justify-center mb-3 md:mb-4 mx-auto shadow-lg">
+                        <Play className="w-6 h-6 md:w-8 md:h-8 text-white ml-1" fill="white" />
+                      </div>
+                      <p className="text-white font-medium text-sm md:text-base mb-2">
+                        {!isVideoVisible ? 'Carregando vídeo...' : 'Preparando player...'}
+                      </p>
+                      <p className="text-gray-300 text-xs md:text-sm">
+                        Vídeo principal do PEAXION
+                      </p>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Video Notices */}
+        <div className="max-w-sm sm:max-w-md mx-auto space-y-3 md:space-y-4 px-4">
+          {/* Sound Notice */}
+          <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
+            <div className="flex items-center justify-center space-x-2">
+              <Volume2 className="w-4 h-4 text-gray-500" />
+              <p className="text-gray-600 text-xs sm:text-sm text-center">
+                Make sure your <span className="text-transparent bg-gradient-to-r from-magenta-600 to-magenta-400 bg-clip-text font-bold">sound is ON</span> for the full experience
+              </p>
+            </div>
+          </div>
+
+          {/* Urgency Notice */}
+          <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
+            <div className="flex items-center justify-center space-x-2">
+              <Clock className="w-4 h-4 text-gray-500" />
+              <p className="text-gray-600 text-xs sm:text-sm text-center">
+                This video will <span className="text-transparent bg-gradient-to-r from-magenta-600 to-magenta-400 bg-clip-text font-bold">disappear soon</span> - <span className="text-transparent bg-gradient-to-r from-magenta-600 to-magenta-400 bg-clip-text font-bold">Watch it now!</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default HeroSection;
                   <div className="text-center p-4 md:p-8">
                     <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-r from-magenta-500 to-magenta-600 rounded-full flex items-center justify-center mb-3 md:mb-4 mx-auto shadow-lg">
                       <Play className="w-6 h-6 md:w-8 md:h-8 text-white ml-1" fill="white" />
