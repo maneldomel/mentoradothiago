@@ -228,6 +228,7 @@ const DoctorsSection: React.FC = () => {
                           return (
                             <vturb-smartplayer 
                               id={videoConfig.id}
+                             autoplay="false"
                               style={{
                                 display: 'block',
                                 margin: '0 auto',
