@@ -1,492 +1,436 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { X, ExternalLink, Calendar, User } from 'lucide-react';
-import HeroSection from './components/HeroSection';
-import PurchaseSection from './components/PurchaseSection';
-import TestimonialsCarousel from './components/TestimonialsCarousel';
-import DoctorsSection from './components/DoctorsSection';
-import AdminRoute from './components/AdminRoute';
+import React, { useState, useEffect, useRef } from 'react';
+import { CNNModal } from './news/cnn/CNNModal';
+import { WebMDModal } from './news/webmd/WebMDModal';
+import { MayoModal } from './news/mayo/MayoModal';
 
-// News Modal Component
-interface NewsModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  title: string;
+interface NewsArticle {
+  id: string;
   source: string;
-  logoUrl: string;
-  date: string;
-  author: string;
-  content: string;
-  sourceUrl: string;
+  logo: string;
+  title: string;
+  summary: string;
+  buttonText: string;
+  url: string;
+  color: string;
 }
 
-const NewsModal: React.FC<NewsModalProps> = ({
-  isOpen,
-  onClose,
-  title,
-  source,
-  logoUrl,
-  date,
-  author,
-  content,
-  sourceUrl
-}) => {
-  if (!isOpen) return null;
+export const NewsSection: React.FC = () => {
+  const [selectedArticle, setSelectedArticle] = useState<NewsArticle | null>(null);
+  const [currentNews, setCurrentNews] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragOffset, setDragOffset] = useState(0);
+  const [startX, setStartX] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [velocity, setVelocity] = useState(0);
+  const [lastMoveTime, setLastMoveTime] = useState(0);
+  const [lastMoveX, setLastMoveX] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const animationRef = useRef<number>();
 
-  return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
-        {/* Header */}
-        <div className="sticky top-0 bg-white border-b border-gray-200 p-6 flex items-center justify-between rounded-t-2xl">
-          <div className="flex items-center gap-4">
-            <img src={logoUrl} alt={source} className="h-8 w-auto" />
-            <div>
-              <h3 className="font-bold text-gray-900">{source}</h3>
-              <div className="flex items-center gap-4 text-sm text-gray-500">
-                <div className="flex items-center gap-1">
-                  <Calendar className="w-4 h-4" />
-                  {date}
-                </div>
-                <div className="flex items-center gap-1">
-                  <User className="w-4 h-4" />
-                  {author}
-                </div>
-              </div>
-            </div>
-          </div>
-          <button
-            onClick={onClose}
-            className="p-2 hover:bg-gray-100 rounded-full transition-colors"
-          >
-            <X className="w-6 h-6 text-gray-500" />
-          </button>
-        </div>
-
-        {/* Content */}
-        <div className="p-6">
-          <h1 className="text-3xl font-bold text-gray-900 mb-6 leading-tight">
-            {title}
-          </h1>
-          
-          <div className="prose prose-lg max-w-none">
-            <div dangerouslySetInnerHTML={{ __html: content }} />
-          </div>
-
-          {/* Footer */}
-          <div className="mt-8 pt-6 border-t border-gray-200">
-            <a
-              href={sourceUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium"
-            >
-              <ExternalLink className="w-4 h-4" />
-              Ler artigo completo no {source}
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-// News Section Component
-const NewsSection: React.FC = () => {
-  const [selectedNews, setSelectedNews] = React.useState<any>(null);
-
-  const newsArticles = [
+  // ✅ UPDATED: Logos trocadas e nomes removidos dos boxes
+  const newsArticles: NewsArticle[] = [
     {
-      id: 1,
-      title: "Revolutionary Natural Compound Shows 89% Success Rate in Male Enhancement Studies",
-      source: "CNN Health",
-      logoUrl: "https://i.imgur.com/8kVQJpL.png",
-      date: "December 15, 2024",
-      author: "Dr. Sarah Mitchell",
-      excerpt: "Groundbreaking research reveals how a simple kitchen ingredient is transforming men's health across America...",
-      image: "https://images.pexels.com/photos/3938023/pexels-photo-3938023.jpeg?auto=compress&cs=tinysrgb&w=800",
-      sourceUrl: "https://cnn.com",
-      content: `
-        <p>A groundbreaking clinical study published in the Journal of Men's Health has revealed remarkable results for a natural compound that's been hiding in plain sight in most American kitchens.</p>
-        
-        <p>The 12-month double-blind study, conducted across multiple research centers, followed 847 men aged 35-70 who reported declining vitality and performance issues.</p>
-        
-        <h3>Unprecedented Results</h3>
-        <p>Researchers found that 89% of participants experienced significant improvements within the first 8 weeks of treatment. The compound, which combines specific ratios of natural ingredients, targets the root hormonal causes rather than just symptoms.</p>
-        
-        <blockquote>"We've never seen results like this with a natural approach," said lead researcher Dr. Michael Harrison from Johns Hopkins. "The mechanism of action is fascinating - it works at the cellular level to restore natural hormone production."</blockquote>
-        
-        <h3>The Science Behind the Success</h3>
-        <p>The breakthrough lies in the synergistic combination of compounds that work together to:</p>
-        <ul>
-          <li>Increase natural testosterone production by up to 47%</li>
-          <li>Improve blood flow and circulation</li>
-          <li>Enhance energy and stamina</li>
-          <li>Support overall male vitality</li>
-        </ul>
-        
-        <p>What makes this discovery particularly exciting is its safety profile - no adverse effects were reported during the entire study period.</p>
-      `
+      id: 'cnn',
+      source: '', // ✅ REMOVED: Nome removido
+      logo: 'https://i.imgur.com/0twf89j.png',
+      title: 'A Surprising Natural Solution to Men\'s Performance Issues',
+      summary: 'CNN reveals the growing demand for Celtic salt solutions among men over 40. Products like BlueDrops with Celtic salt are gaining ground as alternatives to traditional treatments.',
+      buttonText: 'Read Full Article',
+      url: 'https://edition.cnn.com/2025/06/15/health/natural-solutions-men-performance-bluedrops/index.html',
+      color: 'border-red-200 bg-red-50'
     },
     {
-      id: 2,
-      title: "Harvard Medical School Validates Ancient 'Coffee Ritual' for Male Performance",
-      source: "WebMD",
-      logoUrl: "https://i.imgur.com/9kVQJpL.png",
-      date: "December 12, 2024",
-      author: "Medical Editorial Team",
-      excerpt: "Harvard researchers confirm what ancient cultures knew about this powerful morning ritual...",
-      image: "https://images.pexels.com/photos/4226796/pexels-photo-4226796.jpeg?auto=compress&cs=tinysrgb&w=800",
-      sourceUrl: "https://webmd.com",
-      content: `
-        <p>Harvard Medical School researchers have published compelling evidence supporting an ancient morning ritual that combines common kitchen ingredients to dramatically improve male performance and vitality.</p>
-        
-        <p>The peer-reviewed study, published in the New England Journal of Medicine, tracked 1,200 men over 18 months and found remarkable improvements in multiple health markers.</p>
-        
-        <h3>Ancient Wisdom Meets Modern Science</h3>
-        <p>The ritual, which involves a specific combination of coffee and mineral salts consumed in a particular sequence, has been used for centuries in various cultures. However, this is the first time it has been subjected to rigorous scientific scrutiny.</p>
-        
-        <blockquote>"The results exceeded our expectations," said Dr. Jennifer Walsh, lead researcher at Harvard's Department of Men's Health. "We're seeing improvements not just in performance, but in overall quality of life."</blockquote>
-        
-        <h3>Key Findings</h3>
-        <ul>
-          <li>92% of participants reported increased energy levels</li>
-          <li>87% experienced improved performance</li>
-          <li>94% showed better sleep quality</li>
-          <li>89% reported enhanced mood and confidence</li>
-        </ul>
-        
-        <p>The study also revealed that the timing and specific ratios of ingredients are crucial for optimal results. The researchers have now developed a standardized protocol based on their findings.</p>
-        
-        <h3>Safety and Efficacy</h3>
-        <p>Unlike synthetic alternatives, this natural approach showed no negative side effects. In fact, many participants reported additional health benefits including improved cardiovascular markers and better cognitive function.</p>
-      `
+      id: 'mayo',
+      source: '', // ✅ REMOVED: Nome removido
+      logo: 'https://i.imgur.com/ClqsijC.png', // ✅ UPDATED: Nova logo da Mayo Clinic conforme solicitado
+      title: 'The Science Behind Herbal Support for Men\'s Vitality',
+      summary: 'Mayo Clinic explores the benefits and limitations of Celtic salt approaches, suggesting products like BlueDrops with Celtic salt may complement traditional treatment.',
+      buttonText: 'Read Full Article',
+      url: 'https://www.mayoclinic.org/diseases-conditions/erectile-dysfunction/in-depth/herbal-support-mens-vitality/art-20048047',
+      color: 'border-blue-200 bg-blue-50'
     },
     {
-      id: 3,
-      title: "Mayo Clinic Study: Simple Kitchen Ingredients Outperform Leading Prescriptions",
-      source: "Mayo Clinic",
-      logoUrl: "https://i.imgur.com/8kVQJpL.png",
-      date: "December 10, 2024",
-      author: "Mayo Clinic Research Team",
-      excerpt: "Landmark study shows natural approach delivers superior results with zero side effects...",
-      image: "https://images.pexels.com/photos/5327585/pexels-photo-5327585.jpeg?auto=compress&cs=tinysrgb&w=800",
-      sourceUrl: "https://mayoclinic.org",
-      content: `
-        <p>A landmark comparative study conducted by Mayo Clinic has demonstrated that a specific combination of natural kitchen ingredients significantly outperforms leading prescription medications for male enhancement, with zero reported side effects.</p>
-        
-        <p>The comprehensive 24-month study compared the natural protocol against three leading prescription treatments, involving 2,400 men across 15 medical centers.</p>
-        
-        <h3>Superior Results, Zero Side Effects</h3>
-        <p>The natural approach showed remarkable superiority across all measured parameters:</p>
-        
-        <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
-          <tr style="background-color: #f8f9fa;">
-            <th style="padding: 12px; border: 1px solid #dee2e6; text-align: left;">Metric</th>
-            <th style="padding: 12px; border: 1px solid #dee2e6; text-align: center;">Natural Protocol</th>
-            <th style="padding: 12px; border: 1px solid #dee2e6; text-align: center;">Prescription Average</th>
-          </tr>
-          <tr>
-            <td style="padding: 12px; border: 1px solid #dee2e6;">Success Rate</td>
-            <td style="padding: 12px; border: 1px solid #dee2e6; text-align: center; color: #28a745; font-weight: bold;">94%</td>
-            <td style="padding: 12px; border: 1px solid #dee2e6; text-align: center;">67%</td>
-          </tr>
-          <tr style="background-color: #f8f9fa;">
-            <td style="padding: 12px; border: 1px solid #dee2e6;">Side Effects</td>
-            <td style="padding: 12px; border: 1px solid #dee2e6; text-align: center; color: #28a745; font-weight: bold;">0%</td>
-            <td style="padding: 12px; border: 1px solid #dee2e6; text-align: center; color: #dc3545;">43%</td>
-          </tr>
-          <tr>
-            <td style="padding: 12px; border: 1px solid #dee2e6;">Long-term Benefits</td>
-            <td style="padding: 12px; border: 1px solid #dee2e6; text-align: center; color: #28a745; font-weight: bold;">91%</td>
-            <td style="padding: 12px; border: 1px solid #dee2e6; text-align: center;">34%</td>
-          </tr>
-        </table>
-        
-        <blockquote>"These results represent a paradigm shift in how we approach male health," stated Dr. Robert Chen, Director of Men's Health at Mayo Clinic. "The natural protocol not only outperformed synthetic alternatives but did so without any of the concerning side effects."</blockquote>
-        
-        <h3>The Mechanism of Action</h3>
-        <p>Advanced imaging studies revealed that the natural compounds work by:</p>
-        <ul>
-          <li>Optimizing natural hormone production pathways</li>
-          <li>Enhancing cellular energy metabolism</li>
-          <li>Improving vascular function and blood flow</li>
-          <li>Supporting neurotransmitter balance</li>
-        </ul>
-        
-        <h3>Clinical Implications</h3>
-        <p>The study's findings have prompted Mayo Clinic to update their treatment protocols, now recommending the natural approach as first-line therapy for appropriate candidates.</p>
-        
-        <p>"We're witnessing a return to nature-based medicine, but with the rigor of modern scientific validation," added Dr. Chen. "This represents the best of both worlds."</p>
-      `
+      id: 'webmd',
+      source: '', // ✅ REMOVED: Nome removido
+      logo: 'https://i.imgur.com/hEggmdK.png', // ✅ UPDATED: Nova logo do WebMD
+      title: 'Natural Male Enhancers Gaining Ground in 2025',
+      summary: 'WebMD highlights studies on the use of Celtic salt to improve male sexual health and performance naturally.',
+      buttonText: 'Read Full Article',
+      url: 'https://www.webmd.com/men/features/natural-male-enhancers-2025-bluedrops',
+      color: 'border-blue-200 bg-blue-50'
     }
   ];
 
+  // Better animation for mobile
+  const animateDragOffset = (targetOffset: number, duration: number = 150) => {
+    const startOffset = dragOffset;
+    const startTime = performance.now();
+
+    const animate = (currentTime: number) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      
+      const easeOut = 1 - Math.pow(1 - progress, 2);
+      const currentOffset = startOffset + (targetOffset - startOffset) * easeOut;
+      setDragOffset(currentOffset);
+
+      if (progress < 1) {
+        animationRef.current = requestAnimationFrame(animate);
+      } else {
+        setDragOffset(targetOffset);
+        if (targetOffset === 0) {
+          setIsTransitioning(false);
+        }
+      }
+    };
+
+    if (animationRef.current) {
+      cancelAnimationFrame(animationRef.current);
+    }
+    animationRef.current = requestAnimationFrame(animate);
+  };
+
+  // Better velocity calculation
+  const calculateVelocity = (clientX: number) => {
+    const now = performance.now();
+    if (lastMoveTime > 0) {
+      const timeDiff = now - lastMoveTime;
+      const distanceDiff = clientX - lastMoveX;
+      if (timeDiff > 0) {
+        setVelocity(distanceDiff / timeDiff);
+      }
+    }
+    setLastMoveTime(now);
+    setLastMoveX(clientX);
+  };
+
+  // Improved drag handlers for mobile
+  const handleDragStart = (clientX: number) => {
+    if (isTransitioning) return;
+    
+    if (animationRef.current) {
+      cancelAnimationFrame(animationRef.current);
+    }
+    
+    setIsDragging(true);
+    setStartX(clientX);
+    setDragOffset(0);
+    setVelocity(0);
+    setLastMoveTime(performance.now());
+    setLastMoveX(clientX);
+  };
+
+  const handleDragMove = (clientX: number) => {
+    if (!isDragging || isTransitioning) return;
+    
+    const diff = clientX - startX;
+    const maxDrag = 120; // Increased for better detection
+    
+    let clampedDiff = Math.max(-maxDrag * 1.2, Math.min(maxDrag * 1.2, diff));
+    
+    setDragOffset(clampedDiff);
+    calculateVelocity(clientX);
+  };
+
+  const handleDragEnd = () => {
+    if (!isDragging || isTransitioning) return;
+    
+    setIsDragging(false);
+    setIsTransitioning(true);
+    
+    const threshold = 40; // Increased threshold
+    const velocityThreshold = 0.3;
+    
+    let shouldChange = false;
+    let direction = 0;
+    
+    if (Math.abs(dragOffset) > threshold || Math.abs(velocity) > velocityThreshold) {
+      if (dragOffset > 0 || velocity > velocityThreshold) {
+        direction = -1;
+        shouldChange = true;
+      } else if (dragOffset < 0 || velocity < -velocityThreshold) {
+        direction = 1;
+        shouldChange = true;
+      }
+    }
+    
+    if (shouldChange) {
+      if (direction > 0) {
+        setCurrentNews((prev) => (prev + 1) % newsArticles.length);
+      } else {
+        setCurrentNews((prev) => (prev - 1 + newsArticles.length) % newsArticles.length);
+      }
+    }
+    
+    animateDragOffset(0, 100);
+    
+    setVelocity(0);
+    setLastMoveTime(0);
+    setLastMoveX(0);
+  };
+
+  // ✅ FIXED: Only prevent default for actual drags, not clicks
+  const handleMouseDown = (e: React.MouseEvent) => {
+    // Don't prevent default immediately - let clicks work
+    handleDragStart(e.clientX);
+  };
+
+  // ✅ FIXED: Don't prevent default on touch start
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (e.touches.length === 1) {
+      handleDragStart(e.touches[0].clientX);
+    }
+  };
+
+  // ✅ FIXED: Only prevent default if actually dragging
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (e.touches.length === 1 && isDragging && Math.abs(dragOffset) > 10) {
+      e.preventDefault(); // Only prevent when actually dragging
+      handleDragMove(e.touches[0].clientX);
+    } else if (e.touches.length === 1) {
+      handleDragMove(e.touches[0].clientX);
+    }
+  };
+
+  // ✅ FIXED: Don't prevent default on touch end
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    handleDragEnd();
+  };
+
+  // Global mouse events
+  useEffect(() => {
+    const handleGlobalMouseMove = (e: MouseEvent) => {
+      if (isDragging) {
+        handleDragMove(e.clientX);
+      }
+    };
+
+    const handleGlobalMouseUp = () => {
+      if (isDragging) {
+        handleDragEnd();
+      }
+    };
+
+    if (isDragging) {
+      document.addEventListener('mousemove', handleGlobalMouseMove, { passive: true });
+      document.addEventListener('mouseup', handleGlobalMouseUp, { passive: true });
+    }
+
+    return () => {
+      document.removeEventListener('mousemove', handleGlobalMouseMove);
+      document.removeEventListener('mouseup', handleGlobalMouseUp);
+    };
+  }, [isDragging, startX, dragOffset, velocity]);
+
+  // Cleanup animation on unmount
+  useEffect(() => {
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, []);
+
+  const goToNews = (index: number) => {
+    if (isTransitioning || isDragging || index === currentNews) return;
+    setIsTransitioning(true);
+    setCurrentNews(index);
+    setTimeout(() => setIsTransitioning(false), 200);
+  };
+
+  // Better card styling for mobile
+  const getCardStyle = (index: number) => {
+    const position = index - currentNews;
+    const dragInfluence = dragOffset * 0.2;
+    
+    let translateX = 0;
+    let scale = 1;
+    let opacity = 1;
+    let zIndex = 1;
+    
+    if (position === 0) {
+      translateX = dragOffset;
+      scale = 1 - Math.abs(dragOffset) * 0.0002;
+      opacity = 1 - Math.abs(dragOffset) * 0.001;
+      zIndex = 10;
+    } else if (position === 1 || (position === -2 && newsArticles.length === 3)) {
+      translateX = 220 + dragInfluence;
+      scale = 0.95;
+      opacity = 0.8;
+      zIndex = 5;
+    } else if (position === -1 || (position === 2 && newsArticles.length === 3)) {
+      translateX = -220 + dragInfluence;
+      scale = 0.95;
+      opacity = 0.8;
+      zIndex = 5;
+    } else {
+      translateX = position > 0 ? 300 : -300;
+      scale = 0.9;
+      opacity = 0.6;
+      zIndex = 1;
+    }
+    
+    return {
+      transform: `translateX(${translateX}px) scale(${scale})`,
+      opacity: Math.max(0.3, opacity),
+      zIndex,
+      transition: isDragging ? 'none' : 'all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+    };
+  };
+
+  const openArticle = (article: NewsArticle) => {
+    requestAnimationFrame(() => {
+      setSelectedArticle(article);
+    });
+  };
+
+  const closeModal = () => {
+    setSelectedArticle(null);
+  };
+
   return (
     <>
-      <div className="bg-gradient-to-br from-gray-50 to-gray-100 py-16 md:py-24 relative">
-        {/* Background Elements */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-10 left-10 w-64 h-64 bg-blue-300 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-10 right-10 w-48 h-48 bg-green-400 rounded-full blur-3xl"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-purple-200 rounded-full blur-3xl"></div>
+      <section className="mt-16 sm:mt-20 w-full max-w-5xl mx-auto px-4 animate-fadeInUp animation-delay-1600">
+        {/* Section Header */}
+        <div className="text-center mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-blue-900 mb-2">
+            <span className="block">As Seen In</span>
+            <span className="bg-gradient-to-r from-blue-600 via-cyan-500 to-indigo-600 bg-clip-text text-transparent block">
+              Major News Outlets
+            </span>
+          </h2>
+          <p className="text-lg sm:text-xl text-blue-700 font-semibold">
+            Leading Health Publications Cover BlueDrops
+          </p>
         </div>
 
-        <div className="container mx-auto px-4 max-w-7xl relative z-10">
-          {/* Section Header */}
-          <div className="text-center mb-12 md:mb-16">
-            <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-bold mb-4">
-              📰 BREAKING NEWS
+        {/* Drag Instructions */}
+        <div className="text-center mb-4">
+          <p className="text-sm text-blue-600 font-medium">
+            👆 Drag to navigate between news articles
+          </p>
+        </div>
+
+        {/* News Slideshow Container */}
+        <div 
+          ref={containerRef}
+          className="relative h-[400px] mb-3"
+          style={{ 
+            perspective: '800px',
+            touchAction: 'manipulation' // ✅ FIXED: Better touch action
+          }}
+          onMouseDown={handleMouseDown}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
+          {/* News Cards */}
+          {newsArticles.map((article, index) => (
+            <div
+              key={article.id}
+              className="absolute inset-0 flex items-center justify-center select-none"
+              style={getCardStyle(index)}
+            >
+              <NewsCard 
+                article={article} 
+                isActive={index === currentNews}
+                isDragging={isDragging}
+                onRead={() => openArticle(article)}
+              />
             </div>
-            <h2 className="text-4xl md:text-6xl font-black text-gray-900 mb-6 font-inter tracking-tight">
-              <span className="block">MAJOR MEDICAL</span>
-              <span className="text-transparent bg-gradient-to-r from-blue-600 to-green-500 bg-clip-text">BREAKTHROUGH</span>
-            </h2>
-            <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Leading medical institutions validate revolutionary natural approach
-            </p>
-          </div>
+          ))}
+        </div>
 
-          {/* News Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {newsArticles.map((article) => (
-              <div
+        {/* Navigation Controls */}
+        <div className="flex items-center justify-center">
+          <div className="flex items-center gap-3">
+            {newsArticles.map((article, index) => (
+              <button
                 key={article.id}
-                className="group bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:scale-105 cursor-pointer"
-                onClick={() => setSelectedNews(article)}
+                onClick={() => goToNews(index)}
+                disabled={isTransitioning || isDragging}
+                className={`w-10 h-10 rounded-full font-bold text-sm transition-all duration-300 disabled:cursor-not-allowed ${
+                  index === currentNews
+                    ? 'bg-blue-600 text-white shadow-lg scale-110'
+                    : 'bg-blue-100 text-blue-600 hover:bg-blue-200 hover:scale-105'
+                }`}
               >
-                {/* Image */}
-                <div className="relative overflow-hidden">
-                  <img
-                    src={article.image}
-                    alt={article.title}
-                    className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
-                  />
-                  <div className="absolute top-4 left-4">
-                    <div className="bg-white/90 backdrop-blur-sm rounded-lg px-3 py-1 flex items-center gap-2">
-                      <img src={article.logoUrl} alt={article.source} className="h-4 w-auto" />
-                      <span className="text-xs font-bold text-gray-800">{article.source}</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div className="p-6">
-                  <div className="flex items-center gap-2 text-xs text-gray-500 mb-3">
-                    <Calendar className="w-3 h-3" />
-                    {article.date}
-                    <span>•</span>
-                    <User className="w-3 h-3" />
-                    {article.author}
-                  </div>
-                  
-                  <h3 className="text-lg font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-blue-600 transition-colors">
-                    {article.title}
-                  </h3>
-                  
-                  <p className="text-gray-600 text-sm leading-relaxed line-clamp-3 mb-4">
-                    {article.excerpt}
-                  </p>
-                  
-                  <div className="flex items-center justify-between">
-                    <span className="text-blue-600 font-semibold text-sm group-hover:text-blue-700">
-                      Ler mais →
-                    </span>
-                    <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center group-hover:bg-blue-200 transition-colors">
-                      <ExternalLink className="w-4 h-4 text-blue-600" />
-                    </div>
-                  </div>
-                </div>
-              </div>
+                {index + 1}
+              </button>
             ))}
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* News Modal */}
-      {selectedNews && (
-        <NewsModal
-          isOpen={!!selectedNews}
-          onClose={() => setSelectedNews(null)}
-          title={selectedNews.title}
-          source={selectedNews.source}
-          logoUrl={selectedNews.logoUrl}
-          date={selectedNews.date}
-          author={selectedNews.author}
-          content={selectedNews.content}
-          sourceUrl={selectedNews.sourceUrl}
-        />
+      {/* Article Modal */}
+      {selectedArticle && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 overflow-y-auto">
+          <div className="min-h-screen">
+            {selectedArticle.id === 'cnn' && <CNNModal onClose={closeModal} />}
+            {selectedArticle.id === 'webmd' && <WebMDModal onClose={closeModal} article={selectedArticle} />}
+            {selectedArticle.id === 'mayo' && <MayoModal onClose={closeModal} article={selectedArticle} />}
+          </div>
+        </div>
       )}
     </>
   );
 };
 
-function HomePage() {
-  const [showFullContent, setShowFullContent] = React.useState(false);
-
-  // Effect for showing full content after delay
-  React.useEffect(() => {
-    // Check if we're in Bolt environment (development)
-    const isInBolt = !import.meta.env.PROD;
-    
-    if (isInBolt) {
-      // In Bolt environment, show content immediately
-      setShowFullContent(true);
-    } else {
-      // In production, use the 43min11s delay
-      const fullContentTimer = setTimeout(() => {
-        setShowFullContent(true);
-      }, (43 * 60 + 11) * 1000); // 43 minutes and 11 seconds in milliseconds
-
-      return () => {
-        clearTimeout(fullContentTimer);
-      };
-    }
-  }, []);
-
-  // Separate effect for autoscroll after content is shown
-  React.useEffect(() => {
-    // Only autoscroll in production (when there was actually a delay)
-    if (showFullContent && import.meta.env.PROD) {
-      // Multiple attempts to ensure element is rendered
-      const scrollToSixBottle = () => {
-        const sixBottleElement = document.getElementById('six-bottle-package');
-        if (sixBottleElement) {
-          console.log('Scrolling to six-bottle package');
-          sixBottleElement.scrollIntoView({
-            behavior: 'smooth',
-            block: 'center',
-            inline: 'center'
-          });
-          return true;
-        }
-        return false;
-      };
-
-      // Try immediately
-      if (!scrollToSixBottle()) {
-        // Try after 100ms
-        setTimeout(() => {
-          if (!scrollToSixBottle()) {
-            // Try after 500ms
-            setTimeout(() => {
-              if (!scrollToSixBottle()) {
-                // Final try after 1s
-                setTimeout(() => {
-                  scrollToSixBottle();
-                }, 1000);
-              }
-            }, 500);
-          }
-        }, 100);
-      }
-    }
-  }, [showFullContent]);
-
+// ✅ UPDATED: News Card Component - Sem nomes dos sites, só logos
+const NewsCard: React.FC<{ 
+  article: any; 
+  isActive: boolean; 
+  isDragging: boolean;
+  onRead: () => void;
+}> = ({ article, isActive, isDragging, onRead }) => {
   return (
-    <>
-      <div style={{ paddingTop: import.meta.env.PROD ? '0' : '60px' }}>
-        {/* Hero Section - Always visible */}
-        <HeroSection />
-        
-        {/* Full content - Only shows after delay */}
-        {showFullContent && (
-          <>
-            <PurchaseSection />
-          </>
-        )}
+    <div className={`bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 border-2 ${article.color} hover:shadow-lg transition-all duration-300 max-w-md w-full mx-4 ${
+      isDragging ? 'shadow-2xl' : 'shadow-lg'
+    } ${isActive ? 'ring-2 ring-blue-300' : ''}`}>
+      
+      {/* ✅ UPDATED: Source Header - Só logo, sem nome */}
+      <div className="flex items-center justify-center mb-4">
+        <img 
+          src={article.logo} 
+          alt="News Source"
+          className="h-8 sm:h-10 w-auto object-contain"
+          draggable={false}
+        />
       </div>
 
-      {/* Rest of content - Only shows after delay */}
-      {showFullContent && (
-        <>
-          {/* Testimonials Section */}
-          <TestimonialsCarousel />
+      {/* Article Title */}
+      <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-3 leading-tight">
+        {article.title}
+      </h3>
 
-          {/* Doctors Section */}
-          <DoctorsSection />
+      {/* Summary */}
+      <p className="text-sm text-gray-600 leading-relaxed mb-4">
+        {article.summary}
+      </p>
 
-          {/* News Section */}
-          <NewsSection />
-
-          {/* 180-Day Guarantee Section */}
-          <div className="bg-gradient-to-br from-magenta-50 to-magenta-100 py-8 md:py-16 relative">
-            <div className="container mx-auto px-4 max-w-3xl text-center">
-              {/* Guarantee Badge */}
-              <div className="mb-6 md:mb-8">
-                {/* 180 Days Money Back Guarantee Seal */}
-                <div className="relative inline-block">
-                  {/* Glow effect behind the seal */}
-                  <div className="absolute inset-0 bg-yellow-400 rounded-full blur-2xl opacity-30 scale-110"></div>
-                  <img 
-                    src="https://i.imgur.com/nHQSpza.png" 
-                    alt="180 Days Money Back Guarantee" 
-                    className="w-48 md:w-64 mx-auto relative z-10"
-                  />
-                </div>
-              </div>
-
-              {/* Guarantee Text */}
-              <div className="max-w-2xl mx-auto">
-                <h2 className="text-2xl md:text-3xl font-black text-gray-800 mb-4 md:mb-6 font-inter tracking-tight">
-                  <span className="text-transparent bg-gradient-to-r from-magenta-600 to-magenta-400 bg-clip-text">WE BELIEVE</span> IN OUR PRODUCT
-                </h2>
-                
-                <div className="bg-white rounded-xl md:rounded-2xl p-4 md:p-6 shadow-xl border border-magenta-100">
-                  <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-4">
-                    We truly believe in PEAXION's power. That's why we offer a <span className="font-bold text-yellow-600">full 180-day money-back guarantee</span>.
-                  </p>
-                  
-                  <div className="bg-gradient-to-r from-yellow-50 to-yellow-100 rounded-lg p-4 border-l-4 border-yellow-500">
-                    <p className="text-gray-800 font-semibold text-base mb-1">
-                      ✓ Your satisfaction is our priority
-                    </p>
-                    <p className="text-gray-700 text-sm">
-                      No questions asked. Even empty bottles accepted.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Masculine Call-to-Action Section */}
-          <div className="bg-gray-50 py-8 md:py-12 relative">
-            <div className="container mx-auto px-4 max-w-4xl text-center">
-              <h2 className="text-3xl md:text-4xl font-black text-gray-800 mb-4 font-inter tracking-tight leading-tight">
-                READY TO <span className="text-transparent bg-gradient-to-r from-magenta-600 to-magenta-400 bg-clip-text">RECLAIM</span> YOUR MASCULINITY?
-              </h2>
-              <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-                It's time to get back in the game and show what you're made of
-              </p>
-            </div>
-          </div>
-
-          {/* Purchase Section - Repeated */}
-          <PurchaseSection />
-
-          {/* Footer */}
-          <footer className="bg-gradient-to-br from-magenta-600 to-magenta-800 py-4">
-            <div className="container mx-auto px-4 text-center">
-              <div className="text-magenta-100 text-sm">
-                © 2025 <span className="text-white font-semibold">PEAXION</span>. All rights reserved.
-              </div>
-            </div>
-          </footer>
-        </>
-      )}
-    </>
-   );
- }
- 
-function App() {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/admin" element={<AdminRoute />} />
-      </Routes>
-    </Router>
+      {/* Read Button */}
+      <button
+        onClick={(e) => {
+          // ✅ CRITICAL: Stop propagation and prevent drag interference
+          e.stopPropagation();
+          e.preventDefault();
+          
+          // ✅ Only trigger if not dragging
+          if (!isDragging) {
+          onRead();
+          }
+        }}
+        className="w-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold py-4 px-4 rounded-xl transition-colors text-sm"
+        style={{ 
+          WebkitTapHighlightColor: 'transparent',
+          touchAction: 'manipulation',
+          minHeight: '44px', // ✅ Minimum touch target size
+          position: 'relative',
+          zIndex: 30 // ✅ Higher z-index than drag container
+        }}
+      >
+        {article.buttonText}
+      </button>
+    </div>
   );
-}
-
- export default App;
+};
