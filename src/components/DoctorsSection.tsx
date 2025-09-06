@@ -6,8 +6,8 @@ import { Doctor, getActiveDoctors } from '../lib/doctors';
 // VTurb video configurations for doctors
 const doctorVTurbVideos = [
   {
-    id: 'vid-doctor-1',
-    scriptSrc: 'https://scripts.converteai.net/f84805a4-2184-4076-90a5-aec239b74ab8/players/doctor-1/v4/player.js'
+    id: 'vid-68bb65b12d7746842301f4b4',
+    scriptSrc: 'https://scripts.converteai.net/f84805a4-2184-4076-90a5-aec239b74ab8/players/68bb65b12d7746842301f4b4/v4/player.js'
   },
   {
     id: 'vid-doctor-2', 
