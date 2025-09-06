@@ -60,7 +60,9 @@ const TestimonialsCarousel: React.FC = () => {
     loop: true,
     align: 'center',
     containScroll: 'trimSnaps',
-    slidesToScroll: 1
+    slidesToScroll: 1,
+    dragFree: false,
+    skipSnaps: false
   });
 
   React.useEffect(() => {
@@ -234,17 +236,17 @@ const TestimonialsCarousel: React.FC = () => {
         </div>
 
         {/* Carousel Container */}
-        <div className="relative overflow-visible">
-          <div className="overflow-visible" ref={emblaRef}>
+        <div className="relative overflow-hidden">
+          <div className="overflow-hidden" ref={emblaRef}>
             <div className="flex">
               {testimonials.map((testimonial, index) => (
-                <div key={testimonial.id} className="flex-[0_0_100%] md:flex-[0_0_50%] lg:flex-[0_0_33.333%] px-6 py-4">
+                <div key={testimonial.id} className="flex-[0_0_85%] sm:flex-[0_0_70%] md:flex-[0_0_60%] lg:flex-[0_0_50%] px-4 py-4">
                   <div className="group relative">
                     {/* Main Card */}
-                    <div className="bg-gradient-to-br from-white to-gray-50 rounded-3xl shadow-2xl border border-gray-100 overflow-hidden transform transition-all duration-500 hover:scale-105 hover:shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)]">
+                    <div className="bg-gradient-to-br from-white to-gray-50 rounded-3xl shadow-2xl border border-gray-100 overflow-hidden transform transition-all duration-500 hover:scale-[1.02] hover:shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] h-full">
                       
                       {/* Video Section */}
-                      <div className="relative bg-gray-900 aspect-video">
+                      <div className="relative bg-gray-900 aspect-[9/16] sm:aspect-video">
                         {/* VTurb Video Container - Only render if visible */}
                         {visibleSlides.has(index) && (() => {
                           const videoConfig = getVideoConfig(index);
@@ -278,31 +280,40 @@ const TestimonialsCarousel: React.FC = () => {
                       </div>
 
                       {/* Content Section */}
-                      <div className="p-6">
+                      <div className="p-4 sm:p-6">
                         {/* User Info */}
-                        <div className="flex items-center gap-4 mb-4">
+                        <div className="flex items-center gap-3 mb-4">
                           <div className="flex-1 text-center">
-                            <h3 className="text-lg font-bold text-gray-900">{testimonial.name}</h3>
+                            <h3 className="text-base sm:text-lg font-bold text-gray-900">{testimonial.name}</h3>
                             <div className="flex items-center gap-1 text-gray-500 text-sm">
                               <MapPin className="w-4 h-4" />
                               {testimonial.city}, {testimonial.state}
                             </div>
                           </div>
-                          <div className="flex items-center justify-center gap-1 mt-2">
+                        </div>
+
+                        {/* Stars */}
+                        <div className="flex items-center justify-center gap-1 mb-4">
                             {[...Array(5)].map((_, i) => (
                               <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
                             ))}
-                          </div>
                         </div>
 
-                        {/* Quote */}
+                        {/* Quote - Adicionado */}
+                        <div className="relative mb-4">
+                          <div className="absolute -top-2 -left-2 text-3xl text-magenta-200 font-serif leading-none">"</div>
+                          <p className="text-gray-700 leading-relaxed italic pl-6 pr-2 text-sm">
+                            {testimonial.caption}
+                          </p>
+                          <div className="absolute -bottom-2 -right-2 text-3xl text-magenta-200 font-serif leading-none rotate-180">"</div>
+                        </div>
 
                         {/* Verified Badge */}
-                        <div className="mt-4 pt-4 border-t border-gray-100">
+                        <div className="pt-4 border-t border-gray-100">
                           <div className="flex items-center justify-between">
                             <div className="flex items-center gap-2">
                               <CheckCircle className="w-5 h-5 text-green-500" />
-                              <span className="text-green-700 font-semibold text-sm">Verified Customer</span>
+                              <span className="text-green-700 font-semibold text-xs sm:text-sm">Verified Customer</span>
                             </div>
                             <div className="text-xs text-gray-400">
                               Real Results • 2024
@@ -323,18 +334,33 @@ const TestimonialsCarousel: React.FC = () => {
 
           {/* Navigation Buttons */}
           <button
-            className="absolute left-2 top-1/2 transform -translate-y-1/2 w-14 h-14 bg-white rounded-full shadow-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.4)] z-20 border border-gray-100"
+            className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 sm:w-14 sm:h-14 bg-white rounded-full shadow-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.4)] z-20 border border-gray-100"
             onClick={scrollPrev}
           >
-            <ChevronLeft className="w-6 h-6 text-gray-700" />
+            <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 text-gray-700" />
           </button>
           
           <button
-            className="absolute right-2 top-1/2 transform -translate-y-1/2 w-14 h-14 bg-white rounded-full shadow-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.4)] z-20 border border-gray-100"
+            className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 sm:w-14 sm:h-14 bg-white rounded-full shadow-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.4)] z-20 border border-gray-100"
             onClick={scrollNext}
           >
-            <ChevronRight className="w-6 h-6 text-gray-700" />
+            <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-gray-700" />
           </button>
+
+          {/* Slide Indicators */}
+          <div className="flex justify-center mt-8 gap-2">
+            {testimonials.map((_, index) => (
+              <button
+                key={index}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  visibleSlides.has(index) 
+                    ? 'bg-magenta-600 w-8' 
+                    : 'bg-gray-300 hover:bg-gray-400'
+                }`}
+                onClick={() => emblaApi?.scrollTo(index)}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </div>
