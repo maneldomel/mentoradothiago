@@ -30,8 +30,10 @@ const vTurbVideos = [
 const TestimonialsCarousel: React.FC = () => {
   const [testimonials, setTestimonials] = React.useState<Testimonial[]>([]);
   const [loading, setLoading] = React.useState(true);
-  const [visibleSlides, setVisibleSlides] = React.useState<Set<number>>(new Set([0]));
+  const [visibleSlides, setVisibleSlides] = React.useState<Set<number>>(new Set());
+  const [intersectingSlides, setIntersectingSlides] = React.useState<Set<number>>(new Set());
   const [loadedScripts, setLoadedScripts] = React.useState<Set<string>>(new Set());
+  const slideRefs = React.useRef<(HTMLDivElement | null)[]>([]);
 
   // Initialize global video control system
   React.useEffect(() => {
@@ -63,11 +65,60 @@ const TestimonialsCarousel: React.FC = () => {
     slidesToScroll: 1
   });
 
+  // Intersection Observer to detect which slides are actually visible on screen
+  React.useEffect(() => {
+    if (testimonials.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const newIntersectingSlides = new Set<number>();
+        
+        entries.forEach((entry) => {
+          const slideIndex = parseInt(entry.target.getAttribute('data-slide-index') || '0');
+          
+          if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+            newIntersectingSlides.add(slideIndex);
+          }
+        });
+        
+        setIntersectingSlides(prev => {
+          const combined = new Set([...prev, ...newIntersectingSlides]);
+          
+          // Remove slides that are no longer intersecting
+          entries.forEach((entry) => {
+            const slideIndex = parseInt(entry.target.getAttribute('data-slide-index') || '0');
+            if (!entry.isIntersecting || entry.intersectionRatio <= 0.5) {
+              combined.delete(slideIndex);
+            }
+          });
+          
+          return combined;
+        });
+      },
+      {
+        threshold: [0, 0.25, 0.5, 0.75, 1],
+        rootMargin: '0px'
+      }
+    );
+
+    // Observe all slide elements
+    slideRefs.current.forEach((slideRef) => {
+      if (slideRef) {
+        observer.observe(slideRef);
+      }
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [testimonials]);
   React.useEffect(() => {
     const fetchTestimonials = () => {
       try {
         const data = getActiveTestimonials();
         setTestimonials(data);
+        // Initialize slideRefs array
+        slideRefs.current = new Array(data.length).fill(null);
       } catch (error) {
         console.error('Error fetching testimonials:', error);
         setTestimonials([]);
@@ -146,32 +197,13 @@ const TestimonialsCarousel: React.FC = () => {
     });
   }, []);
 
-  // Track visible slides and load/unload scripts accordingly
+  // Track visible slides from Embla and intersecting slides from Intersection Observer
   React.useEffect(() => {
     if (!emblaApi || testimonials.length === 0) return;
 
     const updateVisibleSlides = () => {
       const slidesInView = emblaApi.slidesInView();
       const newVisibleSlides = new Set(slidesInView);
-      
-      // Load scripts for visible slides
-      slidesInView.forEach(index => {
-        const videoConfig = vTurbVideos[index % vTurbVideos.length];
-        if (videoConfig) {
-          loadVTurbScript(videoConfig.scriptSrc, videoConfig.id);
-        }
-      });
-      
-      // Unload scripts for slides that are no longer visible
-      visibleSlides.forEach(index => {
-        if (!newVisibleSlides.has(index)) {
-          const videoConfig = vTurbVideos[index % vTurbVideos.length];
-          if (videoConfig) {
-            removeVTurbScript(videoConfig.scriptSrc, videoConfig.id);
-          }
-        }
-      });
-      
       setVisibleSlides(newVisibleSlides);
     };
 
@@ -186,7 +218,38 @@ const TestimonialsCarousel: React.FC = () => {
       emblaApi.off('slidesInView', updateVisibleSlides);
       emblaApi.off('select', updateVisibleSlides);
     };
-  }, [emblaApi, testimonials, loadVTurbScript, removeVTurbScript, visibleSlides]);
+  }, [emblaApi, testimonials]);
+
+  // Load/unload scripts based on intersection (actual visibility on screen)
+  React.useEffect(() => {
+    // Load scripts for slides that are both in Embla view AND intersecting with viewport
+    const slidesToLoad = new Set<number>();
+    intersectingSlides.forEach(index => {
+      if (visibleSlides.has(index)) {
+        slidesToLoad.add(index);
+      }
+    });
+
+    // Load scripts for slides that should be loaded
+    slidesToLoad.forEach(index => {
+      const videoConfig = vTurbVideos[index % vTurbVideos.length];
+      if (videoConfig) {
+        loadVTurbScript(videoConfig.scriptSrc, videoConfig.id);
+      }
+    });
+
+    // Unload scripts for slides that are no longer both visible and intersecting
+    loadedScripts.forEach(videoId => {
+      const videoIndex = vTurbVideos.findIndex(v => v.id === videoId);
+      if (videoIndex !== -1) {
+        const actualIndex = Array.from(loadedScripts).indexOf(videoId);
+        if (!slidesToLoad.has(actualIndex)) {
+          const videoConfig = vTurbVideos[videoIndex];
+          removeVTurbScript(videoConfig.scriptSrc, videoConfig.id);
+        }
+      }
+    });
+  }, [intersectingSlides, visibleSlides, loadVTurbScript, removeVTurbScript, loadedScripts]);
 
   const getVideoConfig = (index: number) => vTurbVideos[index % vTurbVideos.length];
 
@@ -238,15 +301,20 @@ const TestimonialsCarousel: React.FC = () => {
           <div className="overflow-visible" ref={emblaRef}>
             <div className="flex">
               {testimonials.map((testimonial, index) => (
-                <div key={testimonial.id} className="flex-[0_0_100%] md:flex-[0_0_50%] lg:flex-[0_0_33.333%] px-6 py-4">
+                <div 
+                  key={testimonial.id} 
+                  ref={el => slideRefs.current[index] = el}
+                  data-slide-index={index}
+                  className="flex-[0_0_100%] md:flex-[0_0_50%] lg:flex-[0_0_33.333%] px-6 py-4"
+                >
                   <div className="group relative">
                     {/* Main Card */}
                     <div className="bg-gradient-to-br from-white to-gray-50 rounded-3xl shadow-2xl border border-gray-100 overflow-hidden transform transition-all duration-500 hover:scale-105 hover:shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)]">
                       
                       {/* Video Section */}
                       <div className="relative bg-gray-900 aspect-video">
-                        {/* VTurb Video Container - Only render if visible */}
-                        {visibleSlides.has(index) && (() => {
+                        {/* VTurb Video Container - Only render if visible AND intersecting */}
+                        {visibleSlides.has(index) && intersectingSlides.has(index) && (() => {
                           const videoConfig = getVideoConfig(index);
                           return (
                             <vturb-smartplayer 
@@ -263,14 +331,16 @@ const TestimonialsCarousel: React.FC = () => {
                           );
                         })()}
                         
-                        {/* Loading placeholder for non-visible slides */}
-                        {!visibleSlides.has(index) && (
+                        {/* Loading placeholder for non-visible or non-intersecting slides */}
+                        {(!visibleSlides.has(index) || !intersectingSlides.has(index)) && (
                           <div className="w-full h-full bg-gray-800 flex items-center justify-center">
                             <div className="text-center">
                               <div className="w-16 h-16 bg-magenta-600 bg-opacity-90 rounded-full flex items-center justify-center shadow-lg mb-2">
                                 <Play className="w-6 h-6 text-white ml-1" fill="white" />
                               </div>
-                              <p className="text-white text-sm">Loading video...</p>
+                              <p className="text-white text-sm">
+                                {!visibleSlides.has(index) ? 'Scroll to load video...' : 'Loading video...'}
+                              </p>
                             </div>
                           </div>
                         )}
