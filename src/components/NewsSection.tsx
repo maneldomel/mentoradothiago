@@ -46,7 +46,7 @@ Medical professionals are taking notice. Dr. Sarah Chen, a urologist in Los Ange
 
 The supplement's liquid format appears to be a significant advantage, allowing for precise dosing and rapid absorption that users say leads to more predictable results.`,
     readTime: '4 min read',
-    imageUrl: 'https://images.pexels.com/photos/518543/pexels-photo-518543.jpeg?auto=compress&cs=tinysrgb&w=800&h=400',
+    imageUrl: 'https://i.imgur.com/i0633az.png',
     publishDate: 'January 12, 2025',
     author: 'Michael Rodriguez'
   },
@@ -54,7 +54,7 @@ The supplement's liquid format appears to be a significant advantage, allowing f
     id: '3',
     site: 'HealthLine Weekly',
     siteColor: 'text-green-600',
-    siteLogo: 'https://images.pexels.com/photos/3825581/pexels-photo-3825581.jpeg?auto=compress&cs=tinysrgb&w=60&h=40',
+    siteLogo: 'https://i.imgur.com/Lx3bVSg.png',
     title: 'New Supplement PEAXION Stuns Doctors: Erectile Dysfunction Reversed in 21 Days',
     excerpt: 'A revolutionary liquid formula is gaining national attention after users reported dramatic improvements in erectile performance — without relying on prescription pills.',
     fullContent: `A revolutionary liquid formula is gaining national attention after users reported dramatic improvements in erectile performance — without relying on prescription pills.
@@ -93,7 +93,7 @@ As word spreads about PEAXION's effectiveness, demand has surged nationwide. The
     id: '2',
     site: 'Men\'s Health Today',
     siteColor: 'text-blue-600',
-    siteLogo: 'https://images.pexels.com/photos/3825581/pexels-photo-3825581.jpeg?auto=compress&cs=tinysrgb&w=60&h=40',
+    siteLogo: 'https://i.imgur.com/8bm1B4e.jpeg',
     title: 'How PEAXION Is Helping Men Reclaim Their Confidence Without Prescription Drugs',
     excerpt: 'Men struggling with performance anxiety or declining stamina are turning to a new natural formula — and it\'s not coming from the pharmacy aisle.',
     fullContent: `Men struggling with performance anxiety or declining stamina are turning to a new natural formula — and it's not coming from the pharmacy aisle.
@@ -123,7 +123,7 @@ Dr. Brooks notes that the psychological benefits are just as important as the ph
 
 The growing popularity of natural alternatives like PEAXION reflects a broader shift in men's health, with more men seeking solutions that work with their bodies rather than against them.`,
     readTime: '5 min read',
-    imageUrl: 'https://images.pexels.com/photos/3825581/pexels-photo-3825581.jpeg?auto=compress&cs=tinysrgb&w=800&h=400',
+    imageUrl: 'https://i.imgur.com/8bm1B4e.jpeg',
     publishDate: 'January 10, 2025',
     author: 'Dr. Daniel Brooks'
   }
