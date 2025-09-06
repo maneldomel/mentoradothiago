@@ -32,6 +32,7 @@ const TestimonialsCarousel: React.FC = () => {
   const [loading, setLoading] = React.useState(true);
   const [visibleSlides, setVisibleSlides] = React.useState<Set<number>>(new Set([0]));
   const [loadedScripts, setLoadedScripts] = React.useState<Set<string>>(new Set());
+  const [selectedIndex, setSelectedIndex] = React.useState(0);
 
   // Initialize global video control system
   React.useEffect(() => {
@@ -148,13 +149,16 @@ const TestimonialsCarousel: React.FC = () => {
     });
   }, []);
 
-  // Track visible slides and load/unload scripts accordingly
+  // Track visible slides and selected index
   React.useEffect(() => {
     if (!emblaApi || testimonials.length === 0) return;
 
     const updateVisibleSlides = () => {
       const slidesInView = emblaApi.slidesInView();
       const newVisibleSlides = new Set(slidesInView);
+      const currentIndex = emblaApi.selectedScrollSnap();
+      
+      setSelectedIndex(currentIndex);
       
       // Load scripts for visible slides
       slidesInView.forEach(index => {
@@ -235,15 +239,24 @@ const TestimonialsCarousel: React.FC = () => {
           </p>
         </div>
 
-        {/* Carousel Container */}
-        <div className="relative overflow-hidden">
+        {/* Carousel Container - Slider Style */}
+        <div className="relative">
           <div className="overflow-hidden" ref={emblaRef}>
             <div className="flex">
               {testimonials.map((testimonial, index) => (
-                <div key={testimonial.id} className="flex-[0_0_85%] sm:flex-[0_0_70%] md:flex-[0_0_60%] lg:flex-[0_0_50%] px-4 py-4">
-                  <div className="group relative">
+                <div 
+                  key={testimonial.id} 
+                  className="flex-[0_0_90%] sm:flex-[0_0_80%] md:flex-[0_0_70%] lg:flex-[0_0_60%] xl:flex-[0_0_50%] px-4"
+                >
+                  <div 
+                    className={`group relative transition-all duration-500 ${
+                      selectedIndex === index 
+                        ? 'scale-100 opacity-100' 
+                        : 'scale-95 opacity-70'
+                    }`}
+                  >
                     {/* Main Card */}
-                    <div className="bg-gradient-to-br from-white to-gray-50 rounded-3xl shadow-2xl border border-gray-100 overflow-hidden transform transition-all duration-500 hover:scale-[1.02] hover:shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] h-full">
+                    <div className="bg-gradient-to-br from-white to-gray-50 rounded-3xl shadow-2xl border border-gray-100 overflow-hidden transform transition-all duration-500 hover:scale-[1.02] hover:shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)]">
                       
                       {/* Video Section */}
                       <div className="relative bg-gray-900 aspect-[9/16] sm:aspect-video">
@@ -253,7 +266,7 @@ const TestimonialsCarousel: React.FC = () => {
                           return (
                             <vturb-smartplayer 
                               id={videoConfig.id}
-                             autoplay="false"
+                              autoplay="false"
                               muted="false"
                               style={{
                                 display: 'block',
@@ -276,16 +289,15 @@ const TestimonialsCarousel: React.FC = () => {
                             </div>
                           </div>
                         )}
-                        
                       </div>
 
                       {/* Content Section */}
-                      <div className="p-4 sm:p-6">
+                      <div className="p-6">
                         {/* User Info */}
                         <div className="flex items-center gap-3 mb-4">
                           <div className="flex-1 text-center">
-                            <h3 className="text-base sm:text-lg font-bold text-gray-900">{testimonial.name}</h3>
-                            <div className="flex items-center gap-1 text-gray-500 text-sm">
+                            <h3 className="text-lg font-bold text-gray-900">{testimonial.name}</h3>
+                            <div className="flex items-center justify-center gap-1 text-gray-500 text-sm">
                               <MapPin className="w-4 h-4" />
                               {testimonial.city}, {testimonial.state}
                             </div>
@@ -294,12 +306,12 @@ const TestimonialsCarousel: React.FC = () => {
 
                         {/* Stars */}
                         <div className="flex items-center justify-center gap-1 mb-4">
-                            {[...Array(5)].map((_, i) => (
-                              <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
-                            ))}
+                          {[...Array(5)].map((_, i) => (
+                            <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
+                          ))}
                         </div>
 
-                        {/* Quote - Adicionado */}
+                        {/* Quote */}
                         <div className="relative mb-4">
                           <div className="absolute -top-2 -left-2 text-3xl text-magenta-200 font-serif leading-none">"</div>
                           <p className="text-gray-700 leading-relaxed italic pl-6 pr-2 text-sm">
@@ -313,7 +325,7 @@ const TestimonialsCarousel: React.FC = () => {
                           <div className="flex items-center justify-between">
                             <div className="flex items-center gap-2">
                               <CheckCircle className="w-5 h-5 text-green-500" />
-                              <span className="text-green-700 font-semibold text-xs sm:text-sm">Verified Customer</span>
+                              <span className="text-green-700 font-semibold text-sm">Verified Customer</span>
                             </div>
                             <div className="text-xs text-gray-400">
                               Real Results • 2024
@@ -353,7 +365,7 @@ const TestimonialsCarousel: React.FC = () => {
               <button
                 key={index}
                 className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  visibleSlides.has(index) 
+                  selectedIndex === index 
                     ? 'bg-magenta-600 w-8' 
                     : 'bg-gray-300 hover:bg-gray-400'
                 }`}
