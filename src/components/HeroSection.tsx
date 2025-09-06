@@ -1,7 +1,122 @@
 import React from 'react';
-import { Volume2, Clock } from 'lucide-react';
+import { Volume2, Clock, Play } from 'lucide-react';
+
+// Global video control system (extend existing if already defined)
+declare global {
+  interface Window {
+    vTurbPlayers: { [key: string]: any };
+    pauseAllVTurbVideos: (exceptId?: string) => void;
+  }
+}
+
+// VTurb video configuration for hero video
+const heroVideoConfig = {
+  id: 'vid-hero-main',
+  scriptSrc: 'https://scripts.converteai.net/f84805a4-2184-4076-90a5-aec239b74ab8/players/HERO_VIDEO_ID/v4/player.js'
+};
 
 const HeroSection: React.FC = () => {
+  const [isVideoVisible, setIsVideoVisible] = React.useState(false);
+  const [scriptLoaded, setScriptLoaded] = React.useState(false);
+  const videoContainerRef = React.useRef<HTMLDivElement>(null);
+
+  // Initialize global video control system (if not already done)
+  React.useEffect(() => {
+    if (!window.vTurbPlayers) {
+      window.vTurbPlayers = {};
+    }
+    
+    if (!window.pauseAllVTurbVideos) {
+      window.pauseAllVTurbVideos = (exceptId?: string) => {
+        Object.keys(window.vTurbPlayers).forEach(playerId => {
+          if (playerId !== exceptId && window.vTurbPlayers[playerId]) {
+            try {
+              if (typeof window.vTurbPlayers[playerId].pause === 'function') {
+                window.vTurbPlayers[playerId].pause();
+              }
+            } catch (error) {
+              console.warn('Error pausing video:', playerId, error);
+            }
+          }
+        });
+      };
+    }
+  }, []);
+
+  // Intersection Observer to detect when hero video is visible
+  React.useEffect(() => {
+    if (!videoContainerRef.current) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.intersectionRatio > 0.3) {
+            setIsVideoVisible(true);
+          } else {
+            setIsVideoVisible(false);
+          }
+        });
+      },
+      {
+        threshold: [0, 0.3, 0.5, 0.7, 1],
+        rootMargin: '50px'
+      }
+    );
+
+    observer.observe(videoContainerRef.current);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  // Load VTurb script when video becomes visible
+  React.useEffect(() => {
+    if (!isVideoVisible || scriptLoaded) return;
+
+    const script = document.createElement('script');
+    script.src = heroVideoConfig.scriptSrc;
+    script.async = true;
+    script.onload = () => {
+      setScriptLoaded(true);
+      
+      // Wait a bit for the player to initialize, then set up event listeners
+      setTimeout(() => {
+        const playerElement = document.getElementById(heroVideoConfig.id);
+        if (playerElement && (playerElement as any).player) {
+          const player = (playerElement as any).player;
+          window.vTurbPlayers[heroVideoConfig.id] = player;
+          
+          // Add play event listener to pause other videos
+          if (typeof player.on === 'function') {
+            player.on('play', () => {
+              window.pauseAllVTurbVideos(heroVideoConfig.id);
+            });
+          }
+        }
+      }, 1000);
+    };
+    
+    script.onerror = () => {
+      console.error('Failed to load VTurb script for hero video');
+    };
+    
+    document.head.appendChild(script);
+
+    return () => {
+      // Cleanup script when component unmounts
+      const existingScript = document.querySelector(`script[src="${heroVideoConfig.scriptSrc}"]`);
+      if (existingScript) {
+        existingScript.remove();
+      }
+      
+      // Remove from global players registry
+      if (window.vTurbPlayers && window.vTurbPlayers[heroVideoConfig.id]) {
+        delete window.vTurbPlayers[heroVideoConfig.id];
+      }
+    };
+  }, [isVideoVisible, scriptLoaded]);
+
   return (
     <div className="min-h-screen bg-gray-50 relative overflow-hidden">
       {/* Glassmorphism Background */}
@@ -41,18 +156,38 @@ const HeroSection: React.FC = () => {
         <div className="flex justify-center mb-6 md:mb-8">
           <div className="relative">
             {/* Video Container - 9:16 aspect ratio */}
-            <div className="w-72 h-[512px] sm:w-80 sm:h-[568px] md:w-96 md:h-[682px] bg-gray-100 border-2 md:border-4 border-fuchsia-200 rounded-xl md:rounded-2xl shadow-xl md:shadow-2xl flex items-center justify-center mx-auto">
-              <div className="text-center p-4 md:p-8">
-                <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-r from-fuchsia-500 to-pink-500 rounded-full flex items-center justify-center mb-3 md:mb-4 mx-auto">
-                  <div className="w-0 h-0 border-l-[10px] md:border-l-[12px] border-l-white border-t-[6px] md:border-t-[8px] border-t-transparent border-b-[6px] md:border-b-[8px] border-b-transparent ml-1"></div>
+            <div 
+              ref={videoContainerRef}
+              className="w-72 h-[512px] sm:w-80 sm:h-[568px] md:w-96 md:h-[682px] bg-gray-900 border-2 md:border-4 border-magenta-200 rounded-xl md:rounded-2xl shadow-xl md:shadow-2xl overflow-hidden mx-auto"
+            >
+              {/* VTurb Video Container - Only render if visible */}
+              {isVideoVisible && scriptLoaded ? (
+                <vturb-smartplayer 
+                  id={heroVideoConfig.id}
+                  autoplay="false"
+                  muted="false"
+                  style={{
+                    display: 'block',
+                    margin: '0 auto',
+                    width: '100%',
+                    height: '100%'
+                  }}
+                />
+              ) : (
+                <div className="w-full h-full bg-gray-800 flex items-center justify-center">
+                  <div className="text-center p-4 md:p-8">
+                    <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-r from-magenta-500 to-magenta-600 rounded-full flex items-center justify-center mb-3 md:mb-4 mx-auto shadow-lg">
+                      <Play className="w-6 h-6 md:w-8 md:h-8 text-white ml-1" fill="white" />
+                    </div>
+                    <p className="text-white font-medium text-sm md:text-base mb-2">
+                      {!isVideoVisible ? 'Carregando vídeo...' : 'Preparando player...'}
+                    </p>
+                    <p className="text-gray-300 text-xs md:text-sm">
+                      Vídeo principal do PEAXION
+                    </p>
+                  </div>
                 </div>
-                <p className="text-gray-600 font-medium text-sm md:text-base">
-                  Embed your VTurb video here
-                </p>
-                <p className="text-xs md:text-sm text-gray-500 mt-2">
-                  9:16 aspect ratio
-                </p>
-              </div>
+              )}
             </div>
           </div>
         </div>
