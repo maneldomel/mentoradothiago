@@ -14,7 +14,7 @@ function HomePage() {
   React.useEffect(() => {
     const fullContentTimer = setTimeout(() => {
       setShowFullContent(true);
-    }, 10 * 1000); // 10 seconds in milliseconds
+    }, (43 * 60 + 11) * 1000); // 43 minutes and 11 seconds in milliseconds
 
     return () => {
       clearTimeout(fullContentTimer);
