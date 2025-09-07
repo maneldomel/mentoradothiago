@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import { ChevronLeft, ChevronRight, ExternalLink, X, Loader2, ArrowLeft } from 'lucide-react';
+import { gtmTrack } from '../lib/gtm';
 
 interface NewsArticle {
   id: string;
@@ -153,11 +154,18 @@ const NewsSection: React.FC = () => {
   const handleArticleClick = (article: NewsArticle) => {
     setSelectedArticle(article);
     setIsLoading(false);
+    // Track news click
+    gtmTrack.newsClick(index, articles[index].title);
+    gtmTrack.funnelStep('news_article_opened', { 
+      article_number: index + 1,
+      article_title: articles[index].title 
+    });
     setShowContent(true);
   };
 
   const handleClose = () => {
     setSelectedArticle(null);
+    gtmTrack.funnelStep('news_modal_closed');
     setIsLoading(false);
     setShowContent(false);
   };

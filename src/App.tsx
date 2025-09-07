@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { gtmTrack } from './lib/gtm';
 import HeroSection from './components/HeroSection';
 import PurchaseSection from './components/PurchaseSection';
 import TestimonialsCarousel from './components/TestimonialsCarousel';
@@ -18,10 +19,14 @@ function HomePage() {
     if (isInBolt) {
       // In Bolt environment, show content immediately
       setShowFullContent(true);
+      // Track content shown immediately in development
+      gtmTrack.funnelStep('content_shown_dev');
     } else {
       // In production, use the 43min11s delay
       const fullContentTimer = setTimeout(() => {
         setShowFullContent(true);
+        // Track content shown after delay
+        gtmTrack.funnelStep('content_shown_after_delay', { delay_minutes: 43.18 });
       }, (43 * 60 + 11) * 1000); // 43 minutes and 11 seconds in milliseconds
 
       return () => {
@@ -39,6 +44,7 @@ function HomePage() {
         const sixBottleElement = document.getElementById('six-bottle-package');
         if (sixBottleElement) {
           console.log('Scrolling to six-bottle package');
+          gtmTrack.funnelStep('auto_scroll_to_purchase');
           sixBottleElement.scrollIntoView({
             behavior: 'smooth',
             block: 'center',

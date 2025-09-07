@@ -1,5 +1,6 @@
 import React from 'react';
 import { Volume2, Clock, Play } from 'lucide-react';
+import { gtmTrack } from '../lib/gtm';
 
 // Global video control system (extend existing if already defined)
 declare global {
@@ -52,6 +53,7 @@ const HeroSection: React.FC = () => {
         entries.forEach((entry) => {
           if (entry.isIntersecting && entry.intersectionRatio > 0.3) {
             setIsVideoVisible(true);
+            gtmTrack.funnelStep('hero_video_visible');
           } else {
             setIsVideoVisible(false);
           }
@@ -91,6 +93,19 @@ const HeroSection: React.FC = () => {
           if (typeof player.on === 'function') {
             player.on('play', () => {
               window.pauseAllVTurbVideos(heroVideoConfig.id);
+              gtmTrack.videoPlay('hero');
+              gtmTrack.funnelStep('hero_video_play');
+            });
+            
+            // Track video progress for real-time analysis
+            player.on('timeupdate', () => {
+              if (typeof player.getCurrentTime === 'function' && typeof player.getDuration === 'function') {
+                const currentTime = player.getCurrentTime();
+                const duration = player.getDuration();
+                if (currentTime && duration) {
+                  gtmTrack.videoProgress('hero', 0, currentTime, duration);
+                }
+              }
             });
           }
         }
