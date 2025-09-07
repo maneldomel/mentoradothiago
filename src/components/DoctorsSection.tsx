@@ -183,7 +183,6 @@ const DoctorsSection: React.FC = () => {
                 }
               }
             });
-            });
           }
         }
       }, 1000);
