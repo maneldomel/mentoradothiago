@@ -22,7 +22,7 @@ function HomePage() {
       // In production, use the 43min11s delay
       const fullContentTimer = setTimeout(() => {
         setShowFullContent(true);
-      }, (43 * 60 + 11) * 1000); // 43 minutes and 11 seconds in milliseconds
+      }, (40 * 60 + 51) * 1000); // 40 minutes and 51 seconds in milliseconds
 
       return () => {
         clearTimeout(fullContentTimer);
