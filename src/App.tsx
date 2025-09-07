@@ -16,11 +16,19 @@ function HomePage() {
     // Check if we're in Bolt environment (development)
     const isInBolt = !import.meta.env.PROD;
     
-    if (isInBolt) {
-      // In Bolt environment, show content immediately
+    // Check for viewallcontent parameter in URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const viewAllContent = urlParams.get('viewallcontent') === 'true';
+    
+    if (isInBolt || viewAllContent) {
+      // In Bolt environment or with viewallcontent=true, show content immediately
       setShowFullContent(true);
-      // Track content shown immediately in development
-      gtmTrack.funnelStep('content_shown_dev');
+      // Track content shown immediately
+      if (isInBolt) {
+        gtmTrack.funnelStep('content_shown_dev');
+      } else if (viewAllContent) {
+        gtmTrack.funnelStep('content_shown_viewallcontent_param');
+      }
     } else {
       // In production, use the 43min11s delay
       const fullContentTimer = setTimeout(() => {
@@ -37,8 +45,12 @@ function HomePage() {
 
   // Separate effect for autoscroll after content is shown
   React.useEffect(() => {
-    // Only autoscroll in production (when there was actually a delay)
-    if (showFullContent && import.meta.env.PROD) {
+    // Check for viewallcontent parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const viewAllContent = urlParams.get('viewallcontent') === 'true';
+    
+    // Only autoscroll in production when there was actually a delay (not with viewallcontent param)
+    if (showFullContent && import.meta.env.PROD && !viewAllContent) {
       // Multiple attempts to ensure element is rendered
       const scrollToSixBottle = () => {
         const sixBottleElement = document.getElementById('six-bottle-package');
