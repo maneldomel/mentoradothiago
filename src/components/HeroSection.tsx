@@ -11,8 +11,8 @@ declare global {
 
 // VTurb video configuration for hero video
 const heroVideoConfig = {
-  id: 'vid-68bbd9e92d77468423025551',
-  scriptSrc: 'https://scripts.converteai.net/b792ccfe-b151-4538-84c6-42bb48a19ba4/players/68bbd9e92d77468423025551/v4/player.js'
+  id: 'vid-68bd0ca26430669fbbef95ae',
+  scriptSrc: 'https://scripts.converteai.net/f84805a4-2184-4076-90a5-aec239b74ab8/players/68bd0ca26430669fbbef95ae/v4/player.js'
 };
 
 const HeroSection: React.FC = () => {
