@@ -2,7 +2,6 @@ import React, { useCallback } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import { ChevronLeft, ChevronRight, Play, MapPin, Star, CheckCircle } from 'lucide-react';
 import { Testimonial, getActiveTestimonials } from '../lib/testimonials';
-import { gtmTrack } from '../lib/gtm';
 
 // Global video control system
 declare global {
@@ -165,22 +164,6 @@ const TestimonialsCarousel: React.FC = () => {
           if (typeof player.on === 'function') {
             player.on('play', () => {
               window.pauseAllVTurbVideos(videoId);
-              // Track testimonial video play with index
-              const videoIndex = vTurbVideos.findIndex(v => v.id === videoId);
-              gtmTrack.videoPlay('testimonial', videoIndex);
-              gtmTrack.funnelStep('testimonial_video_play', { video_number: videoIndex + 1 });
-            });
-            
-            // Track video progress for real-time analysis
-            player.on('timeupdate', () => {
-              if (typeof player.getCurrentTime === 'function' && typeof player.getDuration === 'function') {
-                const currentTime = player.getCurrentTime();
-                const duration = player.getDuration();
-                const videoIndex = vTurbVideos.findIndex(v => v.id === videoId);
-                if (currentTime && duration && videoIndex !== -1) {
-                  gtmTrack.videoProgress('testimonial', videoIndex, currentTime, duration);
-                }
-              }
             });
           }
         }

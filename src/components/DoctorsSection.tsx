@@ -2,7 +2,6 @@ import React, { useCallback } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import { ChevronLeft, ChevronRight, MapPin, Stethoscope, GraduationCap } from 'lucide-react';
 import { Doctor, getActiveDoctors } from '../lib/doctors';
-import { gtmTrack } from '../lib/gtm';
 
 // Global video control system (extend existing if already defined)
 declare global {
@@ -166,22 +165,6 @@ const DoctorsSection: React.FC = () => {
           if (typeof player.on === 'function') {
             player.on('play', () => {
               window.pauseAllVTurbVideos(videoId);
-              // Track medical video play with index
-              const videoIndex = doctorVTurbVideos.findIndex(v => v.id === videoId);
-              gtmTrack.videoPlay('medical', videoIndex);
-              gtmTrack.funnelStep('medical_video_play', { video_number: videoIndex + 1 });
-            });
-            
-            // Track video progress for real-time analysis
-            player.on('timeupdate', () => {
-              if (typeof player.getCurrentTime === 'function' && typeof player.getDuration === 'function') {
-                const currentTime = player.getCurrentTime();
-                const duration = player.getDuration();
-                const videoIndex = doctorVTurbVideos.findIndex(v => v.id === videoId);
-                if (currentTime && duration && videoIndex !== -1) {
-                  gtmTrack.videoProgress('medical', videoIndex, currentTime, duration);
-                }
-              }
             });
           }
         }

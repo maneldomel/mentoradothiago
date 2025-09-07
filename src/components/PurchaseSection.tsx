@@ -1,6 +1,5 @@
 import React from 'react';
 import { Star, Shield, Truck, CreditCard } from 'lucide-react';
-import { gtmTrack } from '../lib/gtm';
 
 const PurchaseSection: React.FC = () => {
   // Function to get URL parameters and pass them to checkout
@@ -32,20 +31,16 @@ const PurchaseSection: React.FC = () => {
   const handlePurchaseClick = (packageType: string) => {
     const params = getUrlParams();
     let checkoutUrl = '';
-    let price = 0;
     
     switch (packageType) {
       case '6-bottle':
         checkoutUrl = 'https://payment.peaxion.com/checkout/193700534:1';
-        price = 294;
         break;
       case '3-bottle':
         checkoutUrl = 'https://payment.peaxion.com/checkout/193700481:1';
-        price = 198;
         break;
       case '1-bottle':
         checkoutUrl = 'https://payment.peaxion.com/checkout/193698056:1';
-        price = 89;
         break;
       default:
         console.error('Unknown package type:', packageType);
@@ -54,14 +49,6 @@ const PurchaseSection: React.FC = () => {
     
     // Add parameters to checkout URL if they exist
     const finalUrl = params ? `${checkoutUrl}${checkoutUrl.includes('?') ? '&' : '?'}${params}` : checkoutUrl;
-    
-    // Track purchase click with GTM
-    gtmTrack.purchaseClick(packageType as '1-bottle' | '3-bottle' | '6-bottle', price);
-    gtmTrack.funnelStep('purchase_button_clicked', { 
-      package_type: packageType,
-      price: price,
-      position: 'main_section'
-    });
     
     // Track the purchase click event
     if (typeof window.fbq === 'function') {
