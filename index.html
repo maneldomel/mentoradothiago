@@ -29,17 +29,14 @@
     </script>
     <!-- End Facebook Pixel Code -->
     
-    <!-- UTMify Tracking Script - Production Only -->
+    <!-- UTMify Tracking Script -->
     <script>
-      // Only load UTMify script in production to avoid CORS errors on localhost
-      if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
-        window.pixelId = "683dda2e920c7c52d24f03a1";
-        var a = document.createElement("script");
-        a.setAttribute("async", "");
-        a.setAttribute("defer", "");
-        a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
-        document.head.appendChild(a);
-      }
+      window.pixelId = "683dda2e920c7c52d24f03a1";
+      var a = document.createElement("script");
+      a.setAttribute("async", "");
+      a.setAttribute("defer", "");
+      a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+      document.head.appendChild(a);
     </script>
     <!-- End UTMify Tracking Script -->
   </head>

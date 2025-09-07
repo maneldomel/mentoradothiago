@@ -1,12 +1,8 @@
 import React from 'react';
 import { Star, Shield, Truck, CreditCard } from 'lucide-react';
 import { gtmTrack } from '../lib/gtm';
-import { PurchaseModals } from './PurchaseModals';
 
 const PurchaseSection: React.FC = () => {
-  const [showUpsellPopup, setShowUpsellPopup] = React.useState(false);
-  const [selectedPackage, setSelectedPackage] = React.useState<'1-bottle' | '3-bottle' | null>(null);
-
   // Function to get URL parameters and pass them to checkout
   const getUrlParams = () => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -34,21 +30,6 @@ const PurchaseSection: React.FC = () => {
   };
 
   const handlePurchaseClick = (packageType: string) => {
-    // Show upsell popup for 1-bottle and 3-bottle purchases
-    if (packageType === '1-bottle' || packageType === '3-bottle') {
-      setSelectedPackage(packageType as '1-bottle' | '3-bottle');
-      setShowUpsellPopup(true);
-      
-      // Track upsell popup shown
-      gtmTrack.funnelStep('upsell_popup_shown', { 
-        original_package: packageType,
-        potential_savings: packageType === '1-bottle' ? 205 : 96
-      });
-      
-      return; // Don't proceed with direct purchase
-    }
-    
-    // Direct purchase for 6-bottle (no upsell needed)
     const params = getUrlParams();
     let checkoutUrl = '';
     let price = 0;
@@ -96,31 +77,12 @@ const PurchaseSection: React.FC = () => {
     window.open(finalUrl, '_blank');
   };
 
-  // Handle upsell popup close
-  const handleCloseUpsellPopup = () => {
-    setShowUpsellPopup(false);
-    setSelectedPackage(null);
-  };
-
-  // Handle upsell accept (already handled in PurchaseModals)
-  const handleUpsellAccept = () => {
-    setShowUpsellPopup(false);
-    setSelectedPackage(null);
-  };
-
-  // Handle upsell refuse (already handled in PurchaseModals)
-  const handleUpsellRefuse = () => {
-    setShowUpsellPopup(false);
-    setSelectedPackage(null);
-  };
-
   const handleSecondaryClick = (packageType: string) => {
     // Use the same logic as main purchase
     handlePurchaseClick(packageType);
   };
 
   return (
-    <>
     <div className="bg-gray-50 py-8 md:py-12 relative">
       <div className="container mx-auto px-4 max-w-6xl">
         {/* PRODUTO 1: 6 BOTTLE PACKAGE - BEST VALUE */}
@@ -376,16 +338,6 @@ const PurchaseSection: React.FC = () => {
         </div>
       </div>
     </div>
-
-    {/* Purchase Modals */}
-    <PurchaseModals
-      showUpsellPopup={showUpsellPopup}
-      selectedPackage={selectedPackage}
-      onCloseUpsellPopup={handleCloseUpsellPopup}
-      onUpsellAccept={handleUpsellAccept}
-      onUpsellRefuse={handleUpsellRefuse}
-    />
-    </>
   );
 };
 
