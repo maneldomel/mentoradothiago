@@ -1,7 +1,12 @@
 import React from 'react';
 import { Star, Shield, Truck, CreditCard } from 'lucide-react';
+import { Modals } from './Modals';
 
 const PurchaseSection: React.FC = () => {
+  const [showPopup, setShowPopup] = React.useState(false);
+  const [showUpsellPopup, setShowUpsellPopup] = React.useState(false);
+  const [selectedPackage, setSelectedPackage] = React.useState('');
+
   // Function to get URL parameters and pass them to checkout
   const getUrlParams = () => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -28,7 +33,94 @@ const PurchaseSection: React.FC = () => {
     return params.toString();
   };
 
+  // Get upsell savings based on package type
+  const getUpsellSavings = (packageType: string): number => {
+    switch (packageType) {
+      case '1-bottle':
+        return 205; // $294 (6-bottle) - $89 (1-bottle) = $205 savings
+      case '3-bottle':
+        return 96;  // $294 (6-bottle) - $198 (3-bottle) = $96 savings
+      default:
+        return 0;
+    }
+  };
+
+  // Handle popup close
+  const handleClosePopup = () => {
+    setShowPopup(false);
+  };
+
+  // Handle upsell popup close
+  const handleCloseUpsellPopup = () => {
+    setShowUpsellPopup(false);
+    setSelectedPackage('');
+  };
+
+  // Handle upsell accept - redirect to 6-bottle package
+  const handleUpsellAccept = () => {
+    const params = getUrlParams();
+    const checkoutUrl = 'https://payment.peaxion.com/checkout/193700534:1';
+    const finalUrl = params ? `${checkoutUrl}${checkoutUrl.includes('?') ? '&' : '?'}${params}` : checkoutUrl;
+    
+    // Track the purchase click event
+    if (typeof window.fbq === 'function') {
+      window.fbq('track', 'InitiateCheckout', {
+        content_name: '6-bottle-upsell',
+        content_category: 'supplement',
+        value: 294,
+        currency: 'USD'
+      });
+    }
+    
+    console.log('✅ Upsell accepted - redirecting to 6-bottle package:', finalUrl);
+    window.open(finalUrl, '_blank');
+    
+    setShowUpsellPopup(false);
+    setSelectedPackage('');
+  };
+
+  // Handle upsell refuse - redirect to original package
+  const handleUpsellRefuse = () => {
+    if (!selectedPackage) return;
+    
+    const originalUrls = {
+      '1-bottle': 'https://payment.peaxion.com/checkout/193698056:1',
+      '3-bottle': 'https://payment.peaxion.com/checkout/193700481:1'
+    };
+    
+    const targetUrl = originalUrls[selectedPackage as keyof typeof originalUrls];
+    
+    if (targetUrl) {
+      const params = getUrlParams();
+      const finalUrl = params ? `${targetUrl}${targetUrl.includes('?') ? '&' : '?'}${params}` : targetUrl;
+      
+      // Track the purchase click event
+      if (typeof window.fbq === 'function') {
+        window.fbq('track', 'InitiateCheckout', {
+          content_name: selectedPackage,
+          content_category: 'supplement',
+          value: selectedPackage === '3-bottle' ? 198 : 89,
+          currency: 'USD'
+        });
+      }
+      
+      console.log('❌ Upsell refused - redirecting to original package:', finalUrl);
+      window.open(finalUrl, '_blank');
+    }
+    
+    setShowUpsellPopup(false);
+    setSelectedPackage('');
+  };
+
   const handlePurchaseClick = (packageType: string) => {
+    // Show popup for 1-bottle and 3-bottle packages
+    if (packageType === '1-bottle' || packageType === '3-bottle') {
+      setSelectedPackage(packageType);
+      setShowPopup(true);
+      return;
+    }
+    
+    // Direct checkout for 6-bottle package
     const params = getUrlParams();
     let checkoutUrl = '';
     
@@ -65,11 +157,28 @@ const PurchaseSection: React.FC = () => {
   };
 
   const handleSecondaryClick = (packageType: string) => {
-    // Use the same logic as main purchase
+    // Show popup for 1-bottle and 3-bottle packages
+    if (packageType === '1-bottle' || packageType === '3-bottle') {
+      setSelectedPackage(packageType);
+      setShowPopup(true);
+      return;
+    }
+    
+    // Direct checkout for 6-bottle package
     handlePurchaseClick(packageType);
   };
 
+  // Handle popup close and show upsell
+  const handlePopupClose = () => {
+    setShowPopup(false);
+    // Show upsell popup after main popup closes
+    setTimeout(() => {
+      setShowUpsellPopup(true);
+    }, 300);
+  };
+
   return (
+    <>
     <div className="bg-gray-50 py-8 md:py-12 relative">
       <div className="container mx-auto px-4 max-w-6xl">
         {/* PRODUTO 1: 6 BOTTLE PACKAGE - BEST VALUE */}
@@ -325,6 +434,19 @@ const PurchaseSection: React.FC = () => {
         </div>
       </div>
     </div>
+
+    {/* Modals */}
+    <Modals
+      showPopup={showPopup}
+      showUpsellPopup={showUpsellPopup}
+      selectedPackage={selectedPackage}
+      onClosePopup={handlePopupClose}
+      onCloseUpsellPopup={handleCloseUpsellPopup}
+      onUpsellAccept={handleUpsellAccept}
+      onUpsellRefuse={handleUpsellRefuse}
+      getUpsellSavings={getUpsellSavings}
+    />
+    </>
   );
 };
 
