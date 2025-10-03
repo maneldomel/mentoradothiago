@@ -4,12 +4,27 @@ import { Star, Shield, Truck } from 'lucide-react';
 const PurchaseSection: React.FC = () => {
   const handlePurchase = (packageType: string) => {
     console.log(`Purchase clicked: ${packageType}`);
-    window.open('https://checkout.example.com', '_blank');
+    let checkoutUrl = '';
+
+    switch(packageType) {
+      case '1-bottle':
+        checkoutUrl = 'https://lbpayment.com/checkout/184035261:1';
+        break;
+      case '3-bottle':
+        checkoutUrl = 'https://lbpayment.com/checkout/184036293:1';
+        break;
+      case '6-bottle':
+        checkoutUrl = 'https://lbpayment.com/checkout/184036317:1';
+        break;
+    }
+
+    if (checkoutUrl) {
+      window.open(checkoutUrl, '_blank');
+    }
   };
 
   const handleSecondaryPurchase = (packageType: string) => {
-    console.log(`Secondary purchase clicked: ${packageType}`);
-    window.open('https://checkout.example.com', '_blank');
+    handlePurchase(packageType);
   };
 
   return (
