@@ -110,54 +110,50 @@ const TestimonialsCarousel: React.FC = () => {
                     }}
                   >
                     <div className="group relative">
-                      <div className="bg-gradient-to-br from-white to-gray-50 rounded-3xl shadow-2xl border border-gray-100 overflow-hidden transition-all duration-500">
+                      <div className="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden transition-all duration-500">
 
-                      <div className="relative bg-gray-900 aspect-video">
-                        <div className="w-full h-full bg-gray-800 flex items-center justify-center">
-                          <div className="text-center p-4">
-                            <div className="text-white text-sm mb-2 font-semibold">
-                              VTurb Video Placeholder
+                        <div className="p-4 pb-3">
+                          <div className="flex items-center gap-3 mb-3">
+                            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-magenta-500 to-magenta-600 flex items-center justify-center text-white font-bold text-lg">
+                              {testimonial.name.charAt(0)}
                             </div>
-                            <div className="text-gray-400 text-xs">
-                              Video ID will be added here
+                            <div className="flex-1">
+                              <h3 className="text-base font-bold text-gray-900">{testimonial.name}</h3>
+                              <div className="flex items-center gap-1 text-gray-500 text-sm">
+                                <MapPin className="w-3 h-3" />
+                                {testimonial.city}, {testimonial.state}
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
 
-                      <div className="p-6">
-                        {/* User Info */}
-                        <div className="flex items-center gap-4 mb-4">
-                          <div className="flex-1 text-center">
-                            <h3 className="text-lg font-bold text-gray-900">{testimonial.name}</h3>
-                            <div className="flex items-center gap-1 text-gray-500 text-sm">
-                              <MapPin className="w-4 h-4" />
-                              {testimonial.city}, {testimonial.state}
+                        <div className="relative bg-gray-900 aspect-video">
+                          <div className="w-full h-full bg-gray-800 flex items-center justify-center">
+                            <div className="text-center p-4">
+                              <div className="text-white text-sm mb-2 font-semibold">
+                                VTurb Video Placeholder
+                              </div>
+                              <div className="text-gray-400 text-xs">
+                                Video ID will be added here
+                              </div>
                             </div>
-                          </div>
-                          <div className="flex items-center justify-center gap-1 mt-2">
-                            {[...Array(5)].map((_, i) => (
-                              <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
-                            ))}
                           </div>
                         </div>
 
-                        {/* Quote */}
-
-                        {/* Verified Badge */}
-                        <div className="mt-4 pt-4 border-t border-gray-100">
+                        <div className="p-4">
                           <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-2">
-                              <CheckCircle className="w-5 h-5 text-green-500" />
-                              <span className="text-green-700 font-semibold text-sm">Verified Customer</span>
+                            <div className="flex items-center gap-1">
+                              {[...Array(5)].map((_, i) => (
+                                <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
+                              ))}
                             </div>
-                            <div className="text-xs text-gray-400">
-                              Real Results • 2024
+                            <div className="flex items-center gap-1.5 text-green-600">
+                              <CheckCircle className="w-4 h-4" />
+                              <span className="text-xs font-semibold">Verified</span>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </div>
 
                       {/* Floating Elements */}
                       <div className="absolute -top-4 -right-4 w-12 h-12 bg-magenta-500 rounded-full opacity-20 group-hover:opacity-40 transition-opacity duration-300 blur-sm"></div>
