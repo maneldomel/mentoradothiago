@@ -273,13 +273,6 @@ const TestimonialsCarousel: React.FC = () => {
 
   return (
     <div className="bg-white py-16 md:py-24 relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-magenta-100 via-transparent to-magenta-50"></div>
-        <div className="absolute top-20 left-10 w-32 h-32 bg-magenta-200 rounded-full blur-3xl opacity-30"></div>
-        <div className="absolute bottom-20 right-10 w-40 h-40 bg-magenta-300 rounded-full blur-3xl opacity-20"></div>
-      </div>
-
       <div className="container mx-auto px-4 max-w-7xl relative z-10">
         {/* Section Header */}
         <div className="text-center mb-12 md:mb-16">

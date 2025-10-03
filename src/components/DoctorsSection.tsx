@@ -264,7 +264,7 @@ const DoctorsSection: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="bg-gradient-to-br from-blue-50 to-blue-100 py-16 md:py-24 relative">
+      <div className="bg-white py-16 md:py-24 relative">
         <div className="container mx-auto px-4 max-w-6xl text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
         </div>
@@ -273,14 +273,7 @@ const DoctorsSection: React.FC = () => {
   }
 
   return (
-    <div className="bg-gradient-to-br from-blue-50 to-blue-100 py-16 md:py-24 relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-10 left-10 w-64 h-64 bg-blue-300 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-10 right-10 w-48 h-48 bg-blue-400 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-blue-200 rounded-full blur-3xl"></div>
-      </div>
-
+    <div className="bg-white py-16 md:py-24 relative overflow-hidden">
       <div className="container mx-auto px-4 max-w-7xl relative z-10">
         {/* Section Header */}
         <div className="text-center mb-12 md:mb-16">
