@@ -16,7 +16,7 @@ import {
   toggleDoctorActive 
 } from '../lib/doctors';
 import { authService } from '../lib/auth';
-import { Plus, Edit2, Trash2, LogOut, Save, X, Eye, EyeOff, User, MapPin, Hash, Image, Youtube, MessageSquare, ToggleLeft, ToggleRight, ChevronDown, ChevronRight, Stethoscope, GraduationCap, Building2 } from 'lucide-react';
+import { Plus, CreditCard as Edit2, Trash2, LogOut, Save, X, Eye, EyeOff, User, MapPin, Hash, Image, Youtube, MessageSquare, ToggleLeft, ToggleRight, ChevronDown, ChevronRight, Stethoscope, GraduationCap, Building2 } from 'lucide-react';
 
 const AdminDashboard: React.FC = () => {
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
