@@ -71,7 +71,7 @@ function HomePage() {
 
   return (
     <>
-      <div style={{ paddingTop: import.meta.env.PROD ? '0' : '60px' }}>
+      <div>
         {/* Hero Section - Always visible */}
         <HeroSection />
         

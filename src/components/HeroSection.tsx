@@ -118,9 +118,9 @@ const HeroSection: React.FC = () => {
   }, [isVideoVisible, scriptLoaded]);
 
   return (
-    <div className="min-h-screen bg-white relative overflow-hidden">
+    <div className="bg-white relative overflow-hidden">
       {/* Header Section */}
-      <div className="container mx-auto px-4 py-6 md:py-12 max-w-4xl relative z-10">
+      <div className="container mx-auto px-4 py-8 md:py-12 max-w-4xl relative z-10">
         {/* Headline */}
         <div className="text-center mb-4 md:mb-6">
           <h1 className="text-2xl sm:text-3xl md:text-6xl font-black leading-tight mb-4 px-4 font-inter tracking-tight">
@@ -137,7 +137,7 @@ const HeroSection: React.FC = () => {
 
         {/* Video Section */}
         <div className="flex justify-center mb-6 md:mb-8">
-          <div className="relative">
+          <div className="relative mx-auto">
             {/* Video Container - 9:16 aspect ratio */}
             <div 
               ref={videoContainerRef}
