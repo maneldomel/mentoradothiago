@@ -137,7 +137,7 @@ function HomePage() {
           </div>
 
           {/* Masculine Call-to-Action Section */}
-          <div className="bg-gray-50 py-8 md:py-12 relative">
+          <div className="bg-white py-8 md:py-12 relative">
             <div className="container mx-auto px-4 max-w-4xl text-center">
               <h2 className="text-3xl md:text-4xl font-black text-gray-800 mb-4 font-inter tracking-tight leading-tight">
                 READY TO <span className="text-transparent bg-gradient-to-r from-magenta-600 to-magenta-400 bg-clip-text">RECLAIM</span> YOUR MASCULINITY?

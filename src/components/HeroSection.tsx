@@ -118,7 +118,7 @@ const HeroSection: React.FC = () => {
   }, [isVideoVisible, scriptLoaded]);
 
   return (
-    <div className="min-h-screen bg-gray-50 relative overflow-hidden">
+    <div className="min-h-screen bg-white relative overflow-hidden">
       {/* Glassmorphism Background */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Soft magenta orbs */}
@@ -204,7 +204,7 @@ const HeroSection: React.FC = () => {
         {/* Video Notices */}
         <div className="max-w-sm sm:max-w-md mx-auto space-y-3 md:space-y-4 px-4">
           {/* Sound Notice */}
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
+          <div className="bg-white border border-gray-200 rounded-lg p-3">
             <div className="flex items-center justify-center space-x-2">
               <Volume2 className="w-4 h-4 text-gray-500" />
               <p className="text-gray-600 text-xs sm:text-sm text-center">
@@ -214,7 +214,7 @@ const HeroSection: React.FC = () => {
           </div>
 
           {/* Urgency Notice */}
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
+          <div className="bg-white border border-gray-200 rounded-lg p-3">
             <div className="flex items-center justify-center space-x-2">
               <Clock className="w-4 h-4 text-gray-500" />
               <p className="text-gray-600 text-xs sm:text-sm text-center">

@@ -13,7 +13,7 @@ const PurchaseSection: React.FC = () => {
   };
 
   return (
-    <div className="bg-gray-50 py-8 md:py-12 relative">
+    <div className="bg-white py-8 md:py-12 relative">
       <div className="container mx-auto px-4 max-w-6xl">
         <div id="six-bottle-package" data-purchase-section="true" className="w-full mb-6 sm:mb-8 relative animate-fadeInUp animation-delay-800">
           <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-20">
