@@ -241,7 +241,7 @@ const AdminDashboard: React.FC = () => {
           <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center py-4 sm:py-6 space-y-4 sm:space-y-0">
             <div className="text-center sm:text-left">
               <h1 className="text-2xl sm:text-3xl font-black text-gray-900 bg-gradient-to-r from-magenta-600 to-magenta-400 bg-clip-text text-transparent">
-                ADMIN PEAXION
+                ADMIN MANFORZA
               </h1>
               <p className="text-gray-600 text-sm sm:text-base mt-1">Gerenciar depoimentos e médicos</p>
             </div>

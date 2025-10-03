@@ -293,7 +293,7 @@ const DoctorsSection: React.FC = () => {
             <span className="text-transparent bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text">MEDICAL EXPERTS</span>
           </h2>
           <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Leading doctors and researchers from top medical institutions endorse PEAXION
+            Leading doctors and researchers from top medical institutions endorse MANFORZA
           </p>
         </div>
 

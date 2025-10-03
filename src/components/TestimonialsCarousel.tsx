@@ -292,7 +292,7 @@ const TestimonialsCarousel: React.FC = () => {
             <span className="text-transparent bg-gradient-to-r from-magenta-600 to-magenta-400 bg-clip-text">REAL RESULTS</span>
           </h2>
           <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Watch how PEAXION transformed the lives of thousands of men across America
+            Watch how MANFORZA transformed the lives of thousands of men across America
           </p>
         </div>
 

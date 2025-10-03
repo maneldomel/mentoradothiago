@@ -155,7 +155,7 @@ function HomePage() {
           <footer className="bg-gradient-to-br from-magenta-600 to-magenta-800 py-4">
             <div className="container mx-auto px-4 text-center">
               <div className="text-magenta-100 text-sm">
-                © 2025 <span className="text-white font-semibold">PEAXION</span>. All rights reserved.
+                © 2025 <span className="text-white font-semibold">MANFORZA</span>. All rights reserved.
               </div>
             </div>
           </footer>

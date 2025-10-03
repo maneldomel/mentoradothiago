@@ -5,7 +5,7 @@ export interface User {
 }
 
 // Hardcoded admin credentials
-const ADMIN_EMAIL = 'admin@proaxion.com';
+const ADMIN_EMAIL = 'admin@manforza.com';
 const ADMIN_PASSWORD = 'TIAGOPRO';
 
 export const authService = {

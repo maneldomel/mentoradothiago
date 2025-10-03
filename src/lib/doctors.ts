@@ -64,7 +64,7 @@ const defaultDoctors: Doctor[] = [
   }
 ];
 
-const STORAGE_KEY = 'proaxion_doctors';
+const STORAGE_KEY = 'manforza_doctors';
 
 // Generate unique ID
 const generateId = (): string => {

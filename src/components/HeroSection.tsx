@@ -191,7 +191,7 @@ const HeroSection: React.FC = () => {
                         {!isVideoVisible ? 'Carregando vídeo...' : 'Preparando player...'}
                       </p>
                       <p className="text-gray-300 text-xs md:text-sm">
-                        Vídeo principal do PEAXION
+                        Vídeo principal do MANFORZA
                       </p>
                     </div>
                   </div>

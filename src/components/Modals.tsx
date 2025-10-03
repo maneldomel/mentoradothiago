@@ -89,7 +89,8 @@ export const Modals: React.FC<ModalsProps> = ({
     // Get the original product URL (what user wanted before upsell)
     const originalUrls = {
       '1-bottle': 'https://payment.peaxion.com/checkout/193698056:1',
-      '3-bottle': 'https://payment.peaxion.com/checkout/193700481:1'
+      '1-bottle': 'https://payment.manforza.com/checkout/193698056:1',
+      '3-bottle': 'https://payment.manforza.com/checkout/193700481:1'
     };
     
     const targetUrl = originalUrls[selectedPackage as keyof typeof originalUrls];
