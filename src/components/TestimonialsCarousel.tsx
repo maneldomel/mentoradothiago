@@ -1,62 +1,11 @@
 import React, { useCallback } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
-import { ChevronLeft, ChevronRight, Play, MapPin, Star, CheckCircle } from 'lucide-react';
+import { ChevronLeft, ChevronRight, MapPin, Star, CheckCircle } from 'lucide-react';
 import { Testimonial, getActiveTestimonials } from '../lib/testimonials';
-
-// Global video control system
-declare global {
-  interface Window {
-    vTurbPlayers: { [key: string]: any };
-    pauseAllVTurbVideos: (exceptId?: string) => void;
-  }
-}
-
-// VTurb video configurations with real video IDs
-const vTurbVideos = [
-  {
-    id: 'vid-68af4b59040f0b0ec4ae0210',
-    scriptSrc: 'https://scripts.converteai.net/f84805a4-2184-4076-90a5-aec239b74ab8/players/68af4b59040f0b0ec4ae0210/v4/player.js'
-  },
-  {
-    id: 'vid-68af4b53040f0b0ec4ae0203', 
-    scriptSrc: 'https://scripts.converteai.net/f84805a4-2184-4076-90a5-aec239b74ab8/players/68af4b53040f0b0ec4ae0203/v4/player.js'
-  },
-  {
-    id: 'vid-68af4b4dc3d8b7bced8cfe19',
-    scriptSrc: 'https://scripts.converteai.net/f84805a4-2184-4076-90a5-aec239b74ab8/players/68af4b4dc3d8b7bced8cfe19/v4/player.js'
-  }
-];
 
 const TestimonialsCarousel: React.FC = () => {
   const [testimonials, setTestimonials] = React.useState<Testimonial[]>([]);
   const [loading, setLoading] = React.useState(true);
-  const [visibleSlides, setVisibleSlides] = React.useState<Set<number>>(new Set());
-  const [intersectingSlides, setIntersectingSlides] = React.useState<Set<number>>(new Set());
-  const [loadedScripts, setLoadedScripts] = React.useState<Set<string>>(new Set());
-  const slideRefs = React.useRef<(HTMLDivElement | null)[]>([]);
-
-  // Initialize global video control system
-  React.useEffect(() => {
-    if (!window.vTurbPlayers) {
-      window.vTurbPlayers = {};
-    }
-    
-    if (!window.pauseAllVTurbVideos) {
-      window.pauseAllVTurbVideos = (exceptId?: string) => {
-        Object.keys(window.vTurbPlayers).forEach(playerId => {
-          if (playerId !== exceptId && window.vTurbPlayers[playerId]) {
-            try {
-              if (typeof window.vTurbPlayers[playerId].pause === 'function') {
-                window.vTurbPlayers[playerId].pause();
-              }
-            } catch (error) {
-              console.warn('Error pausing video:', playerId, error);
-            }
-          }
-        });
-      };
-    }
-  }, []);
 
   const [emblaRef, emblaApi] = useEmblaCarousel({ 
     loop: true,
@@ -65,60 +14,11 @@ const TestimonialsCarousel: React.FC = () => {
     slidesToScroll: 1
   });
 
-  // Intersection Observer to detect which slides are actually visible on screen
-  React.useEffect(() => {
-    if (testimonials.length === 0) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const newIntersectingSlides = new Set<number>();
-        
-        entries.forEach((entry) => {
-          const slideIndex = parseInt(entry.target.getAttribute('data-slide-index') || '0');
-          
-          if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
-            newIntersectingSlides.add(slideIndex);
-          }
-        });
-        
-        setIntersectingSlides(prev => {
-          const combined = new Set([...prev, ...newIntersectingSlides]);
-          
-          // Remove slides that are no longer intersecting
-          entries.forEach((entry) => {
-            const slideIndex = parseInt(entry.target.getAttribute('data-slide-index') || '0');
-            if (!entry.isIntersecting || entry.intersectionRatio <= 0.5) {
-              combined.delete(slideIndex);
-            }
-          });
-          
-          return combined;
-        });
-      },
-      {
-        threshold: [0, 0.25, 0.5, 0.75, 1],
-        rootMargin: '0px'
-      }
-    );
-
-    // Observe all slide elements
-    slideRefs.current.forEach((slideRef) => {
-      if (slideRef) {
-        observer.observe(slideRef);
-      }
-    });
-
-    return () => {
-      observer.disconnect();
-    };
-  }, [testimonials]);
   React.useEffect(() => {
     const fetchTestimonials = () => {
       try {
         const data = getActiveTestimonials();
         setTestimonials(data);
-        // Initialize slideRefs array
-        slideRefs.current = new Array(data.length).fill(null);
       } catch (error) {
         console.error('Error fetching testimonials:', error);
         setTestimonials([]);
@@ -128,130 +28,17 @@ const TestimonialsCarousel: React.FC = () => {
     };
 
     fetchTestimonials();
-    
-    // Listen for testimonials updates
+
     const handleTestimonialsUpdate = () => {
       fetchTestimonials();
     };
-    
+
     window.addEventListener('testimonials-updated', handleTestimonialsUpdate);
-    
+
     return () => {
       window.removeEventListener('testimonials-updated', handleTestimonialsUpdate);
     };
   }, []);
-
-  // Load VTurb script for specific video
-  const loadVTurbScript = useCallback((scriptSrc: string, videoId: string) => {
-    if (loadedScripts.has(videoId)) {
-      return;
-    }
-
-    const script = document.createElement('script');
-    script.src = scriptSrc;
-    script.async = true;
-    script.onload = () => {
-      setLoadedScripts(prev => new Set(prev).add(videoId));
-      
-      // Wait a bit for the player to initialize, then set up event listeners
-      setTimeout(() => {
-        const playerElement = document.getElementById(videoId);
-        if (playerElement && (playerElement as any).player) {
-          const player = (playerElement as any).player;
-          window.vTurbPlayers[videoId] = player;
-          
-          // Add play event listener to pause other videos
-          if (typeof player.on === 'function') {
-            player.on('play', () => {
-              window.pauseAllVTurbVideos(videoId);
-            });
-          }
-        }
-      }, 1000);
-    };
-    document.head.appendChild(script);
-  }, [loadedScripts]);
-
-  // Remove VTurb script for specific video
-  const removeVTurbScript = useCallback((scriptSrc: string, videoId: string) => {
-    const existingScript = document.querySelector(`script[src="${scriptSrc}"]`);
-    if (existingScript) {
-      existingScript.remove();
-    }
-    
-    // Remove the video element if it exists
-    const videoElement = document.getElementById(videoId);
-    if (videoElement) {
-      videoElement.innerHTML = '';
-    }
-    
-    // Remove from global players registry
-    if (window.vTurbPlayers && window.vTurbPlayers[videoId]) {
-      delete window.vTurbPlayers[videoId];
-    }
-    
-    setLoadedScripts(prev => {
-      const newSet = new Set(prev);
-      newSet.delete(videoId);
-      return newSet;
-    });
-  }, []);
-
-  // Track visible slides from Embla and intersecting slides from Intersection Observer
-  React.useEffect(() => {
-    if (!emblaApi || testimonials.length === 0) return;
-
-    const updateVisibleSlides = () => {
-      const slidesInView = emblaApi.slidesInView();
-      const newVisibleSlides = new Set(slidesInView);
-      setVisibleSlides(newVisibleSlides);
-    };
-
-    // Initial load
-    updateVisibleSlides();
-    
-    // Listen for slide changes
-    emblaApi.on('slidesInView', updateVisibleSlides);
-    emblaApi.on('select', updateVisibleSlides);
-    
-    return () => {
-      emblaApi.off('slidesInView', updateVisibleSlides);
-      emblaApi.off('select', updateVisibleSlides);
-    };
-  }, [emblaApi, testimonials]);
-
-  // Load/unload scripts based on intersection (actual visibility on screen)
-  React.useEffect(() => {
-    // Load scripts for slides that are both in Embla view AND intersecting with viewport
-    const slidesToLoad = new Set<number>();
-    intersectingSlides.forEach(index => {
-      if (visibleSlides.has(index)) {
-        slidesToLoad.add(index);
-      }
-    });
-
-    // Load scripts for slides that should be loaded
-    slidesToLoad.forEach(index => {
-      const videoConfig = vTurbVideos[index % vTurbVideos.length];
-      if (videoConfig) {
-        loadVTurbScript(videoConfig.scriptSrc, videoConfig.id);
-      }
-    });
-
-    // Unload scripts for slides that are no longer both visible and intersecting
-    loadedScripts.forEach(videoId => {
-      const videoIndex = vTurbVideos.findIndex(v => v.id === videoId);
-      if (videoIndex !== -1) {
-        const actualIndex = Array.from(loadedScripts).indexOf(videoId);
-        if (!slidesToLoad.has(actualIndex)) {
-          const videoConfig = vTurbVideos[videoIndex];
-          removeVTurbScript(videoConfig.scriptSrc, videoConfig.id);
-        }
-      }
-    });
-  }, [intersectingSlides, visibleSlides, loadVTurbScript, removeVTurbScript, loadedScripts]);
-
-  const getVideoConfig = (index: number) => vTurbVideos[index % vTurbVideos.length];
 
   const scrollPrev = useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev();
@@ -294,54 +81,14 @@ const TestimonialsCarousel: React.FC = () => {
           <div className="overflow-visible" ref={emblaRef}>
             <div className="flex">
               {testimonials.map((testimonial, index) => (
-                <div 
-                  key={testimonial.id} 
-                  ref={el => slideRefs.current[index] = el}
-                  data-slide-index={index}
+                <div
+                  key={testimonial.id}
                   className="flex-[0_0_100%] md:flex-[0_0_50%] lg:flex-[0_0_33.333%] px-6 py-4"
                 >
                   <div className="group relative">
-                    {/* Main Card */}
                     <div className="bg-gradient-to-br from-white to-gray-50 rounded-3xl shadow-2xl border border-gray-100 overflow-hidden transform transition-all duration-500 hover:scale-105 hover:shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)]">
-                      
-                      {/* Video Section */}
-                      <div className="relative bg-gray-900 aspect-video">
-                        {/* VTurb Video Container - Only render if visible AND intersecting */}
-                        {visibleSlides.has(index) && intersectingSlides.has(index) && (() => {
-                          const videoConfig = getVideoConfig(index);
-                          return (
-                            <vturb-smartplayer 
-                              id={videoConfig.id}
-                             autoplay="false"
-                              muted="false"
-                              style={{
-                                display: 'block',
-                                margin: '0 auto',
-                                width: '100%',
-                                height: '100%'
-                              }}
-                            />
-                          );
-                        })()}
-                        
-                        {/* Loading placeholder for non-visible or non-intersecting slides */}
-                        {(!visibleSlides.has(index) || !intersectingSlides.has(index)) && (
-                          <div className="w-full h-full bg-gray-800 flex items-center justify-center">
-                            <div className="text-center">
-                              <div className="w-16 h-16 bg-magenta-600 bg-opacity-90 rounded-full flex items-center justify-center shadow-lg mb-2">
-                                <Play className="w-6 h-6 text-white ml-1" fill="white" />
-                              </div>
-                              <p className="text-white text-sm">
-                                {!visibleSlides.has(index) ? 'Scroll to load video...' : 'Loading video...'}
-                              </p>
-                            </div>
-                          </div>
-                        )}
-                        
-                      </div>
 
-                      {/* Content Section */}
-                      <div className="p-6">
+                      <div className="p-6 pt-8">
                         {/* User Info */}
                         <div className="flex items-center gap-4 mb-4">
                           <div className="flex-1 text-center">
