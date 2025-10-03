@@ -32,7 +32,7 @@ const PurchaseSection: React.FC = () => {
 
               <div className="flex justify-center mb-3 px-2">
                 <img
-                  src="https://i.imgur.com/SjS0wl1.png"
+                  src="https://i.imgur.com/rceaYat.png"
                   alt="MANFORZA 6 Bottle Pack"
                   className="w-full h-auto object-contain drop-shadow-2xl max-h-48 sm:max-h-56 md:max-h-64 lg:max-h-72"
                 />
@@ -110,7 +110,7 @@ const PurchaseSection: React.FC = () => {
             <div className="relative bg-gradient-to-br from-magenta-400/80 to-magenta-600/80 backdrop-blur-xl rounded-2xl p-3 sm:p-4 border border-white/20 shadow-xl">
               <div className="flex justify-center mb-2 px-1">
                 <img
-                  src="https://i.imgur.com/8Sd18RC.png"
+                  src="https://i.imgur.com/AwHMo2G.png"
                   alt="MANFORZA 3 Bottle Pack"
                   className="w-full h-auto object-contain drop-shadow-xl max-h-16 sm:max-h-20"
                 />
@@ -173,7 +173,7 @@ const PurchaseSection: React.FC = () => {
             <div className="relative bg-gradient-to-br from-magenta-300/80 to-magenta-500/80 backdrop-blur-xl rounded-2xl p-3 sm:p-4 border border-white/20 shadow-xl">
               <div className="flex justify-center mb-2 px-1">
                 <img
-                  src="https://i.imgur.com/25MqM54.png"
+                  src="https://i.imgur.com/DcVBhud.png"
                   alt="MANFORZA 1 Bottle Pack"
                   className="w-full h-auto object-contain drop-shadow-xl max-h-16 sm:max-h-20"
                 />
