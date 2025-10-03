@@ -207,7 +207,7 @@ const PurchaseSection: React.FC = () => {
               {/* Product Image */}
               <div className="flex justify-center mb-3 px-2">
                 <img 
-                  src="https://i.imgur.com/SjS0wl1.png" 
+                  src="https://i.imgur.com/rceaYat.png" 
                   alt="PEAXION 6 Bottle Pack"
                   className="w-full h-auto object-contain drop-shadow-2xl max-h-48 sm:max-h-56 md:max-h-64 lg:max-h-72"
                 />
@@ -296,7 +296,7 @@ const PurchaseSection: React.FC = () => {
               {/* Product Image */}
               <div className="flex justify-center mb-2 px-1">
                 <img 
-                  src="https://i.imgur.com/8Sd18RC.png" 
+                  src="https://i.imgur.com/AwHMo2G.png" 
                   alt="PEAXION 3 Bottle Pack"
                   className="w-full h-auto object-contain drop-shadow-xl max-h-16 sm:max-h-20"
                 />
@@ -367,7 +367,7 @@ const PurchaseSection: React.FC = () => {
               {/* Product Image */}
               <div className="flex justify-center mb-2 px-1">
                 <img 
-                  src="https://i.imgur.com/25MqM54.png" 
+                  src="https://i.imgur.com/DcVBhud.png" 
                   alt="PEAXION 1 Bottle Pack"
                   className="w-full h-auto object-contain drop-shadow-xl max-h-16 sm:max-h-20"
                 />
