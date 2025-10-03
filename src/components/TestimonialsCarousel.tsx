@@ -6,8 +6,9 @@ import { Testimonial, getActiveTestimonials } from '../lib/testimonials';
 const TestimonialsCarousel: React.FC = () => {
   const [testimonials, setTestimonials] = React.useState<Testimonial[]>([]);
   const [loading, setLoading] = React.useState(true);
+  const [selectedIndex, setSelectedIndex] = React.useState(0);
 
-  const [emblaRef, emblaApi] = useEmblaCarousel({ 
+  const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
     align: 'center',
     containScroll: 'trimSnaps',
@@ -39,6 +40,21 @@ const TestimonialsCarousel: React.FC = () => {
       window.removeEventListener('testimonials-updated', handleTestimonialsUpdate);
     };
   }, []);
+
+  React.useEffect(() => {
+    if (!emblaApi) return;
+
+    const onSelect = () => {
+      setSelectedIndex(emblaApi.selectedScrollSnap());
+    };
+
+    emblaApi.on('select', onSelect);
+    onSelect();
+
+    return () => {
+      emblaApi.off('select', onSelect);
+    };
+  }, [emblaApi]);
 
   const scrollPrev = useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev();
@@ -77,16 +93,24 @@ const TestimonialsCarousel: React.FC = () => {
         </div>
 
         {/* Carousel Container */}
-        <div className="relative overflow-visible">
+        <div className="relative overflow-visible py-8">
           <div className="overflow-visible" ref={emblaRef}>
-            <div className="flex">
-              {testimonials.map((testimonial, index) => (
-                <div
-                  key={testimonial.id}
-                  className="flex-[0_0_100%] md:flex-[0_0_50%] lg:flex-[0_0_33.333%] px-6 py-4"
-                >
-                  <div className="group relative">
-                    <div className="bg-gradient-to-br from-white to-gray-50 rounded-3xl shadow-2xl border border-gray-100 overflow-hidden transform transition-all duration-500 hover:scale-105 hover:shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)]">
+            <div className="flex items-center">
+              {testimonials.map((testimonial, index) => {
+                const isCenter = index === selectedIndex;
+                return (
+                  <div
+                    key={testimonial.id}
+                    className="flex-[0_0_85%] md:flex-[0_0_45%] lg:flex-[0_0_35%] px-4 md:px-6 transition-all duration-500"
+                    style={{
+                      transform: isCenter ? 'scale(1)' : 'scale(0.85)',
+                      opacity: isCenter ? 1 : 0.5,
+                      filter: isCenter ? 'blur(0px)' : 'blur(2px)',
+                      zIndex: isCenter ? 10 : 1
+                    }}
+                  >
+                    <div className="group relative">
+                      <div className="bg-gradient-to-br from-white to-gray-50 rounded-3xl shadow-2xl border border-gray-100 overflow-hidden transition-all duration-500">
 
                       <div className="relative bg-gray-900 aspect-video">
                         <div className="w-full h-full bg-gray-800 flex items-center justify-center">
@@ -135,12 +159,13 @@ const TestimonialsCarousel: React.FC = () => {
                       </div>
                     </div>
 
-                    {/* Floating Elements */}
-                    <div className="absolute -top-4 -right-4 w-12 h-12 bg-magenta-500 rounded-full opacity-20 group-hover:opacity-40 transition-opacity duration-300 blur-sm"></div>
-                    <div className="absolute -bottom-4 -left-4 w-8 h-8 bg-magenta-300 rounded-full opacity-30 group-hover:opacity-50 transition-opacity duration-300 blur-sm"></div>
+                      {/* Floating Elements */}
+                      <div className="absolute -top-4 -right-4 w-12 h-12 bg-magenta-500 rounded-full opacity-20 group-hover:opacity-40 transition-opacity duration-300 blur-sm"></div>
+                      <div className="absolute -bottom-4 -left-4 w-8 h-8 bg-magenta-300 rounded-full opacity-30 group-hover:opacity-50 transition-opacity duration-300 blur-sm"></div>
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
 
