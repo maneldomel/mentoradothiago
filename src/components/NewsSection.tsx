@@ -22,12 +22,12 @@ const newsArticles: NewsArticle[] = [
     site: 'The New York Post',
     siteColor: 'text-blue-600',
     siteLogo: 'https://images.pexels.com/photos/518543/pexels-photo-518543.jpeg?auto=compress&cs=tinysrgb&w=60&h=40',
-    title: "'Game-Changer' PEAXION May Outperform Viagra, Say Experts",
-    excerpt: 'Forget little blue pills — men across the country are turning to a new over-the-counter liquid called PEAXION, which users say delivers stronger, longer-lasting erections with zero side effects.',
-    fullContent: `Forget little blue pills — men across the country are turning to a new over-the-counter liquid called PEAXION, which users say delivers stronger, longer-lasting erections with zero side effects.
+    title: "'Game-Changer' MANFORZA May Outperform Viagra, Say Experts",
+    excerpt: 'Forget little blue pills — men across the country are turning to a new over-the-counter liquid called MANFORZA, which users say delivers stronger, longer-lasting erections with zero side effects.',
+    fullContent: `Forget little blue pills — men across the country are turning to a new over-the-counter liquid called MANFORZA, which users say delivers stronger, longer-lasting erections with zero side effects.
 
 Originally developed as a circulatory health tonic, PROAXION quickly gained attention after early users noticed a major shift in bedroom performance.
-Originally developed as a circulatory health tonic, PEAXION quickly gained attention after early users noticed a major shift in bedroom performance.
+Originally developed as a circulatory health tonic, MANFORZA quickly gained attention after early users noticed a major shift in bedroom performance.
 
 "I felt the difference after just 3 days," says Rick Halvorson, 58, from Dallas. "This isn't just about sex — it's about feeling like a man again."
 
@@ -36,13 +36,13 @@ Doctors say the natural formulation helps support testosterone levels, improve v
 The supplement's rise to prominence has been remarkable. What started as word-of-mouth recommendations has evolved into a nationwide phenomenon, with men from all walks of life reporting similar experiences.
 
 Unlike prescription medications that work temporarily, PROAXION appears to address underlying causes of erectile dysfunction. Users report sustained improvements even when not taking the supplement daily.
-Unlike prescription medications that work temporarily, PEAXION appears to address underlying causes of erectile dysfunction. Users report sustained improvements even when not taking the supplement daily.
+Unlike prescription medications that work temporarily, MANFORZA appears to address underlying causes of erectile dysfunction. Users report sustained improvements even when not taking the supplement daily.
 
 "The difference is night and day," explains Halvorson. "With pills, you're always planning ahead, worrying about timing and side effects. With PROAXION, it's like my body remembered how to work properly again."
-"The difference is night and day," explains Halvorson. "With pills, you're always planning ahead, worrying about timing and side effects. With PEAXION, it's like my body remembered how to work properly again."
+"The difference is night and day," explains Halvorson. "With pills, you're always planning ahead, worrying about timing and side effects. With MANFORZA, it's like my body remembered how to work properly again."
 
 Medical professionals are taking notice. Dr. Sarah Chen, a urologist in Los Angeles, has observed the trend among her patients. "Men are coming in asking about natural alternatives, and many who've tried PROAXION report satisfaction levels we rarely see with conventional treatments."
-Medical professionals are taking notice. Dr. Sarah Chen, a urologist in Los Angeles, has observed the trend among her patients. "Men are coming in asking about natural alternatives, and many who've tried PEAXION report satisfaction levels we rarely see with conventional treatments."
+Medical professionals are taking notice. Dr. Sarah Chen, a urologist in Los Angeles, has observed the trend among her patients. "Men are coming in asking about natural alternatives, and many who've tried MANFORZA report satisfaction levels we rarely see with conventional treatments."
 
 The supplement's liquid format appears to be a significant advantage, allowing for precise dosing and rapid absorption that users say leads to more predictable results.`,
     readTime: '4 min read',
@@ -55,19 +55,19 @@ The supplement's liquid format appears to be a significant advantage, allowing f
     site: 'HealthLine Weekly',
     siteColor: 'text-green-600',
     siteLogo: 'https://i.imgur.com/Lx3bVSg.png',
-    title: 'New Supplement PEAXION Stuns Doctors: Erectile Dysfunction Reversed in 21 Days',
+    title: 'New Supplement MANFORZA Stuns Doctors: Erectile Dysfunction Reversed in 21 Days',
     excerpt: 'A revolutionary liquid formula is gaining national attention after users reported dramatic improvements in erectile performance — without relying on prescription pills.',
     fullContent: `A revolutionary liquid formula is gaining national attention after users reported dramatic improvements in erectile performance — without relying on prescription pills.
 
 PROAXION, a natural drop-based supplement, is being hailed as "the next frontier in men's health" by experts. Backed by clinical observations, the formula works by boosting nitric oxide production and enhancing blood flow — naturally restoring erectile function in men over 40.
-PEAXION, a natural drop-based supplement, is being hailed as "the next frontier in men's health" by experts. Backed by clinical observations, the formula works by boosting nitric oxide production and enhancing blood flow — naturally restoring erectile function in men over 40.
+MANFORZA, a natural drop-based supplement, is being hailed as "the next frontier in men's health" by experts. Backed by clinical observations, the formula works by boosting nitric oxide production and enhancing blood flow — naturally restoring erectile function in men over 40.
 
 "We're seeing patients regain confidence and intimacy without side effects," says Dr. Evan Morris, a men's health specialist in Miami. "It's rare to see results this fast without pharmaceutical intervention."
 
 The breakthrough supplement has caught the attention of medical professionals nationwide after preliminary studies showed remarkable results. In a recent clinical observation, 87% of participants reported significant improvement in erectile function within the first three weeks of use.
 
 Unlike traditional ED medications that require precise timing and often come with uncomfortable side effects, PROAXION works by addressing the root causes of erectile dysfunction. The liquid formula is absorbed rapidly into the bloodstream, where it begins supporting natural nitric oxide production immediately.
-Unlike traditional ED medications that require precise timing and often come with uncomfortable side effects, PEAXION works by addressing the root causes of erectile dysfunction. The liquid formula is absorbed rapidly into the bloodstream, where it begins supporting natural nitric oxide production immediately.
+Unlike traditional ED medications that require precise timing and often come with uncomfortable side effects, MANFORZA works by addressing the root causes of erectile dysfunction. The liquid formula is absorbed rapidly into the bloodstream, where it begins supporting natural nitric oxide production immediately.
 
 "What we're seeing is unprecedented," explains Dr. Morris. "Men who haven't experienced normal erectile function in years are reporting dramatic improvements. Some describe it as 'getting their youth back.'"
 
@@ -78,10 +78,10 @@ Clinical observations have shown that men typically begin noticing improvements 
 "The psychological impact has been just as significant as the physical improvements," notes Dr. Morris. "When men regain their sexual confidence, it positively affects every aspect of their relationships and overall well-being."
 
 The supplement has gained particular attention for its safety profile. Unlike prescription medications that can interact with heart medications or cause dangerous drops in blood pressure, PROAXION's natural formulation has shown no significant adverse effects in clinical observations.
-Unlike prescription medications that can interact with heart medications or cause dangerous drops in blood pressure, PEAXION's natural formulation has shown no significant adverse effects in clinical observations.
+Unlike prescription medications that can interact with heart medications or cause dangerous drops in blood pressure, MANFORZA's natural formulation has shown no significant adverse effects in clinical observations.
 
 As word spreads about PROAXION's effectiveness, demand has surged nationwide. The supplement represents a new category of men's health products that prioritize natural enhancement over pharmaceutical intervention.
-As word spreads about PEAXION's effectiveness, demand has surged nationwide. The supplement represents a new category of men's health products that prioritize natural enhancement over pharmaceutical intervention.
+As word spreads about MANFORZA's effectiveness, demand has surged nationwide. The supplement represents a new category of men's health products that prioritize natural enhancement over pharmaceutical intervention.
 
 "This could fundamentally change how we approach erectile dysfunction treatment," concludes Dr. Morris. "We're moving toward solutions that work with the body's natural processes rather than against them."`,
     readTime: '6 min read',
@@ -94,34 +94,34 @@ As word spreads about PEAXION's effectiveness, demand has surged nationwide. The
     site: 'Men\'s Health Today',
     siteColor: 'text-blue-600',
     siteLogo: 'https://i.imgur.com/8bm1B4e.jpeg',
-    title: 'How PEAXION Is Helping Men Reclaim Their Confidence Without Prescription Drugs',
+    title: 'How MANFORZA Is Helping Men Reclaim Their Confidence Without Prescription Drugs',
     excerpt: 'Men struggling with performance anxiety or declining stamina are turning to a new natural formula — and it\'s not coming from the pharmacy aisle.',
     fullContent: `Men struggling with performance anxiety or declining stamina are turning to a new natural formula — and it's not coming from the pharmacy aisle.
 
 PROAXION is a fast-acting liquid supplement that works by naturally enhancing circulation, boosting nitric oxide levels, and supporting testosterone.
-PEAXION is a fast-acting liquid supplement that works by naturally enhancing circulation, boosting nitric oxide levels, and supporting testosterone.
+MANFORZA is a fast-acting liquid supplement that works by naturally enhancing circulation, boosting nitric oxide levels, and supporting testosterone.
 
 According to Dr. Daniel Brooks, a contributor to Men's Health, "We're seeing men in their 40s, 50s, even 60s experience firmer, more reliable erections — without the need for daily pills or side effects."
 
 The supplement is now being recommended in lifestyle circles for those seeking a holistic, long-term solution to ED.
 
 Unlike traditional pharmaceutical approaches that often come with unwanted side effects, PROAXION takes a different route. The liquid formulation allows for rapid absorption and begins working within minutes of consumption.
-Unlike traditional pharmaceutical approaches that often come with unwanted side effects, PEAXION takes a different route. The liquid formulation allows for rapid absorption and begins working within minutes of consumption.
+Unlike traditional pharmaceutical approaches that often come with unwanted side effects, MANFORZA takes a different route. The liquid formulation allows for rapid absorption and begins working within minutes of consumption.
 
 "What sets PROAXION apart is its ability to work with your body's natural processes," explains Dr. Brooks. "Rather than forcing a response, it enhances what should already be happening naturally."
-"What sets PEAXION apart is its ability to work with your body's natural processes," explains Dr. Brooks. "Rather than forcing a response, it enhances what should already be happening naturally."
+"What sets MANFORZA apart is its ability to work with your body's natural processes," explains Dr. Brooks. "Rather than forcing a response, it enhances what should already be happening naturally."
 
 The formula contains a proprietary blend of natural ingredients that have been used for centuries in traditional medicine. These compounds work synergistically to improve blood flow, reduce performance anxiety, and boost overall sexual confidence.
 
 Men who have tried PROAXION report not just improved physical performance, but also increased confidence in intimate situations. Many describe feeling "like themselves again" after years of struggling with performance issues.
-Men who have tried PEAXION report not just improved physical performance, but also increased confidence in intimate situations. Many describe feeling "like themselves again" after years of struggling with performance issues.
+Men who have tried MANFORZA report not just improved physical performance, but also increased confidence in intimate situations. Many describe feeling "like themselves again" after years of struggling with performance issues.
 
 The supplement has gained particular popularity among men who want to avoid the scheduling and planning required with prescription medications. With PROAXION, users report feeling ready whenever the moment is right.
-The supplement has gained particular popularity among men who want to avoid the scheduling and planning required with prescription medications. With PEAXION, users report feeling ready whenever the moment is right.
+The supplement has gained particular popularity among men who want to avoid the scheduling and planning required with prescription medications. With MANFORZA, users report feeling ready whenever the moment is right.
 
 Dr. Brooks notes that the psychological benefits are just as important as the physical ones. "When men regain their confidence in the bedroom, it often translates to improved confidence in other areas of their lives as well."
 
-The growing popularity of natural alternatives like PEAXION reflects a broader shift in men's health, with more men seeking solutions that work with their bodies rather than against them.`,
+The growing popularity of natural alternatives like MANFORZA reflects a broader shift in men's health, with more men seeking solutions that work with their bodies rather than against them.`,
     readTime: '5 min read',
     imageUrl: 'https://i.imgur.com/8bm1B4e.jpeg',
     publishDate: 'January 10, 2025',
@@ -658,7 +658,7 @@ const NewsSection: React.FC = () => {
                     <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs">Men's Health</span>
                     <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs">Supplements</span>
                     <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs">Natural Health</span>
-                    <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs">PEAXION</span>
+                    <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs">MANFORZA</span>
                   </div>
                 </div>
 
@@ -740,14 +740,14 @@ const NewsSection: React.FC = () => {
                     </p>
                     <img 
                       src="https://i.imgur.com/25MqM54.png" 
-                      alt="PEAXION - 1 Bottle" 
+                      alt="MANFORZA - 1 Bottle" 
                       className="w-32 h-32 object-contain mx-auto mb-6"
                     />
                     <button
                       onClick={scrollToTop}
                       className="bg-magenta-600 hover:bg-magenta-700 text-white font-bold py-4 px-8 rounded-xl text-lg transition-colors duration-200 shadow-lg hover:shadow-xl transform hover:scale-105 mb-4"
                     >
-                      Get PEAXION Now - Special Offer
+                      Get MANFORZA Now - Special Offer
                     </button>
                     <div className="flex items-center justify-center space-x-6 text-sm text-gray-600">
                       <span>✓ 180-Day Money Back Guarantee</span>

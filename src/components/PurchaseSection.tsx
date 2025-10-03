@@ -33,14 +33,14 @@ const PurchaseSection: React.FC = () => {
               <div className="flex justify-center mb-3 px-2">
                 <img
                   src="https://i.imgur.com/SjS0wl1.png"
-                  alt="PEAXION 6 Bottle Pack"
+                  alt="MANFORZA 6 Bottle Pack"
                   className="w-full h-auto object-contain drop-shadow-2xl max-h-48 sm:max-h-56 md:max-h-64 lg:max-h-72"
                 />
               </div>
 
               <div className="text-center mb-4 sm:mb-5">
                 <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white leading-none px-2">
-                  PEAXION
+                  MANFORZA
                 </h3>
                 <p className="text-white/80 text-base sm:text-lg md:text-xl font-bold tracking-wide -mt-1">
                   6 BOTTLE PACKAGE
@@ -111,14 +111,14 @@ const PurchaseSection: React.FC = () => {
               <div className="flex justify-center mb-2 px-1">
                 <img
                   src="https://i.imgur.com/8Sd18RC.png"
-                  alt="PEAXION 3 Bottle Pack"
+                  alt="MANFORZA 3 Bottle Pack"
                   className="w-full h-auto object-contain drop-shadow-xl max-h-16 sm:max-h-20"
                 />
               </div>
 
               <div className="text-center mb-2">
                 <h3 className="text-sm sm:text-base font-black text-white leading-tight">
-                  PEAXION
+                  MANFORZA
                 </h3>
                 <p className="text-white/80 text-xs font-bold tracking-wide">
                   3 BOTTLE PACKAGE
@@ -174,14 +174,14 @@ const PurchaseSection: React.FC = () => {
               <div className="flex justify-center mb-2 px-1">
                 <img
                   src="https://i.imgur.com/25MqM54.png"
-                  alt="PEAXION 1 Bottle Pack"
+                  alt="MANFORZA 1 Bottle Pack"
                   className="w-full h-auto object-contain drop-shadow-xl max-h-16 sm:max-h-20"
                 />
               </div>
 
               <div className="text-center mb-2">
                 <h3 className="text-sm sm:text-base font-black text-white leading-tight">
-                  PEAXION
+                  MANFORZA
                 </h3>
                 <p className="text-white/80 text-xs font-bold tracking-wide">
                   1 BOTTLE PACKAGE
