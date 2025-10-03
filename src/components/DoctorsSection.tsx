@@ -114,6 +114,19 @@ const DoctorsSection: React.FC = () => {
                         </div>
                       </div>
 
+                      <div className="relative bg-gray-900 aspect-video">
+                        <div className="w-full h-full bg-gray-800 flex items-center justify-center">
+                          <div className="text-center p-4">
+                            <div className="text-white text-sm mb-2 font-semibold">
+                              VTurb Video Placeholder
+                            </div>
+                            <div className="text-gray-400 text-xs">
+                              Video ID will be added here
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
                       <div className="p-6">
                         {/* Quote */}
                         <div className="relative mb-6">

@@ -88,7 +88,20 @@ const TestimonialsCarousel: React.FC = () => {
                   <div className="group relative">
                     <div className="bg-gradient-to-br from-white to-gray-50 rounded-3xl shadow-2xl border border-gray-100 overflow-hidden transform transition-all duration-500 hover:scale-105 hover:shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)]">
 
-                      <div className="p-6 pt-8">
+                      <div className="relative bg-gray-900 aspect-video">
+                        <div className="w-full h-full bg-gray-800 flex items-center justify-center">
+                          <div className="text-center p-4">
+                            <div className="text-white text-sm mb-2 font-semibold">
+                              VTurb Video Placeholder
+                            </div>
+                            <div className="text-gray-400 text-xs">
+                              Video ID will be added here
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="p-6">
                         {/* User Info */}
                         <div className="flex items-center gap-4 mb-4">
                           <div className="flex-1 text-center">
