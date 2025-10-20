@@ -154,10 +154,6 @@ const TestimonialsCarousel: React.FC = () => {
                           </div>
                         </div>
                       </div>
-
-                      {/* Floating Elements */}
-                      <div className="absolute -top-4 -right-4 w-12 h-12 bg-magenta-500 rounded-full opacity-20 group-hover:opacity-40 transition-opacity duration-300 blur-sm"></div>
-                      <div className="absolute -bottom-4 -left-4 w-8 h-8 bg-magenta-300 rounded-full opacity-30 group-hover:opacity-50 transition-opacity duration-300 blur-sm"></div>
                     </div>
                   </div>
                 );
